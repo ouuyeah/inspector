@@ -1,0 +1,41 @@
+{
+  "name": "with-typescript",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next -p 7777 -H 192.168.1.62",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc"
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": true
+  },
+  "dependencies": {
+    "@types/styled-components": "^4.1.11",
+    "@zeit/next-typescript": "^1.1.1",
+    "apollo-boost": "^0.1.28",
+    "apollo-client": "^2.5.1",
+    "cookie": "^0.3.1",
+    "graphql": "^14.1.1",
+    "graphql-tag": "^2.10.1",
+    "js-cookie": "^2.2.0",
+    "next": "^8.0.3",
+    "next-with-apollo": "^3.3.2",
+    "nprogress": "^0.2.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.3",
+    "react-adopt": "^0.6.0",
+    "react-apollo": "^2.5.1",
+    "react-dom": "^16.8.3",
+    "react-transition-group": "^2.6.0",
+    "styled-components": "^4.1.3"
+  },
+  "devDependencies": {
+    "@types/next": "^7.0.6",
+    "@types/react": "^16.8.6",
+    "@types/react-dom": "16.0.11",
+    "typescript": "3.2.4"
+  },
+  "license": "ISC"
+}

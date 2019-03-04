@@ -1,0 +1,41 @@
+{
+  "name": "graphql-auth",
+  "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=development nodemon --exec ts-node src/index.ts"
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "all",
+    "singleQuote": true
+  },
+  "dependencies": {
+    "@types/cookie-parser": "^1.4.1",
+    "bcrypt": "3.0.4",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^6.2.0",
+    "graphql": "14.1.1",
+    "graphql-shield": "5.3.0",
+    "graphql-yoga": "1.17.4",
+    "jsonwebtoken": "8.5.0",
+    "nexus": "0.10.0",
+    "nexus-prisma": "0.3.3",
+    "prisma-client-lib": "1.27.1"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "8.10.19",
+    "@types/bcrypt": "3.0.0",
+    "@types/graphql": "14.0.7",
+    "@types/jsonwebtoken": "8.3.0",
+    "@types/node": "10.12.27",
+    "@types/ws": "6.0.1",
+    "nodemon": "^1.18.10",
+    "prettier": "1.16.4",
+    "ts-node": "^8.0.2",
+    "ts-node-dev": "1.0.0-pre.32",
+    "tslint": "^5.13.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "3.3.3333"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "extends": ["tslint:latest", "tslint-config-prettier"],
+  "rulesDirectory": ["tslint-plugin-prettier"],
+  "rules": {
+    "prettier": true,
+    "no-console": false,
+    "no-namespace": false,
+    "object-literal-sort-keys": false,
+    "no-duplicate-imports": false,
+    "max-classes-per-file": false,
+    "interface-name": [true, "never-prefix"],
+    "ordered-imports": [
+      true,
+      {
+        "import-sources-order": false
+      }
+    ],
+    "curly": [true, "ignore-same-line"]
+  }
+}
