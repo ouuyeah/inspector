@@ -14,6 +14,7 @@ const LoginStyles = styled.div`
 
   img {
     width: 40vh;
+    max-width: 18rem;
     margin-top: 5vh;
     margin-right: 3rem;
     transition: all 0.4s;

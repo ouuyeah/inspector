@@ -24,6 +24,12 @@ const SignUp: React.FunctionComponent = () => {
           required
         />
         <InputLogin
+          type="number"
+          name="cc"
+          placeholder="Cédula de ciudadania"
+          required
+        />
+        <InputLogin
           type="email"
           name="email"
           placeholder="Correo electrónico"
@@ -35,7 +41,7 @@ const SignUp: React.FunctionComponent = () => {
           placeholder="Contraseña"
           required
         />
-        <ButtonPrimary> Entrar </ButtonPrimary>
+        <ButtonPrimary login> Entrar </ButtonPrimary>
       </form>
     </LoginStyles>
   );

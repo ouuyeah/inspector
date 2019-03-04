@@ -28,7 +28,7 @@ const Remember: React.FunctionComponent = () => {
           required
         />
 
-        <ButtonPrimary> Solicitar contraseña </ButtonPrimary>
+        <ButtonPrimary login> Solicitar contraseña </ButtonPrimary>
       </form>
     </LoginStyles>
   );

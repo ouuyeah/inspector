@@ -4,7 +4,7 @@ const FormStyles = styled.form`
   text-align: center;
   display: grid;
   grid-template-rows: auto auto;
-  height: calc(100vh - 10vh);
+  height: calc(100vh - 24vh);
 
   h3 {
     font-size: 2.2rem;

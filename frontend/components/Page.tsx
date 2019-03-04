@@ -1,6 +1,7 @@
 import React from 'react';
 import Meta from './Meta';
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import GlobalStyle from '../components/styles/generalStyles';
 
 const theme = {
   red: '#FF0000',
@@ -20,51 +21,6 @@ const Inner = styled.div`
   padding: 2rem;
 `;
 
-const GlobalStyle = createGlobalStyle`
-
-  html {
-    box-sizing: border-box;
-    font-size: 10px;
-  }
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
-  body {
-    padding: 0;
-    margin: 0;
-    font-size: 1.5rem;
-    line-height: 2;
-    font-family: 'Arial';
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  a {
-    text-decoration: none;
-    color: ${theme.black};
-  }
-  h1,h2,h3,h4 {
-    font-weight: normal;
-    margin: 0;
-  }
-  button {
-    cursor: pointer;
-  }
-
-  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: #404040;
-  }
-  ::-moz-placeholder { /* Firefox 19+ */
-    color: #404040;
-  }
-  :-ms-input-placeholder { /* IE 10+ */
-    color: #404040;
-  }
-  :-moz-placeholder { /* Firefox 18- */
-    color: #404040;
-  }
-
-`;
-
 class Page extends React.Component {
   render() {
     return (
@@ -72,7 +28,7 @@ class Page extends React.Component {
         <>
           <Meta />
           <Inner>{this.props.children}</Inner>
-          <GlobalStyle />
+          <GlobalStyle theme={theme} />
         </>
       </ThemeProvider>
     );

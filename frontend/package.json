@@ -2,7 +2,7 @@
   "name": "with-typescript",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next -p 7777 -H 192.168.1.238",
+    "dev": "next -p 7777 -H 192.168.1.43",
     "build": "next build",
     "start": "next start",
     "type-check": "tsc"
@@ -28,6 +28,7 @@
     "react-adopt": "^0.6.0",
     "react-apollo": "^2.5.1",
     "react-dom": "^16.8.3",
+    "react-modal": "^3.8.1",
     "react-transition-group": "^2.6.0",
     "styled-components": "^4.1.3"
   },
