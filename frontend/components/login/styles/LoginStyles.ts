@@ -6,6 +6,12 @@ const LoginStyles = styled.div`
   text-align: center;
   justify-items: center;
 
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   img {
     width: 40vh;
     margin-top: 5vh;
@@ -20,6 +26,9 @@ const LoginStyles = styled.div`
     padding: 0 3rem;
     margin-bottom: 10vh;
     margin-top: 3.5vh;
+  }
+  button {
+    margin-top: 5vh;
   }
 `;
 

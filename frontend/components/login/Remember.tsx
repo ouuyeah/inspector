@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginStyles from './styles/LoginStyles';
-import LoginButton from '../styles/LoginButton';
-import InputText from '../styles/InputText';
+import ButtonPrimary from '../styles/ButtonPrimary';
+import InputLogin from './styles/InputLogin';
 
 const Remember: React.FunctionComponent = () => {
   const handleSubmit = () => async e => {
@@ -21,14 +21,14 @@ const Remember: React.FunctionComponent = () => {
           Envíaremos un token para verificar tu identidad al correo que
           indiques.
         </h4>
-        <InputText
+        <InputLogin
           type="email"
           name="email"
           placeholder="Ingresa tu correo"
           required
         />
 
-        <LoginButton> Solicitar contraseña </LoginButton>
+        <ButtonPrimary> Solicitar contraseña </ButtonPrimary>
       </form>
     </LoginStyles>
   );

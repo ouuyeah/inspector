@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginStyles from './styles/LoginStyles';
-import LoginButton from '../styles/LoginButton';
-import InputText from '../styles/InputText';
+import ButtonPrimary from '../styles/ButtonPrimary';
+import InputLogin from './styles/InputLogin';
 
 const SignUp: React.FunctionComponent = () => {
   const handleSubmit = () => async e => {
@@ -17,25 +17,25 @@ const SignUp: React.FunctionComponent = () => {
       <h3>Salvando al mundo de accidentes de tránsito </h3>
 
       <form onSubmit={handleSubmit()}>
-        <InputText
+        <InputLogin
           type="text"
           name="name"
           placeholder="Nombre completo"
           required
         />
-        <InputText
+        <InputLogin
           type="email"
           name="email"
           placeholder="Correo electrónico"
           required
         />
-        <InputText
+        <InputLogin
           type="password"
           name="password"
           placeholder="Contraseña"
           required
         />
-        <LoginButton> Entrar </LoginButton>
+        <ButtonPrimary> Entrar </ButtonPrimary>
       </form>
     </LoginStyles>
   );
