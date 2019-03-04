@@ -41,7 +41,13 @@ const SignUp: React.FunctionComponent = () => {
           placeholder="Contraseña"
           required
         />
-        <ButtonPrimary login> Entrar </ButtonPrimary>
+        <InputLogin
+          type="password"
+          name="confirm-password"
+          placeholder="Confirmar contraseña"
+          required
+        />
+        <ButtonPrimary login> Registrar usuario </ButtonPrimary>
       </form>
     </LoginStyles>
   );

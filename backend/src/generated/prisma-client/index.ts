@@ -14,9 +14,7 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
 
 export interface Exists {
-  pictures: (where?: PicturesWhereInput) => Promise<boolean>;
-  post: (where?: PostWhereInput) => Promise<boolean>;
-  setCard: (where?: SetCardWhereInput) => Promise<boolean>;
+  inspection: (where?: InspectionWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
 }
 
@@ -39,75 +37,29 @@ export interface Prisma {
    * Queries
    */
 
-  pictures: (where: PicturesWhereUniqueInput) => PicturesPromise;
-  pictureses: (
+  inspection: (where: InspectionWhereUniqueInput) => InspectionPromise;
+  inspections: (
     args?: {
-      where?: PicturesWhereInput;
-      orderBy?: PicturesOrderByInput;
+      where?: InspectionWhereInput;
+      orderBy?: InspectionOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
       first?: Int;
       last?: Int;
     }
-  ) => FragmentableArray<Pictures>;
-  picturesesConnection: (
+  ) => FragmentableArray<Inspection>;
+  inspectionsConnection: (
     args?: {
-      where?: PicturesWhereInput;
-      orderBy?: PicturesOrderByInput;
+      where?: InspectionWhereInput;
+      orderBy?: InspectionOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
       first?: Int;
       last?: Int;
     }
-  ) => PicturesConnectionPromise;
-  post: (where: PostWhereUniqueInput) => PostPromise;
-  posts: (
-    args?: {
-      where?: PostWhereInput;
-      orderBy?: PostOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<Post>;
-  postsConnection: (
-    args?: {
-      where?: PostWhereInput;
-      orderBy?: PostOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => PostConnectionPromise;
-  setCard: (where: SetCardWhereUniqueInput) => SetCardPromise;
-  setCards: (
-    args?: {
-      where?: SetCardWhereInput;
-      orderBy?: SetCardOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<SetCard>;
-  setCardsConnection: (
-    args?: {
-      where?: SetCardWhereInput;
-      orderBy?: SetCardOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => SetCardConnectionPromise;
+  ) => InspectionConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserPromise;
   users: (
     args?: {
@@ -137,54 +89,25 @@ export interface Prisma {
    * Mutations
    */
 
-  createPictures: (data: PicturesCreateInput) => PicturesPromise;
-  updatePictures: (
-    args: { data: PicturesUpdateInput; where: PicturesWhereUniqueInput }
-  ) => PicturesPromise;
-  updateManyPictureses: (
-    args: { data: PicturesUpdateManyMutationInput; where?: PicturesWhereInput }
-  ) => BatchPayloadPromise;
-  upsertPictures: (
+  createInspection: (data: InspectionCreateInput) => InspectionPromise;
+  updateInspection: (
+    args: { data: InspectionUpdateInput; where: InspectionWhereUniqueInput }
+  ) => InspectionPromise;
+  updateManyInspections: (
     args: {
-      where: PicturesWhereUniqueInput;
-      create: PicturesCreateInput;
-      update: PicturesUpdateInput;
+      data: InspectionUpdateManyMutationInput;
+      where?: InspectionWhereInput;
     }
-  ) => PicturesPromise;
-  deletePictures: (where: PicturesWhereUniqueInput) => PicturesPromise;
-  deleteManyPictureses: (where?: PicturesWhereInput) => BatchPayloadPromise;
-  createPost: (data: PostCreateInput) => PostPromise;
-  updatePost: (
-    args: { data: PostUpdateInput; where: PostWhereUniqueInput }
-  ) => PostPromise;
-  updateManyPosts: (
-    args: { data: PostUpdateManyMutationInput; where?: PostWhereInput }
   ) => BatchPayloadPromise;
-  upsertPost: (
+  upsertInspection: (
     args: {
-      where: PostWhereUniqueInput;
-      create: PostCreateInput;
-      update: PostUpdateInput;
+      where: InspectionWhereUniqueInput;
+      create: InspectionCreateInput;
+      update: InspectionUpdateInput;
     }
-  ) => PostPromise;
-  deletePost: (where: PostWhereUniqueInput) => PostPromise;
-  deleteManyPosts: (where?: PostWhereInput) => BatchPayloadPromise;
-  createSetCard: (data: SetCardCreateInput) => SetCardPromise;
-  updateSetCard: (
-    args: { data: SetCardUpdateInput; where: SetCardWhereUniqueInput }
-  ) => SetCardPromise;
-  updateManySetCards: (
-    args: { data: SetCardUpdateManyMutationInput; where?: SetCardWhereInput }
-  ) => BatchPayloadPromise;
-  upsertSetCard: (
-    args: {
-      where: SetCardWhereUniqueInput;
-      create: SetCardCreateInput;
-      update: SetCardUpdateInput;
-    }
-  ) => SetCardPromise;
-  deleteSetCard: (where: SetCardWhereUniqueInput) => SetCardPromise;
-  deleteManySetCards: (where?: SetCardWhereInput) => BatchPayloadPromise;
+  ) => InspectionPromise;
+  deleteInspection: (where: InspectionWhereUniqueInput) => InspectionPromise;
+  deleteManyInspections: (where?: InspectionWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (
     args: { data: UserUpdateInput; where: UserWhereUniqueInput }
@@ -210,15 +133,9 @@ export interface Prisma {
 }
 
 export interface Subscription {
-  pictures: (
-    where?: PicturesSubscriptionWhereInput
-  ) => PicturesSubscriptionPayloadSubscription;
-  post: (
-    where?: PostSubscriptionWhereInput
-  ) => PostSubscriptionPayloadSubscription;
-  setCard: (
-    where?: SetCardSubscriptionWhereInput
-  ) => SetCardSubscriptionPayloadSubscription;
+  inspection: (
+    where?: InspectionSubscriptionWhereInput
+  ) => InspectionSubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
@@ -232,51 +149,29 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type PicturesOrderByInput =
+export type InspectionOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC"
-  | "url_ASC"
-  | "url_DESC";
-
-export type PostOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC"
-  | "published_ASC"
-  | "published_DESC"
-  | "title_ASC"
-  | "title_DESC"
-  | "content_ASC"
-  | "content_DESC";
-
-export type Permission = "ADMIN" | "USER" | "ESCORT" | "AGENT";
-
-export type SetCardOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "aliasName_ASC"
-  | "aliasName_DESC"
-  | "age_ASC"
-  | "age_DESC"
+  | "source_ASC"
+  | "source_DESC"
+  | "record_ASC"
+  | "record_DESC"
+  | "licensePlate_ASC"
+  | "licensePlate_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
+export type Permission = "ADMIN" | "DRIVER" | "AGENT";
+
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "cc_ASC"
+  | "cc_DESC"
   | "email_ASC"
   | "email_DESC"
-  | "nickname_ASC"
-  | "nickname_DESC"
   | "password_ASC"
   | "password_DESC"
   | "name_ASC"
@@ -288,11 +183,11 @@ export type UserOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export type PicturesWhereUniqueInput = AtLeastOne<{
+export type InspectionWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
 
-export interface PicturesWhereInput {
+export interface InspectionWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -307,86 +202,52 @@ export interface PicturesWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  createdAt?: DateTimeInput;
-  createdAt_not?: DateTimeInput;
-  createdAt_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_lt?: DateTimeInput;
-  createdAt_lte?: DateTimeInput;
-  createdAt_gt?: DateTimeInput;
-  createdAt_gte?: DateTimeInput;
-  updatedAt?: DateTimeInput;
-  updatedAt_not?: DateTimeInput;
-  updatedAt_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_lt?: DateTimeInput;
-  updatedAt_lte?: DateTimeInput;
-  updatedAt_gt?: DateTimeInput;
-  updatedAt_gte?: DateTimeInput;
-  url?: String;
-  url_not?: String;
-  url_in?: String[] | String;
-  url_not_in?: String[] | String;
-  url_lt?: String;
-  url_lte?: String;
-  url_gt?: String;
-  url_gte?: String;
-  url_contains?: String;
-  url_not_contains?: String;
-  url_starts_with?: String;
-  url_not_starts_with?: String;
-  url_ends_with?: String;
-  url_not_ends_with?: String;
-  setCard?: SetCardWhereInput;
-  AND?: PicturesWhereInput[] | PicturesWhereInput;
-  OR?: PicturesWhereInput[] | PicturesWhereInput;
-  NOT?: PicturesWhereInput[] | PicturesWhereInput;
-}
-
-export interface SetCardWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  aliasName?: String;
-  aliasName_not?: String;
-  aliasName_in?: String[] | String;
-  aliasName_not_in?: String[] | String;
-  aliasName_lt?: String;
-  aliasName_lte?: String;
-  aliasName_gt?: String;
-  aliasName_gte?: String;
-  aliasName_contains?: String;
-  aliasName_not_contains?: String;
-  aliasName_starts_with?: String;
-  aliasName_not_starts_with?: String;
-  aliasName_ends_with?: String;
-  aliasName_not_ends_with?: String;
-  pictures_every?: PicturesWhereInput;
-  pictures_some?: PicturesWhereInput;
-  pictures_none?: PicturesWhereInput;
-  age?: Int;
-  age_not?: Int;
-  age_in?: Int[] | Int;
-  age_not_in?: Int[] | Int;
-  age_lt?: Int;
-  age_lte?: Int;
-  age_gt?: Int;
-  age_gte?: Int;
-  escort?: UserWhereInput;
-  AND?: SetCardWhereInput[] | SetCardWhereInput;
-  OR?: SetCardWhereInput[] | SetCardWhereInput;
-  NOT?: SetCardWhereInput[] | SetCardWhereInput;
+  source?: String;
+  source_not?: String;
+  source_in?: String[] | String;
+  source_not_in?: String[] | String;
+  source_lt?: String;
+  source_lte?: String;
+  source_gt?: String;
+  source_gte?: String;
+  source_contains?: String;
+  source_not_contains?: String;
+  source_starts_with?: String;
+  source_not_starts_with?: String;
+  source_ends_with?: String;
+  source_not_ends_with?: String;
+  record?: String;
+  record_not?: String;
+  record_in?: String[] | String;
+  record_not_in?: String[] | String;
+  record_lt?: String;
+  record_lte?: String;
+  record_gt?: String;
+  record_gte?: String;
+  record_contains?: String;
+  record_not_contains?: String;
+  record_starts_with?: String;
+  record_not_starts_with?: String;
+  record_ends_with?: String;
+  record_not_ends_with?: String;
+  licensePlate?: String;
+  licensePlate_not?: String;
+  licensePlate_in?: String[] | String;
+  licensePlate_not_in?: String[] | String;
+  licensePlate_lt?: String;
+  licensePlate_lte?: String;
+  licensePlate_gt?: String;
+  licensePlate_gte?: String;
+  licensePlate_contains?: String;
+  licensePlate_not_contains?: String;
+  licensePlate_starts_with?: String;
+  licensePlate_not_starts_with?: String;
+  licensePlate_ends_with?: String;
+  licensePlate_not_ends_with?: String;
+  user?: UserWhereInput;
+  AND?: InspectionWhereInput[] | InspectionWhereInput;
+  OR?: InspectionWhereInput[] | InspectionWhereInput;
+  NOT?: InspectionWhereInput[] | InspectionWhereInput;
 }
 
 export interface UserWhereInput {
@@ -404,6 +265,14 @@ export interface UserWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  cc?: Int;
+  cc_not?: Int;
+  cc_in?: Int[] | Int;
+  cc_not_in?: Int[] | Int;
+  cc_lt?: Int;
+  cc_lte?: Int;
+  cc_gt?: Int;
+  cc_gte?: Int;
   email?: String;
   email_not?: String;
   email_in?: String[] | String;
@@ -418,20 +287,6 @@ export interface UserWhereInput {
   email_not_starts_with?: String;
   email_ends_with?: String;
   email_not_ends_with?: String;
-  nickname?: String;
-  nickname_not?: String;
-  nickname_in?: String[] | String;
-  nickname_not_in?: String[] | String;
-  nickname_lt?: String;
-  nickname_lte?: String;
-  nickname_gt?: String;
-  nickname_gte?: String;
-  nickname_contains?: String;
-  nickname_not_contains?: String;
-  nickname_starts_with?: String;
-  nickname_not_starts_with?: String;
-  nickname_ends_with?: String;
-  nickname_not_ends_with?: String;
   password?: String;
   password_not?: String;
   password_in?: String[] | String;
@@ -460,423 +315,150 @@ export interface UserWhereInput {
   name_not_starts_with?: String;
   name_ends_with?: String;
   name_not_ends_with?: String;
-  posts_every?: PostWhereInput;
-  posts_some?: PostWhereInput;
-  posts_none?: PostWhereInput;
-  profile?: SetCardWhereInput;
+  inspections_every?: InspectionWhereInput;
+  inspections_some?: InspectionWhereInput;
+  inspections_none?: InspectionWhereInput;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
   NOT?: UserWhereInput[] | UserWhereInput;
 }
 
-export interface PostWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  createdAt?: DateTimeInput;
-  createdAt_not?: DateTimeInput;
-  createdAt_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_lt?: DateTimeInput;
-  createdAt_lte?: DateTimeInput;
-  createdAt_gt?: DateTimeInput;
-  createdAt_gte?: DateTimeInput;
-  updatedAt?: DateTimeInput;
-  updatedAt_not?: DateTimeInput;
-  updatedAt_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_lt?: DateTimeInput;
-  updatedAt_lte?: DateTimeInput;
-  updatedAt_gt?: DateTimeInput;
-  updatedAt_gte?: DateTimeInput;
-  published?: Boolean;
-  published_not?: Boolean;
-  title?: String;
-  title_not?: String;
-  title_in?: String[] | String;
-  title_not_in?: String[] | String;
-  title_lt?: String;
-  title_lte?: String;
-  title_gt?: String;
-  title_gte?: String;
-  title_contains?: String;
-  title_not_contains?: String;
-  title_starts_with?: String;
-  title_not_starts_with?: String;
-  title_ends_with?: String;
-  title_not_ends_with?: String;
-  content?: String;
-  content_not?: String;
-  content_in?: String[] | String;
-  content_not_in?: String[] | String;
-  content_lt?: String;
-  content_lte?: String;
-  content_gt?: String;
-  content_gte?: String;
-  content_contains?: String;
-  content_not_contains?: String;
-  content_starts_with?: String;
-  content_not_starts_with?: String;
-  content_ends_with?: String;
-  content_not_ends_with?: String;
-  author?: UserWhereInput;
-  AND?: PostWhereInput[] | PostWhereInput;
-  OR?: PostWhereInput[] | PostWhereInput;
-  NOT?: PostWhereInput[] | PostWhereInput;
-}
-
-export type PostWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export type SetCardWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-  aliasName?: String;
-}>;
-
 export type UserWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  cc?: Int;
   email?: String;
-  nickname?: String;
 }>;
 
-export interface PicturesCreateInput {
-  url: String;
-  setCard: SetCardCreateOneWithoutPicturesInput;
+export interface InspectionCreateInput {
+  source: String;
+  record: String;
+  licensePlate: String;
+  user: UserCreateOneWithoutInspectionsInput;
 }
 
-export interface SetCardCreateOneWithoutPicturesInput {
-  create?: SetCardCreateWithoutPicturesInput;
-  connect?: SetCardWhereUniqueInput;
-}
-
-export interface SetCardCreateWithoutPicturesInput {
-  aliasName: String;
-  age: Int;
-  escort: UserCreateOneWithoutProfileInput;
-}
-
-export interface UserCreateOneWithoutProfileInput {
-  create?: UserCreateWithoutProfileInput;
+export interface UserCreateOneWithoutInspectionsInput {
+  create?: UserCreateWithoutInspectionsInput;
   connect?: UserWhereUniqueInput;
 }
 
-export interface UserCreateWithoutProfileInput {
+export interface UserCreateWithoutInspectionsInput {
+  cc: Int;
   email: String;
-  nickname: String;
   password: String;
   name?: String;
-  posts?: PostCreateManyWithoutAuthorInput;
   permissions?: UserCreatepermissionsInput;
-}
-
-export interface PostCreateManyWithoutAuthorInput {
-  create?: PostCreateWithoutAuthorInput[] | PostCreateWithoutAuthorInput;
-  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-}
-
-export interface PostCreateWithoutAuthorInput {
-  published?: Boolean;
-  title: String;
-  content?: String;
 }
 
 export interface UserCreatepermissionsInput {
   set?: Permission[] | Permission;
 }
 
-export interface PicturesUpdateInput {
-  url?: String;
-  setCard?: SetCardUpdateOneRequiredWithoutPicturesInput;
+export interface InspectionUpdateInput {
+  source?: String;
+  record?: String;
+  licensePlate?: String;
+  user?: UserUpdateOneRequiredWithoutInspectionsInput;
 }
 
-export interface SetCardUpdateOneRequiredWithoutPicturesInput {
-  create?: SetCardCreateWithoutPicturesInput;
-  update?: SetCardUpdateWithoutPicturesDataInput;
-  upsert?: SetCardUpsertWithoutPicturesInput;
-  connect?: SetCardWhereUniqueInput;
-}
-
-export interface SetCardUpdateWithoutPicturesDataInput {
-  aliasName?: String;
-  age?: Int;
-  escort?: UserUpdateOneRequiredWithoutProfileInput;
-}
-
-export interface UserUpdateOneRequiredWithoutProfileInput {
-  create?: UserCreateWithoutProfileInput;
-  update?: UserUpdateWithoutProfileDataInput;
-  upsert?: UserUpsertWithoutProfileInput;
+export interface UserUpdateOneRequiredWithoutInspectionsInput {
+  create?: UserCreateWithoutInspectionsInput;
+  update?: UserUpdateWithoutInspectionsDataInput;
+  upsert?: UserUpsertWithoutInspectionsInput;
   connect?: UserWhereUniqueInput;
 }
 
-export interface UserUpdateWithoutProfileDataInput {
+export interface UserUpdateWithoutInspectionsDataInput {
+  cc?: Int;
   email?: String;
-  nickname?: String;
   password?: String;
   name?: String;
-  posts?: PostUpdateManyWithoutAuthorInput;
   permissions?: UserUpdatepermissionsInput;
-}
-
-export interface PostUpdateManyWithoutAuthorInput {
-  create?: PostCreateWithoutAuthorInput[] | PostCreateWithoutAuthorInput;
-  delete?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-  set?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-  disconnect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-  update?:
-    | PostUpdateWithWhereUniqueWithoutAuthorInput[]
-    | PostUpdateWithWhereUniqueWithoutAuthorInput;
-  upsert?:
-    | PostUpsertWithWhereUniqueWithoutAuthorInput[]
-    | PostUpsertWithWhereUniqueWithoutAuthorInput;
-  deleteMany?: PostScalarWhereInput[] | PostScalarWhereInput;
-  updateMany?:
-    | PostUpdateManyWithWhereNestedInput[]
-    | PostUpdateManyWithWhereNestedInput;
-}
-
-export interface PostUpdateWithWhereUniqueWithoutAuthorInput {
-  where: PostWhereUniqueInput;
-  data: PostUpdateWithoutAuthorDataInput;
-}
-
-export interface PostUpdateWithoutAuthorDataInput {
-  published?: Boolean;
-  title?: String;
-  content?: String;
-}
-
-export interface PostUpsertWithWhereUniqueWithoutAuthorInput {
-  where: PostWhereUniqueInput;
-  update: PostUpdateWithoutAuthorDataInput;
-  create: PostCreateWithoutAuthorInput;
-}
-
-export interface PostScalarWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  createdAt?: DateTimeInput;
-  createdAt_not?: DateTimeInput;
-  createdAt_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_lt?: DateTimeInput;
-  createdAt_lte?: DateTimeInput;
-  createdAt_gt?: DateTimeInput;
-  createdAt_gte?: DateTimeInput;
-  updatedAt?: DateTimeInput;
-  updatedAt_not?: DateTimeInput;
-  updatedAt_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_lt?: DateTimeInput;
-  updatedAt_lte?: DateTimeInput;
-  updatedAt_gt?: DateTimeInput;
-  updatedAt_gte?: DateTimeInput;
-  published?: Boolean;
-  published_not?: Boolean;
-  title?: String;
-  title_not?: String;
-  title_in?: String[] | String;
-  title_not_in?: String[] | String;
-  title_lt?: String;
-  title_lte?: String;
-  title_gt?: String;
-  title_gte?: String;
-  title_contains?: String;
-  title_not_contains?: String;
-  title_starts_with?: String;
-  title_not_starts_with?: String;
-  title_ends_with?: String;
-  title_not_ends_with?: String;
-  content?: String;
-  content_not?: String;
-  content_in?: String[] | String;
-  content_not_in?: String[] | String;
-  content_lt?: String;
-  content_lte?: String;
-  content_gt?: String;
-  content_gte?: String;
-  content_contains?: String;
-  content_not_contains?: String;
-  content_starts_with?: String;
-  content_not_starts_with?: String;
-  content_ends_with?: String;
-  content_not_ends_with?: String;
-  AND?: PostScalarWhereInput[] | PostScalarWhereInput;
-  OR?: PostScalarWhereInput[] | PostScalarWhereInput;
-  NOT?: PostScalarWhereInput[] | PostScalarWhereInput;
-}
-
-export interface PostUpdateManyWithWhereNestedInput {
-  where: PostScalarWhereInput;
-  data: PostUpdateManyDataInput;
-}
-
-export interface PostUpdateManyDataInput {
-  published?: Boolean;
-  title?: String;
-  content?: String;
 }
 
 export interface UserUpdatepermissionsInput {
   set?: Permission[] | Permission;
 }
 
-export interface UserUpsertWithoutProfileInput {
-  update: UserUpdateWithoutProfileDataInput;
-  create: UserCreateWithoutProfileInput;
+export interface UserUpsertWithoutInspectionsInput {
+  update: UserUpdateWithoutInspectionsDataInput;
+  create: UserCreateWithoutInspectionsInput;
 }
 
-export interface SetCardUpsertWithoutPicturesInput {
-  update: SetCardUpdateWithoutPicturesDataInput;
-  create: SetCardCreateWithoutPicturesInput;
+export interface InspectionUpdateManyMutationInput {
+  source?: String;
+  record?: String;
+  licensePlate?: String;
 }
 
-export interface PicturesUpdateManyMutationInput {
-  url?: String;
-}
-
-export interface PostCreateInput {
-  published?: Boolean;
-  title: String;
-  content?: String;
-  author: UserCreateOneWithoutPostsInput;
-}
-
-export interface UserCreateOneWithoutPostsInput {
-  create?: UserCreateWithoutPostsInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface UserCreateWithoutPostsInput {
+export interface UserCreateInput {
+  cc: Int;
   email: String;
-  nickname: String;
   password: String;
   name?: String;
+  inspections?: InspectionCreateManyWithoutUserInput;
   permissions?: UserCreatepermissionsInput;
-  profile?: SetCardCreateOneWithoutEscortInput;
 }
 
-export interface SetCardCreateOneWithoutEscortInput {
-  create?: SetCardCreateWithoutEscortInput;
-  connect?: SetCardWhereUniqueInput;
-}
-
-export interface SetCardCreateWithoutEscortInput {
-  aliasName: String;
-  pictures?: PicturesCreateManyWithoutSetCardInput;
-  age: Int;
-}
-
-export interface PicturesCreateManyWithoutSetCardInput {
+export interface InspectionCreateManyWithoutUserInput {
   create?:
-    | PicturesCreateWithoutSetCardInput[]
-    | PicturesCreateWithoutSetCardInput;
-  connect?: PicturesWhereUniqueInput[] | PicturesWhereUniqueInput;
+    | InspectionCreateWithoutUserInput[]
+    | InspectionCreateWithoutUserInput;
+  connect?: InspectionWhereUniqueInput[] | InspectionWhereUniqueInput;
 }
 
-export interface PicturesCreateWithoutSetCardInput {
-  url: String;
+export interface InspectionCreateWithoutUserInput {
+  source: String;
+  record: String;
+  licensePlate: String;
 }
 
-export interface PostUpdateInput {
-  published?: Boolean;
-  title?: String;
-  content?: String;
-  author?: UserUpdateOneRequiredWithoutPostsInput;
-}
-
-export interface UserUpdateOneRequiredWithoutPostsInput {
-  create?: UserCreateWithoutPostsInput;
-  update?: UserUpdateWithoutPostsDataInput;
-  upsert?: UserUpsertWithoutPostsInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface UserUpdateWithoutPostsDataInput {
+export interface UserUpdateInput {
+  cc?: Int;
   email?: String;
-  nickname?: String;
   password?: String;
   name?: String;
+  inspections?: InspectionUpdateManyWithoutUserInput;
   permissions?: UserUpdatepermissionsInput;
-  profile?: SetCardUpdateOneWithoutEscortInput;
 }
 
-export interface SetCardUpdateOneWithoutEscortInput {
-  create?: SetCardCreateWithoutEscortInput;
-  update?: SetCardUpdateWithoutEscortDataInput;
-  upsert?: SetCardUpsertWithoutEscortInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: SetCardWhereUniqueInput;
-}
-
-export interface SetCardUpdateWithoutEscortDataInput {
-  aliasName?: String;
-  pictures?: PicturesUpdateManyWithoutSetCardInput;
-  age?: Int;
-}
-
-export interface PicturesUpdateManyWithoutSetCardInput {
+export interface InspectionUpdateManyWithoutUserInput {
   create?:
-    | PicturesCreateWithoutSetCardInput[]
-    | PicturesCreateWithoutSetCardInput;
-  delete?: PicturesWhereUniqueInput[] | PicturesWhereUniqueInput;
-  connect?: PicturesWhereUniqueInput[] | PicturesWhereUniqueInput;
-  set?: PicturesWhereUniqueInput[] | PicturesWhereUniqueInput;
-  disconnect?: PicturesWhereUniqueInput[] | PicturesWhereUniqueInput;
+    | InspectionCreateWithoutUserInput[]
+    | InspectionCreateWithoutUserInput;
+  delete?: InspectionWhereUniqueInput[] | InspectionWhereUniqueInput;
+  connect?: InspectionWhereUniqueInput[] | InspectionWhereUniqueInput;
+  set?: InspectionWhereUniqueInput[] | InspectionWhereUniqueInput;
+  disconnect?: InspectionWhereUniqueInput[] | InspectionWhereUniqueInput;
   update?:
-    | PicturesUpdateWithWhereUniqueWithoutSetCardInput[]
-    | PicturesUpdateWithWhereUniqueWithoutSetCardInput;
+    | InspectionUpdateWithWhereUniqueWithoutUserInput[]
+    | InspectionUpdateWithWhereUniqueWithoutUserInput;
   upsert?:
-    | PicturesUpsertWithWhereUniqueWithoutSetCardInput[]
-    | PicturesUpsertWithWhereUniqueWithoutSetCardInput;
-  deleteMany?: PicturesScalarWhereInput[] | PicturesScalarWhereInput;
+    | InspectionUpsertWithWhereUniqueWithoutUserInput[]
+    | InspectionUpsertWithWhereUniqueWithoutUserInput;
+  deleteMany?: InspectionScalarWhereInput[] | InspectionScalarWhereInput;
   updateMany?:
-    | PicturesUpdateManyWithWhereNestedInput[]
-    | PicturesUpdateManyWithWhereNestedInput;
+    | InspectionUpdateManyWithWhereNestedInput[]
+    | InspectionUpdateManyWithWhereNestedInput;
 }
 
-export interface PicturesUpdateWithWhereUniqueWithoutSetCardInput {
-  where: PicturesWhereUniqueInput;
-  data: PicturesUpdateWithoutSetCardDataInput;
+export interface InspectionUpdateWithWhereUniqueWithoutUserInput {
+  where: InspectionWhereUniqueInput;
+  data: InspectionUpdateWithoutUserDataInput;
 }
 
-export interface PicturesUpdateWithoutSetCardDataInput {
-  url?: String;
+export interface InspectionUpdateWithoutUserDataInput {
+  source?: String;
+  record?: String;
+  licensePlate?: String;
 }
 
-export interface PicturesUpsertWithWhereUniqueWithoutSetCardInput {
-  where: PicturesWhereUniqueInput;
-  update: PicturesUpdateWithoutSetCardDataInput;
-  create: PicturesCreateWithoutSetCardInput;
+export interface InspectionUpsertWithWhereUniqueWithoutUserInput {
+  where: InspectionWhereUniqueInput;
+  update: InspectionUpdateWithoutUserDataInput;
+  create: InspectionCreateWithoutUserInput;
 }
 
-export interface PicturesScalarWhereInput {
+export interface InspectionScalarWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -891,144 +473,81 @@ export interface PicturesScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  createdAt?: DateTimeInput;
-  createdAt_not?: DateTimeInput;
-  createdAt_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_lt?: DateTimeInput;
-  createdAt_lte?: DateTimeInput;
-  createdAt_gt?: DateTimeInput;
-  createdAt_gte?: DateTimeInput;
-  updatedAt?: DateTimeInput;
-  updatedAt_not?: DateTimeInput;
-  updatedAt_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_lt?: DateTimeInput;
-  updatedAt_lte?: DateTimeInput;
-  updatedAt_gt?: DateTimeInput;
-  updatedAt_gte?: DateTimeInput;
-  url?: String;
-  url_not?: String;
-  url_in?: String[] | String;
-  url_not_in?: String[] | String;
-  url_lt?: String;
-  url_lte?: String;
-  url_gt?: String;
-  url_gte?: String;
-  url_contains?: String;
-  url_not_contains?: String;
-  url_starts_with?: String;
-  url_not_starts_with?: String;
-  url_ends_with?: String;
-  url_not_ends_with?: String;
-  AND?: PicturesScalarWhereInput[] | PicturesScalarWhereInput;
-  OR?: PicturesScalarWhereInput[] | PicturesScalarWhereInput;
-  NOT?: PicturesScalarWhereInput[] | PicturesScalarWhereInput;
+  source?: String;
+  source_not?: String;
+  source_in?: String[] | String;
+  source_not_in?: String[] | String;
+  source_lt?: String;
+  source_lte?: String;
+  source_gt?: String;
+  source_gte?: String;
+  source_contains?: String;
+  source_not_contains?: String;
+  source_starts_with?: String;
+  source_not_starts_with?: String;
+  source_ends_with?: String;
+  source_not_ends_with?: String;
+  record?: String;
+  record_not?: String;
+  record_in?: String[] | String;
+  record_not_in?: String[] | String;
+  record_lt?: String;
+  record_lte?: String;
+  record_gt?: String;
+  record_gte?: String;
+  record_contains?: String;
+  record_not_contains?: String;
+  record_starts_with?: String;
+  record_not_starts_with?: String;
+  record_ends_with?: String;
+  record_not_ends_with?: String;
+  licensePlate?: String;
+  licensePlate_not?: String;
+  licensePlate_in?: String[] | String;
+  licensePlate_not_in?: String[] | String;
+  licensePlate_lt?: String;
+  licensePlate_lte?: String;
+  licensePlate_gt?: String;
+  licensePlate_gte?: String;
+  licensePlate_contains?: String;
+  licensePlate_not_contains?: String;
+  licensePlate_starts_with?: String;
+  licensePlate_not_starts_with?: String;
+  licensePlate_ends_with?: String;
+  licensePlate_not_ends_with?: String;
+  AND?: InspectionScalarWhereInput[] | InspectionScalarWhereInput;
+  OR?: InspectionScalarWhereInput[] | InspectionScalarWhereInput;
+  NOT?: InspectionScalarWhereInput[] | InspectionScalarWhereInput;
 }
 
-export interface PicturesUpdateManyWithWhereNestedInput {
-  where: PicturesScalarWhereInput;
-  data: PicturesUpdateManyDataInput;
+export interface InspectionUpdateManyWithWhereNestedInput {
+  where: InspectionScalarWhereInput;
+  data: InspectionUpdateManyDataInput;
 }
 
-export interface PicturesUpdateManyDataInput {
-  url?: String;
-}
-
-export interface SetCardUpsertWithoutEscortInput {
-  update: SetCardUpdateWithoutEscortDataInput;
-  create: SetCardCreateWithoutEscortInput;
-}
-
-export interface UserUpsertWithoutPostsInput {
-  update: UserUpdateWithoutPostsDataInput;
-  create: UserCreateWithoutPostsInput;
-}
-
-export interface PostUpdateManyMutationInput {
-  published?: Boolean;
-  title?: String;
-  content?: String;
-}
-
-export interface SetCardCreateInput {
-  aliasName: String;
-  pictures?: PicturesCreateManyWithoutSetCardInput;
-  age: Int;
-  escort: UserCreateOneWithoutProfileInput;
-}
-
-export interface SetCardUpdateInput {
-  aliasName?: String;
-  pictures?: PicturesUpdateManyWithoutSetCardInput;
-  age?: Int;
-  escort?: UserUpdateOneRequiredWithoutProfileInput;
-}
-
-export interface SetCardUpdateManyMutationInput {
-  aliasName?: String;
-  age?: Int;
-}
-
-export interface UserCreateInput {
-  email: String;
-  nickname: String;
-  password: String;
-  name?: String;
-  posts?: PostCreateManyWithoutAuthorInput;
-  permissions?: UserCreatepermissionsInput;
-  profile?: SetCardCreateOneWithoutEscortInput;
-}
-
-export interface UserUpdateInput {
-  email?: String;
-  nickname?: String;
-  password?: String;
-  name?: String;
-  posts?: PostUpdateManyWithoutAuthorInput;
-  permissions?: UserUpdatepermissionsInput;
-  profile?: SetCardUpdateOneWithoutEscortInput;
+export interface InspectionUpdateManyDataInput {
+  source?: String;
+  record?: String;
+  licensePlate?: String;
 }
 
 export interface UserUpdateManyMutationInput {
+  cc?: Int;
   email?: String;
-  nickname?: String;
   password?: String;
   name?: String;
   permissions?: UserUpdatepermissionsInput;
 }
 
-export interface PicturesSubscriptionWhereInput {
+export interface InspectionSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: PicturesWhereInput;
-  AND?: PicturesSubscriptionWhereInput[] | PicturesSubscriptionWhereInput;
-  OR?: PicturesSubscriptionWhereInput[] | PicturesSubscriptionWhereInput;
-  NOT?: PicturesSubscriptionWhereInput[] | PicturesSubscriptionWhereInput;
-}
-
-export interface PostSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: PostWhereInput;
-  AND?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
-  OR?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
-  NOT?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
-}
-
-export interface SetCardSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: SetCardWhereInput;
-  AND?: SetCardSubscriptionWhereInput[] | SetCardSubscriptionWhereInput;
-  OR?: SetCardSubscriptionWhereInput[] | SetCardSubscriptionWhereInput;
-  NOT?: SetCardSubscriptionWhereInput[] | SetCardSubscriptionWhereInput;
+  node?: InspectionWhereInput;
+  AND?: InspectionSubscriptionWhereInput[] | InspectionSubscriptionWhereInput;
+  OR?: InspectionSubscriptionWhereInput[] | InspectionSubscriptionWhereInput;
+  NOT?: InspectionSubscriptionWhereInput[] | InspectionSubscriptionWhereInput;
 }
 
 export interface UserSubscriptionWhereInput {
@@ -1046,79 +565,35 @@ export interface NodeNode {
   id: ID_Output;
 }
 
-export interface Pictures {
+export interface Inspection {
   id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  url: String;
+  source: String;
+  record: String;
+  licensePlate: String;
 }
 
-export interface PicturesPromise extends Promise<Pictures>, Fragmentable {
+export interface InspectionPromise extends Promise<Inspection>, Fragmentable {
   id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  url: () => Promise<String>;
-  setCard: <T = SetCardPromise>() => T;
+  source: () => Promise<String>;
+  record: () => Promise<String>;
+  licensePlate: () => Promise<String>;
+  user: <T = UserPromise>() => T;
 }
 
-export interface PicturesSubscription
-  extends Promise<AsyncIterator<Pictures>>,
+export interface InspectionSubscription
+  extends Promise<AsyncIterator<Inspection>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  url: () => Promise<AsyncIterator<String>>;
-  setCard: <T = SetCardSubscription>() => T;
-}
-
-export interface SetCard {
-  id: ID_Output;
-  aliasName: String;
-  age: Int;
-}
-
-export interface SetCardPromise extends Promise<SetCard>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  aliasName: () => Promise<String>;
-  pictures: <T = FragmentableArray<Pictures>>(
-    args?: {
-      where?: PicturesWhereInput;
-      orderBy?: PicturesOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  age: () => Promise<Int>;
-  escort: <T = UserPromise>() => T;
-}
-
-export interface SetCardSubscription
-  extends Promise<AsyncIterator<SetCard>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  aliasName: () => Promise<AsyncIterator<String>>;
-  pictures: <T = Promise<AsyncIterator<PicturesSubscription>>>(
-    args?: {
-      where?: PicturesWhereInput;
-      orderBy?: PicturesOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  age: () => Promise<AsyncIterator<Int>>;
-  escort: <T = UserSubscription>() => T;
+  source: () => Promise<AsyncIterator<String>>;
+  record: () => Promise<AsyncIterator<String>>;
+  licensePlate: () => Promise<AsyncIterator<String>>;
+  user: <T = UserSubscription>() => T;
 }
 
 export interface User {
   id: ID_Output;
+  cc: Int;
   email: String;
-  nickname: String;
   password: String;
   name?: String;
   permissions: Permission[];
@@ -1126,14 +601,14 @@ export interface User {
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
+  cc: () => Promise<Int>;
   email: () => Promise<String>;
-  nickname: () => Promise<String>;
   password: () => Promise<String>;
   name: () => Promise<String>;
-  posts: <T = FragmentableArray<Post>>(
+  inspections: <T = FragmentableArray<Inspection>>(
     args?: {
-      where?: PostWhereInput;
-      orderBy?: PostOrderByInput;
+      where?: InspectionWhereInput;
+      orderBy?: InspectionOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
@@ -1142,21 +617,20 @@ export interface UserPromise extends Promise<User>, Fragmentable {
     }
   ) => T;
   permissions: () => Promise<Permission[]>;
-  profile: <T = SetCardPromise>() => T;
 }
 
 export interface UserSubscription
   extends Promise<AsyncIterator<User>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  cc: () => Promise<AsyncIterator<Int>>;
   email: () => Promise<AsyncIterator<String>>;
-  nickname: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
-  posts: <T = Promise<AsyncIterator<PostSubscription>>>(
+  inspections: <T = Promise<AsyncIterator<InspectionSubscription>>>(
     args?: {
-      where?: PostWhereInput;
-      orderBy?: PostOrderByInput;
+      where?: InspectionWhereInput;
+      orderBy?: InspectionOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
@@ -1165,59 +639,27 @@ export interface UserSubscription
     }
   ) => T;
   permissions: () => Promise<AsyncIterator<Permission[]>>;
-  profile: <T = SetCardSubscription>() => T;
 }
 
-export interface Post {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  published: Boolean;
-  title: String;
-  content?: String;
-}
-
-export interface PostPromise extends Promise<Post>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  published: () => Promise<Boolean>;
-  title: () => Promise<String>;
-  content: () => Promise<String>;
-  author: <T = UserPromise>() => T;
-}
-
-export interface PostSubscription
-  extends Promise<AsyncIterator<Post>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  published: () => Promise<AsyncIterator<Boolean>>;
-  title: () => Promise<AsyncIterator<String>>;
-  content: () => Promise<AsyncIterator<String>>;
-  author: <T = UserSubscription>() => T;
-}
-
-export interface PicturesConnection {
+export interface InspectionConnection {
   pageInfo: PageInfo;
-  edges: PicturesEdge[];
+  edges: InspectionEdge[];
 }
 
-export interface PicturesConnectionPromise
-  extends Promise<PicturesConnection>,
+export interface InspectionConnectionPromise
+  extends Promise<InspectionConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PicturesEdge>>() => T;
-  aggregate: <T = AggregatePicturesPromise>() => T;
+  edges: <T = FragmentableArray<InspectionEdge>>() => T;
+  aggregate: <T = AggregateInspectionPromise>() => T;
 }
 
-export interface PicturesConnectionSubscription
-  extends Promise<AsyncIterator<PicturesConnection>>,
+export interface InspectionConnectionSubscription
+  extends Promise<AsyncIterator<InspectionConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PicturesEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePicturesSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<InspectionEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateInspectionSubscription>() => T;
 }
 
 export interface PageInfo {
@@ -1243,145 +685,37 @@ export interface PageInfoSubscription
   endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface PicturesEdge {
-  node: Pictures;
+export interface InspectionEdge {
+  node: Inspection;
   cursor: String;
 }
 
-export interface PicturesEdgePromise
-  extends Promise<PicturesEdge>,
+export interface InspectionEdgePromise
+  extends Promise<InspectionEdge>,
     Fragmentable {
-  node: <T = PicturesPromise>() => T;
+  node: <T = InspectionPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface PicturesEdgeSubscription
-  extends Promise<AsyncIterator<PicturesEdge>>,
+export interface InspectionEdgeSubscription
+  extends Promise<AsyncIterator<InspectionEdge>>,
     Fragmentable {
-  node: <T = PicturesSubscription>() => T;
+  node: <T = InspectionSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregatePictures {
+export interface AggregateInspection {
   count: Int;
 }
 
-export interface AggregatePicturesPromise
-  extends Promise<AggregatePictures>,
+export interface AggregateInspectionPromise
+  extends Promise<AggregateInspection>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregatePicturesSubscription
-  extends Promise<AsyncIterator<AggregatePictures>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface PostConnection {
-  pageInfo: PageInfo;
-  edges: PostEdge[];
-}
-
-export interface PostConnectionPromise
-  extends Promise<PostConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PostEdge>>() => T;
-  aggregate: <T = AggregatePostPromise>() => T;
-}
-
-export interface PostConnectionSubscription
-  extends Promise<AsyncIterator<PostConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PostEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePostSubscription>() => T;
-}
-
-export interface PostEdge {
-  node: Post;
-  cursor: String;
-}
-
-export interface PostEdgePromise extends Promise<PostEdge>, Fragmentable {
-  node: <T = PostPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface PostEdgeSubscription
-  extends Promise<AsyncIterator<PostEdge>>,
-    Fragmentable {
-  node: <T = PostSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregatePost {
-  count: Int;
-}
-
-export interface AggregatePostPromise
-  extends Promise<AggregatePost>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregatePostSubscription
-  extends Promise<AsyncIterator<AggregatePost>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface SetCardConnection {
-  pageInfo: PageInfo;
-  edges: SetCardEdge[];
-}
-
-export interface SetCardConnectionPromise
-  extends Promise<SetCardConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<SetCardEdge>>() => T;
-  aggregate: <T = AggregateSetCardPromise>() => T;
-}
-
-export interface SetCardConnectionSubscription
-  extends Promise<AsyncIterator<SetCardConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<SetCardEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateSetCardSubscription>() => T;
-}
-
-export interface SetCardEdge {
-  node: SetCard;
-  cursor: String;
-}
-
-export interface SetCardEdgePromise extends Promise<SetCardEdge>, Fragmentable {
-  node: <T = SetCardPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface SetCardEdgeSubscription
-  extends Promise<AsyncIterator<SetCardEdge>>,
-    Fragmentable {
-  node: <T = SetCardSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateSetCard {
-  count: Int;
-}
-
-export interface AggregateSetCardPromise
-  extends Promise<AggregateSetCard>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateSetCardSubscription
-  extends Promise<AsyncIterator<AggregateSetCard>>,
+export interface AggregateInspectionSubscription
+  extends Promise<AsyncIterator<AggregateInspection>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -1456,157 +790,54 @@ export interface BatchPayloadSubscription
   count: () => Promise<AsyncIterator<Long>>;
 }
 
-export interface PicturesSubscriptionPayload {
+export interface InspectionSubscriptionPayload {
   mutation: MutationType;
-  node: Pictures;
+  node: Inspection;
   updatedFields: String[];
-  previousValues: PicturesPreviousValues;
+  previousValues: InspectionPreviousValues;
 }
 
-export interface PicturesSubscriptionPayloadPromise
-  extends Promise<PicturesSubscriptionPayload>,
+export interface InspectionSubscriptionPayloadPromise
+  extends Promise<InspectionSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = PicturesPromise>() => T;
+  node: <T = InspectionPromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = PicturesPreviousValuesPromise>() => T;
+  previousValues: <T = InspectionPreviousValuesPromise>() => T;
 }
 
-export interface PicturesSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<PicturesSubscriptionPayload>>,
+export interface InspectionSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<InspectionSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = PicturesSubscription>() => T;
+  node: <T = InspectionSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = PicturesPreviousValuesSubscription>() => T;
+  previousValues: <T = InspectionPreviousValuesSubscription>() => T;
 }
 
-export interface PicturesPreviousValues {
+export interface InspectionPreviousValues {
   id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  url: String;
+  source: String;
+  record: String;
+  licensePlate: String;
 }
 
-export interface PicturesPreviousValuesPromise
-  extends Promise<PicturesPreviousValues>,
+export interface InspectionPreviousValuesPromise
+  extends Promise<InspectionPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  url: () => Promise<String>;
+  source: () => Promise<String>;
+  record: () => Promise<String>;
+  licensePlate: () => Promise<String>;
 }
 
-export interface PicturesPreviousValuesSubscription
-  extends Promise<AsyncIterator<PicturesPreviousValues>>,
+export interface InspectionPreviousValuesSubscription
+  extends Promise<AsyncIterator<InspectionPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  url: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PostSubscriptionPayload {
-  mutation: MutationType;
-  node: Post;
-  updatedFields: String[];
-  previousValues: PostPreviousValues;
-}
-
-export interface PostSubscriptionPayloadPromise
-  extends Promise<PostSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = PostPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = PostPreviousValuesPromise>() => T;
-}
-
-export interface PostSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<PostSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = PostSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = PostPreviousValuesSubscription>() => T;
-}
-
-export interface PostPreviousValues {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  published: Boolean;
-  title: String;
-  content?: String;
-}
-
-export interface PostPreviousValuesPromise
-  extends Promise<PostPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  published: () => Promise<Boolean>;
-  title: () => Promise<String>;
-  content: () => Promise<String>;
-}
-
-export interface PostPreviousValuesSubscription
-  extends Promise<AsyncIterator<PostPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  published: () => Promise<AsyncIterator<Boolean>>;
-  title: () => Promise<AsyncIterator<String>>;
-  content: () => Promise<AsyncIterator<String>>;
-}
-
-export interface SetCardSubscriptionPayload {
-  mutation: MutationType;
-  node: SetCard;
-  updatedFields: String[];
-  previousValues: SetCardPreviousValues;
-}
-
-export interface SetCardSubscriptionPayloadPromise
-  extends Promise<SetCardSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = SetCardPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = SetCardPreviousValuesPromise>() => T;
-}
-
-export interface SetCardSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<SetCardSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = SetCardSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = SetCardPreviousValuesSubscription>() => T;
-}
-
-export interface SetCardPreviousValues {
-  id: ID_Output;
-  aliasName: String;
-  age: Int;
-}
-
-export interface SetCardPreviousValuesPromise
-  extends Promise<SetCardPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  aliasName: () => Promise<String>;
-  age: () => Promise<Int>;
-}
-
-export interface SetCardPreviousValuesSubscription
-  extends Promise<AsyncIterator<SetCardPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  aliasName: () => Promise<AsyncIterator<String>>;
-  age: () => Promise<AsyncIterator<Int>>;
+  source: () => Promise<AsyncIterator<String>>;
+  record: () => Promise<AsyncIterator<String>>;
+  licensePlate: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserSubscriptionPayload {
@@ -1636,8 +867,8 @@ export interface UserSubscriptionPayloadSubscription
 
 export interface UserPreviousValues {
   id: ID_Output;
+  cc: Int;
   email: String;
-  nickname: String;
   password: String;
   name?: String;
   permissions: Permission[];
@@ -1647,8 +878,8 @@ export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  cc: () => Promise<Int>;
   email: () => Promise<String>;
-  nickname: () => Promise<String>;
   password: () => Promise<String>;
   name: () => Promise<String>;
   permissions: () => Promise<Permission[]>;
@@ -1658,8 +889,8 @@ export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  cc: () => Promise<AsyncIterator<Int>>;
   email: () => Promise<AsyncIterator<String>>;
-  nickname: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
   permissions: () => Promise<AsyncIterator<Permission[]>>;
@@ -1670,16 +901,6 @@ The `ID` scalar type represents a unique identifier, often used to refetch an ob
 */
 export type ID_Input = string | number;
 export type ID_Output = string;
-
-/*
-DateTime scalar input type, allowing Date
-*/
-export type DateTimeInput = Date | string;
-
-/*
-DateTime scalar output type, which is always a string
-*/
-export type DateTimeOutput = string;
 
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
@@ -1708,15 +929,7 @@ export const models: Model[] = [
     embedded: false
   },
   {
-    name: "SetCard",
-    embedded: false
-  },
-  {
-    name: "Pictures",
-    embedded: false
-  },
-  {
-    name: "Post",
+    name: "Inspection",
     embedded: false
   },
   {
@@ -1732,6 +945,6 @@ export const models: Model[] = [
 export const Prisma = makePrismaClientClass<ClientConstructor<Prisma>>({
   typeDefs,
   models,
-  endpoint: `https://us1.prisma.sh/julian-alvarez/nexus-auth/dev`
+  endpoint: `https://us1.prisma.sh/julian-alvarez/inspector/dev`
 });
 export const prisma = new Prisma();

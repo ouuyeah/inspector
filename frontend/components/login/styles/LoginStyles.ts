@@ -25,7 +25,7 @@ const LoginStyles = styled.div`
     font-style: italic;
     line-height: 21px;
     padding: 0 3rem;
-    margin-bottom: 10vh;
+    margin-bottom: 5vh;
     margin-top: 3.5vh;
   }
   button {

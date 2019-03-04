@@ -2,6 +2,7 @@ import * as React from 'react';
 import FormStyles from './styles/FormStartInspection';
 import InputText from '../styles/InputText';
 import ButtonPrimary from '../styles/ButtonPrimary';
+import TextCSS from './styles/TextCC';
 
 const StartInspection: React.FunctionComponent = () => {
   const handleSubmit = () => async e => {
@@ -16,13 +17,10 @@ const StartInspection: React.FunctionComponent = () => {
     <FormStyles style={{ textAlign: 'center' }} onSubmit={handleSubmit()}>
       <div>
         <h3>Comenzar inspección</h3>
-        <InputText
-          type="number"
-          name="cc"
-          placeholder="Escribe tu cédula"
-          defaultValue={inspection.cc || ''}
-          required
-        />
+
+        <TextCSS>
+          <span>CC: </span> 1037 622 250
+        </TextCSS>
         <InputText
           type="text"
           name="source"
