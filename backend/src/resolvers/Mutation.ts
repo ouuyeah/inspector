@@ -1,4 +1,4 @@
-import { stringArg, idArg, mutationType } from 'nexus'
+import { stringArg, idArg, intArg, mutationType } from 'nexus'
 import { hash, compare } from 'bcrypt'
 import { APP_SECRET, getUserId } from '../utils'
 import { sign } from 'jsonwebtoken'
@@ -9,26 +9,28 @@ export const Mutation = mutationType({
       type: 'AuthPayload',
       args: {
         name: stringArg({ nullable: true }),
+        cc: intArg(),
         email: stringArg(),
-        nickname: stringArg(),
         password: stringArg(),
       },
-      resolve: async (parent, { name, email, nickname, password }, ctx) => {
+      resolve: async (parent, { name, email, cc, password }, ctx) => {
         const hashedPassword = await hash(password, 10)
         const user = await ctx.prisma.createUser({
           name,
           email,
-          nickname,
+          cc,
           password: hashedPassword,
-          permissions: { set: ['USER'] },
+          permissions: { set: ['DRIVER'] },
         })
         const token = sign({ userId: user.id }, process.env.APP_SECRET)
 
         // We set the jwt as a cookie on the response
+        /*
         ctx.response.cookie('token', token, {
           httpOnly: true,
           maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year cookie
         })
+        */
 
         return {
           token,
@@ -69,6 +71,7 @@ export const Mutation = mutationType({
       },
     })
 
+    /*
     t.field('createDraft', {
       type: 'Post',
       args: {
@@ -105,5 +108,6 @@ export const Mutation = mutationType({
         })
       },
     })
+    */
   },
 })

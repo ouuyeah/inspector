@@ -7,11 +7,11 @@ export const User = prismaObjectType({
       'id',
       'name',
       'email',
-      'nickname',
+      'cc',
       'permissions',
       {
-        name: 'posts',
-        args: [], // remove the arguments from the `posts` field of the `User` type in the Prisma schema
+        name: 'inspections',
+        args: [],
       },
     ])
   },

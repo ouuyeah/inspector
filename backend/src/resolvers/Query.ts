@@ -15,7 +15,7 @@ export const Query = queryType({
         return ctx.prisma.user({ id: userId })
       },
     })
-
+    /*
     t.list.field('feed', {
       type: 'Post',
       resolve: (parent, args, ctx) => {
@@ -51,5 +51,6 @@ export const Query = queryType({
         return ctx.prisma.post({ id })
       },
     })
+    */
   },
 })
