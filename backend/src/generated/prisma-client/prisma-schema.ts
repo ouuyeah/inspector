@@ -332,6 +332,7 @@ type User {
   id: ID!
   cc: Int!
   email: String!
+  nickname: String!
   password: String!
   name: String
   inspections(where: InspectionWhereInput, orderBy: InspectionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Inspection!]
@@ -347,6 +348,7 @@ type UserConnection {
 input UserCreateInput {
   cc: Int!
   email: String!
+  nickname: String!
   password: String!
   name: String
   inspections: InspectionCreateManyWithoutUserInput
@@ -365,6 +367,7 @@ input UserCreatepermissionsInput {
 input UserCreateWithoutInspectionsInput {
   cc: Int!
   email: String!
+  nickname: String!
   password: String!
   name: String
   permissions: UserCreatepermissionsInput
@@ -382,6 +385,8 @@ enum UserOrderByInput {
   cc_DESC
   email_ASC
   email_DESC
+  nickname_ASC
+  nickname_DESC
   password_ASC
   password_DESC
   name_ASC
@@ -396,6 +401,7 @@ type UserPreviousValues {
   id: ID!
   cc: Int!
   email: String!
+  nickname: String!
   password: String!
   name: String
   permissions: [Permission!]!
@@ -422,6 +428,7 @@ input UserSubscriptionWhereInput {
 input UserUpdateInput {
   cc: Int
   email: String
+  nickname: String
   password: String
   name: String
   inspections: InspectionUpdateManyWithoutUserInput
@@ -431,6 +438,7 @@ input UserUpdateInput {
 input UserUpdateManyMutationInput {
   cc: Int
   email: String
+  nickname: String
   password: String
   name: String
   permissions: UserUpdatepermissionsInput
@@ -450,6 +458,7 @@ input UserUpdatepermissionsInput {
 input UserUpdateWithoutInspectionsDataInput {
   cc: Int
   email: String
+  nickname: String
   password: String
   name: String
   permissions: UserUpdatepermissionsInput
@@ -497,6 +506,20 @@ input UserWhereInput {
   email_not_starts_with: String
   email_ends_with: String
   email_not_ends_with: String
+  nickname: String
+  nickname_not: String
+  nickname_in: [String!]
+  nickname_not_in: [String!]
+  nickname_lt: String
+  nickname_lte: String
+  nickname_gt: String
+  nickname_gte: String
+  nickname_contains: String
+  nickname_not_contains: String
+  nickname_starts_with: String
+  nickname_not_starts_with: String
+  nickname_ends_with: String
+  nickname_not_ends_with: String
   password: String
   password_not: String
   password_in: [String!]
@@ -537,5 +560,6 @@ input UserWhereUniqueInput {
   id: ID
   cc: Int
   email: String
+  nickname: String
 }
 `

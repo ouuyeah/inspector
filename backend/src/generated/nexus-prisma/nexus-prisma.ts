@@ -239,6 +239,7 @@ type UserObject =
   | { name: 'id', args?: [] | false, alias?: string  } 
   | { name: 'cc', args?: [] | false, alias?: string  } 
   | { name: 'email', args?: [] | false, alias?: string  } 
+  | { name: 'nickname', args?: [] | false, alias?: string  } 
   | { name: 'password', args?: [] | false, alias?: string  } 
   | { name: 'name', args?: [] | false, alias?: string  } 
   | { name: 'inspections', args?: UserInspectionsArgs[] | false, alias?: string  } 
@@ -248,6 +249,7 @@ type UserFields =
   | 'id'
   | 'cc'
   | 'email'
+  | 'nickname'
   | 'password'
   | 'name'
   | 'inspections'
@@ -282,6 +284,14 @@ export interface UserFieldDetails {
     resolve: undefined
   }
   email: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  nickname: {
     type: 'String'
     args: {}
     description: string
@@ -1085,6 +1095,7 @@ type UserPreviousValuesObject =
   | { name: 'id', args?: [] | false, alias?: string  } 
   | { name: 'cc', args?: [] | false, alias?: string  } 
   | { name: 'email', args?: [] | false, alias?: string  } 
+  | { name: 'nickname', args?: [] | false, alias?: string  } 
   | { name: 'password', args?: [] | false, alias?: string  } 
   | { name: 'name', args?: [] | false, alias?: string  } 
   | { name: 'permissions', args?: [] | false, alias?: string  } 
@@ -1093,6 +1104,7 @@ type UserPreviousValuesFields =
   | 'id'
   | 'cc'
   | 'email'
+  | 'nickname'
   | 'password'
   | 'name'
   | 'permissions'
@@ -1119,6 +1131,14 @@ export interface UserPreviousValuesFieldDetails {
     resolve: undefined
   }
   email: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  nickname: {
     type: 'String'
     args: {}
     description: string
@@ -1288,12 +1308,14 @@ export interface UserWhereUniqueInput {
   id?: string | null
   cc?: number | null
   email?: string | null
+  nickname?: string | null
 }
 export type UserWhereUniqueInputInputObject =
   | Extract<keyof UserWhereUniqueInput, string>
   | { name: 'id', alias?: string  } 
   | { name: 'cc', alias?: string  } 
   | { name: 'email', alias?: string  } 
+  | { name: 'nickname', alias?: string  } 
   
 export interface InspectionWhereInput {
   id?: string | null
@@ -1457,6 +1479,20 @@ export interface UserWhereInput {
   email_not_starts_with?: string | null
   email_ends_with?: string | null
   email_not_ends_with?: string | null
+  nickname?: string | null
+  nickname_not?: string | null
+  nickname_in?: string[]
+  nickname_not_in?: string[]
+  nickname_lt?: string | null
+  nickname_lte?: string | null
+  nickname_gt?: string | null
+  nickname_gte?: string | null
+  nickname_contains?: string | null
+  nickname_not_contains?: string | null
+  nickname_starts_with?: string | null
+  nickname_not_starts_with?: string | null
+  nickname_ends_with?: string | null
+  nickname_not_ends_with?: string | null
   password?: string | null
   password_not?: string | null
   password_in?: string[]
@@ -1530,6 +1566,20 @@ export type UserWhereInputInputObject =
   | { name: 'email_not_starts_with', alias?: string  } 
   | { name: 'email_ends_with', alias?: string  } 
   | { name: 'email_not_ends_with', alias?: string  } 
+  | { name: 'nickname', alias?: string  } 
+  | { name: 'nickname_not', alias?: string  } 
+  | { name: 'nickname_in', alias?: string  } 
+  | { name: 'nickname_not_in', alias?: string  } 
+  | { name: 'nickname_lt', alias?: string  } 
+  | { name: 'nickname_lte', alias?: string  } 
+  | { name: 'nickname_gt', alias?: string  } 
+  | { name: 'nickname_gte', alias?: string  } 
+  | { name: 'nickname_contains', alias?: string  } 
+  | { name: 'nickname_not_contains', alias?: string  } 
+  | { name: 'nickname_starts_with', alias?: string  } 
+  | { name: 'nickname_not_starts_with', alias?: string  } 
+  | { name: 'nickname_ends_with', alias?: string  } 
+  | { name: 'nickname_not_ends_with', alias?: string  } 
   | { name: 'password', alias?: string  } 
   | { name: 'password_not', alias?: string  } 
   | { name: 'password_in', alias?: string  } 
@@ -1575,6 +1625,7 @@ export type InspectionWhereUniqueInputInputObject =
 export interface UserCreateInput {
   cc?: number
   email?: string
+  nickname?: string
   password?: string
   name?: string | null
   inspections?: InspectionCreateManyWithoutUserInput | null
@@ -1584,6 +1635,7 @@ export type UserCreateInputInputObject =
   | Extract<keyof UserCreateInput, string>
   | { name: 'cc', alias?: string  } 
   | { name: 'email', alias?: string  } 
+  | { name: 'nickname', alias?: string  } 
   | { name: 'password', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'inspections', alias?: string  } 
@@ -1619,6 +1671,7 @@ export type UserCreatepermissionsInputInputObject =
 export interface UserUpdateInput {
   cc?: number | null
   email?: string | null
+  nickname?: string | null
   password?: string | null
   name?: string | null
   inspections?: InspectionUpdateManyWithoutUserInput | null
@@ -1628,6 +1681,7 @@ export type UserUpdateInputInputObject =
   | Extract<keyof UserUpdateInput, string>
   | { name: 'cc', alias?: string  } 
   | { name: 'email', alias?: string  } 
+  | { name: 'nickname', alias?: string  } 
   | { name: 'password', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'inspections', alias?: string  } 
@@ -1840,6 +1894,7 @@ export type UserUpdatepermissionsInputInputObject =
 export interface UserUpdateManyMutationInput {
   cc?: number | null
   email?: string | null
+  nickname?: string | null
   password?: string | null
   name?: string | null
   permissions?: UserUpdatepermissionsInput | null
@@ -1848,6 +1903,7 @@ export type UserUpdateManyMutationInputInputObject =
   | Extract<keyof UserUpdateManyMutationInput, string>
   | { name: 'cc', alias?: string  } 
   | { name: 'email', alias?: string  } 
+  | { name: 'nickname', alias?: string  } 
   | { name: 'password', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'permissions', alias?: string  } 
@@ -1877,6 +1933,7 @@ export type UserCreateOneWithoutInspectionsInputInputObject =
 export interface UserCreateWithoutInspectionsInput {
   cc?: number
   email?: string
+  nickname?: string
   password?: string
   name?: string | null
   permissions?: UserCreatepermissionsInput | null
@@ -1885,6 +1942,7 @@ export type UserCreateWithoutInspectionsInputInputObject =
   | Extract<keyof UserCreateWithoutInspectionsInput, string>
   | { name: 'cc', alias?: string  } 
   | { name: 'email', alias?: string  } 
+  | { name: 'nickname', alias?: string  } 
   | { name: 'password', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'permissions', alias?: string  } 
@@ -1918,6 +1976,7 @@ export type UserUpdateOneRequiredWithoutInspectionsInputInputObject =
 export interface UserUpdateWithoutInspectionsDataInput {
   cc?: number | null
   email?: string | null
+  nickname?: string | null
   password?: string | null
   name?: string | null
   permissions?: UserUpdatepermissionsInput | null
@@ -1926,6 +1985,7 @@ export type UserUpdateWithoutInspectionsDataInputInputObject =
   | Extract<keyof UserUpdateWithoutInspectionsDataInput, string>
   | { name: 'cc', alias?: string  } 
   | { name: 'email', alias?: string  } 
+  | { name: 'nickname', alias?: string  } 
   | { name: 'password', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'permissions', alias?: string  } 
@@ -2019,6 +2079,8 @@ export type UserOrderByInputValues =
   | 'cc_DESC'
   | 'email_ASC'
   | 'email_DESC'
+  | 'nickname_ASC'
+  | 'nickname_DESC'
   | 'password_ASC'
   | 'password_DESC'
   | 'name_ASC'

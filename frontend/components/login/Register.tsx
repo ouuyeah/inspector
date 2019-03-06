@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
-import Error from './ErrorMessage';
+import Error from '../ErrorMessage';
 import LoginStyles from './styles/LoginStyles';
 import ButtonPrimary from '../styles/ButtonPrimary';
 import InputLogin from './styles/InputLogin';
@@ -11,14 +11,22 @@ import validate from './lib/RegisterFormValidation';
 const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(
     $email: String!
-    $cc: Number!
+    $nickname: String!
+    $cc: Int!
     $name: String
     $password: String!
   ) {
-    signup(email: $email, name: $name, password: $password, cc: $cc) {
+    signup(
+      email: $email
+      nickname: $nickname
+      name: $name
+      password: $password
+      cc: $cc
+    ) {
       user {
         id
         email
+        nickname
         cc
         name
       }
@@ -27,30 +35,35 @@ const SIGNUP_MUTATION = gql`
 `;
 
 const SignUp: React.FunctionComponent = () => {
-  const { values, errors, handleChange, handleSubmit } = useForm(
-    login,
+  const { values, errors, handleChange, handleSubmit, resetValues } = useForm(
     validate,
   );
 
-  function login() {
-    console.log('No errors, submit callback called!');
-  }
-
   return (
-    <Mutation mutation={SIGNUP_MUTATION}>
+    <Mutation
+      mutation={SIGNUP_MUTATION}
+      variables={values}
+      onCompleted={() => {
+        resetValues();
+        return alert('Usuario creado!');
+      }}
+    >
       {(signup, { error, loading }) => {
         return (
           <LoginStyles>
-            {/*<img src="/static/logo-sapco.png" alt="Logo Sapco" />
+            <img src="/static/logo-sapco.png" alt="Logo Sapco" />
 
-        <h3>Salvando al mundo de accidentes de tránsito </h3>*/}
+            <h3>Salvando al mundo de accidentes de tránsito </h3>
 
             <form
               method="post"
-              onSubmit={handleSubmit}
+              onSubmit={e => {
+                handleSubmit(e, signup);
+              }}
               autoComplete="off"
-              noValidate
             >
+              <Error error={error} />
+
               <InputLogin
                 type="text"
                 name="name"
@@ -59,22 +72,28 @@ const SignUp: React.FunctionComponent = () => {
                 value={values.name || ''}
                 required
               />
-              <InputLogin
-                type="text"
-                name="nickname"
-                placeholder="Nombre de usuario"
-                onChange={handleChange}
-                value={values.nickname || ''}
-                required
-              />
+
               <InputLogin
                 type="number"
                 name="cc"
                 placeholder="Cédula de ciudadania"
                 onChange={handleChange}
-                value={values.cc || ''}
+                value={parseInt(values.cc) || ''}
                 required
               />
+
+              <InputLogin
+                type="text"
+                name="nickname"
+                placeholder="Nombre de usuario"
+                className={`input ${errors.nickname && 'is-danger'}`}
+                onChange={handleChange}
+                value={values.nickname || ''}
+              />
+              {errors.nickname && (
+                <p className="help is-danger">{errors.nickname}</p>
+              )}
+
               <InputLogin
                 type="email"
                 name="email"
@@ -82,7 +101,6 @@ const SignUp: React.FunctionComponent = () => {
                 className={`input ${errors.email && 'is-danger'}`}
                 onChange={handleChange}
                 value={values.email || ''}
-                required
               />
               {errors.email && <p className="help is-danger">{errors.email}</p>}
               <InputLogin
@@ -92,13 +110,14 @@ const SignUp: React.FunctionComponent = () => {
                 placeholder="Contraseña"
                 onChange={handleChange}
                 value={values.password || ''}
-                required
               />
               {errors.password && (
                 <p className="help is-danger">{errors.password}</p>
               )}
 
-              <ButtonPrimary login> Registrar usuario </ButtonPrimary>
+              <ButtonPrimary login>
+                Registra{loading ? 'ndo' : 'r'} usuario
+              </ButtonPrimary>
             </form>
           </LoginStyles>
         );

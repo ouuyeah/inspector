@@ -172,6 +172,8 @@ export type UserOrderByInput =
   | "cc_DESC"
   | "email_ASC"
   | "email_DESC"
+  | "nickname_ASC"
+  | "nickname_DESC"
   | "password_ASC"
   | "password_DESC"
   | "name_ASC"
@@ -287,6 +289,20 @@ export interface UserWhereInput {
   email_not_starts_with?: String;
   email_ends_with?: String;
   email_not_ends_with?: String;
+  nickname?: String;
+  nickname_not?: String;
+  nickname_in?: String[] | String;
+  nickname_not_in?: String[] | String;
+  nickname_lt?: String;
+  nickname_lte?: String;
+  nickname_gt?: String;
+  nickname_gte?: String;
+  nickname_contains?: String;
+  nickname_not_contains?: String;
+  nickname_starts_with?: String;
+  nickname_not_starts_with?: String;
+  nickname_ends_with?: String;
+  nickname_not_ends_with?: String;
   password?: String;
   password_not?: String;
   password_in?: String[] | String;
@@ -327,6 +343,7 @@ export type UserWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
   cc?: Int;
   email?: String;
+  nickname?: String;
 }>;
 
 export interface InspectionCreateInput {
@@ -344,6 +361,7 @@ export interface UserCreateOneWithoutInspectionsInput {
 export interface UserCreateWithoutInspectionsInput {
   cc: Int;
   email: String;
+  nickname: String;
   password: String;
   name?: String;
   permissions?: UserCreatepermissionsInput;
@@ -370,6 +388,7 @@ export interface UserUpdateOneRequiredWithoutInspectionsInput {
 export interface UserUpdateWithoutInspectionsDataInput {
   cc?: Int;
   email?: String;
+  nickname?: String;
   password?: String;
   name?: String;
   permissions?: UserUpdatepermissionsInput;
@@ -393,6 +412,7 @@ export interface InspectionUpdateManyMutationInput {
 export interface UserCreateInput {
   cc: Int;
   email: String;
+  nickname: String;
   password: String;
   name?: String;
   inspections?: InspectionCreateManyWithoutUserInput;
@@ -415,6 +435,7 @@ export interface InspectionCreateWithoutUserInput {
 export interface UserUpdateInput {
   cc?: Int;
   email?: String;
+  nickname?: String;
   password?: String;
   name?: String;
   inspections?: InspectionUpdateManyWithoutUserInput;
@@ -534,6 +555,7 @@ export interface InspectionUpdateManyDataInput {
 export interface UserUpdateManyMutationInput {
   cc?: Int;
   email?: String;
+  nickname?: String;
   password?: String;
   name?: String;
   permissions?: UserUpdatepermissionsInput;
@@ -594,6 +616,7 @@ export interface User {
   id: ID_Output;
   cc: Int;
   email: String;
+  nickname: String;
   password: String;
   name?: String;
   permissions: Permission[];
@@ -603,6 +626,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
   cc: () => Promise<Int>;
   email: () => Promise<String>;
+  nickname: () => Promise<String>;
   password: () => Promise<String>;
   name: () => Promise<String>;
   inspections: <T = FragmentableArray<Inspection>>(
@@ -625,6 +649,7 @@ export interface UserSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   cc: () => Promise<AsyncIterator<Int>>;
   email: () => Promise<AsyncIterator<String>>;
+  nickname: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
   inspections: <T = Promise<AsyncIterator<InspectionSubscription>>>(
@@ -869,6 +894,7 @@ export interface UserPreviousValues {
   id: ID_Output;
   cc: Int;
   email: String;
+  nickname: String;
   password: String;
   name?: String;
   permissions: Permission[];
@@ -880,6 +906,7 @@ export interface UserPreviousValuesPromise
   id: () => Promise<ID_Output>;
   cc: () => Promise<Int>;
   email: () => Promise<String>;
+  nickname: () => Promise<String>;
   password: () => Promise<String>;
   name: () => Promise<String>;
   permissions: () => Promise<Permission[]>;
@@ -891,6 +918,7 @@ export interface UserPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   cc: () => Promise<AsyncIterator<Int>>;
   email: () => Promise<AsyncIterator<String>>;
+  nickname: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
   permissions: () => Promise<AsyncIterator<Permission[]>>;

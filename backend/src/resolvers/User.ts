@@ -7,6 +7,7 @@ export const User = prismaObjectType({
       'id',
       'name',
       'email',
+      'nickname',
       'cc',
       'permissions',
       {

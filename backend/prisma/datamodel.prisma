@@ -8,6 +8,7 @@ type User {
   id: ID! @unique
   cc: Int! @unique
   email: String! @unique
+  nickname: String! @unique
   password: String!
   name: String
   inspections: [Inspection!]!

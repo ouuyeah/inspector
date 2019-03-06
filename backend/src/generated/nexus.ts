@@ -35,6 +35,7 @@ export interface NexusGenRootTypes {
     email: string; // String!
     id: string; // ID!
     name?: string | null; // String
+    nickname: string; // String!
   }
   String: string;
   Int: number;
@@ -72,6 +73,7 @@ export interface NexusGenFieldTypes {
     id: string; // ID!
     inspections: NexusGenRootTypes['Inspection'][] | null; // [Inspection!]
     name: string | null; // String
+    nickname: string; // String!
     permissions: NexusGenEnums['Permission'][]; // [Permission!]!
   }
 }
@@ -86,6 +88,7 @@ export interface NexusGenArgTypes {
       cc?: number | null; // Int
       email?: string | null; // String
       name?: string | null; // String
+      nickname?: string | null; // String
       password?: string | null; // String
     }
   }

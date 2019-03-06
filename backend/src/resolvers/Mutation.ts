@@ -11,13 +11,15 @@ export const Mutation = mutationType({
         name: stringArg({ nullable: true }),
         cc: intArg(),
         email: stringArg(),
+        nickname: stringArg(),
         password: stringArg(),
       },
-      resolve: async (parent, { name, email, cc, password }, ctx) => {
+      resolve: async (parent, { name, email, nickname, cc, password }, ctx) => {
         const hashedPassword = await hash(password, 10)
         const user = await ctx.prisma.createUser({
           name,
           email,
+          nickname,
           cc,
           password: hashedPassword,
           permissions: { set: ['DRIVER'] },
