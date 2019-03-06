@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import validate from './lib/RegisterFormValidation';
+import useForm from '../hooks/useForm';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Error from '../ErrorMessage';
 import LoginStyles from './styles/LoginStyles';
 import ButtonPrimary from '../styles/ButtonPrimary';
 import InputLogin from './styles/InputLogin';
-import useForm from '../hooks/useForm';
-import validate from './lib/RegisterFormValidation';
 
 const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(
@@ -45,12 +48,13 @@ const SignUp: React.FunctionComponent = () => {
       variables={values}
       onCompleted={() => {
         resetValues();
-        return alert('Usuario creado!');
+        toast('Wow so easy !');
       }}
     >
       {(signup, { error, loading }) => {
         return (
           <LoginStyles>
+            <ToastContainer />
             <img src="/static/logo-sapco.png" alt="Logo Sapco" />
 
             <h3>Salvando al mundo de accidentes de tránsito </h3>
@@ -58,6 +62,7 @@ const SignUp: React.FunctionComponent = () => {
             <form
               method="post"
               onSubmit={e => {
+                e.preventDefault();
                 handleSubmit(e, signup);
               }}
               autoComplete="off"
