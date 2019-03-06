@@ -6,6 +6,7 @@ import LoginStyles from './styles/LoginStyles';
 import ButtonPrimary from '../styles/ButtonPrimary';
 import InputLogin from './styles/InputLogin';
 import useForm from '../hooks/useForm';
+import validate from './lib/RegisterFormValidation';
 
 const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(
@@ -26,10 +27,13 @@ const SIGNUP_MUTATION = gql`
 `;
 
 const SignUp: React.FunctionComponent = () => {
-  const { values, handleChange, handleSubmit } = useForm(login);
+  const { values, errors, handleChange, handleSubmit } = useForm(
+    login,
+    validate,
+  );
 
   function login() {
-    console.log(values);
+    console.log('No errors, submit callback called!');
   }
 
   return (
@@ -37,17 +41,30 @@ const SignUp: React.FunctionComponent = () => {
       {(signup, { error, loading }) => {
         return (
           <LoginStyles>
-            <img src="/static/logo-sapco.png" alt="Logo Sapco" />
+            {/*<img src="/static/logo-sapco.png" alt="Logo Sapco" />
 
-            <h3>Salvando al mundo de accidentes de tránsito </h3>
+        <h3>Salvando al mundo de accidentes de tránsito </h3>*/}
 
-            <form method="post" onSubmit={handleSubmit}>
+            <form
+              method="post"
+              onSubmit={handleSubmit}
+              autoComplete="off"
+              noValidate
+            >
               <InputLogin
                 type="text"
                 name="name"
                 placeholder="Nombre completo"
                 onChange={handleChange}
-                value={values.name}
+                value={values.name || ''}
+                required
+              />
+              <InputLogin
+                type="text"
+                name="nickname"
+                placeholder="Nombre de usuario"
+                onChange={handleChange}
+                value={values.nickname || ''}
                 required
               />
               <InputLogin
@@ -55,25 +72,31 @@ const SignUp: React.FunctionComponent = () => {
                 name="cc"
                 placeholder="Cédula de ciudadania"
                 onChange={handleChange}
-                value={values.cc}
+                value={values.cc || ''}
                 required
               />
               <InputLogin
                 type="email"
                 name="email"
                 placeholder="Correo electrónico"
+                className={`input ${errors.email && 'is-danger'}`}
                 onChange={handleChange}
-                value={values.email}
+                value={values.email || ''}
                 required
               />
+              {errors.email && <p className="help is-danger">{errors.email}</p>}
               <InputLogin
                 type="password"
                 name="password"
+                className={`input ${errors.password && 'is-danger'}`}
                 placeholder="Contraseña"
                 onChange={handleChange}
-                value={values.password}
+                value={values.password || ''}
                 required
               />
+              {errors.password && (
+                <p className="help is-danger">{errors.password}</p>
+              )}
 
               <ButtonPrimary login> Registrar usuario </ButtonPrimary>
             </form>
