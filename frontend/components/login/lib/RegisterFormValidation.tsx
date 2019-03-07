@@ -2,9 +2,9 @@ export default function validate(values) {
   let errors = {};
 
   if (!values.email) {
-    errors.email = 'Email address is required';
+    errors.email = 'El correo es requerido';
   } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-    errors.email = 'Email address is invalid';
+    errors.email = 'Ups, al parecer eso no es un email, intenta de nuevo.';
   }
 
   if (!values.nickname) {
@@ -15,7 +15,7 @@ export default function validate(values) {
   }
 
   if (!values.password) {
-    errors.password = 'Password is required';
+    errors.password = 'La contraseña es requerida';
   } else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/.test(values.password)) {
     errors.password =
       'La contraseña debe tener entre 4 y 10 letras, mínimo un número y una letra mayúscula';

@@ -9,6 +9,7 @@ const CURRENT_USER_QUERY = gql`
       email
       name
       nickname
+      cc
       permissions
     }
   }

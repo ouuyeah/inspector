@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import Link from 'next/link';
 import validate from './lib/RegisterFormValidation';
 import useForm from '../hooks/useForm';
 import { ToastContainer, toast } from 'react-toastify';
@@ -48,14 +49,20 @@ const SignUp: React.FunctionComponent = () => {
       variables={values}
       onCompleted={() => {
         resetValues();
-        toast('Wow so easy !');
+        toast.success('Weeepa...usuario registrado satisfactoriamente', {
+          autoClose: 5000,
+        });
       }}
     >
       {(signup, { error, loading }) => {
         return (
           <LoginStyles>
             <ToastContainer />
-            <img src="/static/logo-sapco.png" alt="Logo Sapco" />
+            <Link href="/" prefetch>
+              <a>
+                <img src="/static/logo-sapco.png" alt="Logo Sapco" />
+              </a>
+            </Link>
 
             <h3>Salvando al mundo de accidentes de tránsito </h3>
 

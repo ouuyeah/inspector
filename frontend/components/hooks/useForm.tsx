@@ -7,14 +7,19 @@ const useForm = validate => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    if (Object.keys(errors).length === 0 && isSubmitting) {
+    const errorsCount = Object.keys(errors).length;
+    if (errorsCount === 0 && isSubmitting) {
       query.query();
     }
   }, [errors]);
 
   const handleSubmit = (event, query) => {
     if (event) event.preventDefault();
-    setErrors(validate(values));
+    if (validate) {
+      setErrors(validate(values));
+    } else {
+      setErrors({});
+    }
     setIsSubmitting(true);
 
     setQuery({ query: query });
