@@ -4,36 +4,11 @@ import Router from 'next/router';
 import Modal from 'react-modal';
 import LogoutModal from './LogoutModal';
 import HeaderStyles from './styles/HeaderStyles';
-
-const customStyles = {
-  overlay: { backgroundColor: '#d3701f' },
-  content: {
-    top: '0',
-    left: '0',
-    right: '0',
-    bottom: '0',
-    position: 'fixed',
-    overflow: 'auto',
-    width: '100%',
-    height: '100%',
-    background: '#d3701f',
-    padding: '0',
-    border: 'none',
-  },
-};
+import NavigationStyles from './styles/NavigationStyles';
 
 class LayoutHeader extends React.Component {
   state = {
-    showMenu: false,
     showModal: false,
-  };
-
-  handleMenuOpen = () => {
-    this.setState({ showMenu: true });
-  };
-
-  handleMenuClose = () => {
-    this.setState({ showMenu: false });
   };
 
   handleModalOpen = () => {
@@ -42,7 +17,6 @@ class LayoutHeader extends React.Component {
 
   handleModalClose = () => {
     this.setState({ showModal: false });
-    this.setState({ showMenu: false });
   };
 
   handleModalYes = () => {
@@ -50,47 +24,54 @@ class LayoutHeader extends React.Component {
   };
 
   render() {
-    const { showMenu, showModal } = this.state;
+    const { showModal } = this.state;
     return (
       <HeaderStyles>
         <img src="/static/logo-sapco.png" alt="Logo Sapco" />
-        <i className="icon-menu-1" onClick={this.handleMenuOpen} />
-        <Modal
-          isOpen={showMenu}
-          contentLabel="Inline Styles Modal Example"
-          style={customStyles}
-        >
-          <LogoutModal
-            showModal={showModal}
-            handleModalClose={this.handleModalClose}
-            handleModalYes={this.handleModalYes}
+
+        <LogoutModal
+          showModal={showModal}
+          handleModalClose={this.handleModalClose}
+          handleModalYes={this.handleModalYes}
+        />
+
+        <NavigationStyles>
+          <input
+            type="checkbox"
+            className="navigation__checkbox"
+            id="navi-toggle"
           />
-          <div className="menu-header">
-            <img src="/static/logo-sapco.png" alt="Logo Sapco" />
-            <i className="icon-cancel" onClick={this.handleMenuClose} />
-          </div>
-          <div className="menu-buttons">
-            <div className="create-button">
-              <Link href="/start-inspection">
-                <button type="button">
-                  <i className="icon-cab" /> Crear Servicio
-                </button>
-              </Link>
-            </div>
-            <div className="history-button">
-              <Link href="/history">
-                <button type="button">
-                  <i className="icon-briefcase" /> Historial
-                </button>
-              </Link>
-            </div>
-            <div className="logout-button">
-              <button type="button" onClick={this.handleModalOpen}>
-                <i className="icon-off" /> Salir
-              </button>
-            </div>
-          </div>
-        </Modal>
+
+          <label htmlFor="navi-toggle" className="navigation__button">
+            <span className="navigation__icon">&nbsp;</span>
+          </label>
+
+          <div className="navigation__background">&nbsp;</div>
+
+          <nav className="navigation__nav">
+            <ul className="navigation__list">
+              <li className="navigation__item">
+                <Link href="/start-inspection">
+                  <a className="navigation__link">Crear Servicio</a>
+                </Link>
+              </li>
+              <li className="navigation__item">
+                <Link href="/historial">
+                  <a className="navigation__link">Ver servicios</a>
+                </Link>
+              </li>
+              <li className="navigation__item">
+                <a
+                  href="#"
+                  onClick={this.handleModalOpen}
+                  className="navigation__link"
+                >
+                  Cerrar sesión
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </NavigationStyles>
       </HeaderStyles>
     );
   }

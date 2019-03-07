@@ -1,7 +1,19 @@
 import Modal from 'react-modal';
+import { Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
+import Router from 'next/router';
+import LogoutModalStyles from './styles/LogoutModalStyles';
+
+const SIGN_OUT_MUTATION = gql`
+  mutation SIGN_OUT_MUTATION {
+    signout {
+      message
+    }
+  }
+`;
 
 const customStyles = {
-  overlay: { backgroundColor: '#d3701f' },
+  overlay: { backgroundColor: '#d3701f', zIndex: '9999' },
   content: {
     top: '0',
     left: '0',
@@ -23,67 +35,23 @@ const LogoutModal = ({ showModal, handleModalYes, handleModalClose }) => (
     contentLabel="Inline Styles Modal Example"
     style={customStyles}
   >
-    <div className="modal-info">
+    <LogoutModalStyles>
       <p>¿Estás seguro que deseas salir?</p>
-      <div className="box-icon">
-        <i className="icon-frown" />
-      </div>
+
+      <i className="icon-frown" />
+
       <div className="box-buttons">
-        <button type="button" onClick={handleModalYes}>
-          Sí
-        </button>
+        <Mutation
+          mutation={SIGN_OUT_MUTATION}
+          onCompleted={() => Router.push('/')}
+        >
+          {signout => <button onClick={signout}>Sí</button>}
+        </Mutation>
         <button type="button" onClick={handleModalClose}>
           No
         </button>
       </div>
-    </div>
-    <style jsx>
-      {`
-        .modal-info {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          height: 100%;
-        }
-        .modal-info p {
-          text-align: center;
-          font-size: 40px;
-          font-weight: bold;
-          color: #fff;
-          padding: 10px 40px;
-        }
-        .box-icon {
-          margin-top: 10%;
-          margin-bottom: 20%;
-        }
-        .box-icon i {
-          font-size: 140px;
-          border-radius: 48px;
-          padding: 8px 1px;
-          color: #92481f;
-        }
-        .box-buttons {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          grid-template-rows: 70px;
-          grid-gap: 32px;
-        }
-        .box-buttons button {
-          padding: 10px 15px;
-          background: #353535;
-          color: #fff;
-          border: none;
-          font-size: 40px;
-          min-width: 111px;
-          border-radius: 4px;
-          font-weight: bold;
-        }
-        .box-buttons button:first-child {
-          background: #92481f;
-        }
-      `}
-    </style>
+    </LogoutModalStyles>
   </Modal>
 );
 

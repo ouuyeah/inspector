@@ -19,6 +19,7 @@ export interface NexusGenEnums {
 
 export interface NexusGenRootTypes {
   AuthPayload: { // root type
+    message?: string | null; // String
     token?: string | null; // String
     user?: NexusGenRootTypes['User'] | null; // User
   }
@@ -50,6 +51,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 
 export interface NexusGenFieldTypes {
   AuthPayload: { // field return type
+    message: string | null; // String
     token: string | null; // String
     user: NexusGenRootTypes['User'] | null; // User
   }
@@ -62,6 +64,7 @@ export interface NexusGenFieldTypes {
   }
   Mutation: { // field return type
     login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
+    signout: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
   }
   Query: { // field return type

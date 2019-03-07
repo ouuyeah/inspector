@@ -73,6 +73,15 @@ export const Mutation = mutationType({
       },
     })
 
+    t.field('signout', {
+      type: 'AuthPayload',
+      nullable: true,
+      resolve: (parent, args, ctx) => {
+        ctx.response.clearCookie('token')
+        return { message: 'Goodbye !' }
+      },
+    })
+
     /*
     t.field('createDraft', {
       type: 'Post',

@@ -3,6 +3,7 @@
 
 
 type AuthPayload {
+  message: String
   token: String
   user: User
 }
@@ -17,6 +18,7 @@ type Inspection {
 
 type Mutation {
   login(email: String, password: String): AuthPayload
+  signout: AuthPayload
   signup(cc: Int, email: String, name: String, nickname: String, password: String): AuthPayload
 }
 
