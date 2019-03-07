@@ -11,14 +11,28 @@ type User {
   nickname: String! @unique
   password: String!
   name: String
+  resetToken: String
+  resetTokenExpiry: Float
   inspections: [Inspection!]!
   permissions: [Permission]
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type Inspection {
   id: ID! @unique
-  source: String!
+  source: Source!
   record: String!
   licensePlate: String!
   user: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Source {
+  id: ID! @unique
+  name: String!
+  user: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }

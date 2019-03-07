@@ -7,8 +7,8 @@ const NavigationStyles = styled.div`
 
   .navigation__button {
     background-color: #fff;
-    height: 7rem;
-    width: 7rem;
+    height: 6rem;
+    width: 6rem;
     position: fixed;
     top: 6rem;
     right: 6rem;
@@ -24,13 +24,13 @@ const NavigationStyles = styled.div`
     }
 
     @media (max-width: 600px) {
-      top: 3rem;
+      top: 1rem;
       right: 3rem;
     }
   }
   .navigation__background {
-    height: 6rem;
-    width: 6rem;
+    height: 5rem;
+    width: 5rem;
     border-radius: 50%;
     position: fixed;
     top: 6.5rem;
@@ -48,7 +48,7 @@ const NavigationStyles = styled.div`
     }
 
     @media (max-width: 600px) {
-      top: 3.5rem;
+      top: 1.2rem;
       right: 3.5rem;
     }
   }
@@ -72,7 +72,6 @@ const NavigationStyles = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     list-style: none;
-    text-align: center;
     width: 100%;
   }
 
@@ -125,14 +124,14 @@ const NavigationStyles = styled.div`
   }
   .navigation__icon {
     position: relative;
-    margin-top: 3.5rem;
+    margin-top: 2.9rem;
 
     &,
     &::before,
     &::after {
-      width: 3rem;
+      width: 2.3rem;
       height: 2px;
-      background-color: ${props => props.theme.greyDark};
+      background-color: ${props => props.theme.orange};
       display: inline-block;
     }
 

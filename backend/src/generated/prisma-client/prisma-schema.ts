@@ -6,6 +6,10 @@ export const typeDefs = /* GraphQL */ `type AggregateInspection {
   count: Int!
 }
 
+type AggregateSource {
+  count: Int!
+}
+
 type AggregateUser {
   count: Int!
 }
@@ -14,12 +18,16 @@ type BatchPayload {
   count: Long!
 }
 
+scalar DateTime
+
 type Inspection {
   id: ID!
-  source: String!
+  source: Source!
   record: String!
   licensePlate: String!
   user: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type InspectionConnection {
@@ -29,7 +37,7 @@ type InspectionConnection {
 }
 
 input InspectionCreateInput {
-  source: String!
+  source: SourceCreateOneInput!
   record: String!
   licensePlate: String!
   user: UserCreateOneWithoutInspectionsInput!
@@ -41,7 +49,7 @@ input InspectionCreateManyWithoutUserInput {
 }
 
 input InspectionCreateWithoutUserInput {
-  source: String!
+  source: SourceCreateOneInput!
   record: String!
   licensePlate: String!
 }
@@ -54,8 +62,6 @@ type InspectionEdge {
 enum InspectionOrderByInput {
   id_ASC
   id_DESC
-  source_ASC
-  source_DESC
   record_ASC
   record_DESC
   licensePlate_ASC
@@ -68,9 +74,10 @@ enum InspectionOrderByInput {
 
 type InspectionPreviousValues {
   id: ID!
-  source: String!
   record: String!
   licensePlate: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 input InspectionScalarWhereInput {
@@ -88,20 +95,6 @@ input InspectionScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  source: String
-  source_not: String
-  source_in: [String!]
-  source_not_in: [String!]
-  source_lt: String
-  source_lte: String
-  source_gt: String
-  source_gte: String
-  source_contains: String
-  source_not_contains: String
-  source_starts_with: String
-  source_not_starts_with: String
-  source_ends_with: String
-  source_not_ends_with: String
   record: String
   record_not: String
   record_in: [String!]
@@ -130,6 +123,22 @@ input InspectionScalarWhereInput {
   licensePlate_not_starts_with: String
   licensePlate_ends_with: String
   licensePlate_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
   AND: [InspectionScalarWhereInput!]
   OR: [InspectionScalarWhereInput!]
   NOT: [InspectionScalarWhereInput!]
@@ -154,20 +163,18 @@ input InspectionSubscriptionWhereInput {
 }
 
 input InspectionUpdateInput {
-  source: String
+  source: SourceUpdateOneRequiredInput
   record: String
   licensePlate: String
   user: UserUpdateOneRequiredWithoutInspectionsInput
 }
 
 input InspectionUpdateManyDataInput {
-  source: String
   record: String
   licensePlate: String
 }
 
 input InspectionUpdateManyMutationInput {
-  source: String
   record: String
   licensePlate: String
 }
@@ -190,7 +197,7 @@ input InspectionUpdateManyWithWhereNestedInput {
 }
 
 input InspectionUpdateWithoutUserDataInput {
-  source: String
+  source: SourceUpdateOneRequiredInput
   record: String
   licensePlate: String
 }
@@ -221,20 +228,7 @@ input InspectionWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  source: String
-  source_not: String
-  source_in: [String!]
-  source_not_in: [String!]
-  source_lt: String
-  source_lte: String
-  source_gt: String
-  source_gte: String
-  source_contains: String
-  source_not_contains: String
-  source_starts_with: String
-  source_not_starts_with: String
-  source_ends_with: String
-  source_not_ends_with: String
+  source: SourceWhereInput
   record: String
   record_not: String
   record_in: [String!]
@@ -264,6 +258,22 @@ input InspectionWhereInput {
   licensePlate_ends_with: String
   licensePlate_not_ends_with: String
   user: UserWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
   AND: [InspectionWhereInput!]
   OR: [InspectionWhereInput!]
   NOT: [InspectionWhereInput!]
@@ -282,6 +292,12 @@ type Mutation {
   upsertInspection(where: InspectionWhereUniqueInput!, create: InspectionCreateInput!, update: InspectionUpdateInput!): Inspection!
   deleteInspection(where: InspectionWhereUniqueInput!): Inspection
   deleteManyInspections(where: InspectionWhereInput): BatchPayload!
+  createSource(data: SourceCreateInput!): Source!
+  updateSource(data: SourceUpdateInput!, where: SourceWhereUniqueInput!): Source
+  updateManySources(data: SourceUpdateManyMutationInput!, where: SourceWhereInput): BatchPayload!
+  upsertSource(where: SourceWhereUniqueInput!, create: SourceCreateInput!, update: SourceUpdateInput!): Source!
+  deleteSource(where: SourceWhereUniqueInput!): Source
+  deleteManySources(where: SourceWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -317,14 +333,164 @@ type Query {
   inspection(where: InspectionWhereUniqueInput!): Inspection
   inspections(where: InspectionWhereInput, orderBy: InspectionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Inspection]!
   inspectionsConnection(where: InspectionWhereInput, orderBy: InspectionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InspectionConnection!
+  source(where: SourceWhereUniqueInput!): Source
+  sources(where: SourceWhereInput, orderBy: SourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Source]!
+  sourcesConnection(where: SourceWhereInput, orderBy: SourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SourceConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   node(id: ID!): Node
 }
 
+type Source {
+  id: ID!
+  name: String!
+  user: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type SourceConnection {
+  pageInfo: PageInfo!
+  edges: [SourceEdge]!
+  aggregate: AggregateSource!
+}
+
+input SourceCreateInput {
+  name: String!
+  user: UserCreateOneInput!
+}
+
+input SourceCreateOneInput {
+  create: SourceCreateInput
+  connect: SourceWhereUniqueInput
+}
+
+type SourceEdge {
+  node: Source!
+  cursor: String!
+}
+
+enum SourceOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type SourcePreviousValues {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type SourceSubscriptionPayload {
+  mutation: MutationType!
+  node: Source
+  updatedFields: [String!]
+  previousValues: SourcePreviousValues
+}
+
+input SourceSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: SourceWhereInput
+  AND: [SourceSubscriptionWhereInput!]
+  OR: [SourceSubscriptionWhereInput!]
+  NOT: [SourceSubscriptionWhereInput!]
+}
+
+input SourceUpdateDataInput {
+  name: String
+  user: UserUpdateOneRequiredInput
+}
+
+input SourceUpdateInput {
+  name: String
+  user: UserUpdateOneRequiredInput
+}
+
+input SourceUpdateManyMutationInput {
+  name: String
+}
+
+input SourceUpdateOneRequiredInput {
+  create: SourceCreateInput
+  update: SourceUpdateDataInput
+  upsert: SourceUpsertNestedInput
+  connect: SourceWhereUniqueInput
+}
+
+input SourceUpsertNestedInput {
+  update: SourceUpdateDataInput!
+  create: SourceCreateInput!
+}
+
+input SourceWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  user: UserWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [SourceWhereInput!]
+  OR: [SourceWhereInput!]
+  NOT: [SourceWhereInput!]
+}
+
+input SourceWhereUniqueInput {
+  id: ID
+}
+
 type Subscription {
   inspection(where: InspectionSubscriptionWhereInput): InspectionSubscriptionPayload
+  source(where: SourceSubscriptionWhereInput): SourceSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
@@ -335,8 +501,12 @@ type User {
   nickname: String!
   password: String!
   name: String
+  resetToken: String
+  resetTokenExpiry: Float
   inspections(where: InspectionWhereInput, orderBy: InspectionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Inspection!]
   permissions: [Permission!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type UserConnection {
@@ -351,8 +521,15 @@ input UserCreateInput {
   nickname: String!
   password: String!
   name: String
+  resetToken: String
+  resetTokenExpiry: Float
   inspections: InspectionCreateManyWithoutUserInput
   permissions: UserCreatepermissionsInput
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
 }
 
 input UserCreateOneWithoutInspectionsInput {
@@ -370,6 +547,8 @@ input UserCreateWithoutInspectionsInput {
   nickname: String!
   password: String!
   name: String
+  resetToken: String
+  resetTokenExpiry: Float
   permissions: UserCreatepermissionsInput
 }
 
@@ -391,6 +570,10 @@ enum UserOrderByInput {
   password_DESC
   name_ASC
   name_DESC
+  resetToken_ASC
+  resetToken_DESC
+  resetTokenExpiry_ASC
+  resetTokenExpiry_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -404,7 +587,11 @@ type UserPreviousValues {
   nickname: String!
   password: String!
   name: String
+  resetToken: String
+  resetTokenExpiry: Float
   permissions: [Permission!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type UserSubscriptionPayload {
@@ -425,12 +612,26 @@ input UserSubscriptionWhereInput {
   NOT: [UserSubscriptionWhereInput!]
 }
 
+input UserUpdateDataInput {
+  cc: Int
+  email: String
+  nickname: String
+  password: String
+  name: String
+  resetToken: String
+  resetTokenExpiry: Float
+  inspections: InspectionUpdateManyWithoutUserInput
+  permissions: UserUpdatepermissionsInput
+}
+
 input UserUpdateInput {
   cc: Int
   email: String
   nickname: String
   password: String
   name: String
+  resetToken: String
+  resetTokenExpiry: Float
   inspections: InspectionUpdateManyWithoutUserInput
   permissions: UserUpdatepermissionsInput
 }
@@ -441,7 +642,16 @@ input UserUpdateManyMutationInput {
   nickname: String
   password: String
   name: String
+  resetToken: String
+  resetTokenExpiry: Float
   permissions: UserUpdatepermissionsInput
+}
+
+input UserUpdateOneRequiredInput {
+  create: UserCreateInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+  connect: UserWhereUniqueInput
 }
 
 input UserUpdateOneRequiredWithoutInspectionsInput {
@@ -461,7 +671,14 @@ input UserUpdateWithoutInspectionsDataInput {
   nickname: String
   password: String
   name: String
+  resetToken: String
+  resetTokenExpiry: Float
   permissions: UserUpdatepermissionsInput
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
 }
 
 input UserUpsertWithoutInspectionsInput {
@@ -548,9 +765,47 @@ input UserWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  resetToken: String
+  resetToken_not: String
+  resetToken_in: [String!]
+  resetToken_not_in: [String!]
+  resetToken_lt: String
+  resetToken_lte: String
+  resetToken_gt: String
+  resetToken_gte: String
+  resetToken_contains: String
+  resetToken_not_contains: String
+  resetToken_starts_with: String
+  resetToken_not_starts_with: String
+  resetToken_ends_with: String
+  resetToken_not_ends_with: String
+  resetTokenExpiry: Float
+  resetTokenExpiry_not: Float
+  resetTokenExpiry_in: [Float!]
+  resetTokenExpiry_not_in: [Float!]
+  resetTokenExpiry_lt: Float
+  resetTokenExpiry_lte: Float
+  resetTokenExpiry_gt: Float
+  resetTokenExpiry_gte: Float
   inspections_every: InspectionWhereInput
   inspections_some: InspectionWhereInput
   inspections_none: InspectionWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

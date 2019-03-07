@@ -52,7 +52,6 @@ const LoginPage: NextFunctionComponent = props => {
                   <form
                     method="post"
                     onSubmit={e => {
-                      console.log('jjajajaja');
                       handleSubmit(e, login);
                     }}
                   >

@@ -1,20 +1,21 @@
 import { Query } from 'react-apollo';
 import { CURRENT_USER_QUERY } from './User';
 import Link from 'next/link';
+import AuthStyles from './styles/AuthStyles';
+import Login from './login/Login';
+import Loading from './Loading';
 
 const Auth = props => (
   <Query query={CURRENT_USER_QUERY}>
     {({ data, loading }) => {
       const { me } = data || {};
-      if (loading) return <p>Loading...</p>;
+      if (loading) return <Loading />;
       if (!me) {
         return (
-          <div>
+          <AuthStyles>
             <p>Ups, no puedes estar aquí</p>
-            <Link href="/" prefetch>
-              <a>Ir al login</a>
-            </Link>
-          </div>
+            <Login />
+          </AuthStyles>
         );
       }
       return props.children;

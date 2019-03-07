@@ -17,6 +17,7 @@ export interface NexusPrismaTypes {
       Query: QueryObject
       User: UserObject
       Inspection: InspectionObject
+      Source: SourceObject
       UserConnection: UserConnectionObject
       PageInfo: PageInfoObject
       UserEdge: UserEdgeObject
@@ -24,6 +25,9 @@ export interface NexusPrismaTypes {
       InspectionConnection: InspectionConnectionObject
       InspectionEdge: InspectionEdgeObject
       AggregateInspection: AggregateInspectionObject
+      SourceConnection: SourceConnectionObject
+      SourceEdge: SourceEdgeObject
+      AggregateSource: AggregateSourceObject
       Mutation: MutationObject
       BatchPayload: BatchPayloadObject
       Subscription: SubscriptionObject
@@ -31,11 +35,14 @@ export interface NexusPrismaTypes {
       UserPreviousValues: UserPreviousValuesObject
       InspectionSubscriptionPayload: InspectionSubscriptionPayloadObject
       InspectionPreviousValues: InspectionPreviousValuesObject
+      SourceSubscriptionPayload: SourceSubscriptionPayloadObject
+      SourcePreviousValues: SourcePreviousValuesObject
     }
     fieldsDetails: {
       Query: QueryFieldDetails
       User: UserFieldDetails
       Inspection: InspectionFieldDetails
+      Source: SourceFieldDetails
       UserConnection: UserConnectionFieldDetails
       PageInfo: PageInfoFieldDetails
       UserEdge: UserEdgeFieldDetails
@@ -43,6 +50,9 @@ export interface NexusPrismaTypes {
       InspectionConnection: InspectionConnectionFieldDetails
       InspectionEdge: InspectionEdgeFieldDetails
       AggregateInspection: AggregateInspectionFieldDetails
+      SourceConnection: SourceConnectionFieldDetails
+      SourceEdge: SourceEdgeFieldDetails
+      AggregateSource: AggregateSourceFieldDetails
       Mutation: MutationFieldDetails
       BatchPayload: BatchPayloadFieldDetails
       Subscription: SubscriptionFieldDetails
@@ -50,27 +60,40 @@ export interface NexusPrismaTypes {
       UserPreviousValues: UserPreviousValuesFieldDetails
       InspectionSubscriptionPayload: InspectionSubscriptionPayloadFieldDetails
       InspectionPreviousValues: InspectionPreviousValuesFieldDetails
+      SourceSubscriptionPayload: SourceSubscriptionPayloadFieldDetails
+      SourcePreviousValues: SourcePreviousValuesFieldDetails
     }
   }
   inputTypes: {
     fields: {
       UserWhereUniqueInput: UserWhereUniqueInputInputObject
       InspectionWhereInput: InspectionWhereInputInputObject
+      SourceWhereInput: SourceWhereInputInputObject
       UserWhereInput: UserWhereInputInputObject
       InspectionWhereUniqueInput: InspectionWhereUniqueInputInputObject
+      SourceWhereUniqueInput: SourceWhereUniqueInputInputObject
       UserCreateInput: UserCreateInputInputObject
       InspectionCreateManyWithoutUserInput: InspectionCreateManyWithoutUserInputInputObject
       InspectionCreateWithoutUserInput: InspectionCreateWithoutUserInputInputObject
+      SourceCreateOneInput: SourceCreateOneInputInputObject
+      SourceCreateInput: SourceCreateInputInputObject
+      UserCreateOneInput: UserCreateOneInputInputObject
       UserCreatepermissionsInput: UserCreatepermissionsInputInputObject
       UserUpdateInput: UserUpdateInputInputObject
       InspectionUpdateManyWithoutUserInput: InspectionUpdateManyWithoutUserInputInputObject
       InspectionUpdateWithWhereUniqueWithoutUserInput: InspectionUpdateWithWhereUniqueWithoutUserInputInputObject
       InspectionUpdateWithoutUserDataInput: InspectionUpdateWithoutUserDataInputInputObject
+      SourceUpdateOneRequiredInput: SourceUpdateOneRequiredInputInputObject
+      SourceUpdateDataInput: SourceUpdateDataInputInputObject
+      UserUpdateOneRequiredInput: UserUpdateOneRequiredInputInputObject
+      UserUpdateDataInput: UserUpdateDataInputInputObject
+      UserUpdatepermissionsInput: UserUpdatepermissionsInputInputObject
+      UserUpsertNestedInput: UserUpsertNestedInputInputObject
+      SourceUpsertNestedInput: SourceUpsertNestedInputInputObject
       InspectionUpsertWithWhereUniqueWithoutUserInput: InspectionUpsertWithWhereUniqueWithoutUserInputInputObject
       InspectionScalarWhereInput: InspectionScalarWhereInputInputObject
       InspectionUpdateManyWithWhereNestedInput: InspectionUpdateManyWithWhereNestedInputInputObject
       InspectionUpdateManyDataInput: InspectionUpdateManyDataInputInputObject
-      UserUpdatepermissionsInput: UserUpdatepermissionsInputInputObject
       UserUpdateManyMutationInput: UserUpdateManyMutationInputInputObject
       InspectionCreateInput: InspectionCreateInputInputObject
       UserCreateOneWithoutInspectionsInput: UserCreateOneWithoutInspectionsInputInputObject
@@ -80,14 +103,18 @@ export interface NexusPrismaTypes {
       UserUpdateWithoutInspectionsDataInput: UserUpdateWithoutInspectionsDataInputInputObject
       UserUpsertWithoutInspectionsInput: UserUpsertWithoutInspectionsInputInputObject
       InspectionUpdateManyMutationInput: InspectionUpdateManyMutationInputInputObject
+      SourceUpdateInput: SourceUpdateInputInputObject
+      SourceUpdateManyMutationInput: SourceUpdateManyMutationInputInputObject
       UserSubscriptionWhereInput: UserSubscriptionWhereInputInputObject
       InspectionSubscriptionWhereInput: InspectionSubscriptionWhereInputInputObject
+      SourceSubscriptionWhereInput: SourceSubscriptionWhereInputInputObject
     }
   }
   enumTypes: {
     InspectionOrderByInput: InspectionOrderByInputValues,
     Permission: PermissionValues,
     UserOrderByInput: UserOrderByInputValues,
+    SourceOrderByInput: SourceOrderByInputValues,
     MutationType: MutationTypeValues,
   }
 }
@@ -102,6 +129,9 @@ type QueryObject =
   | { name: 'inspection', args?: QueryInspectionArgs[] | false, alias?: string  } 
   | { name: 'inspections', args?: QueryInspectionsArgs[] | false, alias?: string  } 
   | { name: 'inspectionsConnection', args?: QueryInspectionsConnectionArgs[] | false, alias?: string  } 
+  | { name: 'source', args?: QuerySourceArgs[] | false, alias?: string  } 
+  | { name: 'sources', args?: QuerySourcesArgs[] | false, alias?: string  } 
+  | { name: 'sourcesConnection', args?: QuerySourcesConnectionArgs[] | false, alias?: string  } 
 
 type QueryFields =
   | 'user'
@@ -110,6 +140,9 @@ type QueryFields =
   | 'inspection'
   | 'inspections'
   | 'inspectionsConnection'
+  | 'source'
+  | 'sources'
+  | 'sourcesConnection'
 
 
 type QueryUserArgs =
@@ -141,6 +174,24 @@ type QueryInspectionsArgs =
   | 'first'
   | 'last'
 type QueryInspectionsConnectionArgs =
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+type QuerySourceArgs =
+  | 'where'
+type QuerySourcesArgs =
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+type QuerySourcesConnectionArgs =
   | 'where'
   | 'orderBy'
   | 'skip'
@@ -229,6 +280,45 @@ export interface QueryFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.InspectionConnection> | prisma.InspectionConnection
   }
+  source: {
+    type: 'Source'
+    args: Record<QuerySourceArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Query">,
+      args: { where: SourceWhereUniqueInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Source | null> | prisma.Source | null
+  }
+  sources: {
+    type: 'Source'
+    args: Record<QuerySourcesArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Query">,
+      args: { where?: SourceWhereInput | null, orderBy?: prisma.SourceOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Source[]> | prisma.Source[]
+  }
+  sourcesConnection: {
+    type: 'SourceConnection'
+    args: Record<QuerySourcesConnectionArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Query">,
+      args: { where?: SourceWhereInput | null, orderBy?: prisma.SourceOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.SourceConnection> | prisma.SourceConnection
+  }
 }
   
 
@@ -242,8 +332,12 @@ type UserObject =
   | { name: 'nickname', args?: [] | false, alias?: string  } 
   | { name: 'password', args?: [] | false, alias?: string  } 
   | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'resetToken', args?: [] | false, alias?: string  } 
+  | { name: 'resetTokenExpiry', args?: [] | false, alias?: string  } 
   | { name: 'inspections', args?: UserInspectionsArgs[] | false, alias?: string  } 
   | { name: 'permissions', args?: [] | false, alias?: string  } 
+  | { name: 'createdAt', args?: [] | false, alias?: string  } 
+  | { name: 'updatedAt', args?: [] | false, alias?: string  } 
 
 type UserFields =
   | 'id'
@@ -252,8 +346,12 @@ type UserFields =
   | 'nickname'
   | 'password'
   | 'name'
+  | 'resetToken'
+  | 'resetTokenExpiry'
   | 'inspections'
   | 'permissions'
+  | 'createdAt'
+  | 'updatedAt'
 
 
 type UserInspectionsArgs =
@@ -315,6 +413,22 @@ export interface UserFieldDetails {
     nullable: true
     resolve: undefined
   }
+  resetToken: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  resetTokenExpiry: {
+    type: 'Float'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
   inspections: {
     type: 'Inspection'
     args: Record<UserInspectionsArgs, core.NexusArgDef<string>>
@@ -341,6 +455,22 @@ export interface UserFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Permission[]> | prisma.Permission[]
   }
+  createdAt: {
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  updatedAt: {
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
 }
   
 
@@ -353,6 +483,8 @@ type InspectionObject =
   | { name: 'record', args?: [] | false, alias?: string  } 
   | { name: 'licensePlate', args?: [] | false, alias?: string  } 
   | { name: 'user', args?: [] | false, alias?: string  } 
+  | { name: 'createdAt', args?: [] | false, alias?: string  } 
+  | { name: 'updatedAt', args?: [] | false, alias?: string  } 
 
 type InspectionFields =
   | 'id'
@@ -360,6 +492,8 @@ type InspectionFields =
   | 'record'
   | 'licensePlate'
   | 'user'
+  | 'createdAt'
+  | 'updatedAt'
 
 
 
@@ -375,12 +509,17 @@ export interface InspectionFieldDetails {
     resolve: undefined
   }
   source: {
-    type: 'String'
+    type: 'Source'
     args: {}
     description: string
     list: undefined
     nullable: false
-    resolve: undefined
+    resolve: (
+      root: core.RootValue<"Inspection">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Source> | prisma.Source
   }
   record: {
     type: 'String'
@@ -410,6 +549,92 @@ export interface InspectionFieldDetails {
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.User> | prisma.User
+  }
+  createdAt: {
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  updatedAt: {
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+}
+  
+
+// Types for Source
+
+type SourceObject =
+  | SourceFields
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'user', args?: [] | false, alias?: string  } 
+  | { name: 'createdAt', args?: [] | false, alias?: string  } 
+  | { name: 'updatedAt', args?: [] | false, alias?: string  } 
+
+type SourceFields =
+  | 'id'
+  | 'name'
+  | 'user'
+  | 'createdAt'
+  | 'updatedAt'
+
+
+
+  
+
+export interface SourceFieldDetails {
+  id: {
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  name: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  user: {
+    type: 'User'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Source">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.User> | prisma.User
+  }
+  createdAt: {
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  updatedAt: {
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
   }
 }
   
@@ -719,6 +944,131 @@ export interface AggregateInspectionFieldDetails {
 }
   
 
+// Types for SourceConnection
+
+type SourceConnectionObject =
+  | SourceConnectionFields
+  | { name: 'pageInfo', args?: [] | false, alias?: string  } 
+  | { name: 'edges', args?: [] | false, alias?: string  } 
+  | { name: 'aggregate', args?: [] | false, alias?: string  } 
+
+type SourceConnectionFields =
+  | 'pageInfo'
+  | 'edges'
+  | 'aggregate'
+
+
+
+  
+
+export interface SourceConnectionFieldDetails {
+  pageInfo: {
+    type: 'PageInfo'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"SourceConnection">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PageInfo> | prisma.PageInfo
+  }
+  edges: {
+    type: 'SourceEdge'
+    args: {}
+    description: string
+    list: true
+    nullable: false
+    resolve: (
+      root: core.RootValue<"SourceConnection">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.SourceEdge[]> | prisma.SourceEdge[]
+  }
+  aggregate: {
+    type: 'AggregateSource'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"SourceConnection">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.AggregateSource> | prisma.AggregateSource
+  }
+}
+  
+
+// Types for SourceEdge
+
+type SourceEdgeObject =
+  | SourceEdgeFields
+  | { name: 'node', args?: [] | false, alias?: string  } 
+  | { name: 'cursor', args?: [] | false, alias?: string  } 
+
+type SourceEdgeFields =
+  | 'node'
+  | 'cursor'
+
+
+
+  
+
+export interface SourceEdgeFieldDetails {
+  node: {
+    type: 'Source'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"SourceEdge">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Source> | prisma.Source
+  }
+  cursor: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+}
+  
+
+// Types for AggregateSource
+
+type AggregateSourceObject =
+  | AggregateSourceFields
+  | { name: 'count', args?: [] | false, alias?: string  } 
+
+type AggregateSourceFields =
+  | 'count'
+
+
+
+  
+
+export interface AggregateSourceFieldDetails {
+  count: {
+    type: 'Int'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+}
+  
+
 // Types for Mutation
 
 type MutationObject =
@@ -735,6 +1085,12 @@ type MutationObject =
   | { name: 'upsertInspection', args?: MutationUpsertInspectionArgs[] | false, alias?: string  } 
   | { name: 'deleteInspection', args?: MutationDeleteInspectionArgs[] | false, alias?: string  } 
   | { name: 'deleteManyInspections', args?: MutationDeleteManyInspectionsArgs[] | false, alias?: string  } 
+  | { name: 'createSource', args?: MutationCreateSourceArgs[] | false, alias?: string  } 
+  | { name: 'updateSource', args?: MutationUpdateSourceArgs[] | false, alias?: string  } 
+  | { name: 'updateManySources', args?: MutationUpdateManySourcesArgs[] | false, alias?: string  } 
+  | { name: 'upsertSource', args?: MutationUpsertSourceArgs[] | false, alias?: string  } 
+  | { name: 'deleteSource', args?: MutationDeleteSourceArgs[] | false, alias?: string  } 
+  | { name: 'deleteManySources', args?: MutationDeleteManySourcesArgs[] | false, alias?: string  } 
 
 type MutationFields =
   | 'createUser'
@@ -749,6 +1105,12 @@ type MutationFields =
   | 'upsertInspection'
   | 'deleteInspection'
   | 'deleteManyInspections'
+  | 'createSource'
+  | 'updateSource'
+  | 'updateManySources'
+  | 'upsertSource'
+  | 'deleteSource'
+  | 'deleteManySources'
 
 
 type MutationCreateUserArgs =
@@ -782,6 +1144,22 @@ type MutationUpsertInspectionArgs =
 type MutationDeleteInspectionArgs =
   | 'where'
 type MutationDeleteManyInspectionsArgs =
+  | 'where'
+type MutationCreateSourceArgs =
+  | 'data'
+type MutationUpdateSourceArgs =
+  | 'data'
+  | 'where'
+type MutationUpdateManySourcesArgs =
+  | 'data'
+  | 'where'
+type MutationUpsertSourceArgs =
+  | 'where'
+  | 'create'
+  | 'update'
+type MutationDeleteSourceArgs =
+  | 'where'
+type MutationDeleteManySourcesArgs =
   | 'where'
   
 
@@ -942,6 +1320,84 @@ export interface MutationFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
   }
+  createSource: {
+    type: 'Source'
+    args: Record<MutationCreateSourceArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { data: SourceCreateInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Source> | prisma.Source
+  }
+  updateSource: {
+    type: 'Source'
+    args: Record<MutationUpdateSourceArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { data: SourceUpdateInput, where: SourceWhereUniqueInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Source | null> | prisma.Source | null
+  }
+  updateManySources: {
+    type: 'BatchPayload'
+    args: Record<MutationUpdateManySourcesArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { data: SourceUpdateManyMutationInput, where?: SourceWhereInput | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
+  }
+  upsertSource: {
+    type: 'Source'
+    args: Record<MutationUpsertSourceArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { where: SourceWhereUniqueInput, create: SourceCreateInput, update: SourceUpdateInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Source> | prisma.Source
+  }
+  deleteSource: {
+    type: 'Source'
+    args: Record<MutationDeleteSourceArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { where: SourceWhereUniqueInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Source | null> | prisma.Source | null
+  }
+  deleteManySources: {
+    type: 'BatchPayload'
+    args: Record<MutationDeleteManySourcesArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { where?: SourceWhereInput | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
+  }
 }
   
 
@@ -976,15 +1432,19 @@ type SubscriptionObject =
   | SubscriptionFields
   | { name: 'user', args?: SubscriptionUserArgs[] | false, alias?: string  } 
   | { name: 'inspection', args?: SubscriptionInspectionArgs[] | false, alias?: string  } 
+  | { name: 'source', args?: SubscriptionSourceArgs[] | false, alias?: string  } 
 
 type SubscriptionFields =
   | 'user'
   | 'inspection'
+  | 'source'
 
 
 type SubscriptionUserArgs =
   | 'where'
 type SubscriptionInspectionArgs =
+  | 'where'
+type SubscriptionSourceArgs =
   | 'where'
   
 
@@ -1014,6 +1474,19 @@ export interface SubscriptionFieldDetails {
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.InspectionSubscriptionPayload | null> | prisma.InspectionSubscriptionPayload | null
+  }
+  source: {
+    type: 'SourceSubscriptionPayload'
+    args: Record<SubscriptionSourceArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Subscription">,
+      args: { where?: SourceSubscriptionWhereInput | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.SourceSubscriptionPayload | null> | prisma.SourceSubscriptionPayload | null
   }
 }
   
@@ -1098,7 +1571,11 @@ type UserPreviousValuesObject =
   | { name: 'nickname', args?: [] | false, alias?: string  } 
   | { name: 'password', args?: [] | false, alias?: string  } 
   | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'resetToken', args?: [] | false, alias?: string  } 
+  | { name: 'resetTokenExpiry', args?: [] | false, alias?: string  } 
   | { name: 'permissions', args?: [] | false, alias?: string  } 
+  | { name: 'createdAt', args?: [] | false, alias?: string  } 
+  | { name: 'updatedAt', args?: [] | false, alias?: string  } 
 
 type UserPreviousValuesFields =
   | 'id'
@@ -1107,7 +1584,11 @@ type UserPreviousValuesFields =
   | 'nickname'
   | 'password'
   | 'name'
+  | 'resetToken'
+  | 'resetTokenExpiry'
   | 'permissions'
+  | 'createdAt'
+  | 'updatedAt'
 
 
 
@@ -1162,6 +1643,22 @@ export interface UserPreviousValuesFieldDetails {
     nullable: true
     resolve: undefined
   }
+  resetToken: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  resetTokenExpiry: {
+    type: 'Float'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
   permissions: {
     type: 'Permission'
     args: {}
@@ -1174,6 +1671,22 @@ export interface UserPreviousValuesFieldDetails {
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Permission[]> | prisma.Permission[]
+  }
+  createdAt: {
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  updatedAt: {
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
   }
 }
   
@@ -1253,15 +1766,17 @@ export interface InspectionSubscriptionPayloadFieldDetails {
 type InspectionPreviousValuesObject =
   | InspectionPreviousValuesFields
   | { name: 'id', args?: [] | false, alias?: string  } 
-  | { name: 'source', args?: [] | false, alias?: string  } 
   | { name: 'record', args?: [] | false, alias?: string  } 
   | { name: 'licensePlate', args?: [] | false, alias?: string  } 
+  | { name: 'createdAt', args?: [] | false, alias?: string  } 
+  | { name: 'updatedAt', args?: [] | false, alias?: string  } 
 
 type InspectionPreviousValuesFields =
   | 'id'
-  | 'source'
   | 'record'
   | 'licensePlate'
+  | 'createdAt'
+  | 'updatedAt'
 
 
 
@@ -1270,14 +1785,6 @@ type InspectionPreviousValuesFields =
 export interface InspectionPreviousValuesFieldDetails {
   id: {
     type: 'ID'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
-  source: {
-    type: 'String'
     args: {}
     description: string
     list: undefined
@@ -1294,6 +1801,147 @@ export interface InspectionPreviousValuesFieldDetails {
   }
   licensePlate: {
     type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  createdAt: {
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  updatedAt: {
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+}
+  
+
+// Types for SourceSubscriptionPayload
+
+type SourceSubscriptionPayloadObject =
+  | SourceSubscriptionPayloadFields
+  | { name: 'mutation', args?: [] | false, alias?: string  } 
+  | { name: 'node', args?: [] | false, alias?: string  } 
+  | { name: 'updatedFields', args?: [] | false, alias?: string  } 
+  | { name: 'previousValues', args?: [] | false, alias?: string  } 
+
+type SourceSubscriptionPayloadFields =
+  | 'mutation'
+  | 'node'
+  | 'updatedFields'
+  | 'previousValues'
+
+
+
+  
+
+export interface SourceSubscriptionPayloadFieldDetails {
+  mutation: {
+    type: 'MutationType'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"SourceSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.MutationType> | prisma.MutationType
+  }
+  node: {
+    type: 'Source'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"SourceSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Source | null> | prisma.Source | null
+  }
+  updatedFields: {
+    type: 'String'
+    args: {}
+    description: string
+    list: true
+    nullable: false
+    resolve: undefined
+  }
+  previousValues: {
+    type: 'SourcePreviousValues'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"SourceSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.SourcePreviousValues | null> | prisma.SourcePreviousValues | null
+  }
+}
+  
+
+// Types for SourcePreviousValues
+
+type SourcePreviousValuesObject =
+  | SourcePreviousValuesFields
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'createdAt', args?: [] | false, alias?: string  } 
+  | { name: 'updatedAt', args?: [] | false, alias?: string  } 
+
+type SourcePreviousValuesFields =
+  | 'id'
+  | 'name'
+  | 'createdAt'
+  | 'updatedAt'
+
+
+
+  
+
+export interface SourcePreviousValuesFieldDetails {
+  id: {
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  name: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  createdAt: {
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  updatedAt: {
+    type: 'DateTime'
     args: {}
     description: string
     list: undefined
@@ -1332,20 +1980,7 @@ export interface InspectionWhereInput {
   id_not_starts_with?: string | null
   id_ends_with?: string | null
   id_not_ends_with?: string | null
-  source?: string | null
-  source_not?: string | null
-  source_in?: string[]
-  source_not_in?: string[]
-  source_lt?: string | null
-  source_lte?: string | null
-  source_gt?: string | null
-  source_gte?: string | null
-  source_contains?: string | null
-  source_not_contains?: string | null
-  source_starts_with?: string | null
-  source_not_starts_with?: string | null
-  source_ends_with?: string | null
-  source_not_ends_with?: string | null
+  source?: SourceWhereInput | null
   record?: string | null
   record_not?: string | null
   record_in?: string[]
@@ -1375,6 +2010,22 @@ export interface InspectionWhereInput {
   licensePlate_ends_with?: string | null
   licensePlate_not_ends_with?: string | null
   user?: UserWhereInput | null
+  createdAt?: string | null
+  createdAt_not?: string | null
+  createdAt_in?: string[]
+  createdAt_not_in?: string[]
+  createdAt_lt?: string | null
+  createdAt_lte?: string | null
+  createdAt_gt?: string | null
+  createdAt_gte?: string | null
+  updatedAt?: string | null
+  updatedAt_not?: string | null
+  updatedAt_in?: string[]
+  updatedAt_not_in?: string[]
+  updatedAt_lt?: string | null
+  updatedAt_lte?: string | null
+  updatedAt_gt?: string | null
+  updatedAt_gte?: string | null
   AND?: InspectionWhereInput[]
   OR?: InspectionWhereInput[]
   NOT?: InspectionWhereInput[]
@@ -1396,19 +2047,6 @@ export type InspectionWhereInputInputObject =
   | { name: 'id_ends_with', alias?: string  } 
   | { name: 'id_not_ends_with', alias?: string  } 
   | { name: 'source', alias?: string  } 
-  | { name: 'source_not', alias?: string  } 
-  | { name: 'source_in', alias?: string  } 
-  | { name: 'source_not_in', alias?: string  } 
-  | { name: 'source_lt', alias?: string  } 
-  | { name: 'source_lte', alias?: string  } 
-  | { name: 'source_gt', alias?: string  } 
-  | { name: 'source_gte', alias?: string  } 
-  | { name: 'source_contains', alias?: string  } 
-  | { name: 'source_not_contains', alias?: string  } 
-  | { name: 'source_starts_with', alias?: string  } 
-  | { name: 'source_not_starts_with', alias?: string  } 
-  | { name: 'source_ends_with', alias?: string  } 
-  | { name: 'source_not_ends_with', alias?: string  } 
   | { name: 'record', alias?: string  } 
   | { name: 'record_not', alias?: string  } 
   | { name: 'record_in', alias?: string  } 
@@ -1438,6 +2076,123 @@ export type InspectionWhereInputInputObject =
   | { name: 'licensePlate_ends_with', alias?: string  } 
   | { name: 'licensePlate_not_ends_with', alias?: string  } 
   | { name: 'user', alias?: string  } 
+  | { name: 'createdAt', alias?: string  } 
+  | { name: 'createdAt_not', alias?: string  } 
+  | { name: 'createdAt_in', alias?: string  } 
+  | { name: 'createdAt_not_in', alias?: string  } 
+  | { name: 'createdAt_lt', alias?: string  } 
+  | { name: 'createdAt_lte', alias?: string  } 
+  | { name: 'createdAt_gt', alias?: string  } 
+  | { name: 'createdAt_gte', alias?: string  } 
+  | { name: 'updatedAt', alias?: string  } 
+  | { name: 'updatedAt_not', alias?: string  } 
+  | { name: 'updatedAt_in', alias?: string  } 
+  | { name: 'updatedAt_not_in', alias?: string  } 
+  | { name: 'updatedAt_lt', alias?: string  } 
+  | { name: 'updatedAt_lte', alias?: string  } 
+  | { name: 'updatedAt_gt', alias?: string  } 
+  | { name: 'updatedAt_gte', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
+  
+export interface SourceWhereInput {
+  id?: string | null
+  id_not?: string | null
+  id_in?: string[]
+  id_not_in?: string[]
+  id_lt?: string | null
+  id_lte?: string | null
+  id_gt?: string | null
+  id_gte?: string | null
+  id_contains?: string | null
+  id_not_contains?: string | null
+  id_starts_with?: string | null
+  id_not_starts_with?: string | null
+  id_ends_with?: string | null
+  id_not_ends_with?: string | null
+  name?: string | null
+  name_not?: string | null
+  name_in?: string[]
+  name_not_in?: string[]
+  name_lt?: string | null
+  name_lte?: string | null
+  name_gt?: string | null
+  name_gte?: string | null
+  name_contains?: string | null
+  name_not_contains?: string | null
+  name_starts_with?: string | null
+  name_not_starts_with?: string | null
+  name_ends_with?: string | null
+  name_not_ends_with?: string | null
+  user?: UserWhereInput | null
+  createdAt?: string | null
+  createdAt_not?: string | null
+  createdAt_in?: string[]
+  createdAt_not_in?: string[]
+  createdAt_lt?: string | null
+  createdAt_lte?: string | null
+  createdAt_gt?: string | null
+  createdAt_gte?: string | null
+  updatedAt?: string | null
+  updatedAt_not?: string | null
+  updatedAt_in?: string[]
+  updatedAt_not_in?: string[]
+  updatedAt_lt?: string | null
+  updatedAt_lte?: string | null
+  updatedAt_gt?: string | null
+  updatedAt_gte?: string | null
+  AND?: SourceWhereInput[]
+  OR?: SourceWhereInput[]
+  NOT?: SourceWhereInput[]
+}
+export type SourceWhereInputInputObject =
+  | Extract<keyof SourceWhereInput, string>
+  | { name: 'id', alias?: string  } 
+  | { name: 'id_not', alias?: string  } 
+  | { name: 'id_in', alias?: string  } 
+  | { name: 'id_not_in', alias?: string  } 
+  | { name: 'id_lt', alias?: string  } 
+  | { name: 'id_lte', alias?: string  } 
+  | { name: 'id_gt', alias?: string  } 
+  | { name: 'id_gte', alias?: string  } 
+  | { name: 'id_contains', alias?: string  } 
+  | { name: 'id_not_contains', alias?: string  } 
+  | { name: 'id_starts_with', alias?: string  } 
+  | { name: 'id_not_starts_with', alias?: string  } 
+  | { name: 'id_ends_with', alias?: string  } 
+  | { name: 'id_not_ends_with', alias?: string  } 
+  | { name: 'name', alias?: string  } 
+  | { name: 'name_not', alias?: string  } 
+  | { name: 'name_in', alias?: string  } 
+  | { name: 'name_not_in', alias?: string  } 
+  | { name: 'name_lt', alias?: string  } 
+  | { name: 'name_lte', alias?: string  } 
+  | { name: 'name_gt', alias?: string  } 
+  | { name: 'name_gte', alias?: string  } 
+  | { name: 'name_contains', alias?: string  } 
+  | { name: 'name_not_contains', alias?: string  } 
+  | { name: 'name_starts_with', alias?: string  } 
+  | { name: 'name_not_starts_with', alias?: string  } 
+  | { name: 'name_ends_with', alias?: string  } 
+  | { name: 'name_not_ends_with', alias?: string  } 
+  | { name: 'user', alias?: string  } 
+  | { name: 'createdAt', alias?: string  } 
+  | { name: 'createdAt_not', alias?: string  } 
+  | { name: 'createdAt_in', alias?: string  } 
+  | { name: 'createdAt_not_in', alias?: string  } 
+  | { name: 'createdAt_lt', alias?: string  } 
+  | { name: 'createdAt_lte', alias?: string  } 
+  | { name: 'createdAt_gt', alias?: string  } 
+  | { name: 'createdAt_gte', alias?: string  } 
+  | { name: 'updatedAt', alias?: string  } 
+  | { name: 'updatedAt_not', alias?: string  } 
+  | { name: 'updatedAt_in', alias?: string  } 
+  | { name: 'updatedAt_not_in', alias?: string  } 
+  | { name: 'updatedAt_lt', alias?: string  } 
+  | { name: 'updatedAt_lte', alias?: string  } 
+  | { name: 'updatedAt_gt', alias?: string  } 
+  | { name: 'updatedAt_gte', alias?: string  } 
   | { name: 'AND', alias?: string  } 
   | { name: 'OR', alias?: string  } 
   | { name: 'NOT', alias?: string  } 
@@ -1521,9 +2276,47 @@ export interface UserWhereInput {
   name_not_starts_with?: string | null
   name_ends_with?: string | null
   name_not_ends_with?: string | null
+  resetToken?: string | null
+  resetToken_not?: string | null
+  resetToken_in?: string[]
+  resetToken_not_in?: string[]
+  resetToken_lt?: string | null
+  resetToken_lte?: string | null
+  resetToken_gt?: string | null
+  resetToken_gte?: string | null
+  resetToken_contains?: string | null
+  resetToken_not_contains?: string | null
+  resetToken_starts_with?: string | null
+  resetToken_not_starts_with?: string | null
+  resetToken_ends_with?: string | null
+  resetToken_not_ends_with?: string | null
+  resetTokenExpiry?: number | null
+  resetTokenExpiry_not?: number | null
+  resetTokenExpiry_in?: number[]
+  resetTokenExpiry_not_in?: number[]
+  resetTokenExpiry_lt?: number | null
+  resetTokenExpiry_lte?: number | null
+  resetTokenExpiry_gt?: number | null
+  resetTokenExpiry_gte?: number | null
   inspections_every?: InspectionWhereInput | null
   inspections_some?: InspectionWhereInput | null
   inspections_none?: InspectionWhereInput | null
+  createdAt?: string | null
+  createdAt_not?: string | null
+  createdAt_in?: string[]
+  createdAt_not_in?: string[]
+  createdAt_lt?: string | null
+  createdAt_lte?: string | null
+  createdAt_gt?: string | null
+  createdAt_gte?: string | null
+  updatedAt?: string | null
+  updatedAt_not?: string | null
+  updatedAt_in?: string[]
+  updatedAt_not_in?: string[]
+  updatedAt_lt?: string | null
+  updatedAt_lte?: string | null
+  updatedAt_gt?: string | null
+  updatedAt_gte?: string | null
   AND?: UserWhereInput[]
   OR?: UserWhereInput[]
   NOT?: UserWhereInput[]
@@ -1608,9 +2401,47 @@ export type UserWhereInputInputObject =
   | { name: 'name_not_starts_with', alias?: string  } 
   | { name: 'name_ends_with', alias?: string  } 
   | { name: 'name_not_ends_with', alias?: string  } 
+  | { name: 'resetToken', alias?: string  } 
+  | { name: 'resetToken_not', alias?: string  } 
+  | { name: 'resetToken_in', alias?: string  } 
+  | { name: 'resetToken_not_in', alias?: string  } 
+  | { name: 'resetToken_lt', alias?: string  } 
+  | { name: 'resetToken_lte', alias?: string  } 
+  | { name: 'resetToken_gt', alias?: string  } 
+  | { name: 'resetToken_gte', alias?: string  } 
+  | { name: 'resetToken_contains', alias?: string  } 
+  | { name: 'resetToken_not_contains', alias?: string  } 
+  | { name: 'resetToken_starts_with', alias?: string  } 
+  | { name: 'resetToken_not_starts_with', alias?: string  } 
+  | { name: 'resetToken_ends_with', alias?: string  } 
+  | { name: 'resetToken_not_ends_with', alias?: string  } 
+  | { name: 'resetTokenExpiry', alias?: string  } 
+  | { name: 'resetTokenExpiry_not', alias?: string  } 
+  | { name: 'resetTokenExpiry_in', alias?: string  } 
+  | { name: 'resetTokenExpiry_not_in', alias?: string  } 
+  | { name: 'resetTokenExpiry_lt', alias?: string  } 
+  | { name: 'resetTokenExpiry_lte', alias?: string  } 
+  | { name: 'resetTokenExpiry_gt', alias?: string  } 
+  | { name: 'resetTokenExpiry_gte', alias?: string  } 
   | { name: 'inspections_every', alias?: string  } 
   | { name: 'inspections_some', alias?: string  } 
   | { name: 'inspections_none', alias?: string  } 
+  | { name: 'createdAt', alias?: string  } 
+  | { name: 'createdAt_not', alias?: string  } 
+  | { name: 'createdAt_in', alias?: string  } 
+  | { name: 'createdAt_not_in', alias?: string  } 
+  | { name: 'createdAt_lt', alias?: string  } 
+  | { name: 'createdAt_lte', alias?: string  } 
+  | { name: 'createdAt_gt', alias?: string  } 
+  | { name: 'createdAt_gte', alias?: string  } 
+  | { name: 'updatedAt', alias?: string  } 
+  | { name: 'updatedAt_not', alias?: string  } 
+  | { name: 'updatedAt_in', alias?: string  } 
+  | { name: 'updatedAt_not_in', alias?: string  } 
+  | { name: 'updatedAt_lt', alias?: string  } 
+  | { name: 'updatedAt_lte', alias?: string  } 
+  | { name: 'updatedAt_gt', alias?: string  } 
+  | { name: 'updatedAt_gte', alias?: string  } 
   | { name: 'AND', alias?: string  } 
   | { name: 'OR', alias?: string  } 
   | { name: 'NOT', alias?: string  } 
@@ -1622,12 +2453,21 @@ export type InspectionWhereUniqueInputInputObject =
   | Extract<keyof InspectionWhereUniqueInput, string>
   | { name: 'id', alias?: string  } 
   
+export interface SourceWhereUniqueInput {
+  id?: string | null
+}
+export type SourceWhereUniqueInputInputObject =
+  | Extract<keyof SourceWhereUniqueInput, string>
+  | { name: 'id', alias?: string  } 
+  
 export interface UserCreateInput {
   cc?: number
   email?: string
   nickname?: string
   password?: string
   name?: string | null
+  resetToken?: string | null
+  resetTokenExpiry?: number | null
   inspections?: InspectionCreateManyWithoutUserInput | null
   permissions?: UserCreatepermissionsInput | null
 }
@@ -1638,6 +2478,8 @@ export type UserCreateInputInputObject =
   | { name: 'nickname', alias?: string  } 
   | { name: 'password', alias?: string  } 
   | { name: 'name', alias?: string  } 
+  | { name: 'resetToken', alias?: string  } 
+  | { name: 'resetTokenExpiry', alias?: string  } 
   | { name: 'inspections', alias?: string  } 
   | { name: 'permissions', alias?: string  } 
   
@@ -1651,7 +2493,7 @@ export type InspectionCreateManyWithoutUserInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface InspectionCreateWithoutUserInput {
-  source?: string
+  source?: SourceCreateOneInput
   record?: string
   licensePlate?: string
 }
@@ -1660,6 +2502,33 @@ export type InspectionCreateWithoutUserInputInputObject =
   | { name: 'source', alias?: string  } 
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
+  
+export interface SourceCreateOneInput {
+  create?: SourceCreateInput | null
+  connect?: SourceWhereUniqueInput | null
+}
+export type SourceCreateOneInputInputObject =
+  | Extract<keyof SourceCreateOneInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface SourceCreateInput {
+  name?: string
+  user?: UserCreateOneInput
+}
+export type SourceCreateInputInputObject =
+  | Extract<keyof SourceCreateInput, string>
+  | { name: 'name', alias?: string  } 
+  | { name: 'user', alias?: string  } 
+  
+export interface UserCreateOneInput {
+  create?: UserCreateInput | null
+  connect?: UserWhereUniqueInput | null
+}
+export type UserCreateOneInputInputObject =
+  | Extract<keyof UserCreateOneInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
   
 export interface UserCreatepermissionsInput {
   set?: prisma.Permission[]
@@ -1674,6 +2543,8 @@ export interface UserUpdateInput {
   nickname?: string | null
   password?: string | null
   name?: string | null
+  resetToken?: string | null
+  resetTokenExpiry?: number | null
   inspections?: InspectionUpdateManyWithoutUserInput | null
   permissions?: UserUpdatepermissionsInput | null
 }
@@ -1684,6 +2555,8 @@ export type UserUpdateInputInputObject =
   | { name: 'nickname', alias?: string  } 
   | { name: 'password', alias?: string  } 
   | { name: 'name', alias?: string  } 
+  | { name: 'resetToken', alias?: string  } 
+  | { name: 'resetTokenExpiry', alias?: string  } 
   | { name: 'inspections', alias?: string  } 
   | { name: 'permissions', alias?: string  } 
   
@@ -1720,7 +2593,7 @@ export type InspectionUpdateWithWhereUniqueWithoutUserInputInputObject =
   | { name: 'data', alias?: string  } 
   
 export interface InspectionUpdateWithoutUserDataInput {
-  source?: string | null
+  source?: SourceUpdateOneRequiredInput | null
   record?: string | null
   licensePlate?: string | null
 }
@@ -1729,6 +2602,89 @@ export type InspectionUpdateWithoutUserDataInputInputObject =
   | { name: 'source', alias?: string  } 
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
+  
+export interface SourceUpdateOneRequiredInput {
+  create?: SourceCreateInput | null
+  update?: SourceUpdateDataInput | null
+  upsert?: SourceUpsertNestedInput | null
+  connect?: SourceWhereUniqueInput | null
+}
+export type SourceUpdateOneRequiredInputInputObject =
+  | Extract<keyof SourceUpdateOneRequiredInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface SourceUpdateDataInput {
+  name?: string | null
+  user?: UserUpdateOneRequiredInput | null
+}
+export type SourceUpdateDataInputInputObject =
+  | Extract<keyof SourceUpdateDataInput, string>
+  | { name: 'name', alias?: string  } 
+  | { name: 'user', alias?: string  } 
+  
+export interface UserUpdateOneRequiredInput {
+  create?: UserCreateInput | null
+  update?: UserUpdateDataInput | null
+  upsert?: UserUpsertNestedInput | null
+  connect?: UserWhereUniqueInput | null
+}
+export type UserUpdateOneRequiredInputInputObject =
+  | Extract<keyof UserUpdateOneRequiredInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface UserUpdateDataInput {
+  cc?: number | null
+  email?: string | null
+  nickname?: string | null
+  password?: string | null
+  name?: string | null
+  resetToken?: string | null
+  resetTokenExpiry?: number | null
+  inspections?: InspectionUpdateManyWithoutUserInput | null
+  permissions?: UserUpdatepermissionsInput | null
+}
+export type UserUpdateDataInputInputObject =
+  | Extract<keyof UserUpdateDataInput, string>
+  | { name: 'cc', alias?: string  } 
+  | { name: 'email', alias?: string  } 
+  | { name: 'nickname', alias?: string  } 
+  | { name: 'password', alias?: string  } 
+  | { name: 'name', alias?: string  } 
+  | { name: 'resetToken', alias?: string  } 
+  | { name: 'resetTokenExpiry', alias?: string  } 
+  | { name: 'inspections', alias?: string  } 
+  | { name: 'permissions', alias?: string  } 
+  
+export interface UserUpdatepermissionsInput {
+  set?: prisma.Permission[]
+}
+export type UserUpdatepermissionsInputInputObject =
+  | Extract<keyof UserUpdatepermissionsInput, string>
+  | { name: 'set', alias?: string  } 
+  
+export interface UserUpsertNestedInput {
+  update?: UserUpdateDataInput
+  create?: UserCreateInput
+}
+export type UserUpsertNestedInputInputObject =
+  | Extract<keyof UserUpsertNestedInput, string>
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
+  
+export interface SourceUpsertNestedInput {
+  update?: SourceUpdateDataInput
+  create?: SourceCreateInput
+}
+export type SourceUpsertNestedInputInputObject =
+  | Extract<keyof SourceUpsertNestedInput, string>
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
   
 export interface InspectionUpsertWithWhereUniqueWithoutUserInput {
   where?: InspectionWhereUniqueInput
@@ -1756,20 +2712,6 @@ export interface InspectionScalarWhereInput {
   id_not_starts_with?: string | null
   id_ends_with?: string | null
   id_not_ends_with?: string | null
-  source?: string | null
-  source_not?: string | null
-  source_in?: string[]
-  source_not_in?: string[]
-  source_lt?: string | null
-  source_lte?: string | null
-  source_gt?: string | null
-  source_gte?: string | null
-  source_contains?: string | null
-  source_not_contains?: string | null
-  source_starts_with?: string | null
-  source_not_starts_with?: string | null
-  source_ends_with?: string | null
-  source_not_ends_with?: string | null
   record?: string | null
   record_not?: string | null
   record_in?: string[]
@@ -1798,6 +2740,22 @@ export interface InspectionScalarWhereInput {
   licensePlate_not_starts_with?: string | null
   licensePlate_ends_with?: string | null
   licensePlate_not_ends_with?: string | null
+  createdAt?: string | null
+  createdAt_not?: string | null
+  createdAt_in?: string[]
+  createdAt_not_in?: string[]
+  createdAt_lt?: string | null
+  createdAt_lte?: string | null
+  createdAt_gt?: string | null
+  createdAt_gte?: string | null
+  updatedAt?: string | null
+  updatedAt_not?: string | null
+  updatedAt_in?: string[]
+  updatedAt_not_in?: string[]
+  updatedAt_lt?: string | null
+  updatedAt_lte?: string | null
+  updatedAt_gt?: string | null
+  updatedAt_gte?: string | null
   AND?: InspectionScalarWhereInput[]
   OR?: InspectionScalarWhereInput[]
   NOT?: InspectionScalarWhereInput[]
@@ -1818,20 +2776,6 @@ export type InspectionScalarWhereInputInputObject =
   | { name: 'id_not_starts_with', alias?: string  } 
   | { name: 'id_ends_with', alias?: string  } 
   | { name: 'id_not_ends_with', alias?: string  } 
-  | { name: 'source', alias?: string  } 
-  | { name: 'source_not', alias?: string  } 
-  | { name: 'source_in', alias?: string  } 
-  | { name: 'source_not_in', alias?: string  } 
-  | { name: 'source_lt', alias?: string  } 
-  | { name: 'source_lte', alias?: string  } 
-  | { name: 'source_gt', alias?: string  } 
-  | { name: 'source_gte', alias?: string  } 
-  | { name: 'source_contains', alias?: string  } 
-  | { name: 'source_not_contains', alias?: string  } 
-  | { name: 'source_starts_with', alias?: string  } 
-  | { name: 'source_not_starts_with', alias?: string  } 
-  | { name: 'source_ends_with', alias?: string  } 
-  | { name: 'source_not_ends_with', alias?: string  } 
   | { name: 'record', alias?: string  } 
   | { name: 'record_not', alias?: string  } 
   | { name: 'record_in', alias?: string  } 
@@ -1860,6 +2804,22 @@ export type InspectionScalarWhereInputInputObject =
   | { name: 'licensePlate_not_starts_with', alias?: string  } 
   | { name: 'licensePlate_ends_with', alias?: string  } 
   | { name: 'licensePlate_not_ends_with', alias?: string  } 
+  | { name: 'createdAt', alias?: string  } 
+  | { name: 'createdAt_not', alias?: string  } 
+  | { name: 'createdAt_in', alias?: string  } 
+  | { name: 'createdAt_not_in', alias?: string  } 
+  | { name: 'createdAt_lt', alias?: string  } 
+  | { name: 'createdAt_lte', alias?: string  } 
+  | { name: 'createdAt_gt', alias?: string  } 
+  | { name: 'createdAt_gte', alias?: string  } 
+  | { name: 'updatedAt', alias?: string  } 
+  | { name: 'updatedAt_not', alias?: string  } 
+  | { name: 'updatedAt_in', alias?: string  } 
+  | { name: 'updatedAt_not_in', alias?: string  } 
+  | { name: 'updatedAt_lt', alias?: string  } 
+  | { name: 'updatedAt_lte', alias?: string  } 
+  | { name: 'updatedAt_gt', alias?: string  } 
+  | { name: 'updatedAt_gte', alias?: string  } 
   | { name: 'AND', alias?: string  } 
   | { name: 'OR', alias?: string  } 
   | { name: 'NOT', alias?: string  } 
@@ -1874,22 +2834,13 @@ export type InspectionUpdateManyWithWhereNestedInputInputObject =
   | { name: 'data', alias?: string  } 
   
 export interface InspectionUpdateManyDataInput {
-  source?: string | null
   record?: string | null
   licensePlate?: string | null
 }
 export type InspectionUpdateManyDataInputInputObject =
   | Extract<keyof InspectionUpdateManyDataInput, string>
-  | { name: 'source', alias?: string  } 
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
-  
-export interface UserUpdatepermissionsInput {
-  set?: prisma.Permission[]
-}
-export type UserUpdatepermissionsInputInputObject =
-  | Extract<keyof UserUpdatepermissionsInput, string>
-  | { name: 'set', alias?: string  } 
   
 export interface UserUpdateManyMutationInput {
   cc?: number | null
@@ -1897,6 +2848,8 @@ export interface UserUpdateManyMutationInput {
   nickname?: string | null
   password?: string | null
   name?: string | null
+  resetToken?: string | null
+  resetTokenExpiry?: number | null
   permissions?: UserUpdatepermissionsInput | null
 }
 export type UserUpdateManyMutationInputInputObject =
@@ -1906,10 +2859,12 @@ export type UserUpdateManyMutationInputInputObject =
   | { name: 'nickname', alias?: string  } 
   | { name: 'password', alias?: string  } 
   | { name: 'name', alias?: string  } 
+  | { name: 'resetToken', alias?: string  } 
+  | { name: 'resetTokenExpiry', alias?: string  } 
   | { name: 'permissions', alias?: string  } 
   
 export interface InspectionCreateInput {
-  source?: string
+  source?: SourceCreateOneInput
   record?: string
   licensePlate?: string
   user?: UserCreateOneWithoutInspectionsInput
@@ -1936,6 +2891,8 @@ export interface UserCreateWithoutInspectionsInput {
   nickname?: string
   password?: string
   name?: string | null
+  resetToken?: string | null
+  resetTokenExpiry?: number | null
   permissions?: UserCreatepermissionsInput | null
 }
 export type UserCreateWithoutInspectionsInputInputObject =
@@ -1945,10 +2902,12 @@ export type UserCreateWithoutInspectionsInputInputObject =
   | { name: 'nickname', alias?: string  } 
   | { name: 'password', alias?: string  } 
   | { name: 'name', alias?: string  } 
+  | { name: 'resetToken', alias?: string  } 
+  | { name: 'resetTokenExpiry', alias?: string  } 
   | { name: 'permissions', alias?: string  } 
   
 export interface InspectionUpdateInput {
-  source?: string | null
+  source?: SourceUpdateOneRequiredInput | null
   record?: string | null
   licensePlate?: string | null
   user?: UserUpdateOneRequiredWithoutInspectionsInput | null
@@ -1979,6 +2938,8 @@ export interface UserUpdateWithoutInspectionsDataInput {
   nickname?: string | null
   password?: string | null
   name?: string | null
+  resetToken?: string | null
+  resetTokenExpiry?: number | null
   permissions?: UserUpdatepermissionsInput | null
 }
 export type UserUpdateWithoutInspectionsDataInputInputObject =
@@ -1988,6 +2949,8 @@ export type UserUpdateWithoutInspectionsDataInputInputObject =
   | { name: 'nickname', alias?: string  } 
   | { name: 'password', alias?: string  } 
   | { name: 'name', alias?: string  } 
+  | { name: 'resetToken', alias?: string  } 
+  | { name: 'resetTokenExpiry', alias?: string  } 
   | { name: 'permissions', alias?: string  } 
   
 export interface UserUpsertWithoutInspectionsInput {
@@ -2000,15 +2963,29 @@ export type UserUpsertWithoutInspectionsInputInputObject =
   | { name: 'create', alias?: string  } 
   
 export interface InspectionUpdateManyMutationInput {
-  source?: string | null
   record?: string | null
   licensePlate?: string | null
 }
 export type InspectionUpdateManyMutationInputInputObject =
   | Extract<keyof InspectionUpdateManyMutationInput, string>
-  | { name: 'source', alias?: string  } 
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
+  
+export interface SourceUpdateInput {
+  name?: string | null
+  user?: UserUpdateOneRequiredInput | null
+}
+export type SourceUpdateInputInputObject =
+  | Extract<keyof SourceUpdateInput, string>
+  | { name: 'name', alias?: string  } 
+  | { name: 'user', alias?: string  } 
+  
+export interface SourceUpdateManyMutationInput {
+  name?: string | null
+}
+export type SourceUpdateManyMutationInputInputObject =
+  | Extract<keyof SourceUpdateManyMutationInput, string>
+  | { name: 'name', alias?: string  } 
   
 export interface UserSubscriptionWhereInput {
   mutation_in?: prisma.MutationType[]
@@ -2052,12 +3029,31 @@ export type InspectionSubscriptionWhereInputInputObject =
   | { name: 'OR', alias?: string  } 
   | { name: 'NOT', alias?: string  } 
   
+export interface SourceSubscriptionWhereInput {
+  mutation_in?: prisma.MutationType[]
+  updatedFields_contains?: string | null
+  updatedFields_contains_every?: string[]
+  updatedFields_contains_some?: string[]
+  node?: SourceWhereInput | null
+  AND?: SourceSubscriptionWhereInput[]
+  OR?: SourceSubscriptionWhereInput[]
+  NOT?: SourceSubscriptionWhereInput[]
+}
+export type SourceSubscriptionWhereInputInputObject =
+  | Extract<keyof SourceSubscriptionWhereInput, string>
+  | { name: 'mutation_in', alias?: string  } 
+  | { name: 'updatedFields_contains', alias?: string  } 
+  | { name: 'updatedFields_contains_every', alias?: string  } 
+  | { name: 'updatedFields_contains_some', alias?: string  } 
+  | { name: 'node', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
+  
 
 export type InspectionOrderByInputValues =
   | 'id_ASC'
   | 'id_DESC'
-  | 'source_ASC'
-  | 'source_DESC'
   | 'record_ASC'
   | 'record_DESC'
   | 'licensePlate_ASC'
@@ -2083,6 +3079,20 @@ export type UserOrderByInputValues =
   | 'nickname_DESC'
   | 'password_ASC'
   | 'password_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
+  | 'resetToken_ASC'
+  | 'resetToken_DESC'
+  | 'resetTokenExpiry_ASC'
+  | 'resetTokenExpiry_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  
+export type SourceOrderByInputValues =
+  | 'id_ASC'
+  | 'id_DESC'
   | 'name_ASC'
   | 'name_DESC'
   | 'createdAt_ASC'

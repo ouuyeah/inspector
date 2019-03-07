@@ -24,13 +24,20 @@ export interface NexusGenRootTypes {
     user?: NexusGenRootTypes['User'] | null; // User
   }
   Inspection: { // root type
+    createdAt: any; // DateTime!
     id: string; // ID!
     licensePlate: string; // String!
     record: string; // String!
-    source: string; // String!
+    updatedAt: any; // DateTime!
   }
   Mutation: {};
   Query: {};
+  Source: { // root type
+    createdAt: any; // DateTime!
+    id: string; // ID!
+    name: string; // String!
+    updatedAt: any; // DateTime!
+  }
   User: { // root type
     cc: number; // Int!
     email: string; // String!
@@ -43,6 +50,7 @@ export interface NexusGenRootTypes {
   Float: number;
   Boolean: boolean;
   ID: string;
+  DateTime: any;
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
@@ -56,10 +64,12 @@ export interface NexusGenFieldTypes {
     user: NexusGenRootTypes['User'] | null; // User
   }
   Inspection: { // field return type
+    createdAt: any; // DateTime!
     id: string; // ID!
     licensePlate: string; // String!
     record: string; // String!
-    source: string; // String!
+    source: NexusGenRootTypes['Source']; // Source!
+    updatedAt: any; // DateTime!
     user: NexusGenRootTypes['User']; // User!
   }
   Mutation: { // field return type
@@ -69,6 +79,13 @@ export interface NexusGenFieldTypes {
   }
   Query: { // field return type
     me: NexusGenRootTypes['User'] | null; // User
+  }
+  Source: { // field return type
+    createdAt: any; // DateTime!
+    id: string; // ID!
+    name: string; // String!
+    updatedAt: any; // DateTime!
+    user: NexusGenRootTypes['User']; // User!
   }
   User: { // field return type
     cc: number; // Int!
@@ -102,7 +119,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AuthPayload" | "Inspection" | "Mutation" | "Query" | "User";
+export type NexusGenObjectNames = "AuthPayload" | "Inspection" | "Mutation" | "Query" | "Source" | "User";
 
 export type NexusGenInputNames = never;
 
@@ -110,7 +127,7 @@ export type NexusGenEnumNames = "Permission";
 
 export type NexusGenInterfaceNames = never;
 
-export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "String";
+export type NexusGenScalarNames = "Boolean" | "DateTime" | "Float" | "ID" | "Int" | "String";
 
 export type NexusGenUnionNames = never;
 

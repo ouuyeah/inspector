@@ -15,6 +15,7 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 
 export interface Exists {
   inspection: (where?: InspectionWhereInput) => Promise<boolean>;
+  source: (where?: SourceWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
 }
 
@@ -60,6 +61,29 @@ export interface Prisma {
       last?: Int;
     }
   ) => InspectionConnectionPromise;
+  source: (where: SourceWhereUniqueInput) => SourcePromise;
+  sources: (
+    args?: {
+      where?: SourceWhereInput;
+      orderBy?: SourceOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Source>;
+  sourcesConnection: (
+    args?: {
+      where?: SourceWhereInput;
+      orderBy?: SourceOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => SourceConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserPromise;
   users: (
     args?: {
@@ -108,6 +132,22 @@ export interface Prisma {
   ) => InspectionPromise;
   deleteInspection: (where: InspectionWhereUniqueInput) => InspectionPromise;
   deleteManyInspections: (where?: InspectionWhereInput) => BatchPayloadPromise;
+  createSource: (data: SourceCreateInput) => SourcePromise;
+  updateSource: (
+    args: { data: SourceUpdateInput; where: SourceWhereUniqueInput }
+  ) => SourcePromise;
+  updateManySources: (
+    args: { data: SourceUpdateManyMutationInput; where?: SourceWhereInput }
+  ) => BatchPayloadPromise;
+  upsertSource: (
+    args: {
+      where: SourceWhereUniqueInput;
+      create: SourceCreateInput;
+      update: SourceUpdateInput;
+    }
+  ) => SourcePromise;
+  deleteSource: (where: SourceWhereUniqueInput) => SourcePromise;
+  deleteManySources: (where?: SourceWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (
     args: { data: UserUpdateInput; where: UserWhereUniqueInput }
@@ -136,6 +176,9 @@ export interface Subscription {
   inspection: (
     where?: InspectionSubscriptionWhereInput
   ) => InspectionSubscriptionPayloadSubscription;
+  source: (
+    where?: SourceSubscriptionWhereInput
+  ) => SourceSubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
@@ -152,8 +195,6 @@ export interface ClientConstructor<T> {
 export type InspectionOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "source_ASC"
-  | "source_DESC"
   | "record_ASC"
   | "record_DESC"
   | "licensePlate_ASC"
@@ -164,6 +205,16 @@ export type InspectionOrderByInput =
   | "updatedAt_DESC";
 
 export type Permission = "ADMIN" | "DRIVER" | "AGENT";
+
+export type SourceOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
 
 export type UserOrderByInput =
   | "id_ASC"
@@ -178,6 +229,10 @@ export type UserOrderByInput =
   | "password_DESC"
   | "name_ASC"
   | "name_DESC"
+  | "resetToken_ASC"
+  | "resetToken_DESC"
+  | "resetTokenExpiry_ASC"
+  | "resetTokenExpiry_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -204,20 +259,7 @@ export interface InspectionWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  source?: String;
-  source_not?: String;
-  source_in?: String[] | String;
-  source_not_in?: String[] | String;
-  source_lt?: String;
-  source_lte?: String;
-  source_gt?: String;
-  source_gte?: String;
-  source_contains?: String;
-  source_not_contains?: String;
-  source_starts_with?: String;
-  source_not_starts_with?: String;
-  source_ends_with?: String;
-  source_not_ends_with?: String;
+  source?: SourceWhereInput;
   record?: String;
   record_not?: String;
   record_in?: String[] | String;
@@ -247,9 +289,76 @@ export interface InspectionWhereInput {
   licensePlate_ends_with?: String;
   licensePlate_not_ends_with?: String;
   user?: UserWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: InspectionWhereInput[] | InspectionWhereInput;
   OR?: InspectionWhereInput[] | InspectionWhereInput;
   NOT?: InspectionWhereInput[] | InspectionWhereInput;
+}
+
+export interface SourceWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  user?: UserWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  AND?: SourceWhereInput[] | SourceWhereInput;
+  OR?: SourceWhereInput[] | SourceWhereInput;
+  NOT?: SourceWhereInput[] | SourceWhereInput;
 }
 
 export interface UserWhereInput {
@@ -331,13 +440,55 @@ export interface UserWhereInput {
   name_not_starts_with?: String;
   name_ends_with?: String;
   name_not_ends_with?: String;
+  resetToken?: String;
+  resetToken_not?: String;
+  resetToken_in?: String[] | String;
+  resetToken_not_in?: String[] | String;
+  resetToken_lt?: String;
+  resetToken_lte?: String;
+  resetToken_gt?: String;
+  resetToken_gte?: String;
+  resetToken_contains?: String;
+  resetToken_not_contains?: String;
+  resetToken_starts_with?: String;
+  resetToken_not_starts_with?: String;
+  resetToken_ends_with?: String;
+  resetToken_not_ends_with?: String;
+  resetTokenExpiry?: Float;
+  resetTokenExpiry_not?: Float;
+  resetTokenExpiry_in?: Float[] | Float;
+  resetTokenExpiry_not_in?: Float[] | Float;
+  resetTokenExpiry_lt?: Float;
+  resetTokenExpiry_lte?: Float;
+  resetTokenExpiry_gt?: Float;
+  resetTokenExpiry_gte?: Float;
   inspections_every?: InspectionWhereInput;
   inspections_some?: InspectionWhereInput;
   inspections_none?: InspectionWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
   NOT?: UserWhereInput[] | UserWhereInput;
 }
+
+export type SourceWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
@@ -347,10 +498,54 @@ export type UserWhereUniqueInput = AtLeastOne<{
 }>;
 
 export interface InspectionCreateInput {
-  source: String;
+  source: SourceCreateOneInput;
   record: String;
   licensePlate: String;
   user: UserCreateOneWithoutInspectionsInput;
+}
+
+export interface SourceCreateOneInput {
+  create?: SourceCreateInput;
+  connect?: SourceWhereUniqueInput;
+}
+
+export interface SourceCreateInput {
+  name: String;
+  user: UserCreateOneInput;
+}
+
+export interface UserCreateOneInput {
+  create?: UserCreateInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserCreateInput {
+  cc: Int;
+  email: String;
+  nickname: String;
+  password: String;
+  name?: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
+  inspections?: InspectionCreateManyWithoutUserInput;
+  permissions?: UserCreatepermissionsInput;
+}
+
+export interface InspectionCreateManyWithoutUserInput {
+  create?:
+    | InspectionCreateWithoutUserInput[]
+    | InspectionCreateWithoutUserInput;
+  connect?: InspectionWhereUniqueInput[] | InspectionWhereUniqueInput;
+}
+
+export interface InspectionCreateWithoutUserInput {
+  source: SourceCreateOneInput;
+  record: String;
+  licensePlate: String;
+}
+
+export interface UserCreatepermissionsInput {
+  set?: Permission[] | Permission;
 }
 
 export interface UserCreateOneWithoutInspectionsInput {
@@ -364,80 +559,45 @@ export interface UserCreateWithoutInspectionsInput {
   nickname: String;
   password: String;
   name?: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
   permissions?: UserCreatepermissionsInput;
 }
 
-export interface UserCreatepermissionsInput {
-  set?: Permission[] | Permission;
-}
-
 export interface InspectionUpdateInput {
-  source?: String;
+  source?: SourceUpdateOneRequiredInput;
   record?: String;
   licensePlate?: String;
   user?: UserUpdateOneRequiredWithoutInspectionsInput;
 }
 
-export interface UserUpdateOneRequiredWithoutInspectionsInput {
-  create?: UserCreateWithoutInspectionsInput;
-  update?: UserUpdateWithoutInspectionsDataInput;
-  upsert?: UserUpsertWithoutInspectionsInput;
+export interface SourceUpdateOneRequiredInput {
+  create?: SourceCreateInput;
+  update?: SourceUpdateDataInput;
+  upsert?: SourceUpsertNestedInput;
+  connect?: SourceWhereUniqueInput;
+}
+
+export interface SourceUpdateDataInput {
+  name?: String;
+  user?: UserUpdateOneRequiredInput;
+}
+
+export interface UserUpdateOneRequiredInput {
+  create?: UserCreateInput;
+  update?: UserUpdateDataInput;
+  upsert?: UserUpsertNestedInput;
   connect?: UserWhereUniqueInput;
 }
 
-export interface UserUpdateWithoutInspectionsDataInput {
+export interface UserUpdateDataInput {
   cc?: Int;
   email?: String;
   nickname?: String;
   password?: String;
   name?: String;
-  permissions?: UserUpdatepermissionsInput;
-}
-
-export interface UserUpdatepermissionsInput {
-  set?: Permission[] | Permission;
-}
-
-export interface UserUpsertWithoutInspectionsInput {
-  update: UserUpdateWithoutInspectionsDataInput;
-  create: UserCreateWithoutInspectionsInput;
-}
-
-export interface InspectionUpdateManyMutationInput {
-  source?: String;
-  record?: String;
-  licensePlate?: String;
-}
-
-export interface UserCreateInput {
-  cc: Int;
-  email: String;
-  nickname: String;
-  password: String;
-  name?: String;
-  inspections?: InspectionCreateManyWithoutUserInput;
-  permissions?: UserCreatepermissionsInput;
-}
-
-export interface InspectionCreateManyWithoutUserInput {
-  create?:
-    | InspectionCreateWithoutUserInput[]
-    | InspectionCreateWithoutUserInput;
-  connect?: InspectionWhereUniqueInput[] | InspectionWhereUniqueInput;
-}
-
-export interface InspectionCreateWithoutUserInput {
-  source: String;
-  record: String;
-  licensePlate: String;
-}
-
-export interface UserUpdateInput {
-  cc?: Int;
-  email?: String;
-  nickname?: String;
-  password?: String;
-  name?: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
   inspections?: InspectionUpdateManyWithoutUserInput;
   permissions?: UserUpdatepermissionsInput;
 }
@@ -468,7 +628,7 @@ export interface InspectionUpdateWithWhereUniqueWithoutUserInput {
 }
 
 export interface InspectionUpdateWithoutUserDataInput {
-  source?: String;
+  source?: SourceUpdateOneRequiredInput;
   record?: String;
   licensePlate?: String;
 }
@@ -494,20 +654,6 @@ export interface InspectionScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  source?: String;
-  source_not?: String;
-  source_in?: String[] | String;
-  source_not_in?: String[] | String;
-  source_lt?: String;
-  source_lte?: String;
-  source_gt?: String;
-  source_gte?: String;
-  source_contains?: String;
-  source_not_contains?: String;
-  source_starts_with?: String;
-  source_not_starts_with?: String;
-  source_ends_with?: String;
-  source_not_ends_with?: String;
   record?: String;
   record_not?: String;
   record_in?: String[] | String;
@@ -536,6 +682,22 @@ export interface InspectionScalarWhereInput {
   licensePlate_not_starts_with?: String;
   licensePlate_ends_with?: String;
   licensePlate_not_ends_with?: String;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: InspectionScalarWhereInput[] | InspectionScalarWhereInput;
   OR?: InspectionScalarWhereInput[] | InspectionScalarWhereInput;
   NOT?: InspectionScalarWhereInput[] | InspectionScalarWhereInput;
@@ -547,9 +709,71 @@ export interface InspectionUpdateManyWithWhereNestedInput {
 }
 
 export interface InspectionUpdateManyDataInput {
-  source?: String;
   record?: String;
   licensePlate?: String;
+}
+
+export interface UserUpdatepermissionsInput {
+  set?: Permission[] | Permission;
+}
+
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
+}
+
+export interface SourceUpsertNestedInput {
+  update: SourceUpdateDataInput;
+  create: SourceCreateInput;
+}
+
+export interface UserUpdateOneRequiredWithoutInspectionsInput {
+  create?: UserCreateWithoutInspectionsInput;
+  update?: UserUpdateWithoutInspectionsDataInput;
+  upsert?: UserUpsertWithoutInspectionsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpdateWithoutInspectionsDataInput {
+  cc?: Int;
+  email?: String;
+  nickname?: String;
+  password?: String;
+  name?: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
+  permissions?: UserUpdatepermissionsInput;
+}
+
+export interface UserUpsertWithoutInspectionsInput {
+  update: UserUpdateWithoutInspectionsDataInput;
+  create: UserCreateWithoutInspectionsInput;
+}
+
+export interface InspectionUpdateManyMutationInput {
+  record?: String;
+  licensePlate?: String;
+}
+
+export interface SourceUpdateInput {
+  name?: String;
+  user?: UserUpdateOneRequiredInput;
+}
+
+export interface SourceUpdateManyMutationInput {
+  name?: String;
+}
+
+export interface UserUpdateInput {
+  cc?: Int;
+  email?: String;
+  nickname?: String;
+  password?: String;
+  name?: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
+  inspections?: InspectionUpdateManyWithoutUserInput;
+  permissions?: UserUpdatepermissionsInput;
 }
 
 export interface UserUpdateManyMutationInput {
@@ -558,6 +782,8 @@ export interface UserUpdateManyMutationInput {
   nickname?: String;
   password?: String;
   name?: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
   permissions?: UserUpdatepermissionsInput;
 }
 
@@ -570,6 +796,17 @@ export interface InspectionSubscriptionWhereInput {
   AND?: InspectionSubscriptionWhereInput[] | InspectionSubscriptionWhereInput;
   OR?: InspectionSubscriptionWhereInput[] | InspectionSubscriptionWhereInput;
   NOT?: InspectionSubscriptionWhereInput[] | InspectionSubscriptionWhereInput;
+}
+
+export interface SourceSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: SourceWhereInput;
+  AND?: SourceSubscriptionWhereInput[] | SourceSubscriptionWhereInput;
+  OR?: SourceSubscriptionWhereInput[] | SourceSubscriptionWhereInput;
+  NOT?: SourceSubscriptionWhereInput[] | SourceSubscriptionWhereInput;
 }
 
 export interface UserSubscriptionWhereInput {
@@ -589,27 +826,57 @@ export interface NodeNode {
 
 export interface Inspection {
   id: ID_Output;
-  source: String;
   record: String;
   licensePlate: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface InspectionPromise extends Promise<Inspection>, Fragmentable {
   id: () => Promise<ID_Output>;
-  source: () => Promise<String>;
+  source: <T = SourcePromise>() => T;
   record: () => Promise<String>;
   licensePlate: () => Promise<String>;
   user: <T = UserPromise>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface InspectionSubscription
   extends Promise<AsyncIterator<Inspection>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  source: () => Promise<AsyncIterator<String>>;
+  source: <T = SourceSubscription>() => T;
   record: () => Promise<AsyncIterator<String>>;
   licensePlate: () => Promise<AsyncIterator<String>>;
   user: <T = UserSubscription>() => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface Source {
+  id: ID_Output;
+  name: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface SourcePromise extends Promise<Source>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  user: <T = UserPromise>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface SourceSubscription
+  extends Promise<AsyncIterator<Source>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  user: <T = UserSubscription>() => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface User {
@@ -619,7 +886,11 @@ export interface User {
   nickname: String;
   password: String;
   name?: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
   permissions: Permission[];
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
@@ -629,6 +900,8 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   nickname: () => Promise<String>;
   password: () => Promise<String>;
   name: () => Promise<String>;
+  resetToken: () => Promise<String>;
+  resetTokenExpiry: () => Promise<Float>;
   inspections: <T = FragmentableArray<Inspection>>(
     args?: {
       where?: InspectionWhereInput;
@@ -641,6 +914,8 @@ export interface UserPromise extends Promise<User>, Fragmentable {
     }
   ) => T;
   permissions: () => Promise<Permission[]>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface UserSubscription
@@ -652,6 +927,8 @@ export interface UserSubscription
   nickname: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
+  resetToken: () => Promise<AsyncIterator<String>>;
+  resetTokenExpiry: () => Promise<AsyncIterator<Float>>;
   inspections: <T = Promise<AsyncIterator<InspectionSubscription>>>(
     args?: {
       where?: InspectionWhereInput;
@@ -664,6 +941,8 @@ export interface UserSubscription
     }
   ) => T;
   permissions: () => Promise<AsyncIterator<Permission[]>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface InspectionConnection {
@@ -741,6 +1020,60 @@ export interface AggregateInspectionPromise
 
 export interface AggregateInspectionSubscription
   extends Promise<AsyncIterator<AggregateInspection>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface SourceConnection {
+  pageInfo: PageInfo;
+  edges: SourceEdge[];
+}
+
+export interface SourceConnectionPromise
+  extends Promise<SourceConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<SourceEdge>>() => T;
+  aggregate: <T = AggregateSourcePromise>() => T;
+}
+
+export interface SourceConnectionSubscription
+  extends Promise<AsyncIterator<SourceConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<SourceEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateSourceSubscription>() => T;
+}
+
+export interface SourceEdge {
+  node: Source;
+  cursor: String;
+}
+
+export interface SourceEdgePromise extends Promise<SourceEdge>, Fragmentable {
+  node: <T = SourcePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface SourceEdgeSubscription
+  extends Promise<AsyncIterator<SourceEdge>>,
+    Fragmentable {
+  node: <T = SourceSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateSource {
+  count: Int;
+}
+
+export interface AggregateSourcePromise
+  extends Promise<AggregateSource>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateSourceSubscription
+  extends Promise<AsyncIterator<AggregateSource>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -842,27 +1175,80 @@ export interface InspectionSubscriptionPayloadSubscription
 
 export interface InspectionPreviousValues {
   id: ID_Output;
-  source: String;
   record: String;
   licensePlate: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface InspectionPreviousValuesPromise
   extends Promise<InspectionPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  source: () => Promise<String>;
   record: () => Promise<String>;
   licensePlate: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface InspectionPreviousValuesSubscription
   extends Promise<AsyncIterator<InspectionPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  source: () => Promise<AsyncIterator<String>>;
   record: () => Promise<AsyncIterator<String>>;
   licensePlate: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface SourceSubscriptionPayload {
+  mutation: MutationType;
+  node: Source;
+  updatedFields: String[];
+  previousValues: SourcePreviousValues;
+}
+
+export interface SourceSubscriptionPayloadPromise
+  extends Promise<SourceSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = SourcePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = SourcePreviousValuesPromise>() => T;
+}
+
+export interface SourceSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<SourceSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = SourceSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = SourcePreviousValuesSubscription>() => T;
+}
+
+export interface SourcePreviousValues {
+  id: ID_Output;
+  name: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface SourcePreviousValuesPromise
+  extends Promise<SourcePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface SourcePreviousValuesSubscription
+  extends Promise<AsyncIterator<SourcePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface UserSubscriptionPayload {
@@ -897,7 +1283,11 @@ export interface UserPreviousValues {
   nickname: String;
   password: String;
   name?: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
   permissions: Permission[];
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface UserPreviousValuesPromise
@@ -909,7 +1299,11 @@ export interface UserPreviousValuesPromise
   nickname: () => Promise<String>;
   password: () => Promise<String>;
   name: () => Promise<String>;
+  resetToken: () => Promise<String>;
+  resetTokenExpiry: () => Promise<Float>;
   permissions: () => Promise<Permission[]>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -921,7 +1315,11 @@ export interface UserPreviousValuesSubscription
   nickname: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
+  resetToken: () => Promise<AsyncIterator<String>>;
+  resetTokenExpiry: () => Promise<AsyncIterator<Float>>;
   permissions: () => Promise<AsyncIterator<Permission[]>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 /*
@@ -941,6 +1339,21 @@ The `Int` scalar type represents non-fractional signed whole numeric values. Int
 export type Int = number;
 
 /*
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). 
+*/
+export type Float = number;
+
+/*
+DateTime scalar input type, allowing Date
+*/
+export type DateTimeInput = Date | string;
+
+/*
+DateTime scalar output type, which is always a string
+*/
+export type DateTimeOutput = string;
+
+/*
 The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean;
@@ -958,6 +1371,10 @@ export const models: Model[] = [
   },
   {
     name: "Inspection",
+    embedded: false
+  },
+  {
+    name: "Source",
     embedded: false
   },
   {

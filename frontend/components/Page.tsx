@@ -5,8 +5,8 @@ import GlobalStyle from '../components/styles/generalStyles';
 
 const theme = {
   red: '#FF0000',
-  orange2: '#d3701f',
-  orange: 'red',
+  orange2: '#bd5602',
+  orange: '#d3701f',
   orangeHover: '#ff8f34',
   greyDark: '#333',
   shadowDark: 'rgba(0, 0, 0, 0.1)',

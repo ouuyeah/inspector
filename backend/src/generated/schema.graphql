@@ -8,11 +8,15 @@ type AuthPayload {
   user: User
 }
 
+scalar DateTime
+
 type Inspection {
+  createdAt: DateTime!
   id: ID!
   licensePlate: String!
   record: String!
-  source: String!
+  source: Source!
+  updatedAt: DateTime!
   user: User!
 }
 
@@ -30,6 +34,14 @@ enum Permission {
 
 type Query {
   me: User
+}
+
+type Source {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+  user: User!
 }
 
 type User {
