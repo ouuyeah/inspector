@@ -82,22 +82,25 @@ export const Mutation = mutationType({
       },
     })
 
-    /*
-    t.field('createDraft', {
-      type: 'Post',
+    t.field('createInspection', {
+      type: 'Inspection',
       args: {
-        title: stringArg(),
-        content: stringArg({ nullable: true }),
+        source: stringArg(),
+        licensePlate: stringArg(),
+        record: stringArg({ nullable: true }),
       },
-      resolve: (parent, { title, content }, ctx) => {
+      resolve: (parent, { source, record, licensePlate }, ctx) => {
         const userId = getUserId(ctx)
         return ctx.prisma.createPost({
-          title,
-          content,
-          author: { connect: { id: userId } },
+          record,
+          licensePlate,
+          user: { connect: { id: userId } },
+          source: { connect: { id: source } },
         })
       },
     })
+    /*
+
 
     t.field('deletePost', {
       type: 'Post',

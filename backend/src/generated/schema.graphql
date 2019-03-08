@@ -21,6 +21,7 @@ type Inspection {
 }
 
 type Mutation {
+  createInspection(licensePlate: String, record: String, source: String): Inspection
   login(email: String, password: String): AuthPayload
   signout: AuthPayload
   signup(cc: Int, email: String, name: String, nickname: String, password: String): AuthPayload
@@ -33,6 +34,7 @@ enum Permission {
 }
 
 type Query {
+  inspection(id: ID): Inspection
   me: User
 }
 

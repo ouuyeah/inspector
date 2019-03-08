@@ -14,17 +14,15 @@ const START_INSPECTION = gql`
   mutation START_INSPECTION(
     $source: String!
     $record: String!
-    $licensePlate: Int!
+    $licensePlate: String!
   ) {
     createInspection(
       source: $source
       record: $record
       licensePlate: $licensePlate
     ) {
-      Inspection {
-        id
-        record
-      }
+      id
+      licensePlate
     }
   }
 `;

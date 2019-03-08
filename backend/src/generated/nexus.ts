@@ -73,11 +73,13 @@ export interface NexusGenFieldTypes {
     user: NexusGenRootTypes['User']; // User!
   }
   Mutation: { // field return type
+    createInspection: NexusGenRootTypes['Inspection'] | null; // Inspection
     login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     signout: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
   }
   Query: { // field return type
+    inspection: NexusGenRootTypes['Inspection'] | null; // Inspection
     me: NexusGenRootTypes['User'] | null; // User
   }
   Source: { // field return type
@@ -100,6 +102,11 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    createInspection: { // args
+      licensePlate?: string | null; // String
+      record?: string | null; // String
+      source?: string | null; // String
+    }
     login: { // args
       email?: string | null; // String
       password?: string | null; // String
@@ -110,6 +117,11 @@ export interface NexusGenArgTypes {
       name?: string | null; // String
       nickname?: string | null; // String
       password?: string | null; // String
+    }
+  }
+  Query: {
+    inspection: { // args
+      id?: string | null; // ID
     }
   }
 }

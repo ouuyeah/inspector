@@ -15,6 +15,14 @@ export const Query = queryType({
         return ctx.prisma.user({ id: userId })
       },
     })
+    t.field('inspection', {
+      type: 'Inspection',
+      nullable: true,
+      args: { id: idArg() },
+      resolve: (parent, { id }, ctx) => {
+        return ctx.prisma.inspection({ id })
+      },
+    })
     /*
     t.list.field('feed', {
       type: 'Post',

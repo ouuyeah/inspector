@@ -22,6 +22,7 @@ export const permissions = shield({
     me: rules.isAuthenticatedUser,
   },
   Mutation: {
+    createInspection: rules.isAuthenticatedUser,
     //createDraft: rules.isAuthenticatedUser,
     //deletePost: rules.isPostOwner,
     //publish: rules.isPostOwner,
