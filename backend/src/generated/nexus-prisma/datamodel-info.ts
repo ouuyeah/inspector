@@ -6,9 +6,10 @@
 export default {
   uniqueFieldsByModel: {
     Permission: [],
+    CollectionType: [],
     User: ['id', 'cc', 'email', 'nickname'],
     Inspection: ['id'],
-    Source: ['id']
+    Collection: ['id', 'name']
   },
   embeddedTypes: [],
   clientPath: 'src/generated/prisma-client',
@@ -440,7 +441,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "source",
+            "name": "collection",
             "description": null,
             "args": [
               {
@@ -451,7 +452,7 @@ export default {
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "SourceWhereUniqueInput",
+                    "name": "CollectionWhereUniqueInput",
                     "ofType": null
                   }
                 },
@@ -460,14 +461,14 @@ export default {
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "Source",
+              "name": "Collection",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "sources",
+            "name": "collections",
             "description": null,
             "args": [
               {
@@ -475,7 +476,7 @@ export default {
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "SourceWhereInput",
+                  "name": "CollectionWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -485,7 +486,7 @@ export default {
                 "description": null,
                 "type": {
                   "kind": "ENUM",
-                  "name": "SourceOrderByInput",
+                  "name": "CollectionOrderByInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -549,7 +550,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "Source",
+                  "name": "Collection",
                   "ofType": null
                 }
               }
@@ -558,7 +559,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "sourcesConnection",
+            "name": "collectionsConnection",
             "description": null,
             "args": [
               {
@@ -566,7 +567,7 @@ export default {
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "SourceWhereInput",
+                  "name": "CollectionWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -576,7 +577,7 @@ export default {
                 "description": null,
                 "type": {
                   "kind": "ENUM",
-                  "name": "SourceOrderByInput",
+                  "name": "CollectionOrderByInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -637,7 +638,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "SourceConnection",
+                "name": "CollectionConnection",
                 "ofType": null
               }
             },
@@ -1209,7 +1210,7 @@ export default {
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "SourceWhereInput",
+              "name": "CollectionWhereInput",
               "ofType": null
             },
             "defaultValue": null
@@ -1789,7 +1790,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "SourceWhereInput",
+        "name": "CollectionWhereInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -1946,6 +1947,62 @@ export default {
               "kind": "SCALAR",
               "name": "ID",
               "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "CollectionType",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "type_not",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "CollectionType",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "type_in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "CollectionType",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "type_not_in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "CollectionType",
+                  "ofType": null
+                }
+              }
             },
             "defaultValue": null
           },
@@ -2318,7 +2375,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "SourceWhereInput",
+                  "name": "CollectionWhereInput",
                   "ofType": null
                 }
               }
@@ -2336,7 +2393,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "SourceWhereInput",
+                  "name": "CollectionWhereInput",
                   "ofType": null
                 }
               }
@@ -2354,7 +2411,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "SourceWhereInput",
+                  "name": "CollectionWhereInput",
                   "ofType": null
                 }
               }
@@ -2364,6 +2421,23 @@ export default {
         ],
         "interfaces": null,
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "CollectionType",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "SOURCE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -3892,7 +3966,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Source",
+                "name": "Collection",
                 "ofType": null
               }
             },
@@ -3987,7 +4061,7 @@ export default {
       },
       {
         "kind": "OBJECT",
-        "name": "Source",
+        "name": "Collection",
         "description": null,
         "fields": [
           {
@@ -4000,6 +4074,22 @@ export default {
               "ofType": {
                 "kind": "SCALAR",
                 "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "CollectionType",
                 "ofType": null
               }
             },
@@ -4602,7 +4692,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "SourceWhereUniqueInput",
+        "name": "CollectionWhereUniqueInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -4615,6 +4705,16 @@ export default {
               "ofType": null
             },
             "defaultValue": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -4623,7 +4723,7 @@ export default {
       },
       {
         "kind": "ENUM",
-        "name": "SourceOrderByInput",
+        "name": "CollectionOrderByInput",
         "description": null,
         "fields": null,
         "inputFields": null,
@@ -4637,6 +4737,18 @@ export default {
           },
           {
             "name": "id_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type_DESC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -4682,7 +4794,7 @@ export default {
       },
       {
         "kind": "OBJECT",
-        "name": "SourceConnection",
+        "name": "CollectionConnection",
         "description": null,
         "fields": [
           {
@@ -4713,7 +4825,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "SourceEdge",
+                  "name": "CollectionEdge",
                   "ofType": null
                 }
               }
@@ -4730,7 +4842,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "AggregateSource",
+                "name": "AggregateCollection",
                 "ofType": null
               }
             },
@@ -4745,7 +4857,7 @@ export default {
       },
       {
         "kind": "OBJECT",
-        "name": "SourceEdge",
+        "name": "CollectionEdge",
         "description": null,
         "fields": [
           {
@@ -4757,7 +4869,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Source",
+                "name": "Collection",
                 "ofType": null
               }
             },
@@ -4788,7 +4900,7 @@ export default {
       },
       {
         "kind": "OBJECT",
-        "name": "AggregateSource",
+        "name": "AggregateCollection",
         "description": null,
         "fields": [
           {
@@ -5298,7 +5410,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "createSource",
+            "name": "createCollection",
             "description": null,
             "args": [
               {
@@ -5309,7 +5421,7 @@ export default {
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "SourceCreateInput",
+                    "name": "CollectionCreateInput",
                     "ofType": null
                   }
                 },
@@ -5321,7 +5433,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Source",
+                "name": "Collection",
                 "ofType": null
               }
             },
@@ -5329,7 +5441,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "updateSource",
+            "name": "updateCollection",
             "description": null,
             "args": [
               {
@@ -5340,7 +5452,7 @@ export default {
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "SourceUpdateInput",
+                    "name": "CollectionUpdateInput",
                     "ofType": null
                   }
                 },
@@ -5354,7 +5466,7 @@ export default {
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "SourceWhereUniqueInput",
+                    "name": "CollectionWhereUniqueInput",
                     "ofType": null
                   }
                 },
@@ -5363,14 +5475,14 @@ export default {
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "Source",
+              "name": "Collection",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "updateManySources",
+            "name": "updateManyCollections",
             "description": null,
             "args": [
               {
@@ -5381,7 +5493,7 @@ export default {
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "SourceUpdateManyMutationInput",
+                    "name": "CollectionUpdateManyMutationInput",
                     "ofType": null
                   }
                 },
@@ -5392,7 +5504,7 @@ export default {
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "SourceWhereInput",
+                  "name": "CollectionWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5411,7 +5523,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "upsertSource",
+            "name": "upsertCollection",
             "description": null,
             "args": [
               {
@@ -5422,7 +5534,7 @@ export default {
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "SourceWhereUniqueInput",
+                    "name": "CollectionWhereUniqueInput",
                     "ofType": null
                   }
                 },
@@ -5436,7 +5548,7 @@ export default {
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "SourceCreateInput",
+                    "name": "CollectionCreateInput",
                     "ofType": null
                   }
                 },
@@ -5450,7 +5562,7 @@ export default {
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "SourceUpdateInput",
+                    "name": "CollectionUpdateInput",
                     "ofType": null
                   }
                 },
@@ -5462,7 +5574,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Source",
+                "name": "Collection",
                 "ofType": null
               }
             },
@@ -5470,7 +5582,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "deleteSource",
+            "name": "deleteCollection",
             "description": null,
             "args": [
               {
@@ -5481,7 +5593,7 @@ export default {
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "SourceWhereUniqueInput",
+                    "name": "CollectionWhereUniqueInput",
                     "ofType": null
                   }
                 },
@@ -5490,14 +5602,14 @@ export default {
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "Source",
+              "name": "Collection",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "deleteManySources",
+            "name": "deleteManyCollections",
             "description": null,
             "args": [
               {
@@ -5505,7 +5617,7 @@ export default {
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "SourceWhereInput",
+                  "name": "CollectionWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5707,7 +5819,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "SourceCreateOneInput",
+                "name": "CollectionCreateOneInput",
                 "ofType": null
               }
             },
@@ -5748,7 +5860,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "SourceCreateOneInput",
+        "name": "CollectionCreateOneInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -5757,7 +5869,7 @@ export default {
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "SourceCreateInput",
+              "name": "CollectionCreateInput",
               "ofType": null
             },
             "defaultValue": null
@@ -5767,7 +5879,7 @@ export default {
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "SourceWhereUniqueInput",
+              "name": "CollectionWhereUniqueInput",
               "ofType": null
             },
             "defaultValue": null
@@ -5779,10 +5891,24 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "SourceCreateInput",
+        "name": "CollectionCreateInput",
         "description": null,
         "fields": null,
         "inputFields": [
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "CollectionType",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
           {
             "name": "name",
             "description": null,
@@ -6200,7 +6326,7 @@ export default {
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "SourceUpdateOneRequiredInput",
+              "name": "CollectionUpdateOneRequiredInput",
               "ofType": null
             },
             "defaultValue": null
@@ -6232,7 +6358,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "SourceUpdateOneRequiredInput",
+        "name": "CollectionUpdateOneRequiredInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -6241,7 +6367,7 @@ export default {
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "SourceCreateInput",
+              "name": "CollectionCreateInput",
               "ofType": null
             },
             "defaultValue": null
@@ -6251,7 +6377,7 @@ export default {
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "SourceUpdateDataInput",
+              "name": "CollectionUpdateDataInput",
               "ofType": null
             },
             "defaultValue": null
@@ -6261,7 +6387,7 @@ export default {
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "SourceUpsertNestedInput",
+              "name": "CollectionUpsertNestedInput",
               "ofType": null
             },
             "defaultValue": null
@@ -6271,7 +6397,7 @@ export default {
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "SourceWhereUniqueInput",
+              "name": "CollectionWhereUniqueInput",
               "ofType": null
             },
             "defaultValue": null
@@ -6283,10 +6409,20 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "SourceUpdateDataInput",
+        "name": "CollectionUpdateDataInput",
         "description": null,
         "fields": null,
         "inputFields": [
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "CollectionType",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
           {
             "name": "name",
             "description": null,
@@ -6534,7 +6670,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "SourceUpsertNestedInput",
+        "name": "CollectionUpsertNestedInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -6546,7 +6682,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "SourceUpdateDataInput",
+                "name": "CollectionUpdateDataInput",
                 "ofType": null
               }
             },
@@ -6560,7 +6696,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "SourceCreateInput",
+                "name": "CollectionCreateInput",
                 "ofType": null
               }
             },
@@ -7561,7 +7697,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "SourceCreateOneInput",
+                "name": "CollectionCreateOneInput",
                 "ofType": null
               }
             },
@@ -7763,7 +7899,7 @@ export default {
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "SourceUpdateOneRequiredInput",
+              "name": "CollectionUpdateOneRequiredInput",
               "ofType": null
             },
             "defaultValue": null
@@ -8017,10 +8153,20 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "SourceUpdateInput",
+        "name": "CollectionUpdateInput",
         "description": null,
         "fields": null,
         "inputFields": [
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "CollectionType",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
           {
             "name": "name",
             "description": null,
@@ -8048,10 +8194,20 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "SourceUpdateManyMutationInput",
+        "name": "CollectionUpdateManyMutationInput",
         "description": null,
         "fields": null,
         "inputFields": [
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "CollectionType",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
           {
             "name": "name",
             "description": null,
@@ -8119,7 +8275,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "source",
+            "name": "collection",
             "description": null,
             "args": [
               {
@@ -8127,7 +8283,7 @@ export default {
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "SourceSubscriptionWhereInput",
+                  "name": "CollectionSubscriptionWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -8135,7 +8291,7 @@ export default {
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "SourceSubscriptionPayload",
+              "name": "CollectionSubscriptionPayload",
               "ofType": null
             },
             "isDeprecated": false,
@@ -8872,7 +9028,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "SourceSubscriptionWhereInput",
+        "name": "CollectionSubscriptionWhereInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -8945,7 +9101,7 @@ export default {
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "SourceWhereInput",
+              "name": "CollectionWhereInput",
               "ofType": null
             },
             "defaultValue": null
@@ -8961,7 +9117,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "SourceSubscriptionWhereInput",
+                  "name": "CollectionSubscriptionWhereInput",
                   "ofType": null
                 }
               }
@@ -8979,7 +9135,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "SourceSubscriptionWhereInput",
+                  "name": "CollectionSubscriptionWhereInput",
                   "ofType": null
                 }
               }
@@ -8997,7 +9153,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "SourceSubscriptionWhereInput",
+                  "name": "CollectionSubscriptionWhereInput",
                   "ofType": null
                 }
               }
@@ -9011,7 +9167,7 @@ export default {
       },
       {
         "kind": "OBJECT",
-        "name": "SourceSubscriptionPayload",
+        "name": "CollectionSubscriptionPayload",
         "description": null,
         "fields": [
           {
@@ -9036,7 +9192,7 @@ export default {
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "Source",
+              "name": "Collection",
               "ofType": null
             },
             "isDeprecated": false,
@@ -9068,7 +9224,7 @@ export default {
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "SourcePreviousValues",
+              "name": "CollectionPreviousValues",
               "ofType": null
             },
             "isDeprecated": false,
@@ -9082,7 +9238,7 @@ export default {
       },
       {
         "kind": "OBJECT",
-        "name": "SourcePreviousValues",
+        "name": "CollectionPreviousValues",
         "description": null,
         "fields": [
           {
@@ -9095,6 +9251,22 @@ export default {
               "ofType": {
                 "kind": "SCALAR",
                 "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "CollectionType",
                 "ofType": null
               }
             },

@@ -5,6 +5,7 @@ import GlobalStyle from '../components/styles/generalStyles';
 
 const theme = {
   red: '#FF0000',
+  orangebackup: '#d3701f',
   orange2: '#bd5602',
   orange: '#d3701f',
   orangeHover: '#ff8f34',

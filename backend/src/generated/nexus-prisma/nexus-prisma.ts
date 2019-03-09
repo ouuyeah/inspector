@@ -17,7 +17,7 @@ export interface NexusPrismaTypes {
       Query: QueryObject
       User: UserObject
       Inspection: InspectionObject
-      Source: SourceObject
+      Collection: CollectionObject
       UserConnection: UserConnectionObject
       PageInfo: PageInfoObject
       UserEdge: UserEdgeObject
@@ -25,9 +25,9 @@ export interface NexusPrismaTypes {
       InspectionConnection: InspectionConnectionObject
       InspectionEdge: InspectionEdgeObject
       AggregateInspection: AggregateInspectionObject
-      SourceConnection: SourceConnectionObject
-      SourceEdge: SourceEdgeObject
-      AggregateSource: AggregateSourceObject
+      CollectionConnection: CollectionConnectionObject
+      CollectionEdge: CollectionEdgeObject
+      AggregateCollection: AggregateCollectionObject
       Mutation: MutationObject
       BatchPayload: BatchPayloadObject
       Subscription: SubscriptionObject
@@ -35,14 +35,14 @@ export interface NexusPrismaTypes {
       UserPreviousValues: UserPreviousValuesObject
       InspectionSubscriptionPayload: InspectionSubscriptionPayloadObject
       InspectionPreviousValues: InspectionPreviousValuesObject
-      SourceSubscriptionPayload: SourceSubscriptionPayloadObject
-      SourcePreviousValues: SourcePreviousValuesObject
+      CollectionSubscriptionPayload: CollectionSubscriptionPayloadObject
+      CollectionPreviousValues: CollectionPreviousValuesObject
     }
     fieldsDetails: {
       Query: QueryFieldDetails
       User: UserFieldDetails
       Inspection: InspectionFieldDetails
-      Source: SourceFieldDetails
+      Collection: CollectionFieldDetails
       UserConnection: UserConnectionFieldDetails
       PageInfo: PageInfoFieldDetails
       UserEdge: UserEdgeFieldDetails
@@ -50,9 +50,9 @@ export interface NexusPrismaTypes {
       InspectionConnection: InspectionConnectionFieldDetails
       InspectionEdge: InspectionEdgeFieldDetails
       AggregateInspection: AggregateInspectionFieldDetails
-      SourceConnection: SourceConnectionFieldDetails
-      SourceEdge: SourceEdgeFieldDetails
-      AggregateSource: AggregateSourceFieldDetails
+      CollectionConnection: CollectionConnectionFieldDetails
+      CollectionEdge: CollectionEdgeFieldDetails
+      AggregateCollection: AggregateCollectionFieldDetails
       Mutation: MutationFieldDetails
       BatchPayload: BatchPayloadFieldDetails
       Subscription: SubscriptionFieldDetails
@@ -60,36 +60,36 @@ export interface NexusPrismaTypes {
       UserPreviousValues: UserPreviousValuesFieldDetails
       InspectionSubscriptionPayload: InspectionSubscriptionPayloadFieldDetails
       InspectionPreviousValues: InspectionPreviousValuesFieldDetails
-      SourceSubscriptionPayload: SourceSubscriptionPayloadFieldDetails
-      SourcePreviousValues: SourcePreviousValuesFieldDetails
+      CollectionSubscriptionPayload: CollectionSubscriptionPayloadFieldDetails
+      CollectionPreviousValues: CollectionPreviousValuesFieldDetails
     }
   }
   inputTypes: {
     fields: {
       UserWhereUniqueInput: UserWhereUniqueInputInputObject
       InspectionWhereInput: InspectionWhereInputInputObject
-      SourceWhereInput: SourceWhereInputInputObject
+      CollectionWhereInput: CollectionWhereInputInputObject
       UserWhereInput: UserWhereInputInputObject
       InspectionWhereUniqueInput: InspectionWhereUniqueInputInputObject
-      SourceWhereUniqueInput: SourceWhereUniqueInputInputObject
+      CollectionWhereUniqueInput: CollectionWhereUniqueInputInputObject
       UserCreateInput: UserCreateInputInputObject
       InspectionCreateManyWithoutUserInput: InspectionCreateManyWithoutUserInputInputObject
       InspectionCreateWithoutUserInput: InspectionCreateWithoutUserInputInputObject
-      SourceCreateOneInput: SourceCreateOneInputInputObject
-      SourceCreateInput: SourceCreateInputInputObject
+      CollectionCreateOneInput: CollectionCreateOneInputInputObject
+      CollectionCreateInput: CollectionCreateInputInputObject
       UserCreateOneInput: UserCreateOneInputInputObject
       UserCreatepermissionsInput: UserCreatepermissionsInputInputObject
       UserUpdateInput: UserUpdateInputInputObject
       InspectionUpdateManyWithoutUserInput: InspectionUpdateManyWithoutUserInputInputObject
       InspectionUpdateWithWhereUniqueWithoutUserInput: InspectionUpdateWithWhereUniqueWithoutUserInputInputObject
       InspectionUpdateWithoutUserDataInput: InspectionUpdateWithoutUserDataInputInputObject
-      SourceUpdateOneRequiredInput: SourceUpdateOneRequiredInputInputObject
-      SourceUpdateDataInput: SourceUpdateDataInputInputObject
+      CollectionUpdateOneRequiredInput: CollectionUpdateOneRequiredInputInputObject
+      CollectionUpdateDataInput: CollectionUpdateDataInputInputObject
       UserUpdateOneRequiredInput: UserUpdateOneRequiredInputInputObject
       UserUpdateDataInput: UserUpdateDataInputInputObject
       UserUpdatepermissionsInput: UserUpdatepermissionsInputInputObject
       UserUpsertNestedInput: UserUpsertNestedInputInputObject
-      SourceUpsertNestedInput: SourceUpsertNestedInputInputObject
+      CollectionUpsertNestedInput: CollectionUpsertNestedInputInputObject
       InspectionUpsertWithWhereUniqueWithoutUserInput: InspectionUpsertWithWhereUniqueWithoutUserInputInputObject
       InspectionScalarWhereInput: InspectionScalarWhereInputInputObject
       InspectionUpdateManyWithWhereNestedInput: InspectionUpdateManyWithWhereNestedInputInputObject
@@ -103,18 +103,19 @@ export interface NexusPrismaTypes {
       UserUpdateWithoutInspectionsDataInput: UserUpdateWithoutInspectionsDataInputInputObject
       UserUpsertWithoutInspectionsInput: UserUpsertWithoutInspectionsInputInputObject
       InspectionUpdateManyMutationInput: InspectionUpdateManyMutationInputInputObject
-      SourceUpdateInput: SourceUpdateInputInputObject
-      SourceUpdateManyMutationInput: SourceUpdateManyMutationInputInputObject
+      CollectionUpdateInput: CollectionUpdateInputInputObject
+      CollectionUpdateManyMutationInput: CollectionUpdateManyMutationInputInputObject
       UserSubscriptionWhereInput: UserSubscriptionWhereInputInputObject
       InspectionSubscriptionWhereInput: InspectionSubscriptionWhereInputInputObject
-      SourceSubscriptionWhereInput: SourceSubscriptionWhereInputInputObject
+      CollectionSubscriptionWhereInput: CollectionSubscriptionWhereInputInputObject
     }
   }
   enumTypes: {
+    CollectionType: CollectionTypeValues,
     InspectionOrderByInput: InspectionOrderByInputValues,
     Permission: PermissionValues,
     UserOrderByInput: UserOrderByInputValues,
-    SourceOrderByInput: SourceOrderByInputValues,
+    CollectionOrderByInput: CollectionOrderByInputValues,
     MutationType: MutationTypeValues,
   }
 }
@@ -129,9 +130,9 @@ type QueryObject =
   | { name: 'inspection', args?: QueryInspectionArgs[] | false, alias?: string  } 
   | { name: 'inspections', args?: QueryInspectionsArgs[] | false, alias?: string  } 
   | { name: 'inspectionsConnection', args?: QueryInspectionsConnectionArgs[] | false, alias?: string  } 
-  | { name: 'source', args?: QuerySourceArgs[] | false, alias?: string  } 
-  | { name: 'sources', args?: QuerySourcesArgs[] | false, alias?: string  } 
-  | { name: 'sourcesConnection', args?: QuerySourcesConnectionArgs[] | false, alias?: string  } 
+  | { name: 'collection', args?: QueryCollectionArgs[] | false, alias?: string  } 
+  | { name: 'collections', args?: QueryCollectionsArgs[] | false, alias?: string  } 
+  | { name: 'collectionsConnection', args?: QueryCollectionsConnectionArgs[] | false, alias?: string  } 
 
 type QueryFields =
   | 'user'
@@ -140,9 +141,9 @@ type QueryFields =
   | 'inspection'
   | 'inspections'
   | 'inspectionsConnection'
-  | 'source'
-  | 'sources'
-  | 'sourcesConnection'
+  | 'collection'
+  | 'collections'
+  | 'collectionsConnection'
 
 
 type QueryUserArgs =
@@ -181,9 +182,9 @@ type QueryInspectionsConnectionArgs =
   | 'before'
   | 'first'
   | 'last'
-type QuerySourceArgs =
+type QueryCollectionArgs =
   | 'where'
-type QuerySourcesArgs =
+type QueryCollectionsArgs =
   | 'where'
   | 'orderBy'
   | 'skip'
@@ -191,7 +192,7 @@ type QuerySourcesArgs =
   | 'before'
   | 'first'
   | 'last'
-type QuerySourcesConnectionArgs =
+type QueryCollectionsConnectionArgs =
   | 'where'
   | 'orderBy'
   | 'skip'
@@ -280,44 +281,44 @@ export interface QueryFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.InspectionConnection> | prisma.InspectionConnection
   }
-  source: {
-    type: 'Source'
-    args: Record<QuerySourceArgs, core.NexusArgDef<string>>
+  collection: {
+    type: 'Collection'
+    args: Record<QueryCollectionArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: true
     resolve: (
       root: core.RootValue<"Query">,
-      args: { where: SourceWhereUniqueInput }  ,
+      args: { where: CollectionWhereUniqueInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Source | null> | prisma.Source | null
+    ) => Promise<prisma.Collection | null> | prisma.Collection | null
   }
-  sources: {
-    type: 'Source'
-    args: Record<QuerySourcesArgs, core.NexusArgDef<string>>
+  collections: {
+    type: 'Collection'
+    args: Record<QueryCollectionsArgs, core.NexusArgDef<string>>
     description: string
     list: true
     nullable: false
     resolve: (
       root: core.RootValue<"Query">,
-      args: { where?: SourceWhereInput | null, orderBy?: prisma.SourceOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      args: { where?: CollectionWhereInput | null, orderBy?: prisma.CollectionOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Source[]> | prisma.Source[]
+    ) => Promise<prisma.Collection[]> | prisma.Collection[]
   }
-  sourcesConnection: {
-    type: 'SourceConnection'
-    args: Record<QuerySourcesConnectionArgs, core.NexusArgDef<string>>
+  collectionsConnection: {
+    type: 'CollectionConnection'
+    args: Record<QueryCollectionsConnectionArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: false
     resolve: (
       root: core.RootValue<"Query">,
-      args: { where?: SourceWhereInput | null, orderBy?: prisma.SourceOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      args: { where?: CollectionWhereInput | null, orderBy?: prisma.CollectionOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.SourceConnection> | prisma.SourceConnection
+    ) => Promise<prisma.CollectionConnection> | prisma.CollectionConnection
   }
 }
   
@@ -509,7 +510,7 @@ export interface InspectionFieldDetails {
     resolve: undefined
   }
   source: {
-    type: 'Source'
+    type: 'Collection'
     args: {}
     description: string
     list: undefined
@@ -519,7 +520,7 @@ export interface InspectionFieldDetails {
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Source> | prisma.Source
+    ) => Promise<prisma.Collection> | prisma.Collection
   }
   record: {
     type: 'String'
@@ -569,18 +570,20 @@ export interface InspectionFieldDetails {
 }
   
 
-// Types for Source
+// Types for Collection
 
-type SourceObject =
-  | SourceFields
+type CollectionObject =
+  | CollectionFields
   | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'type', args?: [] | false, alias?: string  } 
   | { name: 'name', args?: [] | false, alias?: string  } 
   | { name: 'user', args?: [] | false, alias?: string  } 
   | { name: 'createdAt', args?: [] | false, alias?: string  } 
   | { name: 'updatedAt', args?: [] | false, alias?: string  } 
 
-type SourceFields =
+type CollectionFields =
   | 'id'
+  | 'type'
   | 'name'
   | 'user'
   | 'createdAt'
@@ -590,7 +593,7 @@ type SourceFields =
 
   
 
-export interface SourceFieldDetails {
+export interface CollectionFieldDetails {
   id: {
     type: 'ID'
     args: {}
@@ -598,6 +601,19 @@ export interface SourceFieldDetails {
     list: undefined
     nullable: false
     resolve: undefined
+  }
+  type: {
+    type: 'CollectionType'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Collection">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.CollectionType> | prisma.CollectionType
   }
   name: {
     type: 'String'
@@ -614,7 +630,7 @@ export interface SourceFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Source">,
+      root: core.RootValue<"Collection">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
@@ -944,15 +960,15 @@ export interface AggregateInspectionFieldDetails {
 }
   
 
-// Types for SourceConnection
+// Types for CollectionConnection
 
-type SourceConnectionObject =
-  | SourceConnectionFields
+type CollectionConnectionObject =
+  | CollectionConnectionFields
   | { name: 'pageInfo', args?: [] | false, alias?: string  } 
   | { name: 'edges', args?: [] | false, alias?: string  } 
   | { name: 'aggregate', args?: [] | false, alias?: string  } 
 
-type SourceConnectionFields =
+type CollectionConnectionFields =
   | 'pageInfo'
   | 'edges'
   | 'aggregate'
@@ -961,7 +977,7 @@ type SourceConnectionFields =
 
   
 
-export interface SourceConnectionFieldDetails {
+export interface CollectionConnectionFieldDetails {
   pageInfo: {
     type: 'PageInfo'
     args: {}
@@ -969,49 +985,49 @@ export interface SourceConnectionFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"SourceConnection">,
+      root: core.RootValue<"CollectionConnection">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.PageInfo> | prisma.PageInfo
   }
   edges: {
-    type: 'SourceEdge'
+    type: 'CollectionEdge'
     args: {}
     description: string
     list: true
     nullable: false
     resolve: (
-      root: core.RootValue<"SourceConnection">,
+      root: core.RootValue<"CollectionConnection">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.SourceEdge[]> | prisma.SourceEdge[]
+    ) => Promise<prisma.CollectionEdge[]> | prisma.CollectionEdge[]
   }
   aggregate: {
-    type: 'AggregateSource'
+    type: 'AggregateCollection'
     args: {}
     description: string
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"SourceConnection">,
+      root: core.RootValue<"CollectionConnection">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.AggregateSource> | prisma.AggregateSource
+    ) => Promise<prisma.AggregateCollection> | prisma.AggregateCollection
   }
 }
   
 
-// Types for SourceEdge
+// Types for CollectionEdge
 
-type SourceEdgeObject =
-  | SourceEdgeFields
+type CollectionEdgeObject =
+  | CollectionEdgeFields
   | { name: 'node', args?: [] | false, alias?: string  } 
   | { name: 'cursor', args?: [] | false, alias?: string  } 
 
-type SourceEdgeFields =
+type CollectionEdgeFields =
   | 'node'
   | 'cursor'
 
@@ -1019,19 +1035,19 @@ type SourceEdgeFields =
 
   
 
-export interface SourceEdgeFieldDetails {
+export interface CollectionEdgeFieldDetails {
   node: {
-    type: 'Source'
+    type: 'Collection'
     args: {}
     description: string
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"SourceEdge">,
+      root: core.RootValue<"CollectionEdge">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Source> | prisma.Source
+    ) => Promise<prisma.Collection> | prisma.Collection
   }
   cursor: {
     type: 'String'
@@ -1044,20 +1060,20 @@ export interface SourceEdgeFieldDetails {
 }
   
 
-// Types for AggregateSource
+// Types for AggregateCollection
 
-type AggregateSourceObject =
-  | AggregateSourceFields
+type AggregateCollectionObject =
+  | AggregateCollectionFields
   | { name: 'count', args?: [] | false, alias?: string  } 
 
-type AggregateSourceFields =
+type AggregateCollectionFields =
   | 'count'
 
 
 
   
 
-export interface AggregateSourceFieldDetails {
+export interface AggregateCollectionFieldDetails {
   count: {
     type: 'Int'
     args: {}
@@ -1085,12 +1101,12 @@ type MutationObject =
   | { name: 'upsertInspection', args?: MutationUpsertInspectionArgs[] | false, alias?: string  } 
   | { name: 'deleteInspection', args?: MutationDeleteInspectionArgs[] | false, alias?: string  } 
   | { name: 'deleteManyInspections', args?: MutationDeleteManyInspectionsArgs[] | false, alias?: string  } 
-  | { name: 'createSource', args?: MutationCreateSourceArgs[] | false, alias?: string  } 
-  | { name: 'updateSource', args?: MutationUpdateSourceArgs[] | false, alias?: string  } 
-  | { name: 'updateManySources', args?: MutationUpdateManySourcesArgs[] | false, alias?: string  } 
-  | { name: 'upsertSource', args?: MutationUpsertSourceArgs[] | false, alias?: string  } 
-  | { name: 'deleteSource', args?: MutationDeleteSourceArgs[] | false, alias?: string  } 
-  | { name: 'deleteManySources', args?: MutationDeleteManySourcesArgs[] | false, alias?: string  } 
+  | { name: 'createCollection', args?: MutationCreateCollectionArgs[] | false, alias?: string  } 
+  | { name: 'updateCollection', args?: MutationUpdateCollectionArgs[] | false, alias?: string  } 
+  | { name: 'updateManyCollections', args?: MutationUpdateManyCollectionsArgs[] | false, alias?: string  } 
+  | { name: 'upsertCollection', args?: MutationUpsertCollectionArgs[] | false, alias?: string  } 
+  | { name: 'deleteCollection', args?: MutationDeleteCollectionArgs[] | false, alias?: string  } 
+  | { name: 'deleteManyCollections', args?: MutationDeleteManyCollectionsArgs[] | false, alias?: string  } 
 
 type MutationFields =
   | 'createUser'
@@ -1105,12 +1121,12 @@ type MutationFields =
   | 'upsertInspection'
   | 'deleteInspection'
   | 'deleteManyInspections'
-  | 'createSource'
-  | 'updateSource'
-  | 'updateManySources'
-  | 'upsertSource'
-  | 'deleteSource'
-  | 'deleteManySources'
+  | 'createCollection'
+  | 'updateCollection'
+  | 'updateManyCollections'
+  | 'upsertCollection'
+  | 'deleteCollection'
+  | 'deleteManyCollections'
 
 
 type MutationCreateUserArgs =
@@ -1145,21 +1161,21 @@ type MutationDeleteInspectionArgs =
   | 'where'
 type MutationDeleteManyInspectionsArgs =
   | 'where'
-type MutationCreateSourceArgs =
+type MutationCreateCollectionArgs =
   | 'data'
-type MutationUpdateSourceArgs =
-  | 'data'
-  | 'where'
-type MutationUpdateManySourcesArgs =
+type MutationUpdateCollectionArgs =
   | 'data'
   | 'where'
-type MutationUpsertSourceArgs =
+type MutationUpdateManyCollectionsArgs =
+  | 'data'
+  | 'where'
+type MutationUpsertCollectionArgs =
   | 'where'
   | 'create'
   | 'update'
-type MutationDeleteSourceArgs =
+type MutationDeleteCollectionArgs =
   | 'where'
-type MutationDeleteManySourcesArgs =
+type MutationDeleteManyCollectionsArgs =
   | 'where'
   
 
@@ -1320,80 +1336,80 @@ export interface MutationFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
   }
-  createSource: {
-    type: 'Source'
-    args: Record<MutationCreateSourceArgs, core.NexusArgDef<string>>
+  createCollection: {
+    type: 'Collection'
+    args: Record<MutationCreateCollectionArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { data: SourceCreateInput }  ,
+      args: { data: CollectionCreateInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Source> | prisma.Source
+    ) => Promise<prisma.Collection> | prisma.Collection
   }
-  updateSource: {
-    type: 'Source'
-    args: Record<MutationUpdateSourceArgs, core.NexusArgDef<string>>
+  updateCollection: {
+    type: 'Collection'
+    args: Record<MutationUpdateCollectionArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: true
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { data: SourceUpdateInput, where: SourceWhereUniqueInput }  ,
+      args: { data: CollectionUpdateInput, where: CollectionWhereUniqueInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Source | null> | prisma.Source | null
+    ) => Promise<prisma.Collection | null> | prisma.Collection | null
   }
-  updateManySources: {
+  updateManyCollections: {
     type: 'BatchPayload'
-    args: Record<MutationUpdateManySourcesArgs, core.NexusArgDef<string>>
+    args: Record<MutationUpdateManyCollectionsArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { data: SourceUpdateManyMutationInput, where?: SourceWhereInput | null }  ,
+      args: { data: CollectionUpdateManyMutationInput, where?: CollectionWhereInput | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
   }
-  upsertSource: {
-    type: 'Source'
-    args: Record<MutationUpsertSourceArgs, core.NexusArgDef<string>>
+  upsertCollection: {
+    type: 'Collection'
+    args: Record<MutationUpsertCollectionArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { where: SourceWhereUniqueInput, create: SourceCreateInput, update: SourceUpdateInput }  ,
+      args: { where: CollectionWhereUniqueInput, create: CollectionCreateInput, update: CollectionUpdateInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Source> | prisma.Source
+    ) => Promise<prisma.Collection> | prisma.Collection
   }
-  deleteSource: {
-    type: 'Source'
-    args: Record<MutationDeleteSourceArgs, core.NexusArgDef<string>>
+  deleteCollection: {
+    type: 'Collection'
+    args: Record<MutationDeleteCollectionArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: true
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { where: SourceWhereUniqueInput }  ,
+      args: { where: CollectionWhereUniqueInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Source | null> | prisma.Source | null
+    ) => Promise<prisma.Collection | null> | prisma.Collection | null
   }
-  deleteManySources: {
+  deleteManyCollections: {
     type: 'BatchPayload'
-    args: Record<MutationDeleteManySourcesArgs, core.NexusArgDef<string>>
+    args: Record<MutationDeleteManyCollectionsArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { where?: SourceWhereInput | null }  ,
+      args: { where?: CollectionWhereInput | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
@@ -1432,19 +1448,19 @@ type SubscriptionObject =
   | SubscriptionFields
   | { name: 'user', args?: SubscriptionUserArgs[] | false, alias?: string  } 
   | { name: 'inspection', args?: SubscriptionInspectionArgs[] | false, alias?: string  } 
-  | { name: 'source', args?: SubscriptionSourceArgs[] | false, alias?: string  } 
+  | { name: 'collection', args?: SubscriptionCollectionArgs[] | false, alias?: string  } 
 
 type SubscriptionFields =
   | 'user'
   | 'inspection'
-  | 'source'
+  | 'collection'
 
 
 type SubscriptionUserArgs =
   | 'where'
 type SubscriptionInspectionArgs =
   | 'where'
-type SubscriptionSourceArgs =
+type SubscriptionCollectionArgs =
   | 'where'
   
 
@@ -1475,18 +1491,18 @@ export interface SubscriptionFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.InspectionSubscriptionPayload | null> | prisma.InspectionSubscriptionPayload | null
   }
-  source: {
-    type: 'SourceSubscriptionPayload'
-    args: Record<SubscriptionSourceArgs, core.NexusArgDef<string>>
+  collection: {
+    type: 'CollectionSubscriptionPayload'
+    args: Record<SubscriptionCollectionArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: true
     resolve: (
       root: core.RootValue<"Subscription">,
-      args: { where?: SourceSubscriptionWhereInput | null }  ,
+      args: { where?: CollectionSubscriptionWhereInput | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.SourceSubscriptionPayload | null> | prisma.SourceSubscriptionPayload | null
+    ) => Promise<prisma.CollectionSubscriptionPayload | null> | prisma.CollectionSubscriptionPayload | null
   }
 }
   
@@ -1826,16 +1842,16 @@ export interface InspectionPreviousValuesFieldDetails {
 }
   
 
-// Types for SourceSubscriptionPayload
+// Types for CollectionSubscriptionPayload
 
-type SourceSubscriptionPayloadObject =
-  | SourceSubscriptionPayloadFields
+type CollectionSubscriptionPayloadObject =
+  | CollectionSubscriptionPayloadFields
   | { name: 'mutation', args?: [] | false, alias?: string  } 
   | { name: 'node', args?: [] | false, alias?: string  } 
   | { name: 'updatedFields', args?: [] | false, alias?: string  } 
   | { name: 'previousValues', args?: [] | false, alias?: string  } 
 
-type SourceSubscriptionPayloadFields =
+type CollectionSubscriptionPayloadFields =
   | 'mutation'
   | 'node'
   | 'updatedFields'
@@ -1845,7 +1861,7 @@ type SourceSubscriptionPayloadFields =
 
   
 
-export interface SourceSubscriptionPayloadFieldDetails {
+export interface CollectionSubscriptionPayloadFieldDetails {
   mutation: {
     type: 'MutationType'
     args: {}
@@ -1853,24 +1869,24 @@ export interface SourceSubscriptionPayloadFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"SourceSubscriptionPayload">,
+      root: core.RootValue<"CollectionSubscriptionPayload">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.MutationType> | prisma.MutationType
   }
   node: {
-    type: 'Source'
+    type: 'Collection'
     args: {}
     description: string
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"SourceSubscriptionPayload">,
+      root: core.RootValue<"CollectionSubscriptionPayload">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Source | null> | prisma.Source | null
+    ) => Promise<prisma.Collection | null> | prisma.Collection | null
   }
   updatedFields: {
     type: 'String'
@@ -1881,32 +1897,34 @@ export interface SourceSubscriptionPayloadFieldDetails {
     resolve: undefined
   }
   previousValues: {
-    type: 'SourcePreviousValues'
+    type: 'CollectionPreviousValues'
     args: {}
     description: string
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"SourceSubscriptionPayload">,
+      root: core.RootValue<"CollectionSubscriptionPayload">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.SourcePreviousValues | null> | prisma.SourcePreviousValues | null
+    ) => Promise<prisma.CollectionPreviousValues | null> | prisma.CollectionPreviousValues | null
   }
 }
   
 
-// Types for SourcePreviousValues
+// Types for CollectionPreviousValues
 
-type SourcePreviousValuesObject =
-  | SourcePreviousValuesFields
+type CollectionPreviousValuesObject =
+  | CollectionPreviousValuesFields
   | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'type', args?: [] | false, alias?: string  } 
   | { name: 'name', args?: [] | false, alias?: string  } 
   | { name: 'createdAt', args?: [] | false, alias?: string  } 
   | { name: 'updatedAt', args?: [] | false, alias?: string  } 
 
-type SourcePreviousValuesFields =
+type CollectionPreviousValuesFields =
   | 'id'
+  | 'type'
   | 'name'
   | 'createdAt'
   | 'updatedAt'
@@ -1915,7 +1933,7 @@ type SourcePreviousValuesFields =
 
   
 
-export interface SourcePreviousValuesFieldDetails {
+export interface CollectionPreviousValuesFieldDetails {
   id: {
     type: 'ID'
     args: {}
@@ -1923,6 +1941,19 @@ export interface SourcePreviousValuesFieldDetails {
     list: undefined
     nullable: false
     resolve: undefined
+  }
+  type: {
+    type: 'CollectionType'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"CollectionPreviousValues">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.CollectionType> | prisma.CollectionType
   }
   name: {
     type: 'String'
@@ -1980,7 +2011,7 @@ export interface InspectionWhereInput {
   id_not_starts_with?: string | null
   id_ends_with?: string | null
   id_not_ends_with?: string | null
-  source?: SourceWhereInput | null
+  source?: CollectionWhereInput | null
   record?: string | null
   record_not?: string | null
   record_in?: string[]
@@ -2096,7 +2127,7 @@ export type InspectionWhereInputInputObject =
   | { name: 'OR', alias?: string  } 
   | { name: 'NOT', alias?: string  } 
   
-export interface SourceWhereInput {
+export interface CollectionWhereInput {
   id?: string | null
   id_not?: string | null
   id_in?: string[]
@@ -2111,6 +2142,10 @@ export interface SourceWhereInput {
   id_not_starts_with?: string | null
   id_ends_with?: string | null
   id_not_ends_with?: string | null
+  type?: prisma.CollectionType | null
+  type_not?: prisma.CollectionType | null
+  type_in?: prisma.CollectionType[]
+  type_not_in?: prisma.CollectionType[]
   name?: string | null
   name_not?: string | null
   name_in?: string[]
@@ -2142,12 +2177,12 @@ export interface SourceWhereInput {
   updatedAt_lte?: string | null
   updatedAt_gt?: string | null
   updatedAt_gte?: string | null
-  AND?: SourceWhereInput[]
-  OR?: SourceWhereInput[]
-  NOT?: SourceWhereInput[]
+  AND?: CollectionWhereInput[]
+  OR?: CollectionWhereInput[]
+  NOT?: CollectionWhereInput[]
 }
-export type SourceWhereInputInputObject =
-  | Extract<keyof SourceWhereInput, string>
+export type CollectionWhereInputInputObject =
+  | Extract<keyof CollectionWhereInput, string>
   | { name: 'id', alias?: string  } 
   | { name: 'id_not', alias?: string  } 
   | { name: 'id_in', alias?: string  } 
@@ -2162,6 +2197,10 @@ export type SourceWhereInputInputObject =
   | { name: 'id_not_starts_with', alias?: string  } 
   | { name: 'id_ends_with', alias?: string  } 
   | { name: 'id_not_ends_with', alias?: string  } 
+  | { name: 'type', alias?: string  } 
+  | { name: 'type_not', alias?: string  } 
+  | { name: 'type_in', alias?: string  } 
+  | { name: 'type_not_in', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'name_not', alias?: string  } 
   | { name: 'name_in', alias?: string  } 
@@ -2453,12 +2492,14 @@ export type InspectionWhereUniqueInputInputObject =
   | Extract<keyof InspectionWhereUniqueInput, string>
   | { name: 'id', alias?: string  } 
   
-export interface SourceWhereUniqueInput {
+export interface CollectionWhereUniqueInput {
   id?: string | null
+  name?: string | null
 }
-export type SourceWhereUniqueInputInputObject =
-  | Extract<keyof SourceWhereUniqueInput, string>
+export type CollectionWhereUniqueInputInputObject =
+  | Extract<keyof CollectionWhereUniqueInput, string>
   | { name: 'id', alias?: string  } 
+  | { name: 'name', alias?: string  } 
   
 export interface UserCreateInput {
   cc?: number
@@ -2493,7 +2534,7 @@ export type InspectionCreateManyWithoutUserInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface InspectionCreateWithoutUserInput {
-  source?: SourceCreateOneInput
+  source?: CollectionCreateOneInput
   record?: string
   licensePlate?: string
 }
@@ -2503,21 +2544,23 @@ export type InspectionCreateWithoutUserInputInputObject =
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
   
-export interface SourceCreateOneInput {
-  create?: SourceCreateInput | null
-  connect?: SourceWhereUniqueInput | null
+export interface CollectionCreateOneInput {
+  create?: CollectionCreateInput | null
+  connect?: CollectionWhereUniqueInput | null
 }
-export type SourceCreateOneInputInputObject =
-  | Extract<keyof SourceCreateOneInput, string>
+export type CollectionCreateOneInputInputObject =
+  | Extract<keyof CollectionCreateOneInput, string>
   | { name: 'create', alias?: string  } 
   | { name: 'connect', alias?: string  } 
   
-export interface SourceCreateInput {
+export interface CollectionCreateInput {
+  type?: prisma.CollectionType
   name?: string
   user?: UserCreateOneInput
 }
-export type SourceCreateInputInputObject =
-  | Extract<keyof SourceCreateInput, string>
+export type CollectionCreateInputInputObject =
+  | Extract<keyof CollectionCreateInput, string>
+  | { name: 'type', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'user', alias?: string  } 
   
@@ -2593,7 +2636,7 @@ export type InspectionUpdateWithWhereUniqueWithoutUserInputInputObject =
   | { name: 'data', alias?: string  } 
   
 export interface InspectionUpdateWithoutUserDataInput {
-  source?: SourceUpdateOneRequiredInput | null
+  source?: CollectionUpdateOneRequiredInput | null
   record?: string | null
   licensePlate?: string | null
 }
@@ -2603,25 +2646,27 @@ export type InspectionUpdateWithoutUserDataInputInputObject =
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
   
-export interface SourceUpdateOneRequiredInput {
-  create?: SourceCreateInput | null
-  update?: SourceUpdateDataInput | null
-  upsert?: SourceUpsertNestedInput | null
-  connect?: SourceWhereUniqueInput | null
+export interface CollectionUpdateOneRequiredInput {
+  create?: CollectionCreateInput | null
+  update?: CollectionUpdateDataInput | null
+  upsert?: CollectionUpsertNestedInput | null
+  connect?: CollectionWhereUniqueInput | null
 }
-export type SourceUpdateOneRequiredInputInputObject =
-  | Extract<keyof SourceUpdateOneRequiredInput, string>
+export type CollectionUpdateOneRequiredInputInputObject =
+  | Extract<keyof CollectionUpdateOneRequiredInput, string>
   | { name: 'create', alias?: string  } 
   | { name: 'update', alias?: string  } 
   | { name: 'upsert', alias?: string  } 
   | { name: 'connect', alias?: string  } 
   
-export interface SourceUpdateDataInput {
+export interface CollectionUpdateDataInput {
+  type?: prisma.CollectionType | null
   name?: string | null
   user?: UserUpdateOneRequiredInput | null
 }
-export type SourceUpdateDataInputInputObject =
-  | Extract<keyof SourceUpdateDataInput, string>
+export type CollectionUpdateDataInputInputObject =
+  | Extract<keyof CollectionUpdateDataInput, string>
+  | { name: 'type', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'user', alias?: string  } 
   
@@ -2677,12 +2722,12 @@ export type UserUpsertNestedInputInputObject =
   | { name: 'update', alias?: string  } 
   | { name: 'create', alias?: string  } 
   
-export interface SourceUpsertNestedInput {
-  update?: SourceUpdateDataInput
-  create?: SourceCreateInput
+export interface CollectionUpsertNestedInput {
+  update?: CollectionUpdateDataInput
+  create?: CollectionCreateInput
 }
-export type SourceUpsertNestedInputInputObject =
-  | Extract<keyof SourceUpsertNestedInput, string>
+export type CollectionUpsertNestedInputInputObject =
+  | Extract<keyof CollectionUpsertNestedInput, string>
   | { name: 'update', alias?: string  } 
   | { name: 'create', alias?: string  } 
   
@@ -2864,7 +2909,7 @@ export type UserUpdateManyMutationInputInputObject =
   | { name: 'permissions', alias?: string  } 
   
 export interface InspectionCreateInput {
-  source?: SourceCreateOneInput
+  source?: CollectionCreateOneInput
   record?: string
   licensePlate?: string
   user?: UserCreateOneWithoutInspectionsInput
@@ -2907,7 +2952,7 @@ export type UserCreateWithoutInspectionsInputInputObject =
   | { name: 'permissions', alias?: string  } 
   
 export interface InspectionUpdateInput {
-  source?: SourceUpdateOneRequiredInput | null
+  source?: CollectionUpdateOneRequiredInput | null
   record?: string | null
   licensePlate?: string | null
   user?: UserUpdateOneRequiredWithoutInspectionsInput | null
@@ -2971,20 +3016,24 @@ export type InspectionUpdateManyMutationInputInputObject =
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
   
-export interface SourceUpdateInput {
+export interface CollectionUpdateInput {
+  type?: prisma.CollectionType | null
   name?: string | null
   user?: UserUpdateOneRequiredInput | null
 }
-export type SourceUpdateInputInputObject =
-  | Extract<keyof SourceUpdateInput, string>
+export type CollectionUpdateInputInputObject =
+  | Extract<keyof CollectionUpdateInput, string>
+  | { name: 'type', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'user', alias?: string  } 
   
-export interface SourceUpdateManyMutationInput {
+export interface CollectionUpdateManyMutationInput {
+  type?: prisma.CollectionType | null
   name?: string | null
 }
-export type SourceUpdateManyMutationInputInputObject =
-  | Extract<keyof SourceUpdateManyMutationInput, string>
+export type CollectionUpdateManyMutationInputInputObject =
+  | Extract<keyof CollectionUpdateManyMutationInput, string>
+  | { name: 'type', alias?: string  } 
   | { name: 'name', alias?: string  } 
   
 export interface UserSubscriptionWhereInput {
@@ -3029,18 +3078,18 @@ export type InspectionSubscriptionWhereInputInputObject =
   | { name: 'OR', alias?: string  } 
   | { name: 'NOT', alias?: string  } 
   
-export interface SourceSubscriptionWhereInput {
+export interface CollectionSubscriptionWhereInput {
   mutation_in?: prisma.MutationType[]
   updatedFields_contains?: string | null
   updatedFields_contains_every?: string[]
   updatedFields_contains_some?: string[]
-  node?: SourceWhereInput | null
-  AND?: SourceSubscriptionWhereInput[]
-  OR?: SourceSubscriptionWhereInput[]
-  NOT?: SourceSubscriptionWhereInput[]
+  node?: CollectionWhereInput | null
+  AND?: CollectionSubscriptionWhereInput[]
+  OR?: CollectionSubscriptionWhereInput[]
+  NOT?: CollectionSubscriptionWhereInput[]
 }
-export type SourceSubscriptionWhereInputInputObject =
-  | Extract<keyof SourceSubscriptionWhereInput, string>
+export type CollectionSubscriptionWhereInputInputObject =
+  | Extract<keyof CollectionSubscriptionWhereInput, string>
   | { name: 'mutation_in', alias?: string  } 
   | { name: 'updatedFields_contains', alias?: string  } 
   | { name: 'updatedFields_contains_every', alias?: string  } 
@@ -3051,6 +3100,9 @@ export type SourceSubscriptionWhereInputInputObject =
   | { name: 'NOT', alias?: string  } 
   
 
+export type CollectionTypeValues =
+  | 'SOURCE'
+  
 export type InspectionOrderByInputValues =
   | 'id_ASC'
   | 'id_DESC'
@@ -3090,9 +3142,11 @@ export type UserOrderByInputValues =
   | 'updatedAt_ASC'
   | 'updatedAt_DESC'
   
-export type SourceOrderByInputValues =
+export type CollectionOrderByInputValues =
   | 'id_ASC'
   | 'id_DESC'
+  | 'type_ASC'
+  | 'type_DESC'
   | 'name_ASC'
   | 'name_DESC'
   | 'createdAt_ASC'

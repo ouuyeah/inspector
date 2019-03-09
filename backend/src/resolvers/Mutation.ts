@@ -1,9 +1,12 @@
 import { stringArg, idArg, intArg, mutationType } from 'nexus'
+import { prismaObjectType } from 'nexus-prisma'
 import { hash, compare } from 'bcrypt'
 import { APP_SECRET, getUserId } from '../utils'
 import { sign } from 'jsonwebtoken'
 
-export const Mutation = mutationType({
+export const Mutation = prismaObjectType({
+  name: 'Mutation',
+
   definition(t) {
     t.field('signup', {
       type: 'AuthPayload',
@@ -91,7 +94,7 @@ export const Mutation = mutationType({
       },
       resolve: (parent, { source, record, licensePlate }, ctx) => {
         const userId = getUserId(ctx)
-        return ctx.prisma.createPost({
+        return ctx.prisma.createInspection({
           record,
           licensePlate,
           user: { connect: { id: userId } },
@@ -99,6 +102,23 @@ export const Mutation = mutationType({
         })
       },
     })
+
+    t.field('createCollection', {
+      type: 'Collection',
+      args: {
+        name: stringArg(),
+        type: stringArg(),
+      },
+      resolve: (parent, { name, type }, ctx) => {
+        const userId = getUserId(ctx)
+        return ctx.prisma.createCollection({
+          name,
+          type,
+          user: { connect: { id: userId } },
+        })
+      },
+    })
+
     /*
 
 

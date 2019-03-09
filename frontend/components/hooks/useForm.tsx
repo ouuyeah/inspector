@@ -27,7 +27,7 @@ const useForm = validate => {
 
   const handleChange = event => {
     event.persist();
-
+    console.log('hola');
     const { name, type, value } = event.target;
     const val = type === 'number' ? parseFloat(value) : value;
 

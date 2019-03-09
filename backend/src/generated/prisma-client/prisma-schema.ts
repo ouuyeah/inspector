@@ -2,11 +2,11 @@
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-export const typeDefs = /* GraphQL */ `type AggregateInspection {
+export const typeDefs = /* GraphQL */ `type AggregateCollection {
   count: Int!
 }
 
-type AggregateSource {
+type AggregateInspection {
   count: Int!
 }
 
@@ -18,11 +18,174 @@ type BatchPayload {
   count: Long!
 }
 
+type Collection {
+  id: ID!
+  type: CollectionType!
+  name: String!
+  user: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type CollectionConnection {
+  pageInfo: PageInfo!
+  edges: [CollectionEdge]!
+  aggregate: AggregateCollection!
+}
+
+input CollectionCreateInput {
+  type: CollectionType!
+  name: String!
+  user: UserCreateOneInput!
+}
+
+input CollectionCreateOneInput {
+  create: CollectionCreateInput
+  connect: CollectionWhereUniqueInput
+}
+
+type CollectionEdge {
+  node: Collection!
+  cursor: String!
+}
+
+enum CollectionOrderByInput {
+  id_ASC
+  id_DESC
+  type_ASC
+  type_DESC
+  name_ASC
+  name_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type CollectionPreviousValues {
+  id: ID!
+  type: CollectionType!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type CollectionSubscriptionPayload {
+  mutation: MutationType!
+  node: Collection
+  updatedFields: [String!]
+  previousValues: CollectionPreviousValues
+}
+
+input CollectionSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CollectionWhereInput
+  AND: [CollectionSubscriptionWhereInput!]
+  OR: [CollectionSubscriptionWhereInput!]
+  NOT: [CollectionSubscriptionWhereInput!]
+}
+
+enum CollectionType {
+  SOURCE
+}
+
+input CollectionUpdateDataInput {
+  type: CollectionType
+  name: String
+  user: UserUpdateOneRequiredInput
+}
+
+input CollectionUpdateInput {
+  type: CollectionType
+  name: String
+  user: UserUpdateOneRequiredInput
+}
+
+input CollectionUpdateManyMutationInput {
+  type: CollectionType
+  name: String
+}
+
+input CollectionUpdateOneRequiredInput {
+  create: CollectionCreateInput
+  update: CollectionUpdateDataInput
+  upsert: CollectionUpsertNestedInput
+  connect: CollectionWhereUniqueInput
+}
+
+input CollectionUpsertNestedInput {
+  update: CollectionUpdateDataInput!
+  create: CollectionCreateInput!
+}
+
+input CollectionWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  type: CollectionType
+  type_not: CollectionType
+  type_in: [CollectionType!]
+  type_not_in: [CollectionType!]
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  user: UserWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [CollectionWhereInput!]
+  OR: [CollectionWhereInput!]
+  NOT: [CollectionWhereInput!]
+}
+
+input CollectionWhereUniqueInput {
+  id: ID
+  name: String
+}
+
 scalar DateTime
 
 type Inspection {
   id: ID!
-  source: Source!
+  source: Collection!
   record: String!
   licensePlate: String!
   user: User!
@@ -37,7 +200,7 @@ type InspectionConnection {
 }
 
 input InspectionCreateInput {
-  source: SourceCreateOneInput!
+  source: CollectionCreateOneInput!
   record: String!
   licensePlate: String!
   user: UserCreateOneWithoutInspectionsInput!
@@ -49,7 +212,7 @@ input InspectionCreateManyWithoutUserInput {
 }
 
 input InspectionCreateWithoutUserInput {
-  source: SourceCreateOneInput!
+  source: CollectionCreateOneInput!
   record: String!
   licensePlate: String!
 }
@@ -163,7 +326,7 @@ input InspectionSubscriptionWhereInput {
 }
 
 input InspectionUpdateInput {
-  source: SourceUpdateOneRequiredInput
+  source: CollectionUpdateOneRequiredInput
   record: String
   licensePlate: String
   user: UserUpdateOneRequiredWithoutInspectionsInput
@@ -197,7 +360,7 @@ input InspectionUpdateManyWithWhereNestedInput {
 }
 
 input InspectionUpdateWithoutUserDataInput {
-  source: SourceUpdateOneRequiredInput
+  source: CollectionUpdateOneRequiredInput
   record: String
   licensePlate: String
 }
@@ -228,7 +391,7 @@ input InspectionWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  source: SourceWhereInput
+  source: CollectionWhereInput
   record: String
   record_not: String
   record_in: [String!]
@@ -286,18 +449,18 @@ input InspectionWhereUniqueInput {
 scalar Long
 
 type Mutation {
+  createCollection(data: CollectionCreateInput!): Collection!
+  updateCollection(data: CollectionUpdateInput!, where: CollectionWhereUniqueInput!): Collection
+  updateManyCollections(data: CollectionUpdateManyMutationInput!, where: CollectionWhereInput): BatchPayload!
+  upsertCollection(where: CollectionWhereUniqueInput!, create: CollectionCreateInput!, update: CollectionUpdateInput!): Collection!
+  deleteCollection(where: CollectionWhereUniqueInput!): Collection
+  deleteManyCollections(where: CollectionWhereInput): BatchPayload!
   createInspection(data: InspectionCreateInput!): Inspection!
   updateInspection(data: InspectionUpdateInput!, where: InspectionWhereUniqueInput!): Inspection
   updateManyInspections(data: InspectionUpdateManyMutationInput!, where: InspectionWhereInput): BatchPayload!
   upsertInspection(where: InspectionWhereUniqueInput!, create: InspectionCreateInput!, update: InspectionUpdateInput!): Inspection!
   deleteInspection(where: InspectionWhereUniqueInput!): Inspection
   deleteManyInspections(where: InspectionWhereInput): BatchPayload!
-  createSource(data: SourceCreateInput!): Source!
-  updateSource(data: SourceUpdateInput!, where: SourceWhereUniqueInput!): Source
-  updateManySources(data: SourceUpdateManyMutationInput!, where: SourceWhereInput): BatchPayload!
-  upsertSource(where: SourceWhereUniqueInput!, create: SourceCreateInput!, update: SourceUpdateInput!): Source!
-  deleteSource(where: SourceWhereUniqueInput!): Source
-  deleteManySources(where: SourceWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -330,167 +493,21 @@ enum Permission {
 }
 
 type Query {
+  collection(where: CollectionWhereUniqueInput!): Collection
+  collections(where: CollectionWhereInput, orderBy: CollectionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Collection]!
+  collectionsConnection(where: CollectionWhereInput, orderBy: CollectionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CollectionConnection!
   inspection(where: InspectionWhereUniqueInput!): Inspection
   inspections(where: InspectionWhereInput, orderBy: InspectionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Inspection]!
   inspectionsConnection(where: InspectionWhereInput, orderBy: InspectionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InspectionConnection!
-  source(where: SourceWhereUniqueInput!): Source
-  sources(where: SourceWhereInput, orderBy: SourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Source]!
-  sourcesConnection(where: SourceWhereInput, orderBy: SourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SourceConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   node(id: ID!): Node
 }
 
-type Source {
-  id: ID!
-  name: String!
-  user: User!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-type SourceConnection {
-  pageInfo: PageInfo!
-  edges: [SourceEdge]!
-  aggregate: AggregateSource!
-}
-
-input SourceCreateInput {
-  name: String!
-  user: UserCreateOneInput!
-}
-
-input SourceCreateOneInput {
-  create: SourceCreateInput
-  connect: SourceWhereUniqueInput
-}
-
-type SourceEdge {
-  node: Source!
-  cursor: String!
-}
-
-enum SourceOrderByInput {
-  id_ASC
-  id_DESC
-  name_ASC
-  name_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-}
-
-type SourcePreviousValues {
-  id: ID!
-  name: String!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-type SourceSubscriptionPayload {
-  mutation: MutationType!
-  node: Source
-  updatedFields: [String!]
-  previousValues: SourcePreviousValues
-}
-
-input SourceSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: SourceWhereInput
-  AND: [SourceSubscriptionWhereInput!]
-  OR: [SourceSubscriptionWhereInput!]
-  NOT: [SourceSubscriptionWhereInput!]
-}
-
-input SourceUpdateDataInput {
-  name: String
-  user: UserUpdateOneRequiredInput
-}
-
-input SourceUpdateInput {
-  name: String
-  user: UserUpdateOneRequiredInput
-}
-
-input SourceUpdateManyMutationInput {
-  name: String
-}
-
-input SourceUpdateOneRequiredInput {
-  create: SourceCreateInput
-  update: SourceUpdateDataInput
-  upsert: SourceUpsertNestedInput
-  connect: SourceWhereUniqueInput
-}
-
-input SourceUpsertNestedInput {
-  update: SourceUpdateDataInput!
-  create: SourceCreateInput!
-}
-
-input SourceWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  user: UserWhereInput
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
-  AND: [SourceWhereInput!]
-  OR: [SourceWhereInput!]
-  NOT: [SourceWhereInput!]
-}
-
-input SourceWhereUniqueInput {
-  id: ID
-}
-
 type Subscription {
+  collection(where: CollectionSubscriptionWhereInput): CollectionSubscriptionPayload
   inspection(where: InspectionSubscriptionWhereInput): InspectionSubscriptionPayload
-  source(where: SourceSubscriptionWhereInput): SourceSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 

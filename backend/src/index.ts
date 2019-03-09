@@ -6,7 +6,6 @@ import { permissions } from './permissions'
 import * as allTypes from './resolvers'
 import datamodelInfo from './generated/nexus-prisma'
 import cookieParser from 'cookie-parser'
-import jwt from 'jsonwebtoken'
 
 require('dotenv').config({ path: 'variables.env' })
 

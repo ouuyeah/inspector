@@ -4,6 +4,10 @@ enum Permission {
   AGENT
 }
 
+enum CollectionType {
+  SOURCE
+}
+
 type User {
   id: ID! @unique
   cc: Int! @unique
@@ -21,7 +25,7 @@ type User {
 
 type Inspection {
   id: ID! @unique
-  source: Source!
+  source: Collection!
   record: String!
   licensePlate: String!
   user: User!
@@ -29,9 +33,10 @@ type Inspection {
   updatedAt: DateTime!
 }
 
-type Source {
+type Collection {
   id: ID! @unique
-  name: String!
+  type: CollectionType!
+  name: String! @unique
   user: User!
   createdAt: DateTime!
   updatedAt: DateTime!

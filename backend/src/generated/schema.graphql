@@ -8,6 +8,19 @@ type AuthPayload {
   user: User
 }
 
+type Collection {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  type: CollectionType!
+  updatedAt: DateTime!
+  user: User!
+}
+
+enum CollectionType {
+  SOURCE
+}
+
 scalar DateTime
 
 type Inspection {
@@ -15,12 +28,13 @@ type Inspection {
   id: ID!
   licensePlate: String!
   record: String!
-  source: Source!
+  source: Collection!
   updatedAt: DateTime!
   user: User!
 }
 
 type Mutation {
+  createCollection(name: String, type: String): Collection
   createInspection(licensePlate: String, record: String, source: String): Inspection
   login(email: String, password: String): AuthPayload
   signout: AuthPayload
@@ -36,14 +50,6 @@ enum Permission {
 type Query {
   inspection(id: ID): Inspection
   me: User
-}
-
-type Source {
-  createdAt: DateTime!
-  id: ID!
-  name: String!
-  updatedAt: DateTime!
-  user: User!
 }
 
 type User {

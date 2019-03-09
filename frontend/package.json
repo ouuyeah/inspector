@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev-sapco": "next -p 7777 -H 192.168.1.43",
-    "dev-public": "next -p 7777 -H 192.168.1.62",
+    "dev-public": "next -p 7777 -H 192.168.1.13",
     "dev": "next -p 7777",
     "build": "next build",
     "start": "next start",
@@ -34,6 +34,7 @@
     "react-dom": "^16.8.3",
     "react-modal": "^3.8.1",
     "react-toastify": "^4.5.2",
+    "react-tooltip": "^3.10.0",
     "react-transition-group": "^2.6.0",
     "styled-components": "^4.1.3"
   },

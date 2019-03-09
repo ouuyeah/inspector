@@ -28,13 +28,14 @@ class LayoutHeader extends React.Component {
     return (
       <HeaderStyles>
         <img src="/static/logo-sapco.png" alt="Logo Sapco" />
-
+        {/*<span style={{ color: 'red', fontSize: '3rem', fontWeight: 'bold' }}>
+          SexCito
+        </span>*/}
         <LogoutModal
           showModal={showModal}
           handleModalClose={this.handleModalClose}
           handleModalYes={this.handleModalYes}
         />
-
         <NavigationStyles>
           <input
             type="checkbox"

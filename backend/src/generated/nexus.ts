@@ -14,6 +14,7 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
+  CollectionType: "SOURCE"
   Permission: "ADMIN" | "AGENT" | "DRIVER"
 }
 
@@ -22,6 +23,12 @@ export interface NexusGenRootTypes {
     message?: string | null; // String
     token?: string | null; // String
     user?: NexusGenRootTypes['User'] | null; // User
+  }
+  Collection: { // root type
+    createdAt: any; // DateTime!
+    id: string; // ID!
+    name: string; // String!
+    updatedAt: any; // DateTime!
   }
   Inspection: { // root type
     createdAt: any; // DateTime!
@@ -32,12 +39,6 @@ export interface NexusGenRootTypes {
   }
   Mutation: {};
   Query: {};
-  Source: { // root type
-    createdAt: any; // DateTime!
-    id: string; // ID!
-    name: string; // String!
-    updatedAt: any; // DateTime!
-  }
   User: { // root type
     cc: number; // Int!
     email: string; // String!
@@ -54,6 +55,7 @@ export interface NexusGenRootTypes {
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
+  CollectionType: NexusGenEnums['CollectionType'];
   Permission: NexusGenEnums['Permission'];
 }
 
@@ -63,16 +65,25 @@ export interface NexusGenFieldTypes {
     token: string | null; // String
     user: NexusGenRootTypes['User'] | null; // User
   }
+  Collection: { // field return type
+    createdAt: any; // DateTime!
+    id: string; // ID!
+    name: string; // String!
+    type: NexusGenEnums['CollectionType']; // CollectionType!
+    updatedAt: any; // DateTime!
+    user: NexusGenRootTypes['User']; // User!
+  }
   Inspection: { // field return type
     createdAt: any; // DateTime!
     id: string; // ID!
     licensePlate: string; // String!
     record: string; // String!
-    source: NexusGenRootTypes['Source']; // Source!
+    source: NexusGenRootTypes['Collection']; // Collection!
     updatedAt: any; // DateTime!
     user: NexusGenRootTypes['User']; // User!
   }
   Mutation: { // field return type
+    createCollection: NexusGenRootTypes['Collection'] | null; // Collection
     createInspection: NexusGenRootTypes['Inspection'] | null; // Inspection
     login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     signout: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
@@ -81,13 +92,6 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     inspection: NexusGenRootTypes['Inspection'] | null; // Inspection
     me: NexusGenRootTypes['User'] | null; // User
-  }
-  Source: { // field return type
-    createdAt: any; // DateTime!
-    id: string; // ID!
-    name: string; // String!
-    updatedAt: any; // DateTime!
-    user: NexusGenRootTypes['User']; // User!
   }
   User: { // field return type
     cc: number; // Int!
@@ -102,6 +106,10 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    createCollection: { // args
+      name?: string | null; // String
+      type?: string | null; // String
+    }
     createInspection: { // args
       licensePlate?: string | null; // String
       record?: string | null; // String
@@ -131,11 +139,11 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AuthPayload" | "Inspection" | "Mutation" | "Query" | "Source" | "User";
+export type NexusGenObjectNames = "AuthPayload" | "Collection" | "Inspection" | "Mutation" | "Query" | "User";
 
 export type NexusGenInputNames = never;
 
-export type NexusGenEnumNames = "Permission";
+export type NexusGenEnumNames = "CollectionType" | "Permission";
 
 export type NexusGenInterfaceNames = never;
 
