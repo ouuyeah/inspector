@@ -1,14 +1,12 @@
 import * as React from 'react';
-import useForm from '../hooks/useForm';
-import { Mutation } from 'react-apollo';
-import gql from 'graphql-tag';
-import ReactTooltip from 'react-tooltip';
 
-import InputText from '../styles/InputText';
-import InputSelect from '../styles/InputSelect';
-import ButtonPrimary from '../styles/ButtonPrimary';
-import CollectionStyles from './styles/CollectionStyles';
-import Help from '../styles/Help';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import { format, parseISO } from 'date-fns';
+
+import CollectionsStyles from './styles/CollectionsStyles';
+import GridTable from './styles/GridTable';
+
 import Loading from '../Loading';
 
 const possibleCollections = [
@@ -18,81 +16,58 @@ const possibleCollections = [
   },
 ];
 
-const CREATE_COLLECTION = gql`
-  mutation CREATE_COLLECTION($name: String!, $type: String!) {
-    createCollection(name: $name, type: $type) {
+const LIST_COLLECTIONS = gql`
+  query {
+    collections(orderBy: name_ASC) {
       id
+      type
       name
+      user {
+        name
+      }
+      createdAt
     }
   }
 `;
 
-const StartInspection: React.FunctionComponent = () => {
-  const { values, handleChange, handleSubmit, resetValues } = useForm(null);
-  console.log(values);
+const Collections: React.FunctionComponent = () => {
   return (
-    <Mutation
-      mutation={CREATE_COLLECTION}
-      variables={values}
-      onCompleted={() => {
-        resetValues();
-      }}
-    >
-      {(createCollection, { error, loading }) => {
-        if (loading) return <Loading />;
-
+    <Query query={LIST_COLLECTIONS}>
+      {({ data: { collections }, loading }) => {
         return (
-          <CollectionStyles
-            onSubmit={e => {
-              handleSubmit(e, createCollection);
-            }}
-          >
-            <div>
-              <ReactTooltip place="bottom" effect="solid" />
-              <h3>
-                Colecciones de datos{' '}
-                <Help
-                  data-tip="Aquí puedes crear o modificar todas las colecciones de datos que
-                usa la aplicación"
-                >
-                  ?
-                </Help>
-              </h3>
-
-              <InputText
-                type="text"
-                name="name"
-                placeholder="Nombre"
-                value={values.name || ''}
-                onChange={handleChange}
-                required
-              />
-              <InputSelect
-                name="type"
-                value={values.type || ''}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Tipo de colección</option>
-                {possibleCollections.map(collection => (
-                  <option key={collection.value} value={collection.value}>
+          <CollectionsStyles>
+            <h2>Listado de colecciones</h2>
+            {/*
+            <GridTable>
+              <div className="grid-table-row">
+                <div className="grid-table-cell">Nombre</div>
+                <div className="grid-table-cell">Tipo</div>
+                <div className="grid-table-cell">Creado / Por</div>
+                <div className="grid-table-cell">Acciones</div>
+              </div>
+              {collections.map(collection => (
+                <div className="grid-table-row" key={collection.id}>
+                  <div className="grid-table-cell" data-title="Nombre">
                     {collection.name}
-                  </option>
-                ))}
-              </InputSelect>
-            </div>
-
-            {loading && <p>Cargando...</p>}
-            {error && <p>Ha ocurrido un error, intenta de nuevo.</p>}
-
-            <ButtonPrimary type="submit" className="btn" disabled={loading}>
-              Crear
-            </ButtonPrimary>
-          </CollectionStyles>
+                  </div>
+                  <div className="grid-table-cell" data-title="Tipo">
+                    {collection.type}
+                  </div>
+                  <div className="grid-table-cell" data-title="Creado / Por">
+                    {format(parseISO(collection.createdAt), 'MM / d, yyyy')}/{' '}
+                    {collection.user.name}
+                  </div>
+                  <div className="grid-table-cell" data-title="Acciones">
+                    05/18/2013
+                  </div>
+                </div>
+              ))}
+            </GridTable>*/}
+          </CollectionsStyles>
         );
       }}
-    </Mutation>
+    </Query>
   );
 };
 
-export default StartInspection;
+export default Collections;

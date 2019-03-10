@@ -11,9 +11,253 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  CollectionWhereInput: { // input type
+    AND?: NexusGenInputs['CollectionWhereInput'][] | null; // [CollectionWhereInput!]
+    createdAt?: any | null; // DateTime
+    createdAt_gt?: any | null; // DateTime
+    createdAt_gte?: any | null; // DateTime
+    createdAt_in?: any[] | null; // [DateTime!]
+    createdAt_lt?: any | null; // DateTime
+    createdAt_lte?: any | null; // DateTime
+    createdAt_not?: any | null; // DateTime
+    createdAt_not_in?: any[] | null; // [DateTime!]
+    id?: string | null; // ID
+    id_contains?: string | null; // ID
+    id_ends_with?: string | null; // ID
+    id_gt?: string | null; // ID
+    id_gte?: string | null; // ID
+    id_in?: string[] | null; // [ID!]
+    id_lt?: string | null; // ID
+    id_lte?: string | null; // ID
+    id_not?: string | null; // ID
+    id_not_contains?: string | null; // ID
+    id_not_ends_with?: string | null; // ID
+    id_not_in?: string[] | null; // [ID!]
+    id_not_starts_with?: string | null; // ID
+    id_starts_with?: string | null; // ID
+    name?: string | null; // String
+    name_contains?: string | null; // String
+    name_ends_with?: string | null; // String
+    name_gt?: string | null; // String
+    name_gte?: string | null; // String
+    name_in?: string[] | null; // [String!]
+    name_lt?: string | null; // String
+    name_lte?: string | null; // String
+    name_not?: string | null; // String
+    name_not_contains?: string | null; // String
+    name_not_ends_with?: string | null; // String
+    name_not_in?: string[] | null; // [String!]
+    name_not_starts_with?: string | null; // String
+    name_starts_with?: string | null; // String
+    NOT?: NexusGenInputs['CollectionWhereInput'][] | null; // [CollectionWhereInput!]
+    OR?: NexusGenInputs['CollectionWhereInput'][] | null; // [CollectionWhereInput!]
+    type?: NexusGenEnums['CollectionType'] | null; // CollectionType
+    type_in?: NexusGenEnums['CollectionType'][] | null; // [CollectionType!]
+    type_not?: NexusGenEnums['CollectionType'] | null; // CollectionType
+    type_not_in?: NexusGenEnums['CollectionType'][] | null; // [CollectionType!]
+    updatedAt?: any | null; // DateTime
+    updatedAt_gt?: any | null; // DateTime
+    updatedAt_gte?: any | null; // DateTime
+    updatedAt_in?: any[] | null; // [DateTime!]
+    updatedAt_lt?: any | null; // DateTime
+    updatedAt_lte?: any | null; // DateTime
+    updatedAt_not?: any | null; // DateTime
+    updatedAt_not_in?: any[] | null; // [DateTime!]
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+  }
+  InspectionWhereInput: { // input type
+    AND?: NexusGenInputs['InspectionWhereInput'][] | null; // [InspectionWhereInput!]
+    createdAt?: any | null; // DateTime
+    createdAt_gt?: any | null; // DateTime
+    createdAt_gte?: any | null; // DateTime
+    createdAt_in?: any[] | null; // [DateTime!]
+    createdAt_lt?: any | null; // DateTime
+    createdAt_lte?: any | null; // DateTime
+    createdAt_not?: any | null; // DateTime
+    createdAt_not_in?: any[] | null; // [DateTime!]
+    id?: string | null; // ID
+    id_contains?: string | null; // ID
+    id_ends_with?: string | null; // ID
+    id_gt?: string | null; // ID
+    id_gte?: string | null; // ID
+    id_in?: string[] | null; // [ID!]
+    id_lt?: string | null; // ID
+    id_lte?: string | null; // ID
+    id_not?: string | null; // ID
+    id_not_contains?: string | null; // ID
+    id_not_ends_with?: string | null; // ID
+    id_not_in?: string[] | null; // [ID!]
+    id_not_starts_with?: string | null; // ID
+    id_starts_with?: string | null; // ID
+    licensePlate?: string | null; // String
+    licensePlate_contains?: string | null; // String
+    licensePlate_ends_with?: string | null; // String
+    licensePlate_gt?: string | null; // String
+    licensePlate_gte?: string | null; // String
+    licensePlate_in?: string[] | null; // [String!]
+    licensePlate_lt?: string | null; // String
+    licensePlate_lte?: string | null; // String
+    licensePlate_not?: string | null; // String
+    licensePlate_not_contains?: string | null; // String
+    licensePlate_not_ends_with?: string | null; // String
+    licensePlate_not_in?: string[] | null; // [String!]
+    licensePlate_not_starts_with?: string | null; // String
+    licensePlate_starts_with?: string | null; // String
+    NOT?: NexusGenInputs['InspectionWhereInput'][] | null; // [InspectionWhereInput!]
+    OR?: NexusGenInputs['InspectionWhereInput'][] | null; // [InspectionWhereInput!]
+    record?: string | null; // String
+    record_contains?: string | null; // String
+    record_ends_with?: string | null; // String
+    record_gt?: string | null; // String
+    record_gte?: string | null; // String
+    record_in?: string[] | null; // [String!]
+    record_lt?: string | null; // String
+    record_lte?: string | null; // String
+    record_not?: string | null; // String
+    record_not_contains?: string | null; // String
+    record_not_ends_with?: string | null; // String
+    record_not_in?: string[] | null; // [String!]
+    record_not_starts_with?: string | null; // String
+    record_starts_with?: string | null; // String
+    source?: NexusGenInputs['CollectionWhereInput'] | null; // CollectionWhereInput
+    updatedAt?: any | null; // DateTime
+    updatedAt_gt?: any | null; // DateTime
+    updatedAt_gte?: any | null; // DateTime
+    updatedAt_in?: any[] | null; // [DateTime!]
+    updatedAt_lt?: any | null; // DateTime
+    updatedAt_lte?: any | null; // DateTime
+    updatedAt_not?: any | null; // DateTime
+    updatedAt_not_in?: any[] | null; // [DateTime!]
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+  }
+  UserWhereInput: { // input type
+    AND?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
+    cc?: number | null; // Int
+    cc_gt?: number | null; // Int
+    cc_gte?: number | null; // Int
+    cc_in?: number[] | null; // [Int!]
+    cc_lt?: number | null; // Int
+    cc_lte?: number | null; // Int
+    cc_not?: number | null; // Int
+    cc_not_in?: number[] | null; // [Int!]
+    createdAt?: any | null; // DateTime
+    createdAt_gt?: any | null; // DateTime
+    createdAt_gte?: any | null; // DateTime
+    createdAt_in?: any[] | null; // [DateTime!]
+    createdAt_lt?: any | null; // DateTime
+    createdAt_lte?: any | null; // DateTime
+    createdAt_not?: any | null; // DateTime
+    createdAt_not_in?: any[] | null; // [DateTime!]
+    email?: string | null; // String
+    email_contains?: string | null; // String
+    email_ends_with?: string | null; // String
+    email_gt?: string | null; // String
+    email_gte?: string | null; // String
+    email_in?: string[] | null; // [String!]
+    email_lt?: string | null; // String
+    email_lte?: string | null; // String
+    email_not?: string | null; // String
+    email_not_contains?: string | null; // String
+    email_not_ends_with?: string | null; // String
+    email_not_in?: string[] | null; // [String!]
+    email_not_starts_with?: string | null; // String
+    email_starts_with?: string | null; // String
+    id?: string | null; // ID
+    id_contains?: string | null; // ID
+    id_ends_with?: string | null; // ID
+    id_gt?: string | null; // ID
+    id_gte?: string | null; // ID
+    id_in?: string[] | null; // [ID!]
+    id_lt?: string | null; // ID
+    id_lte?: string | null; // ID
+    id_not?: string | null; // ID
+    id_not_contains?: string | null; // ID
+    id_not_ends_with?: string | null; // ID
+    id_not_in?: string[] | null; // [ID!]
+    id_not_starts_with?: string | null; // ID
+    id_starts_with?: string | null; // ID
+    inspections_every?: NexusGenInputs['InspectionWhereInput'] | null; // InspectionWhereInput
+    inspections_none?: NexusGenInputs['InspectionWhereInput'] | null; // InspectionWhereInput
+    inspections_some?: NexusGenInputs['InspectionWhereInput'] | null; // InspectionWhereInput
+    name?: string | null; // String
+    name_contains?: string | null; // String
+    name_ends_with?: string | null; // String
+    name_gt?: string | null; // String
+    name_gte?: string | null; // String
+    name_in?: string[] | null; // [String!]
+    name_lt?: string | null; // String
+    name_lte?: string | null; // String
+    name_not?: string | null; // String
+    name_not_contains?: string | null; // String
+    name_not_ends_with?: string | null; // String
+    name_not_in?: string[] | null; // [String!]
+    name_not_starts_with?: string | null; // String
+    name_starts_with?: string | null; // String
+    nickname?: string | null; // String
+    nickname_contains?: string | null; // String
+    nickname_ends_with?: string | null; // String
+    nickname_gt?: string | null; // String
+    nickname_gte?: string | null; // String
+    nickname_in?: string[] | null; // [String!]
+    nickname_lt?: string | null; // String
+    nickname_lte?: string | null; // String
+    nickname_not?: string | null; // String
+    nickname_not_contains?: string | null; // String
+    nickname_not_ends_with?: string | null; // String
+    nickname_not_in?: string[] | null; // [String!]
+    nickname_not_starts_with?: string | null; // String
+    nickname_starts_with?: string | null; // String
+    NOT?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
+    OR?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
+    password?: string | null; // String
+    password_contains?: string | null; // String
+    password_ends_with?: string | null; // String
+    password_gt?: string | null; // String
+    password_gte?: string | null; // String
+    password_in?: string[] | null; // [String!]
+    password_lt?: string | null; // String
+    password_lte?: string | null; // String
+    password_not?: string | null; // String
+    password_not_contains?: string | null; // String
+    password_not_ends_with?: string | null; // String
+    password_not_in?: string[] | null; // [String!]
+    password_not_starts_with?: string | null; // String
+    password_starts_with?: string | null; // String
+    resetToken?: string | null; // String
+    resetToken_contains?: string | null; // String
+    resetToken_ends_with?: string | null; // String
+    resetToken_gt?: string | null; // String
+    resetToken_gte?: string | null; // String
+    resetToken_in?: string[] | null; // [String!]
+    resetToken_lt?: string | null; // String
+    resetToken_lte?: string | null; // String
+    resetToken_not?: string | null; // String
+    resetToken_not_contains?: string | null; // String
+    resetToken_not_ends_with?: string | null; // String
+    resetToken_not_in?: string[] | null; // [String!]
+    resetToken_not_starts_with?: string | null; // String
+    resetToken_starts_with?: string | null; // String
+    resetTokenExpiry?: number | null; // Float
+    resetTokenExpiry_gt?: number | null; // Float
+    resetTokenExpiry_gte?: number | null; // Float
+    resetTokenExpiry_in?: number[] | null; // [Float!]
+    resetTokenExpiry_lt?: number | null; // Float
+    resetTokenExpiry_lte?: number | null; // Float
+    resetTokenExpiry_not?: number | null; // Float
+    resetTokenExpiry_not_in?: number[] | null; // [Float!]
+    updatedAt?: any | null; // DateTime
+    updatedAt_gt?: any | null; // DateTime
+    updatedAt_gte?: any | null; // DateTime
+    updatedAt_in?: any[] | null; // [DateTime!]
+    updatedAt_lt?: any | null; // DateTime
+    updatedAt_lte?: any | null; // DateTime
+    updatedAt_not?: any | null; // DateTime
+    updatedAt_not_in?: any[] | null; // [DateTime!]
+  }
 }
 
 export interface NexusGenEnums {
+  CollectionOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "type_ASC" | "type_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
   CollectionType: "SOURCE"
   Permission: "ADMIN" | "AGENT" | "DRIVER"
 }
@@ -55,6 +299,10 @@ export interface NexusGenRootTypes {
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
+  CollectionWhereInput: NexusGenInputs['CollectionWhereInput'];
+  InspectionWhereInput: NexusGenInputs['InspectionWhereInput'];
+  UserWhereInput: NexusGenInputs['UserWhereInput'];
+  CollectionOrderByInput: NexusGenEnums['CollectionOrderByInput'];
   CollectionType: NexusGenEnums['CollectionType'];
   Permission: NexusGenEnums['Permission'];
 }
@@ -90,6 +338,7 @@ export interface NexusGenFieldTypes {
     signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
   }
   Query: { // field return type
+    collections: NexusGenRootTypes['Collection'][]; // [Collection!]!
     inspection: NexusGenRootTypes['Inspection'] | null; // Inspection
     me: NexusGenRootTypes['User'] | null; // User
   }
@@ -128,6 +377,15 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    collections: { // args
+      after?: string | null; // String
+      before?: string | null; // String
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenEnums['CollectionOrderByInput'] | null; // CollectionOrderByInput
+      skip?: number | null; // Int
+      where?: NexusGenInputs['CollectionWhereInput'] | null; // CollectionWhereInput
+    }
     inspection: { // args
       id?: string | null; // ID
     }
@@ -141,9 +399,9 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "AuthPayload" | "Collection" | "Inspection" | "Mutation" | "Query" | "User";
 
-export type NexusGenInputNames = never;
+export type NexusGenInputNames = "CollectionWhereInput" | "InspectionWhereInput" | "UserWhereInput";
 
-export type NexusGenEnumNames = "CollectionType" | "Permission";
+export type NexusGenEnumNames = "CollectionOrderByInput" | "CollectionType" | "Permission";
 
 export type NexusGenInterfaceNames = never;
 

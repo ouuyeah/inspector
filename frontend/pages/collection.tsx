@@ -1,12 +1,14 @@
 import * as React from 'react';
-import Collections from '../components/collections/Collections';
+import Collection from '../components/collections/Collection';
 import Layout from '../components/layout/Layout';
 import Auth from '../components/Auth';
 
 const CollectionsPage: React.FunctionComponent = () => (
-  <Layout title="Colecciones">
-    <Collections />
-  </Layout>
+  <Auth>
+    <Layout title="Colecciones">
+      <Collection />
+    </Layout>
+  </Auth>
 );
 
 export default CollectionsPage;

@@ -17,8 +17,76 @@ type Collection {
   user: User!
 }
 
+enum CollectionOrderByInput {
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  type_ASC
+  type_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
 enum CollectionType {
   SOURCE
+}
+
+input CollectionWhereInput {
+  AND: [CollectionWhereInput!]
+  createdAt: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_not: DateTime
+  createdAt_not_in: [DateTime!]
+  id: ID
+  id_contains: ID
+  id_ends_with: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_not: ID
+  id_not_contains: ID
+  id_not_ends_with: ID
+  id_not_in: [ID!]
+  id_not_starts_with: ID
+  id_starts_with: ID
+  name: String
+  name_contains: String
+  name_ends_with: String
+  name_gt: String
+  name_gte: String
+  name_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_not: String
+  name_not_contains: String
+  name_not_ends_with: String
+  name_not_in: [String!]
+  name_not_starts_with: String
+  name_starts_with: String
+  NOT: [CollectionWhereInput!]
+  OR: [CollectionWhereInput!]
+  type: CollectionType
+  type_in: [CollectionType!]
+  type_not: CollectionType
+  type_not_in: [CollectionType!]
+  updatedAt: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_not: DateTime
+  updatedAt_not_in: [DateTime!]
+  user: UserWhereInput
 }
 
 scalar DateTime
@@ -31,6 +99,72 @@ type Inspection {
   source: Collection!
   updatedAt: DateTime!
   user: User!
+}
+
+input InspectionWhereInput {
+  AND: [InspectionWhereInput!]
+  createdAt: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_not: DateTime
+  createdAt_not_in: [DateTime!]
+  id: ID
+  id_contains: ID
+  id_ends_with: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_not: ID
+  id_not_contains: ID
+  id_not_ends_with: ID
+  id_not_in: [ID!]
+  id_not_starts_with: ID
+  id_starts_with: ID
+  licensePlate: String
+  licensePlate_contains: String
+  licensePlate_ends_with: String
+  licensePlate_gt: String
+  licensePlate_gte: String
+  licensePlate_in: [String!]
+  licensePlate_lt: String
+  licensePlate_lte: String
+  licensePlate_not: String
+  licensePlate_not_contains: String
+  licensePlate_not_ends_with: String
+  licensePlate_not_in: [String!]
+  licensePlate_not_starts_with: String
+  licensePlate_starts_with: String
+  NOT: [InspectionWhereInput!]
+  OR: [InspectionWhereInput!]
+  record: String
+  record_contains: String
+  record_ends_with: String
+  record_gt: String
+  record_gte: String
+  record_in: [String!]
+  record_lt: String
+  record_lte: String
+  record_not: String
+  record_not_contains: String
+  record_not_ends_with: String
+  record_not_in: [String!]
+  record_not_starts_with: String
+  record_starts_with: String
+  source: CollectionWhereInput
+  updatedAt: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_not: DateTime
+  updatedAt_not_in: [DateTime!]
+  user: UserWhereInput
 }
 
 type Mutation {
@@ -48,6 +182,7 @@ enum Permission {
 }
 
 type Query {
+  collections(after: String, before: String, first: Int, last: Int, orderBy: CollectionOrderByInput, skip: Int, where: CollectionWhereInput): [Collection!]!
   inspection(id: ID): Inspection
   me: User
 }
@@ -60,4 +195,129 @@ type User {
   name: String
   nickname: String!
   permissions: [Permission!]!
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  cc: Int
+  cc_gt: Int
+  cc_gte: Int
+  cc_in: [Int!]
+  cc_lt: Int
+  cc_lte: Int
+  cc_not: Int
+  cc_not_in: [Int!]
+  createdAt: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_not: DateTime
+  createdAt_not_in: [DateTime!]
+  email: String
+  email_contains: String
+  email_ends_with: String
+  email_gt: String
+  email_gte: String
+  email_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_not: String
+  email_not_contains: String
+  email_not_ends_with: String
+  email_not_in: [String!]
+  email_not_starts_with: String
+  email_starts_with: String
+  id: ID
+  id_contains: ID
+  id_ends_with: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_not: ID
+  id_not_contains: ID
+  id_not_ends_with: ID
+  id_not_in: [ID!]
+  id_not_starts_with: ID
+  id_starts_with: ID
+  inspections_every: InspectionWhereInput
+  inspections_none: InspectionWhereInput
+  inspections_some: InspectionWhereInput
+  name: String
+  name_contains: String
+  name_ends_with: String
+  name_gt: String
+  name_gte: String
+  name_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_not: String
+  name_not_contains: String
+  name_not_ends_with: String
+  name_not_in: [String!]
+  name_not_starts_with: String
+  name_starts_with: String
+  nickname: String
+  nickname_contains: String
+  nickname_ends_with: String
+  nickname_gt: String
+  nickname_gte: String
+  nickname_in: [String!]
+  nickname_lt: String
+  nickname_lte: String
+  nickname_not: String
+  nickname_not_contains: String
+  nickname_not_ends_with: String
+  nickname_not_in: [String!]
+  nickname_not_starts_with: String
+  nickname_starts_with: String
+  NOT: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  password: String
+  password_contains: String
+  password_ends_with: String
+  password_gt: String
+  password_gte: String
+  password_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_not: String
+  password_not_contains: String
+  password_not_ends_with: String
+  password_not_in: [String!]
+  password_not_starts_with: String
+  password_starts_with: String
+  resetToken: String
+  resetToken_contains: String
+  resetToken_ends_with: String
+  resetToken_gt: String
+  resetToken_gte: String
+  resetToken_in: [String!]
+  resetToken_lt: String
+  resetToken_lte: String
+  resetToken_not: String
+  resetToken_not_contains: String
+  resetToken_not_ends_with: String
+  resetToken_not_in: [String!]
+  resetToken_not_starts_with: String
+  resetToken_starts_with: String
+  resetTokenExpiry: Float
+  resetTokenExpiry_gt: Float
+  resetTokenExpiry_gte: Float
+  resetTokenExpiry_in: [Float!]
+  resetTokenExpiry_lt: Float
+  resetTokenExpiry_lte: Float
+  resetTokenExpiry_not: Float
+  resetTokenExpiry_not_in: [Float!]
+  updatedAt: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_not: DateTime
+  updatedAt_not_in: [DateTime!]
 }

@@ -1,7 +1,9 @@
 import { getUserId } from '../utils'
 import { stringArg, idArg, queryType } from 'nexus'
+import { prismaObjectType } from 'nexus-prisma'
 
-export const Query = queryType({
+export const Query = prismaObjectType({
+  name: 'Query',
   definition(t) {
     t.field('me', {
       type: 'User',
@@ -23,6 +25,8 @@ export const Query = queryType({
         return ctx.prisma.inspection({ id })
       },
     })
+
+    t.prismaFields(['collections'])
     /*
     t.list.field('feed', {
       type: 'Post',
