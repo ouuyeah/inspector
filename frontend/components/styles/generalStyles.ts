@@ -30,6 +30,10 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
+  .hide-xs {
+    display: none;
+  }
+
   ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: #404040;
   }
@@ -41,6 +45,12 @@ const GlobalStyle = createGlobalStyle`
   }
   :-moz-placeholder { /* Firefox 18- */
     color: #404040;
+  }
+
+  .arrow-right {
+    display: inline-block;
+    width: 10px; height: 10px;
+    transform: rotate(-45deg);
   }
 
   /*  fontello */
@@ -137,6 +147,71 @@ const GlobalStyle = createGlobalStyle`
     content: '\f1b9';
   } /* '' */
 
+
+
+  .rc-swipeout {
+  overflow: hidden;
+  position: relative;
+  touch-action: none;
+}
+.rc-swipeout-content {
+  position: relative;
+  background-color: #fff;
+}
+.rc-swipeout-cover {
+  position: absolute;
+  z-index: 2;
+  background: transparent;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  display: none;
+}
+.rc-swipeout .rc-swipeout-content,
+.rc-swipeout .rc-swipeout-actions {
+  -webkit-transition: all 250ms;
+  transition: all 250ms;
+}
+.rc-swipeout-swiping .rc-swipeout-content {
+  -webkit-transition: none;
+  transition: none;
+}
+.rc-swipeout-actions {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.rc-swipeout-actions-left {
+  left: 0;
+}
+.rc-swipeout-actions-right {
+  right: 0;
+}
+.rc-swipeout-btn {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.rc-swipeout-btn-text {
+  padding: 0 12px;
+}
 
 
 `;

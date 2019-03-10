@@ -2,7 +2,9 @@ import * as React from 'react';
 
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import { format, parseISO } from 'date-fns';
+import Swipeout from 'rc-swipeout';
+import Link from 'next/link';
+import Router from 'next/router';
 
 import CollectionsStyles from './styles/CollectionsStyles';
 import GridTable from './styles/GridTable';
@@ -33,10 +35,54 @@ const LIST_COLLECTIONS = gql`
 const Collections: React.FunctionComponent = () => {
   return (
     <Query query={LIST_COLLECTIONS}>
-      {({ data: { collections }, loading }) => {
+      {({ data, loading }) => {
+        const { collections } = data || {};
+
+        if (!collections) return <p>No puedes estar acá :(</p>;
+        if (loading) return <Loading />;
+
         return (
           <CollectionsStyles>
-            <h2>Listado de colecciones</h2>
+            <div className="titles">
+              <h3>Colecciones</h3>
+              <Link href="/collection">
+                <a>Crear</a>
+              </Link>
+            </div>
+
+            {collections.map(collection => (
+              <div className="wrapper-list" key={collection.id}>
+                <Swipeout
+                  right={[
+                    {
+                      text: 'Editar',
+                      onPress: () =>
+                        Router.push({
+                          pathname: '/collection',
+                          query: { id: collection.id },
+                        }),
+                      className: 'edit',
+                    },
+                  ]}
+                >
+                  <div className="list">
+                    <div>
+                      <p>{collection.name}</p>
+                      <span className="type">
+                        {possibleCollections.map(item => {
+                          if (item.value == collection.type) return item.name;
+                        })}
+                      </span>
+                      <span className="user">Por: {collection.user.name}</span>
+                    </div>
+                    <div style={{ textAlign: 'right' }}>
+                      <div className="arrow-right" />
+                    </div>
+                  </div>
+                </Swipeout>
+              </div>
+            ))}
+
             {/*
             <GridTable>
               <div className="grid-table-row">
