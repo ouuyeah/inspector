@@ -4,9 +4,11 @@ import Layout from '../components/layout/Layout';
 import Auth from '../components/Auth';
 
 const CollectionsPage: React.FunctionComponent = () => (
-  <Layout title="Colecciones">
-    <Collections />
-  </Layout>
+  <Auth>
+    <Layout title="Colecciones">
+      <Collections />
+    </Layout>
+  </Auth>
 );
 
 export default CollectionsPage;

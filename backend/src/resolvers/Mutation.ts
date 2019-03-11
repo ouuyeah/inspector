@@ -103,21 +103,33 @@ export const Mutation = prismaObjectType({
       },
     })
 
-    t.field('createCollection', {
+    t.field('upsertCollection', {
       type: 'Collection',
       args: {
+        id: idArg(),
         name: stringArg(),
         type: stringArg(),
       },
-      resolve: (parent, { name, type }, ctx) => {
+      resolve: (parent, { id, name, type }, ctx) => {
         const userId = getUserId(ctx)
-        return ctx.prisma.createCollection({
-          name,
-          type,
-          user: { connect: { id: userId } },
+        console.log(id)
+        const iD = id || ''
+        return ctx.prisma.upsertCollection({
+          where: { id: iD },
+          create: {
+            name,
+            type,
+            user: { connect: { id: userId } },
+          },
+          update: {
+            name,
+            user: { connect: { id: userId } },
+          },
         })
       },
     })
+
+    t.prismaFields(['upsertInspection'])
 
     /*
 

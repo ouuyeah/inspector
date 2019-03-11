@@ -17,6 +17,17 @@ type Collection {
   user: User!
 }
 
+input CollectionCreateInput {
+  name: String!
+  type: CollectionType!
+  user: UserCreateOneInput!
+}
+
+input CollectionCreateOneInput {
+  connect: CollectionWhereUniqueInput
+  create: CollectionCreateInput
+}
+
 enum CollectionOrderByInput {
   createdAt_ASC
   createdAt_DESC
@@ -32,6 +43,24 @@ enum CollectionOrderByInput {
 
 enum CollectionType {
   SOURCE
+}
+
+input CollectionUpdateDataInput {
+  name: String
+  type: CollectionType
+  user: UserUpdateOneRequiredInput
+}
+
+input CollectionUpdateOneRequiredInput {
+  connect: CollectionWhereUniqueInput
+  create: CollectionCreateInput
+  update: CollectionUpdateDataInput
+  upsert: CollectionUpsertNestedInput
+}
+
+input CollectionUpsertNestedInput {
+  create: CollectionCreateInput!
+  update: CollectionUpdateDataInput!
 }
 
 input CollectionWhereInput {
@@ -89,6 +118,11 @@ input CollectionWhereInput {
   user: UserWhereInput
 }
 
+input CollectionWhereUniqueInput {
+  id: ID
+  name: String
+}
+
 scalar DateTime
 
 type Inspection {
@@ -99,6 +133,134 @@ type Inspection {
   source: Collection!
   updatedAt: DateTime!
   user: User!
+}
+
+input InspectionCreateInput {
+  licensePlate: String!
+  record: String!
+  source: CollectionCreateOneInput!
+  user: UserCreateOneWithoutInspectionsInput!
+}
+
+input InspectionCreateManyWithoutUserInput {
+  connect: [InspectionWhereUniqueInput!]
+  create: [InspectionCreateWithoutUserInput!]
+}
+
+input InspectionCreateWithoutUserInput {
+  licensePlate: String!
+  record: String!
+  source: CollectionCreateOneInput!
+}
+
+input InspectionScalarWhereInput {
+  AND: [InspectionScalarWhereInput!]
+  createdAt: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_not: DateTime
+  createdAt_not_in: [DateTime!]
+  id: ID
+  id_contains: ID
+  id_ends_with: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_not: ID
+  id_not_contains: ID
+  id_not_ends_with: ID
+  id_not_in: [ID!]
+  id_not_starts_with: ID
+  id_starts_with: ID
+  licensePlate: String
+  licensePlate_contains: String
+  licensePlate_ends_with: String
+  licensePlate_gt: String
+  licensePlate_gte: String
+  licensePlate_in: [String!]
+  licensePlate_lt: String
+  licensePlate_lte: String
+  licensePlate_not: String
+  licensePlate_not_contains: String
+  licensePlate_not_ends_with: String
+  licensePlate_not_in: [String!]
+  licensePlate_not_starts_with: String
+  licensePlate_starts_with: String
+  NOT: [InspectionScalarWhereInput!]
+  OR: [InspectionScalarWhereInput!]
+  record: String
+  record_contains: String
+  record_ends_with: String
+  record_gt: String
+  record_gte: String
+  record_in: [String!]
+  record_lt: String
+  record_lte: String
+  record_not: String
+  record_not_contains: String
+  record_not_ends_with: String
+  record_not_in: [String!]
+  record_not_starts_with: String
+  record_starts_with: String
+  updatedAt: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_not: DateTime
+  updatedAt_not_in: [DateTime!]
+}
+
+input InspectionUpdateInput {
+  licensePlate: String
+  record: String
+  source: CollectionUpdateOneRequiredInput
+  user: UserUpdateOneRequiredWithoutInspectionsInput
+}
+
+input InspectionUpdateManyDataInput {
+  licensePlate: String
+  record: String
+}
+
+input InspectionUpdateManyWithoutUserInput {
+  connect: [InspectionWhereUniqueInput!]
+  create: [InspectionCreateWithoutUserInput!]
+  delete: [InspectionWhereUniqueInput!]
+  deleteMany: [InspectionScalarWhereInput!]
+  disconnect: [InspectionWhereUniqueInput!]
+  set: [InspectionWhereUniqueInput!]
+  update: [InspectionUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [InspectionUpdateManyWithWhereNestedInput!]
+  upsert: [InspectionUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input InspectionUpdateManyWithWhereNestedInput {
+  data: InspectionUpdateManyDataInput!
+  where: InspectionScalarWhereInput!
+}
+
+input InspectionUpdateWithoutUserDataInput {
+  licensePlate: String
+  record: String
+  source: CollectionUpdateOneRequiredInput
+}
+
+input InspectionUpdateWithWhereUniqueWithoutUserInput {
+  data: InspectionUpdateWithoutUserDataInput!
+  where: InspectionWhereUniqueInput!
+}
+
+input InspectionUpsertWithWhereUniqueWithoutUserInput {
+  create: InspectionCreateWithoutUserInput!
+  update: InspectionUpdateWithoutUserDataInput!
+  where: InspectionWhereUniqueInput!
 }
 
 input InspectionWhereInput {
@@ -167,12 +329,17 @@ input InspectionWhereInput {
   user: UserWhereInput
 }
 
+input InspectionWhereUniqueInput {
+  id: ID
+}
+
 type Mutation {
-  createCollection(name: String, type: String): Collection
   createInspection(licensePlate: String, record: String, source: String): Inspection
   login(email: String, password: String): AuthPayload
   signout: AuthPayload
   signup(cc: Int, email: String, name: String, nickname: String, password: String): AuthPayload
+  upsertCollection(id: ID, name: String, type: String): Collection
+  upsertInspection(create: InspectionCreateInput!, update: InspectionUpdateInput!, where: InspectionWhereUniqueInput!): Inspection!
 }
 
 enum Permission {
@@ -195,6 +362,94 @@ type User {
   name: String
   nickname: String!
   permissions: [Permission!]!
+}
+
+input UserCreateInput {
+  cc: Int!
+  email: String!
+  inspections: InspectionCreateManyWithoutUserInput
+  name: String
+  nickname: String!
+  password: String!
+  permissions: UserCreatepermissionsInput
+  resetToken: String
+  resetTokenExpiry: Float
+}
+
+input UserCreateOneInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateInput
+}
+
+input UserCreateOneWithoutInspectionsInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutInspectionsInput
+}
+
+input UserCreatepermissionsInput {
+  set: [Permission!]
+}
+
+input UserCreateWithoutInspectionsInput {
+  cc: Int!
+  email: String!
+  name: String
+  nickname: String!
+  password: String!
+  permissions: UserCreatepermissionsInput
+  resetToken: String
+  resetTokenExpiry: Float
+}
+
+input UserUpdateDataInput {
+  cc: Int
+  email: String
+  inspections: InspectionUpdateManyWithoutUserInput
+  name: String
+  nickname: String
+  password: String
+  permissions: UserUpdatepermissionsInput
+  resetToken: String
+  resetTokenExpiry: Float
+}
+
+input UserUpdateOneRequiredInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+}
+
+input UserUpdateOneRequiredWithoutInspectionsInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutInspectionsInput
+  update: UserUpdateWithoutInspectionsDataInput
+  upsert: UserUpsertWithoutInspectionsInput
+}
+
+input UserUpdatepermissionsInput {
+  set: [Permission!]
+}
+
+input UserUpdateWithoutInspectionsDataInput {
+  cc: Int
+  email: String
+  name: String
+  nickname: String
+  password: String
+  permissions: UserUpdatepermissionsInput
+  resetToken: String
+  resetTokenExpiry: Float
+}
+
+input UserUpsertNestedInput {
+  create: UserCreateInput!
+  update: UserUpdateDataInput!
+}
+
+input UserUpsertWithoutInspectionsInput {
+  create: UserCreateWithoutInspectionsInput!
+  update: UserUpdateWithoutInspectionsDataInput!
 }
 
 input UserWhereInput {
@@ -320,4 +575,11 @@ input UserWhereInput {
   updatedAt_lte: DateTime
   updatedAt_not: DateTime
   updatedAt_not_in: [DateTime!]
+}
+
+input UserWhereUniqueInput {
+  cc: Int
+  email: String
+  id: ID
+  nickname: String
 }

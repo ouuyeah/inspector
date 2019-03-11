@@ -11,6 +11,30 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  CollectionCreateInput: { // input type
+    name: string; // String!
+    type: NexusGenEnums['CollectionType']; // CollectionType!
+    user: NexusGenInputs['UserCreateOneInput']; // UserCreateOneInput!
+  }
+  CollectionCreateOneInput: { // input type
+    connect?: NexusGenInputs['CollectionWhereUniqueInput'] | null; // CollectionWhereUniqueInput
+    create?: NexusGenInputs['CollectionCreateInput'] | null; // CollectionCreateInput
+  }
+  CollectionUpdateDataInput: { // input type
+    name?: string | null; // String
+    type?: NexusGenEnums['CollectionType'] | null; // CollectionType
+    user?: NexusGenInputs['UserUpdateOneRequiredInput'] | null; // UserUpdateOneRequiredInput
+  }
+  CollectionUpdateOneRequiredInput: { // input type
+    connect?: NexusGenInputs['CollectionWhereUniqueInput'] | null; // CollectionWhereUniqueInput
+    create?: NexusGenInputs['CollectionCreateInput'] | null; // CollectionCreateInput
+    update?: NexusGenInputs['CollectionUpdateDataInput'] | null; // CollectionUpdateDataInput
+    upsert?: NexusGenInputs['CollectionUpsertNestedInput'] | null; // CollectionUpsertNestedInput
+  }
+  CollectionUpsertNestedInput: { // input type
+    create: NexusGenInputs['CollectionCreateInput']; // CollectionCreateInput!
+    update: NexusGenInputs['CollectionUpdateDataInput']; // CollectionUpdateDataInput!
+  }
   CollectionWhereInput: { // input type
     AND?: NexusGenInputs['CollectionWhereInput'][] | null; // [CollectionWhereInput!]
     createdAt?: any | null; // DateTime
@@ -64,6 +88,127 @@ export interface NexusGenInputs {
     updatedAt_not?: any | null; // DateTime
     updatedAt_not_in?: any[] | null; // [DateTime!]
     user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+  }
+  CollectionWhereUniqueInput: { // input type
+    id?: string | null; // ID
+    name?: string | null; // String
+  }
+  InspectionCreateInput: { // input type
+    licensePlate: string; // String!
+    record: string; // String!
+    source: NexusGenInputs['CollectionCreateOneInput']; // CollectionCreateOneInput!
+    user: NexusGenInputs['UserCreateOneWithoutInspectionsInput']; // UserCreateOneWithoutInspectionsInput!
+  }
+  InspectionCreateManyWithoutUserInput: { // input type
+    connect?: NexusGenInputs['InspectionWhereUniqueInput'][] | null; // [InspectionWhereUniqueInput!]
+    create?: NexusGenInputs['InspectionCreateWithoutUserInput'][] | null; // [InspectionCreateWithoutUserInput!]
+  }
+  InspectionCreateWithoutUserInput: { // input type
+    licensePlate: string; // String!
+    record: string; // String!
+    source: NexusGenInputs['CollectionCreateOneInput']; // CollectionCreateOneInput!
+  }
+  InspectionScalarWhereInput: { // input type
+    AND?: NexusGenInputs['InspectionScalarWhereInput'][] | null; // [InspectionScalarWhereInput!]
+    createdAt?: any | null; // DateTime
+    createdAt_gt?: any | null; // DateTime
+    createdAt_gte?: any | null; // DateTime
+    createdAt_in?: any[] | null; // [DateTime!]
+    createdAt_lt?: any | null; // DateTime
+    createdAt_lte?: any | null; // DateTime
+    createdAt_not?: any | null; // DateTime
+    createdAt_not_in?: any[] | null; // [DateTime!]
+    id?: string | null; // ID
+    id_contains?: string | null; // ID
+    id_ends_with?: string | null; // ID
+    id_gt?: string | null; // ID
+    id_gte?: string | null; // ID
+    id_in?: string[] | null; // [ID!]
+    id_lt?: string | null; // ID
+    id_lte?: string | null; // ID
+    id_not?: string | null; // ID
+    id_not_contains?: string | null; // ID
+    id_not_ends_with?: string | null; // ID
+    id_not_in?: string[] | null; // [ID!]
+    id_not_starts_with?: string | null; // ID
+    id_starts_with?: string | null; // ID
+    licensePlate?: string | null; // String
+    licensePlate_contains?: string | null; // String
+    licensePlate_ends_with?: string | null; // String
+    licensePlate_gt?: string | null; // String
+    licensePlate_gte?: string | null; // String
+    licensePlate_in?: string[] | null; // [String!]
+    licensePlate_lt?: string | null; // String
+    licensePlate_lte?: string | null; // String
+    licensePlate_not?: string | null; // String
+    licensePlate_not_contains?: string | null; // String
+    licensePlate_not_ends_with?: string | null; // String
+    licensePlate_not_in?: string[] | null; // [String!]
+    licensePlate_not_starts_with?: string | null; // String
+    licensePlate_starts_with?: string | null; // String
+    NOT?: NexusGenInputs['InspectionScalarWhereInput'][] | null; // [InspectionScalarWhereInput!]
+    OR?: NexusGenInputs['InspectionScalarWhereInput'][] | null; // [InspectionScalarWhereInput!]
+    record?: string | null; // String
+    record_contains?: string | null; // String
+    record_ends_with?: string | null; // String
+    record_gt?: string | null; // String
+    record_gte?: string | null; // String
+    record_in?: string[] | null; // [String!]
+    record_lt?: string | null; // String
+    record_lte?: string | null; // String
+    record_not?: string | null; // String
+    record_not_contains?: string | null; // String
+    record_not_ends_with?: string | null; // String
+    record_not_in?: string[] | null; // [String!]
+    record_not_starts_with?: string | null; // String
+    record_starts_with?: string | null; // String
+    updatedAt?: any | null; // DateTime
+    updatedAt_gt?: any | null; // DateTime
+    updatedAt_gte?: any | null; // DateTime
+    updatedAt_in?: any[] | null; // [DateTime!]
+    updatedAt_lt?: any | null; // DateTime
+    updatedAt_lte?: any | null; // DateTime
+    updatedAt_not?: any | null; // DateTime
+    updatedAt_not_in?: any[] | null; // [DateTime!]
+  }
+  InspectionUpdateInput: { // input type
+    licensePlate?: string | null; // String
+    record?: string | null; // String
+    source?: NexusGenInputs['CollectionUpdateOneRequiredInput'] | null; // CollectionUpdateOneRequiredInput
+    user?: NexusGenInputs['UserUpdateOneRequiredWithoutInspectionsInput'] | null; // UserUpdateOneRequiredWithoutInspectionsInput
+  }
+  InspectionUpdateManyDataInput: { // input type
+    licensePlate?: string | null; // String
+    record?: string | null; // String
+  }
+  InspectionUpdateManyWithWhereNestedInput: { // input type
+    data: NexusGenInputs['InspectionUpdateManyDataInput']; // InspectionUpdateManyDataInput!
+    where: NexusGenInputs['InspectionScalarWhereInput']; // InspectionScalarWhereInput!
+  }
+  InspectionUpdateManyWithoutUserInput: { // input type
+    connect?: NexusGenInputs['InspectionWhereUniqueInput'][] | null; // [InspectionWhereUniqueInput!]
+    create?: NexusGenInputs['InspectionCreateWithoutUserInput'][] | null; // [InspectionCreateWithoutUserInput!]
+    delete?: NexusGenInputs['InspectionWhereUniqueInput'][] | null; // [InspectionWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['InspectionScalarWhereInput'][] | null; // [InspectionScalarWhereInput!]
+    disconnect?: NexusGenInputs['InspectionWhereUniqueInput'][] | null; // [InspectionWhereUniqueInput!]
+    set?: NexusGenInputs['InspectionWhereUniqueInput'][] | null; // [InspectionWhereUniqueInput!]
+    update?: NexusGenInputs['InspectionUpdateWithWhereUniqueWithoutUserInput'][] | null; // [InspectionUpdateWithWhereUniqueWithoutUserInput!]
+    updateMany?: NexusGenInputs['InspectionUpdateManyWithWhereNestedInput'][] | null; // [InspectionUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['InspectionUpsertWithWhereUniqueWithoutUserInput'][] | null; // [InspectionUpsertWithWhereUniqueWithoutUserInput!]
+  }
+  InspectionUpdateWithWhereUniqueWithoutUserInput: { // input type
+    data: NexusGenInputs['InspectionUpdateWithoutUserDataInput']; // InspectionUpdateWithoutUserDataInput!
+    where: NexusGenInputs['InspectionWhereUniqueInput']; // InspectionWhereUniqueInput!
+  }
+  InspectionUpdateWithoutUserDataInput: { // input type
+    licensePlate?: string | null; // String
+    record?: string | null; // String
+    source?: NexusGenInputs['CollectionUpdateOneRequiredInput'] | null; // CollectionUpdateOneRequiredInput
+  }
+  InspectionUpsertWithWhereUniqueWithoutUserInput: { // input type
+    create: NexusGenInputs['InspectionCreateWithoutUserInput']; // InspectionCreateWithoutUserInput!
+    update: NexusGenInputs['InspectionUpdateWithoutUserDataInput']; // InspectionUpdateWithoutUserDataInput!
+    where: NexusGenInputs['InspectionWhereUniqueInput']; // InspectionWhereUniqueInput!
   }
   InspectionWhereInput: { // input type
     AND?: NexusGenInputs['InspectionWhereInput'][] | null; // [InspectionWhereInput!]
@@ -129,6 +274,85 @@ export interface NexusGenInputs {
     updatedAt_not?: any | null; // DateTime
     updatedAt_not_in?: any[] | null; // [DateTime!]
     user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+  }
+  InspectionWhereUniqueInput: { // input type
+    id?: string | null; // ID
+  }
+  UserCreateInput: { // input type
+    cc: number; // Int!
+    email: string; // String!
+    inspections?: NexusGenInputs['InspectionCreateManyWithoutUserInput'] | null; // InspectionCreateManyWithoutUserInput
+    name?: string | null; // String
+    nickname: string; // String!
+    password: string; // String!
+    permissions?: NexusGenInputs['UserCreatepermissionsInput'] | null; // UserCreatepermissionsInput
+    resetToken?: string | null; // String
+    resetTokenExpiry?: number | null; // Float
+  }
+  UserCreateOneInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
+    create?: NexusGenInputs['UserCreateInput'] | null; // UserCreateInput
+  }
+  UserCreateOneWithoutInspectionsInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
+    create?: NexusGenInputs['UserCreateWithoutInspectionsInput'] | null; // UserCreateWithoutInspectionsInput
+  }
+  UserCreateWithoutInspectionsInput: { // input type
+    cc: number; // Int!
+    email: string; // String!
+    name?: string | null; // String
+    nickname: string; // String!
+    password: string; // String!
+    permissions?: NexusGenInputs['UserCreatepermissionsInput'] | null; // UserCreatepermissionsInput
+    resetToken?: string | null; // String
+    resetTokenExpiry?: number | null; // Float
+  }
+  UserCreatepermissionsInput: { // input type
+    set?: NexusGenEnums['Permission'][] | null; // [Permission!]
+  }
+  UserUpdateDataInput: { // input type
+    cc?: number | null; // Int
+    email?: string | null; // String
+    inspections?: NexusGenInputs['InspectionUpdateManyWithoutUserInput'] | null; // InspectionUpdateManyWithoutUserInput
+    name?: string | null; // String
+    nickname?: string | null; // String
+    password?: string | null; // String
+    permissions?: NexusGenInputs['UserUpdatepermissionsInput'] | null; // UserUpdatepermissionsInput
+    resetToken?: string | null; // String
+    resetTokenExpiry?: number | null; // Float
+  }
+  UserUpdateOneRequiredInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
+    create?: NexusGenInputs['UserCreateInput'] | null; // UserCreateInput
+    update?: NexusGenInputs['UserUpdateDataInput'] | null; // UserUpdateDataInput
+    upsert?: NexusGenInputs['UserUpsertNestedInput'] | null; // UserUpsertNestedInput
+  }
+  UserUpdateOneRequiredWithoutInspectionsInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
+    create?: NexusGenInputs['UserCreateWithoutInspectionsInput'] | null; // UserCreateWithoutInspectionsInput
+    update?: NexusGenInputs['UserUpdateWithoutInspectionsDataInput'] | null; // UserUpdateWithoutInspectionsDataInput
+    upsert?: NexusGenInputs['UserUpsertWithoutInspectionsInput'] | null; // UserUpsertWithoutInspectionsInput
+  }
+  UserUpdateWithoutInspectionsDataInput: { // input type
+    cc?: number | null; // Int
+    email?: string | null; // String
+    name?: string | null; // String
+    nickname?: string | null; // String
+    password?: string | null; // String
+    permissions?: NexusGenInputs['UserUpdatepermissionsInput'] | null; // UserUpdatepermissionsInput
+    resetToken?: string | null; // String
+    resetTokenExpiry?: number | null; // Float
+  }
+  UserUpdatepermissionsInput: { // input type
+    set?: NexusGenEnums['Permission'][] | null; // [Permission!]
+  }
+  UserUpsertNestedInput: { // input type
+    create: NexusGenInputs['UserCreateInput']; // UserCreateInput!
+    update: NexusGenInputs['UserUpdateDataInput']; // UserUpdateDataInput!
+  }
+  UserUpsertWithoutInspectionsInput: { // input type
+    create: NexusGenInputs['UserCreateWithoutInspectionsInput']; // UserCreateWithoutInspectionsInput!
+    update: NexusGenInputs['UserUpdateWithoutInspectionsDataInput']; // UserUpdateWithoutInspectionsDataInput!
   }
   UserWhereInput: { // input type
     AND?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
@@ -254,6 +478,12 @@ export interface NexusGenInputs {
     updatedAt_not?: any | null; // DateTime
     updatedAt_not_in?: any[] | null; // [DateTime!]
   }
+  UserWhereUniqueInput: { // input type
+    cc?: number | null; // Int
+    email?: string | null; // String
+    id?: string | null; // ID
+    nickname?: string | null; // String
+  }
 }
 
 export interface NexusGenEnums {
@@ -299,9 +529,40 @@ export interface NexusGenRootTypes {
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
+  CollectionCreateInput: NexusGenInputs['CollectionCreateInput'];
+  CollectionCreateOneInput: NexusGenInputs['CollectionCreateOneInput'];
+  CollectionUpdateDataInput: NexusGenInputs['CollectionUpdateDataInput'];
+  CollectionUpdateOneRequiredInput: NexusGenInputs['CollectionUpdateOneRequiredInput'];
+  CollectionUpsertNestedInput: NexusGenInputs['CollectionUpsertNestedInput'];
   CollectionWhereInput: NexusGenInputs['CollectionWhereInput'];
+  CollectionWhereUniqueInput: NexusGenInputs['CollectionWhereUniqueInput'];
+  InspectionCreateInput: NexusGenInputs['InspectionCreateInput'];
+  InspectionCreateManyWithoutUserInput: NexusGenInputs['InspectionCreateManyWithoutUserInput'];
+  InspectionCreateWithoutUserInput: NexusGenInputs['InspectionCreateWithoutUserInput'];
+  InspectionScalarWhereInput: NexusGenInputs['InspectionScalarWhereInput'];
+  InspectionUpdateInput: NexusGenInputs['InspectionUpdateInput'];
+  InspectionUpdateManyDataInput: NexusGenInputs['InspectionUpdateManyDataInput'];
+  InspectionUpdateManyWithWhereNestedInput: NexusGenInputs['InspectionUpdateManyWithWhereNestedInput'];
+  InspectionUpdateManyWithoutUserInput: NexusGenInputs['InspectionUpdateManyWithoutUserInput'];
+  InspectionUpdateWithWhereUniqueWithoutUserInput: NexusGenInputs['InspectionUpdateWithWhereUniqueWithoutUserInput'];
+  InspectionUpdateWithoutUserDataInput: NexusGenInputs['InspectionUpdateWithoutUserDataInput'];
+  InspectionUpsertWithWhereUniqueWithoutUserInput: NexusGenInputs['InspectionUpsertWithWhereUniqueWithoutUserInput'];
   InspectionWhereInput: NexusGenInputs['InspectionWhereInput'];
+  InspectionWhereUniqueInput: NexusGenInputs['InspectionWhereUniqueInput'];
+  UserCreateInput: NexusGenInputs['UserCreateInput'];
+  UserCreateOneInput: NexusGenInputs['UserCreateOneInput'];
+  UserCreateOneWithoutInspectionsInput: NexusGenInputs['UserCreateOneWithoutInspectionsInput'];
+  UserCreateWithoutInspectionsInput: NexusGenInputs['UserCreateWithoutInspectionsInput'];
+  UserCreatepermissionsInput: NexusGenInputs['UserCreatepermissionsInput'];
+  UserUpdateDataInput: NexusGenInputs['UserUpdateDataInput'];
+  UserUpdateOneRequiredInput: NexusGenInputs['UserUpdateOneRequiredInput'];
+  UserUpdateOneRequiredWithoutInspectionsInput: NexusGenInputs['UserUpdateOneRequiredWithoutInspectionsInput'];
+  UserUpdateWithoutInspectionsDataInput: NexusGenInputs['UserUpdateWithoutInspectionsDataInput'];
+  UserUpdatepermissionsInput: NexusGenInputs['UserUpdatepermissionsInput'];
+  UserUpsertNestedInput: NexusGenInputs['UserUpsertNestedInput'];
+  UserUpsertWithoutInspectionsInput: NexusGenInputs['UserUpsertWithoutInspectionsInput'];
   UserWhereInput: NexusGenInputs['UserWhereInput'];
+  UserWhereUniqueInput: NexusGenInputs['UserWhereUniqueInput'];
   CollectionOrderByInput: NexusGenEnums['CollectionOrderByInput'];
   CollectionType: NexusGenEnums['CollectionType'];
   Permission: NexusGenEnums['Permission'];
@@ -331,11 +592,12 @@ export interface NexusGenFieldTypes {
     user: NexusGenRootTypes['User']; // User!
   }
   Mutation: { // field return type
-    createCollection: NexusGenRootTypes['Collection'] | null; // Collection
     createInspection: NexusGenRootTypes['Inspection'] | null; // Inspection
     login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     signout: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
+    upsertCollection: NexusGenRootTypes['Collection'] | null; // Collection
+    upsertInspection: NexusGenRootTypes['Inspection']; // Inspection!
   }
   Query: { // field return type
     collections: NexusGenRootTypes['Collection'][]; // [Collection!]!
@@ -355,10 +617,6 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenArgTypes {
   Mutation: {
-    createCollection: { // args
-      name?: string | null; // String
-      type?: string | null; // String
-    }
     createInspection: { // args
       licensePlate?: string | null; // String
       record?: string | null; // String
@@ -374,6 +632,16 @@ export interface NexusGenArgTypes {
       name?: string | null; // String
       nickname?: string | null; // String
       password?: string | null; // String
+    }
+    upsertCollection: { // args
+      id?: string | null; // ID
+      name?: string | null; // String
+      type?: string | null; // String
+    }
+    upsertInspection: { // args
+      create: NexusGenInputs['InspectionCreateInput']; // InspectionCreateInput!
+      update: NexusGenInputs['InspectionUpdateInput']; // InspectionUpdateInput!
+      where: NexusGenInputs['InspectionWhereUniqueInput']; // InspectionWhereUniqueInput!
     }
   }
   Query: {
@@ -399,7 +667,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "AuthPayload" | "Collection" | "Inspection" | "Mutation" | "Query" | "User";
 
-export type NexusGenInputNames = "CollectionWhereInput" | "InspectionWhereInput" | "UserWhereInput";
+export type NexusGenInputNames = "CollectionCreateInput" | "CollectionCreateOneInput" | "CollectionUpdateDataInput" | "CollectionUpdateOneRequiredInput" | "CollectionUpsertNestedInput" | "CollectionWhereInput" | "CollectionWhereUniqueInput" | "InspectionCreateInput" | "InspectionCreateManyWithoutUserInput" | "InspectionCreateWithoutUserInput" | "InspectionScalarWhereInput" | "InspectionUpdateInput" | "InspectionUpdateManyDataInput" | "InspectionUpdateManyWithWhereNestedInput" | "InspectionUpdateManyWithoutUserInput" | "InspectionUpdateWithWhereUniqueWithoutUserInput" | "InspectionUpdateWithoutUserDataInput" | "InspectionUpsertWithWhereUniqueWithoutUserInput" | "InspectionWhereInput" | "InspectionWhereUniqueInput" | "UserCreateInput" | "UserCreateOneInput" | "UserCreateOneWithoutInspectionsInput" | "UserCreateWithoutInspectionsInput" | "UserCreatepermissionsInput" | "UserUpdateDataInput" | "UserUpdateOneRequiredInput" | "UserUpdateOneRequiredWithoutInspectionsInput" | "UserUpdateWithoutInspectionsDataInput" | "UserUpdatepermissionsInput" | "UserUpsertNestedInput" | "UserUpsertWithoutInspectionsInput" | "UserWhereInput" | "UserWhereUniqueInput";
 
 export type NexusGenEnumNames = "CollectionOrderByInput" | "CollectionType" | "Permission";
 

@@ -18,41 +18,44 @@ const possibleCollections = [
   },
 ];
 
-const CREATE_COLLECTION = gql`
-  mutation CREATE_COLLECTION($name: String!, $type: String!) {
-    createCollection(name: $name, type: $type) {
+const UPSERT_COLLECTION = gql`
+  mutation UPSERT_COLLECTION($name: String, $type: String, $id: ID) {
+    upsertCollection(name: $name, type: $type, id: $id) {
       id
       name
     }
   }
 `;
 
-const Collection: React.FunctionComponent = () => {
+const Collection: React.FunctionComponent = props => {
   const { values, handleChange, handleSubmit, resetValues } = useForm(null);
-  console.log(values);
+  const withId = props.id;
+  console.log({ ...values, id: withId });
+  const data = { ...values, id: withId };
+
   return (
     <Mutation
-      mutation={CREATE_COLLECTION}
-      variables={values}
+      mutation={UPSERT_COLLECTION}
+      variables={data}
       onCompleted={() => {
         resetValues();
       }}
     >
-      {(createCollection, { error, loading }) => {
+      {(upsertCollection, { error, loading }) => {
         if (loading) return <Loading />;
 
         return (
           <CollectionStyles
             onSubmit={e => {
-              handleSubmit(e, createCollection);
+              handleSubmit(e, upsertCollection);
             }}
           >
             <div>
               <ReactTooltip place="bottom" effect="solid" />
               <h3>
-                Colecciones de datos{' '}
+                Crear un nuevo dato
                 <Help
-                  data-tip="Aquí puedes crear o modificar todas las colecciones de datos que
+                  data-tip="Aquí puedes crear o actualizar las colecciones de datos que
                 usa la aplicación"
                 >
                   ?
@@ -67,6 +70,7 @@ const Collection: React.FunctionComponent = () => {
                 onChange={handleChange}
                 required
               />
+
               <InputSelect
                 name="type"
                 value={values.type || ''}
@@ -86,7 +90,7 @@ const Collection: React.FunctionComponent = () => {
             {error && <p>Ha ocurrido un error, intenta de nuevo.</p>}
 
             <ButtonPrimary type="submit" className="btn" disabled={loading}>
-              Crear
+              {withId ? 'Actualizar' : 'Crear'}
             </ButtonPrimary>
           </CollectionStyles>
         );

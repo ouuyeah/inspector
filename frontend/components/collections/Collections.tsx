@@ -45,7 +45,7 @@ const Collections: React.FunctionComponent = () => {
           <CollectionsStyles>
             <div className="titles">
               <h3>Colecciones</h3>
-              <Link href="/collection">
+              <Link href="/collections/create">
                 <a>Crear</a>
               </Link>
             </div>
@@ -58,7 +58,7 @@ const Collections: React.FunctionComponent = () => {
                       text: 'Editar',
                       onPress: () =>
                         Router.push({
-                          pathname: '/collection',
+                          pathname: '/collections/item',
                           query: { id: collection.id },
                         }),
                       className: 'edit',
