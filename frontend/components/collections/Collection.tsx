@@ -10,6 +10,8 @@ import ButtonPrimary from '../styles/ButtonPrimary';
 import CollectionStyles from './styles/CollectionStyles';
 import Help from '../styles/Help';
 import Loading from '../Loading';
+import Router from 'next/router';
+import { LIST_COLLECTIONS } from './Collections';
 
 const possibleCollections = [
   {
@@ -37,8 +39,9 @@ const Collection: React.FunctionComponent = props => {
     <Mutation
       mutation={UPSERT_COLLECTION}
       variables={data}
+      refetchQueries={[{ query: LIST_COLLECTIONS }]}
       onCompleted={() => {
-        resetValues();
+        Router.push('/collections/view');
       }}
     >
       {(upsertCollection, { error, loading }) => {
@@ -53,7 +56,7 @@ const Collection: React.FunctionComponent = props => {
             <div>
               <ReactTooltip place="bottom" effect="solid" />
               <h3>
-                Crear un nuevo dato
+                {withId ? 'Actualizar ' : 'Crear '} dato
                 <Help
                   data-tip="Aquí puedes crear o actualizar las colecciones de datos que
                 usa la aplicación"

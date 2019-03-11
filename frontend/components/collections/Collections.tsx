@@ -45,7 +45,7 @@ const Collections: React.FunctionComponent = () => {
           <CollectionsStyles>
             <div className="titles">
               <h3>Colecciones</h3>
-              <Link href="/collections/create">
+              <Link href="/collections/item">
                 <a>Crear</a>
               </Link>
             </div>
@@ -116,4 +116,5 @@ const Collections: React.FunctionComponent = () => {
   );
 };
 
+export { LIST_COLLECTIONS };
 export default Collections;
