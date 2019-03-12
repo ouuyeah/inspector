@@ -113,7 +113,8 @@ export const Mutation = prismaObjectType({
       resolve: (parent, { id, name, type }, ctx) => {
         const userId = getUserId(ctx)
         console.log(id)
-        const iD = id || ''
+        const iD = id || '5c871366c9e77c0000000000'
+        console.log(iD)
         return ctx.prisma.upsertCollection({
           where: { id: iD },
           create: {

@@ -1,3 +1,5 @@
+require('dotenv').config({ path: 'variables.env' })
+
 import { GraphQLServer } from 'graphql-yoga'
 import { prisma } from './generated/prisma-client'
 import * as path from 'path'
@@ -6,8 +8,6 @@ import { permissions } from './permissions'
 import * as allTypes from './resolvers'
 import datamodelInfo from './generated/nexus-prisma'
 import cookieParser from 'cookie-parser'
-
-require('dotenv').config({ path: 'variables.env' })
 
 console.log(process.env.APP_SECRET)
 const schema = makePrismaSchema({

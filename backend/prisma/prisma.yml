@@ -6,6 +6,8 @@
 #endpoint: https://prisma.hotssy.com/inspector/production
 #endpoint: https://prisma.hotssy.com/inspector/production
 #endpoint: https://prisma.hotssy.com/inspector/production
+#endpoint: ${env:PRISMA_ENDPOINT}
+#endpoint: https://prisma.hotssy.com/inspector/production
 endpoint: ${env:PRISMA_ENDPOINT}
 
 # Defines your models, each model is mapped to the database as a table.
@@ -24,5 +26,5 @@ hooks:
     - npx nexus-prisma-generate --client ./src/generated/prisma-client --output ./src/generated/nexus-prisma # Runs the codegen tool from nexus-prisma.
 
 # Seeds initial data into the database by running a script.
-seed:
-  run: yarn ts-node ./prisma/seed.ts
+#seed:
+#  run: yarn ts-node ./prisma/seed.ts
