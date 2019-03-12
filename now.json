@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "name": "inspector",
+  "builds": [
+    {
+      "src": "/frontend/next.config.js",
+      "use": "@now/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/frontend/_next/static/(?:[^/]+/pages|chunks|runtime)/.+",
+      "headers": {
+        "cache-control": "immutable"
+      }
+    }
+  ]
+}

@@ -3,3 +3,6 @@ const withImages = require('next-images');
 const withCSS = require('@zeit/next-css');
 
 module.exports = withTypescript(withImages(withCSS()));
+module.exports = {
+  target: 'serverless',
+};
