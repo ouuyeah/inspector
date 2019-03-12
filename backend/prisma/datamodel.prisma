@@ -9,7 +9,7 @@ enum CollectionType {
 }
 
 type User {
-  id: ID! @unique
+  id: ID! @id
   cc: Int! @unique
   email: String! @unique
   nickname: String! @unique
@@ -17,27 +17,27 @@ type User {
   name: String
   resetToken: String
   resetTokenExpiry: Float
-  inspections: [Inspection!]!
+  inspections: [Inspection!]! @relation(link: INLINE)
   permissions: [Permission]
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type Inspection {
-  id: ID! @unique
-  source: Collection!
+  id: ID! @id
+  source: Collection! @relation(link: INLINE)
   record: String!
   licensePlate: String!
   user: User!
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type Collection {
-  id: ID! @unique
+  id: ID! @id
   type: CollectionType!
   name: String! @unique
-  user: User!
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  user: User! @relation(link: INLINE)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }

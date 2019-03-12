@@ -1,10 +1,16 @@
 # Specifies the HTTP endpoint of your Prisma API.
 #endpoint: ''
 #endpoint: ''
-endpoint: https://us1.prisma.sh/julian-alvarez/inspector/dev
+#endpoint: https://us1.prisma.sh/julian-alvarez/inspector/dev
+#endpoint: https://prisma.hotssy.com/inspector/production
+#endpoint: https://prisma.hotssy.com/inspector/production
+#endpoint: https://prisma.hotssy.com/inspector/production
+#endpoint: https://prisma.hotssy.com/inspector/production
+endpoint: ${env:PRISMA_ENDPOINT}
 
 # Defines your models, each model is mapped to the database as a table.
 datamodel: datamodel.prisma
+secret: ${env:PRISMA_SECRET}
 
 # Specifies the language and directory for the generated Prisma client.
 generate:
