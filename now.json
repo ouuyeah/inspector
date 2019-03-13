@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "inspector",
+  "regions": ["bru"],
   "builds": [
     {
       "src": "/frontend/next.config.js",
@@ -12,6 +13,13 @@
       "src": "/frontend/_next/static/(?:[^/]+/pages|chunks|runtime)/.+",
       "headers": {
         "cache-control": "immutable"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/$1",
+      "headers": {
+        "x-request-path": "$1"
       }
     }
   ]

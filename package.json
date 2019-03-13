@@ -1,10 +1,11 @@
 {
-  "name": "sexcito",
+  "name": "inspector",
   "version": "1.0.0",
   "private": true,
-  "scripts": {
-    "test": "eslint --quiet ."
-  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "eslint": "^5.6.1",
