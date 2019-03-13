@@ -1,17 +1,26 @@
 {
   "version": 2,
   "name": "inspector",
-  "regions": ["bru"],
+  "public": true,
   "builds": [
     {
       "src": "/frontend/next.config.js",
       "use": "@now/next"
     },
     {
-      "src": "/backend/dist/src/index.js",
-      "use": "@now/node-server"
+      "src": "/backend/src/index.ts",
+      "use": "@now/node-server@canary"
     }
   ],
+  "build": {
+    "env": {
+      "PORT": "4444",
+      "FRONTEND_URL": "http://localhost:7777",
+      "PRISMA_ENDPOINT": "https://prisma.hotssy.com/sapco/production?headers={'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJzYXBjb0Bwcm9kdWN0aW9uIiwicm9sZXMiOlsiYWRtaW4iXX0sImlhdCI6MTU1MjM1NTA5MywiZXhwIjoxNTUyOTU5ODkzfQ.yTCEEGfBnthQ7ryEJ_TbqrQOZogTdSa-TMMAowdzzRs'}",
+      "PRISMA_SECRET": "MVbkc39cDt5YVSQthU6L3DJ5PHhNagzjfcjsQzArtccbjCDxJX",
+      "APP_SECRET": "sx7*2019"
+    }
+  },
   "routes": [
     {
       "src": "/frontend/_next/static/(?:[^/]+/pages|chunks|runtime)/.+",
@@ -20,15 +29,19 @@
       }
     },
     {
+      "src": "/playground",
+      "dest": "/backend/src/index.ts"
+    },
+    {
+      "src": "/api",
+      "dest": "/backend/src/index.ts"
+    },
+    {
       "src": "/(.*)",
       "dest": "/frontend/$1",
       "headers": {
         "x-request-path": "$1"
       }
-    },
-    {
-      "src": "/graphql",
-      "dest": "/backend-dist/src/index.js"
     }
   ]
 }

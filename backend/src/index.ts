@@ -60,6 +60,8 @@ server.express.use(cookieParser())
 
 server.start(
   {
+    endpoint: '/api',
+    playground: '/playground',
     cors: {
       credentials: true,
       origin: process.env.FRONTEND_URL,

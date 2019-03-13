@@ -3,9 +3,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "NODE_ENV=development nodemon --exec ts-node src/index.ts",
-    "deploy": "prisma deploy --env-file .env",
-    "build": "tsc",
-    "dev-dist": "NODE_ENV=development nodemon dist/src/index.js"
+    "prisma-deploy": "prisma deploy --env-file .env"
   },
   "prettier": {
     "semi": false,

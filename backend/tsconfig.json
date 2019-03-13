@@ -1,7 +1,14 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
     "sourceMap": true,
+    "jsx": "preserve",
     "outDir": "dist",
+    "allowJs": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "target": "esnext",
     "pretty": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -12,6 +19,7 @@
     "alwaysStrict": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
+    "typeRoots": ["./node_modules/@types", "./@types"],
     "skipLibCheck": true // `skipLibCheck` is enabled until this is issue is fixed: https://github.com/prisma/nexus-prisma/issues/82
   },
 
