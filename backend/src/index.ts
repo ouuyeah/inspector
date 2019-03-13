@@ -10,6 +10,7 @@ import datamodelInfo from './generated/nexus-prisma'
 import cookieParser from 'cookie-parser'
 
 console.log(process.env.APP_SECRET)
+console.log(process.env.FRONTEND_URL)
 const schema = makePrismaSchema({
   // Provide all the GraphQL types we've implemented
   types: allTypes,
@@ -57,7 +58,7 @@ const server = new GraphQLServer({
 
 // TODO Use express middleware to handle cookies (JWT)
 server.express.use(cookieParser())
-
+console.log()
 server.start(
   {
     endpoint: '/api',
