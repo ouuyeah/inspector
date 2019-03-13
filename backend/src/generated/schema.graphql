@@ -338,7 +338,7 @@ type Mutation {
   login(email: String, password: String): AuthPayload
   signout: AuthPayload
   signup(cc: Int, email: String, name: String, nickname: String, password: String): AuthPayload
-  upsertCollection(id: ID, name: String, type: String): Collection
+  upsertCollection(id: ID, name: String, type: CollectionType): Collection
   upsertInspection(create: InspectionCreateInput!, update: InspectionUpdateInput!, where: InspectionWhereUniqueInput!): Inspection!
 }
 

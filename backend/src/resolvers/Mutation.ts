@@ -1,5 +1,5 @@
-import { stringArg, idArg, intArg, mutationType } from 'nexus'
-import { prismaObjectType } from 'nexus-prisma'
+import { stringArg, idArg, intArg, arg } from 'nexus'
+import { prismaObjectType, prismaEnumType } from 'nexus-prisma'
 import { hash, compare } from 'bcrypt'
 import { APP_SECRET, getUserId } from '../utils'
 import { sign } from 'jsonwebtoken'
@@ -108,7 +108,7 @@ export const Mutation = prismaObjectType({
       args: {
         id: idArg(),
         name: stringArg(),
-        type: stringArg(),
+        type: arg({ type: 'CollectionType' }),
       },
       resolve: (parent, { id, name, type }, ctx) => {
         const userId = getUserId(ctx)

@@ -636,7 +636,7 @@ export interface NexusGenArgTypes {
     upsertCollection: { // args
       id?: string | null; // ID
       name?: string | null; // String
-      type?: string | null; // String
+      type?: NexusGenEnums['CollectionType'] | null; // CollectionType
     }
     upsertInspection: { // args
       create: NexusGenInputs['InspectionCreateInput']; // InspectionCreateInput!

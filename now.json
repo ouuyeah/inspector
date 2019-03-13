@@ -6,6 +6,10 @@
     {
       "src": "/frontend/next.config.js",
       "use": "@now/next"
+    },
+    {
+      "src": "/backend/dist/src/index.js",
+      "use": "@now/node-server"
     }
   ],
   "routes": [
@@ -21,6 +25,10 @@
       "headers": {
         "x-request-path": "$1"
       }
+    },
+    {
+      "src": "/graphql",
+      "dest": "/backend-dist/src/index.js"
     }
   ]
 }
