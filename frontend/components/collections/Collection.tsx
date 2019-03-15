@@ -21,7 +21,7 @@ const possibleCollections = [
 ];
 
 const UPSERT_COLLECTION = gql`
-  mutation UPSERT_COLLECTION($name: String, $type: String, $id: ID) {
+  mutation UPSERT_COLLECTION($name: String, $type: CollectionType, $id: ID) {
     upsertCollection(name: $name, type: $type, id: $id) {
       id
       name

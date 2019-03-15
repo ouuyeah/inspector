@@ -1,6 +1,6 @@
 import { Query } from 'react-apollo';
 import { CURRENT_USER_QUERY } from './User';
-import Link from 'next/link';
+
 import AuthStyles from './styles/AuthStyles';
 import Login from './login/Login';
 import Loading from './Loading';

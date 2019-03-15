@@ -34,7 +34,6 @@ class SignIn extends Component {
     return (
       <User skip={!this.props.hasLoginToken && !this.state.hasLogin}>
         {({ data }) => {
-          console.log('hola');
           return (
             <Mutation
               mutation={SIGNIN_MUTATION}

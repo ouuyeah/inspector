@@ -20,7 +20,7 @@ const possibleCollections = [
 
 const LIST_COLLECTIONS = gql`
   query {
-    collections(orderBy: name_ASC) {
+    collections(orderBy: name_DESC) {
       id
       type
       name

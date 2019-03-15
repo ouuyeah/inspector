@@ -12,6 +12,14 @@
       "use": "@now/node-server@canary"
     }
   ],
+
+  "env": {
+    "PORT": "4444",
+    "FRONTEND_URL": "http://localhost:7777",
+    "PRISMA_ENDPOINT": "https://prisma.hotssy.com/sapco/production?headers={\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJzYXBjb0Bwcm9kdWN0aW9uIiwicm9sZXMiOlsiYWRtaW4iXX0sImlhdCI6MTU1MjM1NTA5MywiZXhwIjoxNTUyOTU5ODkzfQ.yTCEEGfBnthQ7ryEJ_TbqrQOZogTdSa-TMMAowdzzRs\"}",
+    "PRISMA_SECRET": "MVbkc39cDt5YVSQthU6L3DJ5PHhNagzjfcjsQzArtccbjCDxJX",
+    "APP_SECRET": "sx7*2019"
+  },
   "build": {
     "env": {
       "PORT": "4444",

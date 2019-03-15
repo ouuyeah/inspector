@@ -1,10 +1,11 @@
 import * as React from 'react';
 import useForm from '../hooks/useForm';
-import { Mutation } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import FormStyles from './styles/FormStartInspection';
 import InputText from '../styles/InputText';
+import InputSelect from '../styles/InputSelect';
 import ButtonPrimary from '../styles/ButtonPrimary';
 import TextCSS from './styles/TextCC';
 import User from '../User';
@@ -23,6 +24,15 @@ const START_INSPECTION = gql`
     ) {
       id
       licensePlate
+    }
+  }
+`;
+
+const ALL_COLLECTIONS_QUERY = gql`
+  query ALL_COLLECTIONS_QUERY {
+    collections(where: { type: SOURCE }) {
+      id
+      name
     }
   }
 `;
@@ -60,14 +70,28 @@ const StartInspection: React.FunctionComponent = () => {
                       <span>CC: </span> {me && me.cc}{' '}
                       {!me && 'Logueate por favor'}
                     </TextCSS>
-                    <InputText
-                      type="text"
-                      name="source"
-                      placeholder="Fuente"
-                      value={values.source || ''}
-                      onChange={handleChange}
-                      required
-                    />
+                    <Query query={ALL_COLLECTIONS_QUERY}>
+                      {({ data, loading, error }) => {
+                        const { collections } = data || {};
+                        if (loading) return <p>Cargando...</p>;
+                        if (error) return <p>Error</p>;
+                        return (
+                          <InputSelect
+                            name="source"
+                            value={values.source || ''}
+                            onChange={handleChange}
+                            required
+                          >
+                            <option value="">Fuente</option>
+                            {collections.map(collection => (
+                              <option key={collection.id} value={collection.id}>
+                                {collection.name}
+                              </option>
+                            ))}
+                          </InputSelect>
+                        );
+                      }}
+                    </Query>
                     <InputText
                       type="text"
                       name="record"

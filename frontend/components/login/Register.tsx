@@ -69,7 +69,6 @@ const SignUp: React.FunctionComponent = () => {
             <form
               method="post"
               onSubmit={e => {
-                e.preventDefault();
                 handleSubmit(e, signup);
               }}
               autoComplete="off"
