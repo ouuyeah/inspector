@@ -6,6 +6,7 @@
 export default {
   uniqueFieldsByModel: {
     Permission: [],
+    ServiceState: [],
     CollectionType: [],
     User: ['id', 'cc', 'email', 'nickname'],
     Service: ['id', 'record'],
@@ -1524,6 +1525,62 @@ export default {
               "kind": "INPUT_OBJECT",
               "name": "UserWhereInput",
               "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "state",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "ServiceState",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "state_not",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "ServiceState",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "state_in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "ServiceState",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "state_not_in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "ServiceState",
+                  "ofType": null
+                }
+              }
             },
             "defaultValue": null
           },
@@ -3917,6 +3974,41 @@ export default {
       },
       {
         "kind": "ENUM",
+        "name": "ServiceState",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "CANCELED",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "FAILED",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "FINALIZED",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "PROCESS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
         "name": "ServiceOrderByInput",
         "description": null,
         "fields": null,
@@ -3955,6 +4047,18 @@ export default {
           },
           {
             "name": "licensePlate_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "state_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "state_DESC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -4077,6 +4181,18 @@ export default {
                 "name": "User",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "state",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "ENUM",
+              "name": "ServiceState",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -5922,6 +6038,16 @@ export default {
               }
             },
             "defaultValue": null
+          },
+          {
+            "name": "state",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "ServiceState",
+              "ofType": null
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -6417,6 +6543,16 @@ export default {
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "state",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "ServiceState",
               "ofType": null
             },
             "defaultValue": null
@@ -7305,6 +7441,62 @@ export default {
             "defaultValue": null
           },
           {
+            "name": "state",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "ServiceState",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "state_not",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "ServiceState",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "state_in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "ServiceState",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "state_not_in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "ServiceState",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
             "name": "createdAt",
             "description": null,
             "type": {
@@ -7619,6 +7811,16 @@ export default {
               "ofType": null
             },
             "defaultValue": null
+          },
+          {
+            "name": "state",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "ServiceState",
+              "ofType": null
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -7814,6 +8016,16 @@ export default {
               }
             },
             "defaultValue": null
+          },
+          {
+            "name": "state",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "ServiceState",
+              "ofType": null
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -8000,6 +8212,16 @@ export default {
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "UserUpdateOneRequiredWithoutServicesInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "state",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "ServiceState",
               "ofType": null
             },
             "defaultValue": null
@@ -8212,6 +8434,16 @@ export default {
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "state",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "ServiceState",
               "ofType": null
             },
             "defaultValue": null
@@ -9054,6 +9286,18 @@ export default {
                 "name": "String",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "state",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "ENUM",
+              "name": "ServiceState",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null

@@ -248,6 +248,7 @@ type Service {
   record: String!
   licensePlate: String!
   user: User!
+  state: ServiceState
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -263,6 +264,7 @@ input ServiceCreateInput {
   record: String!
   licensePlate: String!
   user: UserCreateOneWithoutServicesInput!
+  state: ServiceState
 }
 
 input ServiceCreateManyWithoutUserInput {
@@ -274,6 +276,7 @@ input ServiceCreateWithoutUserInput {
   source: CollectionCreateOneInput!
   record: String!
   licensePlate: String!
+  state: ServiceState
 }
 
 type ServiceEdge {
@@ -288,6 +291,8 @@ enum ServiceOrderByInput {
   record_DESC
   licensePlate_ASC
   licensePlate_DESC
+  state_ASC
+  state_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -298,6 +303,7 @@ type ServicePreviousValues {
   id: ID!
   record: String!
   licensePlate: String!
+  state: ServiceState
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -345,6 +351,10 @@ input ServiceScalarWhereInput {
   licensePlate_not_starts_with: String
   licensePlate_ends_with: String
   licensePlate_not_ends_with: String
+  state: ServiceState
+  state_not: ServiceState
+  state_in: [ServiceState!]
+  state_not_in: [ServiceState!]
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -364,6 +374,13 @@ input ServiceScalarWhereInput {
   AND: [ServiceScalarWhereInput!]
   OR: [ServiceScalarWhereInput!]
   NOT: [ServiceScalarWhereInput!]
+}
+
+enum ServiceState {
+  CANCELED
+  FAILED
+  FINALIZED
+  PROCESS
 }
 
 type ServiceSubscriptionPayload {
@@ -389,16 +406,19 @@ input ServiceUpdateInput {
   record: String
   licensePlate: String
   user: UserUpdateOneRequiredWithoutServicesInput
+  state: ServiceState
 }
 
 input ServiceUpdateManyDataInput {
   record: String
   licensePlate: String
+  state: ServiceState
 }
 
 input ServiceUpdateManyMutationInput {
   record: String
   licensePlate: String
+  state: ServiceState
 }
 
 input ServiceUpdateManyWithoutUserInput {
@@ -422,6 +442,7 @@ input ServiceUpdateWithoutUserDataInput {
   source: CollectionUpdateOneRequiredInput
   record: String
   licensePlate: String
+  state: ServiceState
 }
 
 input ServiceUpdateWithWhereUniqueWithoutUserInput {
@@ -480,6 +501,10 @@ input ServiceWhereInput {
   licensePlate_ends_with: String
   licensePlate_not_ends_with: String
   user: UserWhereInput
+  state: ServiceState
+  state_not: ServiceState
+  state_in: [ServiceState!]
+  state_not_in: [ServiceState!]
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]

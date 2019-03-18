@@ -112,6 +112,7 @@ export interface NexusPrismaTypes {
   }
   enumTypes: {
     CollectionType: CollectionTypeValues,
+    ServiceState: ServiceStateValues,
     ServiceOrderByInput: ServiceOrderByInputValues,
     Permission: PermissionValues,
     UserOrderByInput: UserOrderByInputValues,
@@ -484,6 +485,7 @@ type ServiceObject =
   | { name: 'record', args?: [] | false, alias?: string  } 
   | { name: 'licensePlate', args?: [] | false, alias?: string  } 
   | { name: 'user', args?: [] | false, alias?: string  } 
+  | { name: 'state', args?: [] | false, alias?: string  } 
   | { name: 'createdAt', args?: [] | false, alias?: string  } 
   | { name: 'updatedAt', args?: [] | false, alias?: string  } 
 
@@ -493,6 +495,7 @@ type ServiceFields =
   | 'record'
   | 'licensePlate'
   | 'user'
+  | 'state'
   | 'createdAt'
   | 'updatedAt'
 
@@ -550,6 +553,19 @@ export interface ServiceFieldDetails {
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.User> | prisma.User
+  }
+  state: {
+    type: 'ServiceState'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Service">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.ServiceState | null> | prisma.ServiceState | null
   }
   createdAt: {
     type: 'DateTime'
@@ -1784,6 +1800,7 @@ type ServicePreviousValuesObject =
   | { name: 'id', args?: [] | false, alias?: string  } 
   | { name: 'record', args?: [] | false, alias?: string  } 
   | { name: 'licensePlate', args?: [] | false, alias?: string  } 
+  | { name: 'state', args?: [] | false, alias?: string  } 
   | { name: 'createdAt', args?: [] | false, alias?: string  } 
   | { name: 'updatedAt', args?: [] | false, alias?: string  } 
 
@@ -1791,6 +1808,7 @@ type ServicePreviousValuesFields =
   | 'id'
   | 'record'
   | 'licensePlate'
+  | 'state'
   | 'createdAt'
   | 'updatedAt'
 
@@ -1822,6 +1840,19 @@ export interface ServicePreviousValuesFieldDetails {
     list: undefined
     nullable: false
     resolve: undefined
+  }
+  state: {
+    type: 'ServiceState'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"ServicePreviousValues">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.ServiceState | null> | prisma.ServiceState | null
   }
   createdAt: {
     type: 'DateTime'
@@ -2041,6 +2072,10 @@ export interface ServiceWhereInput {
   licensePlate_ends_with?: string | null
   licensePlate_not_ends_with?: string | null
   user?: UserWhereInput | null
+  state?: prisma.ServiceState | null
+  state_not?: prisma.ServiceState | null
+  state_in?: prisma.ServiceState[]
+  state_not_in?: prisma.ServiceState[]
   createdAt?: string | null
   createdAt_not?: string | null
   createdAt_in?: string[]
@@ -2107,6 +2142,10 @@ export type ServiceWhereInputInputObject =
   | { name: 'licensePlate_ends_with', alias?: string  } 
   | { name: 'licensePlate_not_ends_with', alias?: string  } 
   | { name: 'user', alias?: string  } 
+  | { name: 'state', alias?: string  } 
+  | { name: 'state_not', alias?: string  } 
+  | { name: 'state_in', alias?: string  } 
+  | { name: 'state_not_in', alias?: string  } 
   | { name: 'createdAt', alias?: string  } 
   | { name: 'createdAt_not', alias?: string  } 
   | { name: 'createdAt_in', alias?: string  } 
@@ -2551,12 +2590,14 @@ export interface ServiceCreateWithoutUserInput {
   source?: CollectionCreateOneInput
   record?: string
   licensePlate?: string
+  state?: prisma.ServiceState | null
 }
 export type ServiceCreateWithoutUserInputInputObject =
   | Extract<keyof ServiceCreateWithoutUserInput, string>
   | { name: 'source', alias?: string  } 
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
+  | { name: 'state', alias?: string  } 
   
 export interface CollectionCreateOneInput {
   create?: CollectionCreateInput | null
@@ -2653,12 +2694,14 @@ export interface ServiceUpdateWithoutUserDataInput {
   source?: CollectionUpdateOneRequiredInput | null
   record?: string | null
   licensePlate?: string | null
+  state?: prisma.ServiceState | null
 }
 export type ServiceUpdateWithoutUserDataInputInputObject =
   | Extract<keyof ServiceUpdateWithoutUserDataInput, string>
   | { name: 'source', alias?: string  } 
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
+  | { name: 'state', alias?: string  } 
   
 export interface CollectionUpdateOneRequiredInput {
   create?: CollectionCreateInput | null
@@ -2799,6 +2842,10 @@ export interface ServiceScalarWhereInput {
   licensePlate_not_starts_with?: string | null
   licensePlate_ends_with?: string | null
   licensePlate_not_ends_with?: string | null
+  state?: prisma.ServiceState | null
+  state_not?: prisma.ServiceState | null
+  state_in?: prisma.ServiceState[]
+  state_not_in?: prisma.ServiceState[]
   createdAt?: string | null
   createdAt_not?: string | null
   createdAt_in?: string[]
@@ -2863,6 +2910,10 @@ export type ServiceScalarWhereInputInputObject =
   | { name: 'licensePlate_not_starts_with', alias?: string  } 
   | { name: 'licensePlate_ends_with', alias?: string  } 
   | { name: 'licensePlate_not_ends_with', alias?: string  } 
+  | { name: 'state', alias?: string  } 
+  | { name: 'state_not', alias?: string  } 
+  | { name: 'state_in', alias?: string  } 
+  | { name: 'state_not_in', alias?: string  } 
   | { name: 'createdAt', alias?: string  } 
   | { name: 'createdAt_not', alias?: string  } 
   | { name: 'createdAt_in', alias?: string  } 
@@ -2895,11 +2946,13 @@ export type ServiceUpdateManyWithWhereNestedInputInputObject =
 export interface ServiceUpdateManyDataInput {
   record?: string | null
   licensePlate?: string | null
+  state?: prisma.ServiceState | null
 }
 export type ServiceUpdateManyDataInputInputObject =
   | Extract<keyof ServiceUpdateManyDataInput, string>
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
+  | { name: 'state', alias?: string  } 
   
 export interface UserUpdateManyMutationInput {
   cc?: string | null
@@ -2927,6 +2980,7 @@ export interface ServiceCreateInput {
   record?: string
   licensePlate?: string
   user?: UserCreateOneWithoutServicesInput
+  state?: prisma.ServiceState | null
 }
 export type ServiceCreateInputInputObject =
   | Extract<keyof ServiceCreateInput, string>
@@ -2934,6 +2988,7 @@ export type ServiceCreateInputInputObject =
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
   | { name: 'user', alias?: string  } 
+  | { name: 'state', alias?: string  } 
   
 export interface UserCreateOneWithoutServicesInput {
   create?: UserCreateWithoutServicesInput | null
@@ -2970,6 +3025,7 @@ export interface ServiceUpdateInput {
   record?: string | null
   licensePlate?: string | null
   user?: UserUpdateOneRequiredWithoutServicesInput | null
+  state?: prisma.ServiceState | null
 }
 export type ServiceUpdateInputInputObject =
   | Extract<keyof ServiceUpdateInput, string>
@@ -2977,6 +3033,7 @@ export type ServiceUpdateInputInputObject =
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
   | { name: 'user', alias?: string  } 
+  | { name: 'state', alias?: string  } 
   
 export interface UserUpdateOneRequiredWithoutServicesInput {
   create?: UserCreateWithoutServicesInput | null
@@ -3024,11 +3081,13 @@ export type UserUpsertWithoutServicesInputInputObject =
 export interface ServiceUpdateManyMutationInput {
   record?: string | null
   licensePlate?: string | null
+  state?: prisma.ServiceState | null
 }
 export type ServiceUpdateManyMutationInputInputObject =
   | Extract<keyof ServiceUpdateManyMutationInput, string>
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
+  | { name: 'state', alias?: string  } 
   
 export interface CollectionUpdateInput {
   type?: prisma.CollectionType | null
@@ -3117,6 +3176,12 @@ export type CollectionSubscriptionWhereInputInputObject =
 export type CollectionTypeValues =
   | 'SOURCE'
   
+export type ServiceStateValues =
+  | 'CANCELED'
+  | 'FAILED'
+  | 'FINALIZED'
+  | 'PROCESS'
+  
 export type ServiceOrderByInputValues =
   | 'id_ASC'
   | 'id_DESC'
@@ -3124,6 +3189,8 @@ export type ServiceOrderByInputValues =
   | 'record_DESC'
   | 'licensePlate_ASC'
   | 'licensePlate_DESC'
+  | 'state_ASC'
+  | 'state_DESC'
   | 'createdAt_ASC'
   | 'createdAt_DESC'
   | 'updatedAt_ASC'

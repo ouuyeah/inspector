@@ -89,6 +89,7 @@ export const Mutation = prismaObjectType({
       type: 'Service',
       args: {
         source: stringArg(),
+        state: arg({ type: 'ServiceState' }),
         licensePlate: stringArg(),
         record: stringArg({ nullable: true }),
       },
@@ -97,6 +98,7 @@ export const Mutation = prismaObjectType({
         const license = licensePlate.toLocaleUpperCase()
         return ctx.prisma.createService({
           record,
+          state: 'PROCESS',
           licensePlate: license,
           user: { connect: { id: userId } },
           source: { connect: { id: source } },

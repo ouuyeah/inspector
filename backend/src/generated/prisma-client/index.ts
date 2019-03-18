@@ -194,6 +194,8 @@ export interface ClientConstructor<T> {
 
 export type CollectionType = "SOURCE";
 
+export type ServiceState = "CANCELED" | "FAILED" | "FINALIZED" | "PROCESS";
+
 export type ServiceOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -201,6 +203,8 @@ export type ServiceOrderByInput =
   | "record_DESC"
   | "licensePlate_ASC"
   | "licensePlate_DESC"
+  | "state_ASC"
+  | "state_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -294,6 +298,10 @@ export interface ServiceWhereInput {
   licensePlate_ends_with?: String;
   licensePlate_not_ends_with?: String;
   user?: UserWhereInput;
+  state?: ServiceState;
+  state_not?: ServiceState;
+  state_in?: ServiceState[] | ServiceState;
+  state_not_in?: ServiceState[] | ServiceState;
   createdAt?: DateTimeInput;
   createdAt_not?: DateTimeInput;
   createdAt_in?: DateTimeInput[] | DateTimeInput;
@@ -545,6 +553,7 @@ export interface ServiceCreateWithoutUserInput {
   source: CollectionCreateOneInput;
   record: String;
   licensePlate: String;
+  state?: ServiceState;
 }
 
 export interface CollectionCreateOneInput {
@@ -608,6 +617,7 @@ export interface ServiceUpdateWithoutUserDataInput {
   source?: CollectionUpdateOneRequiredInput;
   record?: String;
   licensePlate?: String;
+  state?: ServiceState;
 }
 
 export interface CollectionUpdateOneRequiredInput {
@@ -677,6 +687,10 @@ export interface ServiceScalarWhereInput {
   licensePlate_not_starts_with?: String;
   licensePlate_ends_with?: String;
   licensePlate_not_ends_with?: String;
+  state?: ServiceState;
+  state_not?: ServiceState;
+  state_in?: ServiceState[] | ServiceState;
+  state_not_in?: ServiceState[] | ServiceState;
   createdAt?: DateTimeInput;
   createdAt_not?: DateTimeInput;
   createdAt_in?: DateTimeInput[] | DateTimeInput;
@@ -706,6 +720,7 @@ export interface ServiceUpdateManyWithWhereNestedInput {
 export interface ServiceUpdateManyDataInput {
   record?: String;
   licensePlate?: String;
+  state?: ServiceState;
 }
 
 export interface UserUpdatepermissionsInput {
@@ -727,6 +742,7 @@ export interface ServiceCreateInput {
   record: String;
   licensePlate: String;
   user: UserCreateOneWithoutServicesInput;
+  state?: ServiceState;
 }
 
 export interface UserCreateOneWithoutServicesInput {
@@ -750,6 +766,7 @@ export interface ServiceUpdateInput {
   record?: String;
   licensePlate?: String;
   user?: UserUpdateOneRequiredWithoutServicesInput;
+  state?: ServiceState;
 }
 
 export interface UserUpdateOneRequiredWithoutServicesInput {
@@ -778,6 +795,7 @@ export interface UserUpsertWithoutServicesInput {
 export interface ServiceUpdateManyMutationInput {
   record?: String;
   licensePlate?: String;
+  state?: ServiceState;
 }
 
 export interface UserUpdateInput {
@@ -938,6 +956,7 @@ export interface Service {
   id: ID_Output;
   record: String;
   licensePlate: String;
+  state?: ServiceState;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
@@ -948,6 +967,7 @@ export interface ServicePromise extends Promise<Service>, Fragmentable {
   record: () => Promise<String>;
   licensePlate: () => Promise<String>;
   user: <T = UserPromise>() => T;
+  state: () => Promise<ServiceState>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
@@ -960,6 +980,7 @@ export interface ServiceSubscription
   record: () => Promise<AsyncIterator<String>>;
   licensePlate: () => Promise<AsyncIterator<String>>;
   user: <T = UserSubscription>() => T;
+  state: () => Promise<AsyncIterator<ServiceState>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
@@ -1249,6 +1270,7 @@ export interface ServicePreviousValues {
   id: ID_Output;
   record: String;
   licensePlate: String;
+  state?: ServiceState;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
@@ -1259,6 +1281,7 @@ export interface ServicePreviousValuesPromise
   id: () => Promise<ID_Output>;
   record: () => Promise<String>;
   licensePlate: () => Promise<String>;
+  state: () => Promise<ServiceState>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
@@ -1269,6 +1292,7 @@ export interface ServicePreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   record: () => Promise<AsyncIterator<String>>;
   licensePlate: () => Promise<AsyncIterator<String>>;
+  state: () => Promise<AsyncIterator<ServiceState>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
@@ -1389,6 +1413,10 @@ export type Long = string;
 export const models: Model[] = [
   {
     name: "Permission",
+    embedded: false
+  },
+  {
+    name: "ServiceState",
     embedded: false
   },
   {

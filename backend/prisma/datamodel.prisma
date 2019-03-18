@@ -4,6 +4,13 @@ enum Permission {
   AGENT
 }
 
+enum ServiceState {
+  CANCELED
+  FAILED
+  FINALIZED
+  PROCESS
+}
+
 enum CollectionType {
   SOURCE
 }
@@ -29,6 +36,7 @@ type Service {
   record: String! @unique
   licensePlate: String!
   user: User!
+  state: ServiceState
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }

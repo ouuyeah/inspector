@@ -126,7 +126,7 @@ input CollectionWhereUniqueInput {
 scalar DateTime
 
 type Mutation {
-  createService(licensePlate: String, record: String, source: String): Service
+  createService(licensePlate: String, record: String, source: String, state: ServiceState): Service
   login(email: String, password: String): AuthPayload
   signout: AuthPayload
   signup(cc: String, email: String, name: String, nickname: String, password: String): AuthPayload
@@ -153,6 +153,7 @@ type Service {
   licensePlate: String!
   record: String!
   source: Collection!
+  state: ServiceState
   updatedAt: DateTime!
   user: User!
 }
@@ -161,6 +162,7 @@ input ServiceCreateInput {
   licensePlate: String!
   record: String!
   source: CollectionCreateOneInput!
+  state: ServiceState
   user: UserCreateOneWithoutServicesInput!
 }
 
@@ -173,6 +175,7 @@ input ServiceCreateWithoutUserInput {
   licensePlate: String!
   record: String!
   source: CollectionCreateOneInput!
+  state: ServiceState
 }
 
 enum ServiceOrderByInput {
@@ -184,6 +187,8 @@ enum ServiceOrderByInput {
   licensePlate_DESC
   record_ASC
   record_DESC
+  state_ASC
+  state_DESC
   updatedAt_ASC
   updatedAt_DESC
 }
@@ -242,6 +247,10 @@ input ServiceScalarWhereInput {
   record_not_in: [String!]
   record_not_starts_with: String
   record_starts_with: String
+  state: ServiceState
+  state_in: [ServiceState!]
+  state_not: ServiceState
+  state_not_in: [ServiceState!]
   updatedAt: DateTime
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
@@ -252,16 +261,25 @@ input ServiceScalarWhereInput {
   updatedAt_not_in: [DateTime!]
 }
 
+enum ServiceState {
+  CANCELED
+  FAILED
+  FINALIZED
+  PROCESS
+}
+
 input ServiceUpdateInput {
   licensePlate: String
   record: String
   source: CollectionUpdateOneRequiredInput
+  state: ServiceState
   user: UserUpdateOneRequiredWithoutServicesInput
 }
 
 input ServiceUpdateManyDataInput {
   licensePlate: String
   record: String
+  state: ServiceState
 }
 
 input ServiceUpdateManyWithoutUserInput {
@@ -285,6 +303,7 @@ input ServiceUpdateWithoutUserDataInput {
   licensePlate: String
   record: String
   source: CollectionUpdateOneRequiredInput
+  state: ServiceState
 }
 
 input ServiceUpdateWithWhereUniqueWithoutUserInput {
@@ -353,6 +372,10 @@ input ServiceWhereInput {
   record_not_starts_with: String
   record_starts_with: String
   source: CollectionWhereInput
+  state: ServiceState
+  state_in: [ServiceState!]
+  state_not: ServiceState
+  state_not_in: [ServiceState!]
   updatedAt: DateTime
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime

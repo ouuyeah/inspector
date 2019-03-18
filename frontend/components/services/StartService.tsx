@@ -3,6 +3,7 @@ import useForm from '../hooks/useForm';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 
+import Error from '../ErrorMessage';
 import FormStyles from './styles/FormStartService';
 import InputText from '../styles/InputText';
 import InputSelect from '../styles/InputSelect';
@@ -57,6 +58,7 @@ const StartService: React.FunctionComponent = () => {
             }}
           >
             {(createService, { error, loading }) => {
+              if (loading) return <Loading />;
               return (
                 <FormStyles
                   onSubmit={e => {
@@ -65,6 +67,8 @@ const StartService: React.FunctionComponent = () => {
                 >
                   <div>
                     <h3>Comenzar inspección</h3>
+
+                    <Error error={error} />
 
                     <TextCSS>
                       <span>CC: </span> {me && me.cc}{' '}
