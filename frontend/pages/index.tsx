@@ -13,7 +13,7 @@ LoginPage.getInitialProps = ctx => {
   console.log(token);
 
   if (token) {
-    redirect({ to: '/start-inspection', res: ctx.res });
+    redirect({ to: '/inspections/start', res: ctx.res });
   }
   return {};
 

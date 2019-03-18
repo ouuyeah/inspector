@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NextFunctionComponent, NextContext } from 'next';
+import { NextFunctionComponent } from 'next';
 
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -28,7 +28,7 @@ const SIGNIN_MUTATION = gql`
 `;
 
 const LoginPage: NextFunctionComponent = props => {
-  const { values, handleChange, handleSubmit, resetValues } = useForm(null);
+  const { values, handleChange, handleSubmit } = useForm(null);
 
   return (
     <User skip={!props.hasLoginToken}>
@@ -38,7 +38,7 @@ const LoginPage: NextFunctionComponent = props => {
             mutation={SIGNIN_MUTATION}
             variables={values}
             refetchQueries={[{ query: CURRENT_USER_QUERY }]}
-            onCompleted={() => Router.push({ pathname: '/start-inspection' })}
+            onCompleted={() => Router.push({ pathname: '/inspections/view' })}
           >
             {(login, { error, loading }) => {
               const { me } = data || {};
