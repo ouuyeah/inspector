@@ -27,6 +27,7 @@ export const Query = prismaObjectType({
     })
 
     t.prismaFields(['collections'])
+    t.prismaFields(['inspections'])
     /*
     t.list.field('feed', {
       type: 'Post',

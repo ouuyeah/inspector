@@ -153,6 +153,19 @@ input InspectionCreateWithoutUserInput {
   source: CollectionCreateOneInput!
 }
 
+enum InspectionOrderByInput {
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  licensePlate_ASC
+  licensePlate_DESC
+  record_ASC
+  record_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
 input InspectionScalarWhereInput {
   AND: [InspectionScalarWhereInput!]
   createdAt: DateTime
@@ -351,6 +364,7 @@ enum Permission {
 type Query {
   collections(after: String, before: String, first: Int, last: Int, orderBy: CollectionOrderByInput, skip: Int, where: CollectionWhereInput): [Collection!]!
   inspection(id: ID): Inspection
+  inspections(after: String, before: String, first: Int, last: Int, orderBy: InspectionOrderByInput, skip: Int, where: InspectionWhereInput): [Inspection!]!
   me: User
 }
 

@@ -489,6 +489,7 @@ export interface NexusGenInputs {
 export interface NexusGenEnums {
   CollectionOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "type_ASC" | "type_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
   CollectionType: "SOURCE"
+  InspectionOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "licensePlate_ASC" | "licensePlate_DESC" | "record_ASC" | "record_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
   Permission: "ADMIN" | "AGENT" | "DRIVER"
 }
 
@@ -565,6 +566,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   UserWhereUniqueInput: NexusGenInputs['UserWhereUniqueInput'];
   CollectionOrderByInput: NexusGenEnums['CollectionOrderByInput'];
   CollectionType: NexusGenEnums['CollectionType'];
+  InspectionOrderByInput: NexusGenEnums['InspectionOrderByInput'];
   Permission: NexusGenEnums['Permission'];
 }
 
@@ -602,6 +604,7 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     collections: NexusGenRootTypes['Collection'][]; // [Collection!]!
     inspection: NexusGenRootTypes['Inspection'] | null; // Inspection
+    inspections: NexusGenRootTypes['Inspection'][]; // [Inspection!]!
     me: NexusGenRootTypes['User'] | null; // User
   }
   User: { // field return type
@@ -657,6 +660,15 @@ export interface NexusGenArgTypes {
     inspection: { // args
       id?: string | null; // ID
     }
+    inspections: { // args
+      after?: string | null; // String
+      before?: string | null; // String
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenEnums['InspectionOrderByInput'] | null; // InspectionOrderByInput
+      skip?: number | null; // Int
+      where?: NexusGenInputs['InspectionWhereInput'] | null; // InspectionWhereInput
+    }
   }
 }
 
@@ -669,7 +681,7 @@ export type NexusGenObjectNames = "AuthPayload" | "Collection" | "Inspection" | 
 
 export type NexusGenInputNames = "CollectionCreateInput" | "CollectionCreateOneInput" | "CollectionUpdateDataInput" | "CollectionUpdateOneRequiredInput" | "CollectionUpsertNestedInput" | "CollectionWhereInput" | "CollectionWhereUniqueInput" | "InspectionCreateInput" | "InspectionCreateManyWithoutUserInput" | "InspectionCreateWithoutUserInput" | "InspectionScalarWhereInput" | "InspectionUpdateInput" | "InspectionUpdateManyDataInput" | "InspectionUpdateManyWithWhereNestedInput" | "InspectionUpdateManyWithoutUserInput" | "InspectionUpdateWithWhereUniqueWithoutUserInput" | "InspectionUpdateWithoutUserDataInput" | "InspectionUpsertWithWhereUniqueWithoutUserInput" | "InspectionWhereInput" | "InspectionWhereUniqueInput" | "UserCreateInput" | "UserCreateOneInput" | "UserCreateOneWithoutInspectionsInput" | "UserCreateWithoutInspectionsInput" | "UserCreatepermissionsInput" | "UserUpdateDataInput" | "UserUpdateOneRequiredInput" | "UserUpdateOneRequiredWithoutInspectionsInput" | "UserUpdateWithoutInspectionsDataInput" | "UserUpdatepermissionsInput" | "UserUpsertNestedInput" | "UserUpsertWithoutInspectionsInput" | "UserWhereInput" | "UserWhereUniqueInput";
 
-export type NexusGenEnumNames = "CollectionOrderByInput" | "CollectionType" | "Permission";
+export type NexusGenEnumNames = "CollectionOrderByInput" | "CollectionType" | "InspectionOrderByInput" | "Permission";
 
 export type NexusGenInterfaceNames = never;
 
