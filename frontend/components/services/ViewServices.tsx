@@ -12,9 +12,9 @@ import User from '../User';
 import CollectionsStyles from '../collections/styles/CollectionsStyles';
 import Loading from '../Loading';
 
-const LIST_INSPECTIONS = gql`
-  query LIST_INSPECTIONS($id: ID) {
-    inspections(where: { user: { id: $id } }) {
+const LIST_SERVICES = gql`
+  query LIST_SERVICES($id: ID) {
+    services(where: { user: { id: $id } }) {
       id
       licensePlate
       source {
@@ -26,7 +26,7 @@ const LIST_INSPECTIONS = gql`
   }
 `;
 
-const Inspections: React.FunctionComponent = () => {
+const Services: React.FunctionComponent = () => {
   const Panel = Collapse.Panel;
   const [activeKey, setActiveKey] = useState(['4']);
 
@@ -38,23 +38,23 @@ const Inspections: React.FunctionComponent = () => {
   return (
     <User>
       {({ data: { me = {} } }) => (
-        <Query query={LIST_INSPECTIONS}>
+        <Query query={LIST_SERVICES}>
           {({ data, loading }) => {
-            const { inspections } = data || {};
+            const { services } = data || {};
 
-            if (!inspections) return <p>No puedes estar acá :(</p>;
+            if (!services) return <p>No puedes estar acá :(</p>;
             if (loading) return <Loading />;
 
             return (
               <CollectionsStyles>
                 <div className="titles">
                   <h3>Hola {me.name}, tus inspecciones</h3>
-                  <Link href="/inspections/start">
+                  <Link href="/services/start">
                     <a>Crear</a>
                   </Link>
                 </div>
                 <Collapse onChange={changeKey} activeKey={activeKey}>
-                  {inspections.map(inspection => {
+                  {services.map(service => {
                     return (
                       <Panel header="hello" key={count++}>
                         <Swipeout
@@ -63,8 +63,10 @@ const Inspections: React.FunctionComponent = () => {
                               text: 'Editar',
                               onPress: () =>
                                 Router.push({
-                                  pathname: '/inspections/start',
-                                  query: { id: inspection.id },
+                                  pathname: '/services/start',
+                                  query: {
+                                    id: service.id,
+                                  },
                                 }),
                               className: 'edit',
                             },
@@ -72,10 +74,10 @@ const Inspections: React.FunctionComponent = () => {
                         >
                           <div className="list">
                             <div>
-                              <p>{inspection.source.name}</p>
-                              <span className="type">{inspection.record}</span>
+                              <p>{service.source.name}</p>
+                              <span className="type">{service.record}</span>
                               <span className="user">
-                                Por: {inspection.licensePlate}
+                                Por: {service.licensePlate}
                               </span>
                             </div>
                             <div style={{ textAlign: 'right' }}>
@@ -96,5 +98,5 @@ const Inspections: React.FunctionComponent = () => {
   );
 };
 
-export { LIST_INSPECTIONS };
-export default Inspections;
+export { LIST_SERVICES };
+export default Services;

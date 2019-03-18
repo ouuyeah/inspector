@@ -15,7 +15,7 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 
 export interface Exists {
   collection: (where?: CollectionWhereInput) => Promise<boolean>;
-  inspection: (where?: InspectionWhereInput) => Promise<boolean>;
+  service: (where?: ServiceWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
 }
 
@@ -61,29 +61,29 @@ export interface Prisma {
       last?: Int;
     }
   ) => CollectionConnectionPromise;
-  inspection: (where: InspectionWhereUniqueInput) => InspectionPromise;
-  inspections: (
+  service: (where: ServiceWhereUniqueInput) => ServicePromise;
+  services: (
     args?: {
-      where?: InspectionWhereInput;
-      orderBy?: InspectionOrderByInput;
+      where?: ServiceWhereInput;
+      orderBy?: ServiceOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
       first?: Int;
       last?: Int;
     }
-  ) => FragmentableArray<Inspection>;
-  inspectionsConnection: (
+  ) => FragmentableArray<Service>;
+  servicesConnection: (
     args?: {
-      where?: InspectionWhereInput;
-      orderBy?: InspectionOrderByInput;
+      where?: ServiceWhereInput;
+      orderBy?: ServiceOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
       first?: Int;
       last?: Int;
     }
-  ) => InspectionConnectionPromise;
+  ) => ServiceConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserPromise;
   users: (
     args?: {
@@ -132,25 +132,22 @@ export interface Prisma {
   ) => CollectionPromise;
   deleteCollection: (where: CollectionWhereUniqueInput) => CollectionPromise;
   deleteManyCollections: (where?: CollectionWhereInput) => BatchPayloadPromise;
-  createInspection: (data: InspectionCreateInput) => InspectionPromise;
-  updateInspection: (
-    args: { data: InspectionUpdateInput; where: InspectionWhereUniqueInput }
-  ) => InspectionPromise;
-  updateManyInspections: (
-    args: {
-      data: InspectionUpdateManyMutationInput;
-      where?: InspectionWhereInput;
-    }
+  createService: (data: ServiceCreateInput) => ServicePromise;
+  updateService: (
+    args: { data: ServiceUpdateInput; where: ServiceWhereUniqueInput }
+  ) => ServicePromise;
+  updateManyServices: (
+    args: { data: ServiceUpdateManyMutationInput; where?: ServiceWhereInput }
   ) => BatchPayloadPromise;
-  upsertInspection: (
+  upsertService: (
     args: {
-      where: InspectionWhereUniqueInput;
-      create: InspectionCreateInput;
-      update: InspectionUpdateInput;
+      where: ServiceWhereUniqueInput;
+      create: ServiceCreateInput;
+      update: ServiceUpdateInput;
     }
-  ) => InspectionPromise;
-  deleteInspection: (where: InspectionWhereUniqueInput) => InspectionPromise;
-  deleteManyInspections: (where?: InspectionWhereInput) => BatchPayloadPromise;
+  ) => ServicePromise;
+  deleteService: (where: ServiceWhereUniqueInput) => ServicePromise;
+  deleteManyServices: (where?: ServiceWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (
     args: { data: UserUpdateInput; where: UserWhereUniqueInput }
@@ -179,9 +176,9 @@ export interface Subscription {
   collection: (
     where?: CollectionSubscriptionWhereInput
   ) => CollectionSubscriptionPayloadSubscription;
-  inspection: (
-    where?: InspectionSubscriptionWhereInput
-  ) => InspectionSubscriptionPayloadSubscription;
+  service: (
+    where?: ServiceSubscriptionWhereInput
+  ) => ServiceSubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
@@ -197,7 +194,7 @@ export interface ClientConstructor<T> {
 
 export type CollectionType = "SOURCE";
 
-export type InspectionOrderByInput =
+export type ServiceOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "record_ASC"
@@ -252,7 +249,7 @@ export type CollectionWhereUniqueInput = AtLeastOne<{
   name?: String;
 }>;
 
-export interface InspectionWhereInput {
+export interface ServiceWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -313,9 +310,9 @@ export interface InspectionWhereInput {
   updatedAt_lte?: DateTimeInput;
   updatedAt_gt?: DateTimeInput;
   updatedAt_gte?: DateTimeInput;
-  AND?: InspectionWhereInput[] | InspectionWhereInput;
-  OR?: InspectionWhereInput[] | InspectionWhereInput;
-  NOT?: InspectionWhereInput[] | InspectionWhereInput;
+  AND?: ServiceWhereInput[] | ServiceWhereInput;
+  OR?: ServiceWhereInput[] | ServiceWhereInput;
+  NOT?: ServiceWhereInput[] | ServiceWhereInput;
 }
 
 export interface CollectionWhereInput {
@@ -388,14 +385,20 @@ export interface UserWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  cc?: Int;
-  cc_not?: Int;
-  cc_in?: Int[] | Int;
-  cc_not_in?: Int[] | Int;
-  cc_lt?: Int;
-  cc_lte?: Int;
-  cc_gt?: Int;
-  cc_gte?: Int;
+  cc?: String;
+  cc_not?: String;
+  cc_in?: String[] | String;
+  cc_not_in?: String[] | String;
+  cc_lt?: String;
+  cc_lte?: String;
+  cc_gt?: String;
+  cc_gte?: String;
+  cc_contains?: String;
+  cc_not_contains?: String;
+  cc_starts_with?: String;
+  cc_not_starts_with?: String;
+  cc_ends_with?: String;
+  cc_not_ends_with?: String;
   email?: String;
   email_not?: String;
   email_in?: String[] | String;
@@ -474,9 +477,9 @@ export interface UserWhereInput {
   resetTokenExpiry_lte?: Float;
   resetTokenExpiry_gt?: Float;
   resetTokenExpiry_gte?: Float;
-  inspections_every?: InspectionWhereInput;
-  inspections_some?: InspectionWhereInput;
-  inspections_none?: InspectionWhereInput;
+  services_every?: ServiceWhereInput;
+  services_some?: ServiceWhereInput;
+  services_none?: ServiceWhereInput;
   createdAt?: DateTimeInput;
   createdAt_not?: DateTimeInput;
   createdAt_in?: DateTimeInput[] | DateTimeInput;
@@ -498,13 +501,14 @@ export interface UserWhereInput {
   NOT?: UserWhereInput[] | UserWhereInput;
 }
 
-export type InspectionWhereUniqueInput = AtLeastOne<{
+export type ServiceWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  record?: String;
 }>;
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
-  cc?: Int;
+  cc?: String;
   email?: String;
   nickname?: String;
 }>;
@@ -521,25 +525,23 @@ export interface UserCreateOneInput {
 }
 
 export interface UserCreateInput {
-  cc: Int;
+  cc: String;
   email: String;
   nickname: String;
   password: String;
   name?: String;
   resetToken?: String;
   resetTokenExpiry?: Float;
-  inspections?: InspectionCreateManyWithoutUserInput;
+  services?: ServiceCreateManyWithoutUserInput;
   permissions?: UserCreatepermissionsInput;
 }
 
-export interface InspectionCreateManyWithoutUserInput {
-  create?:
-    | InspectionCreateWithoutUserInput[]
-    | InspectionCreateWithoutUserInput;
-  connect?: InspectionWhereUniqueInput[] | InspectionWhereUniqueInput;
+export interface ServiceCreateManyWithoutUserInput {
+  create?: ServiceCreateWithoutUserInput[] | ServiceCreateWithoutUserInput;
+  connect?: ServiceWhereUniqueInput[] | ServiceWhereUniqueInput;
 }
 
-export interface InspectionCreateWithoutUserInput {
+export interface ServiceCreateWithoutUserInput {
   source: CollectionCreateOneInput;
   record: String;
   licensePlate: String;
@@ -568,43 +570,41 @@ export interface UserUpdateOneRequiredInput {
 }
 
 export interface UserUpdateDataInput {
-  cc?: Int;
+  cc?: String;
   email?: String;
   nickname?: String;
   password?: String;
   name?: String;
   resetToken?: String;
   resetTokenExpiry?: Float;
-  inspections?: InspectionUpdateManyWithoutUserInput;
+  services?: ServiceUpdateManyWithoutUserInput;
   permissions?: UserUpdatepermissionsInput;
 }
 
-export interface InspectionUpdateManyWithoutUserInput {
-  create?:
-    | InspectionCreateWithoutUserInput[]
-    | InspectionCreateWithoutUserInput;
-  delete?: InspectionWhereUniqueInput[] | InspectionWhereUniqueInput;
-  connect?: InspectionWhereUniqueInput[] | InspectionWhereUniqueInput;
-  set?: InspectionWhereUniqueInput[] | InspectionWhereUniqueInput;
-  disconnect?: InspectionWhereUniqueInput[] | InspectionWhereUniqueInput;
+export interface ServiceUpdateManyWithoutUserInput {
+  create?: ServiceCreateWithoutUserInput[] | ServiceCreateWithoutUserInput;
+  delete?: ServiceWhereUniqueInput[] | ServiceWhereUniqueInput;
+  connect?: ServiceWhereUniqueInput[] | ServiceWhereUniqueInput;
+  set?: ServiceWhereUniqueInput[] | ServiceWhereUniqueInput;
+  disconnect?: ServiceWhereUniqueInput[] | ServiceWhereUniqueInput;
   update?:
-    | InspectionUpdateWithWhereUniqueWithoutUserInput[]
-    | InspectionUpdateWithWhereUniqueWithoutUserInput;
+    | ServiceUpdateWithWhereUniqueWithoutUserInput[]
+    | ServiceUpdateWithWhereUniqueWithoutUserInput;
   upsert?:
-    | InspectionUpsertWithWhereUniqueWithoutUserInput[]
-    | InspectionUpsertWithWhereUniqueWithoutUserInput;
-  deleteMany?: InspectionScalarWhereInput[] | InspectionScalarWhereInput;
+    | ServiceUpsertWithWhereUniqueWithoutUserInput[]
+    | ServiceUpsertWithWhereUniqueWithoutUserInput;
+  deleteMany?: ServiceScalarWhereInput[] | ServiceScalarWhereInput;
   updateMany?:
-    | InspectionUpdateManyWithWhereNestedInput[]
-    | InspectionUpdateManyWithWhereNestedInput;
+    | ServiceUpdateManyWithWhereNestedInput[]
+    | ServiceUpdateManyWithWhereNestedInput;
 }
 
-export interface InspectionUpdateWithWhereUniqueWithoutUserInput {
-  where: InspectionWhereUniqueInput;
-  data: InspectionUpdateWithoutUserDataInput;
+export interface ServiceUpdateWithWhereUniqueWithoutUserInput {
+  where: ServiceWhereUniqueInput;
+  data: ServiceUpdateWithoutUserDataInput;
 }
 
-export interface InspectionUpdateWithoutUserDataInput {
+export interface ServiceUpdateWithoutUserDataInput {
   source?: CollectionUpdateOneRequiredInput;
   record?: String;
   licensePlate?: String;
@@ -628,13 +628,13 @@ export interface CollectionUpsertNestedInput {
   create: CollectionCreateInput;
 }
 
-export interface InspectionUpsertWithWhereUniqueWithoutUserInput {
-  where: InspectionWhereUniqueInput;
-  update: InspectionUpdateWithoutUserDataInput;
-  create: InspectionCreateWithoutUserInput;
+export interface ServiceUpsertWithWhereUniqueWithoutUserInput {
+  where: ServiceWhereUniqueInput;
+  update: ServiceUpdateWithoutUserDataInput;
+  create: ServiceCreateWithoutUserInput;
 }
 
-export interface InspectionScalarWhereInput {
+export interface ServiceScalarWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -693,17 +693,17 @@ export interface InspectionScalarWhereInput {
   updatedAt_lte?: DateTimeInput;
   updatedAt_gt?: DateTimeInput;
   updatedAt_gte?: DateTimeInput;
-  AND?: InspectionScalarWhereInput[] | InspectionScalarWhereInput;
-  OR?: InspectionScalarWhereInput[] | InspectionScalarWhereInput;
-  NOT?: InspectionScalarWhereInput[] | InspectionScalarWhereInput;
+  AND?: ServiceScalarWhereInput[] | ServiceScalarWhereInput;
+  OR?: ServiceScalarWhereInput[] | ServiceScalarWhereInput;
+  NOT?: ServiceScalarWhereInput[] | ServiceScalarWhereInput;
 }
 
-export interface InspectionUpdateManyWithWhereNestedInput {
-  where: InspectionScalarWhereInput;
-  data: InspectionUpdateManyDataInput;
+export interface ServiceUpdateManyWithWhereNestedInput {
+  where: ServiceScalarWhereInput;
+  data: ServiceUpdateManyDataInput;
 }
 
-export interface InspectionUpdateManyDataInput {
+export interface ServiceUpdateManyDataInput {
   record?: String;
   licensePlate?: String;
 }
@@ -722,20 +722,20 @@ export interface CollectionUpdateManyMutationInput {
   name?: String;
 }
 
-export interface InspectionCreateInput {
+export interface ServiceCreateInput {
   source: CollectionCreateOneInput;
   record: String;
   licensePlate: String;
-  user: UserCreateOneWithoutInspectionsInput;
+  user: UserCreateOneWithoutServicesInput;
 }
 
-export interface UserCreateOneWithoutInspectionsInput {
-  create?: UserCreateWithoutInspectionsInput;
+export interface UserCreateOneWithoutServicesInput {
+  create?: UserCreateWithoutServicesInput;
   connect?: UserWhereUniqueInput;
 }
 
-export interface UserCreateWithoutInspectionsInput {
-  cc: Int;
+export interface UserCreateWithoutServicesInput {
+  cc: String;
   email: String;
   nickname: String;
   password: String;
@@ -745,22 +745,22 @@ export interface UserCreateWithoutInspectionsInput {
   permissions?: UserCreatepermissionsInput;
 }
 
-export interface InspectionUpdateInput {
+export interface ServiceUpdateInput {
   source?: CollectionUpdateOneRequiredInput;
   record?: String;
   licensePlate?: String;
-  user?: UserUpdateOneRequiredWithoutInspectionsInput;
+  user?: UserUpdateOneRequiredWithoutServicesInput;
 }
 
-export interface UserUpdateOneRequiredWithoutInspectionsInput {
-  create?: UserCreateWithoutInspectionsInput;
-  update?: UserUpdateWithoutInspectionsDataInput;
-  upsert?: UserUpsertWithoutInspectionsInput;
+export interface UserUpdateOneRequiredWithoutServicesInput {
+  create?: UserCreateWithoutServicesInput;
+  update?: UserUpdateWithoutServicesDataInput;
+  upsert?: UserUpsertWithoutServicesInput;
   connect?: UserWhereUniqueInput;
 }
 
-export interface UserUpdateWithoutInspectionsDataInput {
-  cc?: Int;
+export interface UserUpdateWithoutServicesDataInput {
+  cc?: String;
   email?: String;
   nickname?: String;
   password?: String;
@@ -770,30 +770,30 @@ export interface UserUpdateWithoutInspectionsDataInput {
   permissions?: UserUpdatepermissionsInput;
 }
 
-export interface UserUpsertWithoutInspectionsInput {
-  update: UserUpdateWithoutInspectionsDataInput;
-  create: UserCreateWithoutInspectionsInput;
+export interface UserUpsertWithoutServicesInput {
+  update: UserUpdateWithoutServicesDataInput;
+  create: UserCreateWithoutServicesInput;
 }
 
-export interface InspectionUpdateManyMutationInput {
+export interface ServiceUpdateManyMutationInput {
   record?: String;
   licensePlate?: String;
 }
 
 export interface UserUpdateInput {
-  cc?: Int;
+  cc?: String;
   email?: String;
   nickname?: String;
   password?: String;
   name?: String;
   resetToken?: String;
   resetTokenExpiry?: Float;
-  inspections?: InspectionUpdateManyWithoutUserInput;
+  services?: ServiceUpdateManyWithoutUserInput;
   permissions?: UserUpdatepermissionsInput;
 }
 
 export interface UserUpdateManyMutationInput {
-  cc?: Int;
+  cc?: String;
   email?: String;
   nickname?: String;
   password?: String;
@@ -814,15 +814,15 @@ export interface CollectionSubscriptionWhereInput {
   NOT?: CollectionSubscriptionWhereInput[] | CollectionSubscriptionWhereInput;
 }
 
-export interface InspectionSubscriptionWhereInput {
+export interface ServiceSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: InspectionWhereInput;
-  AND?: InspectionSubscriptionWhereInput[] | InspectionSubscriptionWhereInput;
-  OR?: InspectionSubscriptionWhereInput[] | InspectionSubscriptionWhereInput;
-  NOT?: InspectionSubscriptionWhereInput[] | InspectionSubscriptionWhereInput;
+  node?: ServiceWhereInput;
+  AND?: ServiceSubscriptionWhereInput[] | ServiceSubscriptionWhereInput;
+  OR?: ServiceSubscriptionWhereInput[] | ServiceSubscriptionWhereInput;
+  NOT?: ServiceSubscriptionWhereInput[] | ServiceSubscriptionWhereInput;
 }
 
 export interface UserSubscriptionWhereInput {
@@ -870,7 +870,7 @@ export interface CollectionSubscription
 
 export interface User {
   id: ID_Output;
-  cc: Int;
+  cc: String;
   email: String;
   nickname: String;
   password: String;
@@ -884,17 +884,17 @@ export interface User {
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
-  cc: () => Promise<Int>;
+  cc: () => Promise<String>;
   email: () => Promise<String>;
   nickname: () => Promise<String>;
   password: () => Promise<String>;
   name: () => Promise<String>;
   resetToken: () => Promise<String>;
   resetTokenExpiry: () => Promise<Float>;
-  inspections: <T = FragmentableArray<Inspection>>(
+  services: <T = FragmentableArray<Service>>(
     args?: {
-      where?: InspectionWhereInput;
-      orderBy?: InspectionOrderByInput;
+      where?: ServiceWhereInput;
+      orderBy?: ServiceOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
@@ -911,17 +911,17 @@ export interface UserSubscription
   extends Promise<AsyncIterator<User>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  cc: () => Promise<AsyncIterator<Int>>;
+  cc: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   nickname: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
   resetToken: () => Promise<AsyncIterator<String>>;
   resetTokenExpiry: () => Promise<AsyncIterator<Float>>;
-  inspections: <T = Promise<AsyncIterator<InspectionSubscription>>>(
+  services: <T = Promise<AsyncIterator<ServiceSubscription>>>(
     args?: {
-      where?: InspectionWhereInput;
-      orderBy?: InspectionOrderByInput;
+      where?: ServiceWhereInput;
+      orderBy?: ServiceOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
@@ -934,7 +934,7 @@ export interface UserSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface Inspection {
+export interface Service {
   id: ID_Output;
   record: String;
   licensePlate: String;
@@ -942,7 +942,7 @@ export interface Inspection {
   updatedAt: DateTimeOutput;
 }
 
-export interface InspectionPromise extends Promise<Inspection>, Fragmentable {
+export interface ServicePromise extends Promise<Service>, Fragmentable {
   id: () => Promise<ID_Output>;
   source: <T = CollectionPromise>() => T;
   record: () => Promise<String>;
@@ -952,8 +952,8 @@ export interface InspectionPromise extends Promise<Inspection>, Fragmentable {
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface InspectionSubscription
-  extends Promise<AsyncIterator<Inspection>>,
+export interface ServiceSubscription
+  extends Promise<AsyncIterator<Service>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   source: <T = CollectionSubscription>() => T;
@@ -1043,58 +1043,56 @@ export interface AggregateCollectionSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface InspectionConnection {
+export interface ServiceConnection {
   pageInfo: PageInfo;
-  edges: InspectionEdge[];
+  edges: ServiceEdge[];
 }
 
-export interface InspectionConnectionPromise
-  extends Promise<InspectionConnection>,
+export interface ServiceConnectionPromise
+  extends Promise<ServiceConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<InspectionEdge>>() => T;
-  aggregate: <T = AggregateInspectionPromise>() => T;
+  edges: <T = FragmentableArray<ServiceEdge>>() => T;
+  aggregate: <T = AggregateServicePromise>() => T;
 }
 
-export interface InspectionConnectionSubscription
-  extends Promise<AsyncIterator<InspectionConnection>>,
+export interface ServiceConnectionSubscription
+  extends Promise<AsyncIterator<ServiceConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<InspectionEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateInspectionSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ServiceEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateServiceSubscription>() => T;
 }
 
-export interface InspectionEdge {
-  node: Inspection;
+export interface ServiceEdge {
+  node: Service;
   cursor: String;
 }
 
-export interface InspectionEdgePromise
-  extends Promise<InspectionEdge>,
-    Fragmentable {
-  node: <T = InspectionPromise>() => T;
+export interface ServiceEdgePromise extends Promise<ServiceEdge>, Fragmentable {
+  node: <T = ServicePromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface InspectionEdgeSubscription
-  extends Promise<AsyncIterator<InspectionEdge>>,
+export interface ServiceEdgeSubscription
+  extends Promise<AsyncIterator<ServiceEdge>>,
     Fragmentable {
-  node: <T = InspectionSubscription>() => T;
+  node: <T = ServiceSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateInspection {
+export interface AggregateService {
   count: Int;
 }
 
-export interface AggregateInspectionPromise
-  extends Promise<AggregateInspection>,
+export interface AggregateServicePromise
+  extends Promise<AggregateService>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateInspectionSubscription
-  extends Promise<AsyncIterator<AggregateInspection>>,
+export interface AggregateServiceSubscription
+  extends Promise<AsyncIterator<AggregateService>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -1222,32 +1220,32 @@ export interface CollectionPreviousValuesSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface InspectionSubscriptionPayload {
+export interface ServiceSubscriptionPayload {
   mutation: MutationType;
-  node: Inspection;
+  node: Service;
   updatedFields: String[];
-  previousValues: InspectionPreviousValues;
+  previousValues: ServicePreviousValues;
 }
 
-export interface InspectionSubscriptionPayloadPromise
-  extends Promise<InspectionSubscriptionPayload>,
+export interface ServiceSubscriptionPayloadPromise
+  extends Promise<ServiceSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = InspectionPromise>() => T;
+  node: <T = ServicePromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = InspectionPreviousValuesPromise>() => T;
+  previousValues: <T = ServicePreviousValuesPromise>() => T;
 }
 
-export interface InspectionSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<InspectionSubscriptionPayload>>,
+export interface ServiceSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ServiceSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = InspectionSubscription>() => T;
+  node: <T = ServiceSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = InspectionPreviousValuesSubscription>() => T;
+  previousValues: <T = ServicePreviousValuesSubscription>() => T;
 }
 
-export interface InspectionPreviousValues {
+export interface ServicePreviousValues {
   id: ID_Output;
   record: String;
   licensePlate: String;
@@ -1255,8 +1253,8 @@ export interface InspectionPreviousValues {
   updatedAt: DateTimeOutput;
 }
 
-export interface InspectionPreviousValuesPromise
-  extends Promise<InspectionPreviousValues>,
+export interface ServicePreviousValuesPromise
+  extends Promise<ServicePreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   record: () => Promise<String>;
@@ -1265,8 +1263,8 @@ export interface InspectionPreviousValuesPromise
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface InspectionPreviousValuesSubscription
-  extends Promise<AsyncIterator<InspectionPreviousValues>>,
+export interface ServicePreviousValuesSubscription
+  extends Promise<AsyncIterator<ServicePreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   record: () => Promise<AsyncIterator<String>>;
@@ -1302,7 +1300,7 @@ export interface UserSubscriptionPayloadSubscription
 
 export interface UserPreviousValues {
   id: ID_Output;
-  cc: Int;
+  cc: String;
   email: String;
   nickname: String;
   password: String;
@@ -1318,7 +1316,7 @@ export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  cc: () => Promise<Int>;
+  cc: () => Promise<String>;
   email: () => Promise<String>;
   nickname: () => Promise<String>;
   password: () => Promise<String>;
@@ -1334,7 +1332,7 @@ export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  cc: () => Promise<AsyncIterator<Int>>;
+  cc: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   nickname: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
@@ -1358,11 +1356,6 @@ The `String` scalar type represents textual data, represented as UTF-8 character
 export type String = string;
 
 /*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
-*/
-export type Int = number;
-
-/*
 The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). 
 */
 export type Float = number;
@@ -1376,6 +1369,11 @@ export type DateTimeInput = Date | string;
 DateTime scalar output type, which is always a string
 */
 export type DateTimeOutput = string;
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
+*/
+export type Int = number;
 
 /*
 The `Boolean` scalar type represents `true` or `false`.
@@ -1402,7 +1400,7 @@ export const models: Model[] = [
     embedded: false
   },
   {
-    name: "Inspection",
+    name: "Service",
     embedded: false
   },
   {

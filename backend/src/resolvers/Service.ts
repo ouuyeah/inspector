@@ -1,7 +1,7 @@
 import { prismaObjectType } from 'nexus-prisma'
 
-export const Inspection = prismaObjectType({
-  name: 'Inspection',
+export const Service = prismaObjectType({
+  name: 'Service',
   definition(t) {
     t.prismaFields(['*'])
   },

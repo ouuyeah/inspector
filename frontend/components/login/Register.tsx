@@ -16,7 +16,7 @@ const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(
     $email: String!
     $nickname: String!
-    $cc: Int!
+    $cc: String!
     $name: String
     $password: String!
   ) {
@@ -85,11 +85,11 @@ const SignUp: React.FunctionComponent = () => {
               />
 
               <InputLogin
-                type="number"
+                type="text"
                 name="cc"
                 placeholder="Cédula de ciudadania"
                 onChange={handleChange}
-                value={parseInt(values.cc) || ''}
+                value={values.cc || ''}
                 required
               />
 

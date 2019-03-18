@@ -1,14 +1,14 @@
 import * as React from 'react';
-import StartInspection from '../../components/inspections/StartInspection';
+import StartService from '../../components/services/StartService';
 import Layout from '../../components/layout/Layout';
 import Auth from '../../components/Auth';
 
-const StartInspectionPage: React.FunctionComponent = () => (
+const StartServicePage: React.FunctionComponent = () => (
   <Auth>
     <Layout title="Empezar inspección">
-      <StartInspection />
+      <StartService />
     </Layout>
   </Auth>
 );
 
-export default StartInspectionPage;
+export default StartServicePage;

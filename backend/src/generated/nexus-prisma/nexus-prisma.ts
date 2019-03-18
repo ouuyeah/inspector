@@ -16,15 +16,15 @@ export interface NexusPrismaTypes {
     fields: {
       Query: QueryObject
       User: UserObject
-      Inspection: InspectionObject
+      Service: ServiceObject
       Collection: CollectionObject
       UserConnection: UserConnectionObject
       PageInfo: PageInfoObject
       UserEdge: UserEdgeObject
       AggregateUser: AggregateUserObject
-      InspectionConnection: InspectionConnectionObject
-      InspectionEdge: InspectionEdgeObject
-      AggregateInspection: AggregateInspectionObject
+      ServiceConnection: ServiceConnectionObject
+      ServiceEdge: ServiceEdgeObject
+      AggregateService: AggregateServiceObject
       CollectionConnection: CollectionConnectionObject
       CollectionEdge: CollectionEdgeObject
       AggregateCollection: AggregateCollectionObject
@@ -33,23 +33,23 @@ export interface NexusPrismaTypes {
       Subscription: SubscriptionObject
       UserSubscriptionPayload: UserSubscriptionPayloadObject
       UserPreviousValues: UserPreviousValuesObject
-      InspectionSubscriptionPayload: InspectionSubscriptionPayloadObject
-      InspectionPreviousValues: InspectionPreviousValuesObject
+      ServiceSubscriptionPayload: ServiceSubscriptionPayloadObject
+      ServicePreviousValues: ServicePreviousValuesObject
       CollectionSubscriptionPayload: CollectionSubscriptionPayloadObject
       CollectionPreviousValues: CollectionPreviousValuesObject
     }
     fieldsDetails: {
       Query: QueryFieldDetails
       User: UserFieldDetails
-      Inspection: InspectionFieldDetails
+      Service: ServiceFieldDetails
       Collection: CollectionFieldDetails
       UserConnection: UserConnectionFieldDetails
       PageInfo: PageInfoFieldDetails
       UserEdge: UserEdgeFieldDetails
       AggregateUser: AggregateUserFieldDetails
-      InspectionConnection: InspectionConnectionFieldDetails
-      InspectionEdge: InspectionEdgeFieldDetails
-      AggregateInspection: AggregateInspectionFieldDetails
+      ServiceConnection: ServiceConnectionFieldDetails
+      ServiceEdge: ServiceEdgeFieldDetails
+      AggregateService: AggregateServiceFieldDetails
       CollectionConnection: CollectionConnectionFieldDetails
       CollectionEdge: CollectionEdgeFieldDetails
       AggregateCollection: AggregateCollectionFieldDetails
@@ -58,8 +58,8 @@ export interface NexusPrismaTypes {
       Subscription: SubscriptionFieldDetails
       UserSubscriptionPayload: UserSubscriptionPayloadFieldDetails
       UserPreviousValues: UserPreviousValuesFieldDetails
-      InspectionSubscriptionPayload: InspectionSubscriptionPayloadFieldDetails
-      InspectionPreviousValues: InspectionPreviousValuesFieldDetails
+      ServiceSubscriptionPayload: ServiceSubscriptionPayloadFieldDetails
+      ServicePreviousValues: ServicePreviousValuesFieldDetails
       CollectionSubscriptionPayload: CollectionSubscriptionPayloadFieldDetails
       CollectionPreviousValues: CollectionPreviousValuesFieldDetails
     }
@@ -67,22 +67,22 @@ export interface NexusPrismaTypes {
   inputTypes: {
     fields: {
       UserWhereUniqueInput: UserWhereUniqueInputInputObject
-      InspectionWhereInput: InspectionWhereInputInputObject
+      ServiceWhereInput: ServiceWhereInputInputObject
       CollectionWhereInput: CollectionWhereInputInputObject
       UserWhereInput: UserWhereInputInputObject
-      InspectionWhereUniqueInput: InspectionWhereUniqueInputInputObject
+      ServiceWhereUniqueInput: ServiceWhereUniqueInputInputObject
       CollectionWhereUniqueInput: CollectionWhereUniqueInputInputObject
       UserCreateInput: UserCreateInputInputObject
-      InspectionCreateManyWithoutUserInput: InspectionCreateManyWithoutUserInputInputObject
-      InspectionCreateWithoutUserInput: InspectionCreateWithoutUserInputInputObject
+      ServiceCreateManyWithoutUserInput: ServiceCreateManyWithoutUserInputInputObject
+      ServiceCreateWithoutUserInput: ServiceCreateWithoutUserInputInputObject
       CollectionCreateOneInput: CollectionCreateOneInputInputObject
       CollectionCreateInput: CollectionCreateInputInputObject
       UserCreateOneInput: UserCreateOneInputInputObject
       UserCreatepermissionsInput: UserCreatepermissionsInputInputObject
       UserUpdateInput: UserUpdateInputInputObject
-      InspectionUpdateManyWithoutUserInput: InspectionUpdateManyWithoutUserInputInputObject
-      InspectionUpdateWithWhereUniqueWithoutUserInput: InspectionUpdateWithWhereUniqueWithoutUserInputInputObject
-      InspectionUpdateWithoutUserDataInput: InspectionUpdateWithoutUserDataInputInputObject
+      ServiceUpdateManyWithoutUserInput: ServiceUpdateManyWithoutUserInputInputObject
+      ServiceUpdateWithWhereUniqueWithoutUserInput: ServiceUpdateWithWhereUniqueWithoutUserInputInputObject
+      ServiceUpdateWithoutUserDataInput: ServiceUpdateWithoutUserDataInputInputObject
       CollectionUpdateOneRequiredInput: CollectionUpdateOneRequiredInputInputObject
       CollectionUpdateDataInput: CollectionUpdateDataInputInputObject
       UserUpdateOneRequiredInput: UserUpdateOneRequiredInputInputObject
@@ -90,29 +90,29 @@ export interface NexusPrismaTypes {
       UserUpdatepermissionsInput: UserUpdatepermissionsInputInputObject
       UserUpsertNestedInput: UserUpsertNestedInputInputObject
       CollectionUpsertNestedInput: CollectionUpsertNestedInputInputObject
-      InspectionUpsertWithWhereUniqueWithoutUserInput: InspectionUpsertWithWhereUniqueWithoutUserInputInputObject
-      InspectionScalarWhereInput: InspectionScalarWhereInputInputObject
-      InspectionUpdateManyWithWhereNestedInput: InspectionUpdateManyWithWhereNestedInputInputObject
-      InspectionUpdateManyDataInput: InspectionUpdateManyDataInputInputObject
+      ServiceUpsertWithWhereUniqueWithoutUserInput: ServiceUpsertWithWhereUniqueWithoutUserInputInputObject
+      ServiceScalarWhereInput: ServiceScalarWhereInputInputObject
+      ServiceUpdateManyWithWhereNestedInput: ServiceUpdateManyWithWhereNestedInputInputObject
+      ServiceUpdateManyDataInput: ServiceUpdateManyDataInputInputObject
       UserUpdateManyMutationInput: UserUpdateManyMutationInputInputObject
-      InspectionCreateInput: InspectionCreateInputInputObject
-      UserCreateOneWithoutInspectionsInput: UserCreateOneWithoutInspectionsInputInputObject
-      UserCreateWithoutInspectionsInput: UserCreateWithoutInspectionsInputInputObject
-      InspectionUpdateInput: InspectionUpdateInputInputObject
-      UserUpdateOneRequiredWithoutInspectionsInput: UserUpdateOneRequiredWithoutInspectionsInputInputObject
-      UserUpdateWithoutInspectionsDataInput: UserUpdateWithoutInspectionsDataInputInputObject
-      UserUpsertWithoutInspectionsInput: UserUpsertWithoutInspectionsInputInputObject
-      InspectionUpdateManyMutationInput: InspectionUpdateManyMutationInputInputObject
+      ServiceCreateInput: ServiceCreateInputInputObject
+      UserCreateOneWithoutServicesInput: UserCreateOneWithoutServicesInputInputObject
+      UserCreateWithoutServicesInput: UserCreateWithoutServicesInputInputObject
+      ServiceUpdateInput: ServiceUpdateInputInputObject
+      UserUpdateOneRequiredWithoutServicesInput: UserUpdateOneRequiredWithoutServicesInputInputObject
+      UserUpdateWithoutServicesDataInput: UserUpdateWithoutServicesDataInputInputObject
+      UserUpsertWithoutServicesInput: UserUpsertWithoutServicesInputInputObject
+      ServiceUpdateManyMutationInput: ServiceUpdateManyMutationInputInputObject
       CollectionUpdateInput: CollectionUpdateInputInputObject
       CollectionUpdateManyMutationInput: CollectionUpdateManyMutationInputInputObject
       UserSubscriptionWhereInput: UserSubscriptionWhereInputInputObject
-      InspectionSubscriptionWhereInput: InspectionSubscriptionWhereInputInputObject
+      ServiceSubscriptionWhereInput: ServiceSubscriptionWhereInputInputObject
       CollectionSubscriptionWhereInput: CollectionSubscriptionWhereInputInputObject
     }
   }
   enumTypes: {
     CollectionType: CollectionTypeValues,
-    InspectionOrderByInput: InspectionOrderByInputValues,
+    ServiceOrderByInput: ServiceOrderByInputValues,
     Permission: PermissionValues,
     UserOrderByInput: UserOrderByInputValues,
     CollectionOrderByInput: CollectionOrderByInputValues,
@@ -127,9 +127,9 @@ type QueryObject =
   | { name: 'user', args?: QueryUserArgs[] | false, alias?: string  } 
   | { name: 'users', args?: QueryUsersArgs[] | false, alias?: string  } 
   | { name: 'usersConnection', args?: QueryUsersConnectionArgs[] | false, alias?: string  } 
-  | { name: 'inspection', args?: QueryInspectionArgs[] | false, alias?: string  } 
-  | { name: 'inspections', args?: QueryInspectionsArgs[] | false, alias?: string  } 
-  | { name: 'inspectionsConnection', args?: QueryInspectionsConnectionArgs[] | false, alias?: string  } 
+  | { name: 'service', args?: QueryServiceArgs[] | false, alias?: string  } 
+  | { name: 'services', args?: QueryServicesArgs[] | false, alias?: string  } 
+  | { name: 'servicesConnection', args?: QueryServicesConnectionArgs[] | false, alias?: string  } 
   | { name: 'collection', args?: QueryCollectionArgs[] | false, alias?: string  } 
   | { name: 'collections', args?: QueryCollectionsArgs[] | false, alias?: string  } 
   | { name: 'collectionsConnection', args?: QueryCollectionsConnectionArgs[] | false, alias?: string  } 
@@ -138,9 +138,9 @@ type QueryFields =
   | 'user'
   | 'users'
   | 'usersConnection'
-  | 'inspection'
-  | 'inspections'
-  | 'inspectionsConnection'
+  | 'service'
+  | 'services'
+  | 'servicesConnection'
   | 'collection'
   | 'collections'
   | 'collectionsConnection'
@@ -164,9 +164,9 @@ type QueryUsersConnectionArgs =
   | 'before'
   | 'first'
   | 'last'
-type QueryInspectionArgs =
+type QueryServiceArgs =
   | 'where'
-type QueryInspectionsArgs =
+type QueryServicesArgs =
   | 'where'
   | 'orderBy'
   | 'skip'
@@ -174,7 +174,7 @@ type QueryInspectionsArgs =
   | 'before'
   | 'first'
   | 'last'
-type QueryInspectionsConnectionArgs =
+type QueryServicesConnectionArgs =
   | 'where'
   | 'orderBy'
   | 'skip'
@@ -242,44 +242,44 @@ export interface QueryFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.UserConnection> | prisma.UserConnection
   }
-  inspection: {
-    type: 'Inspection'
-    args: Record<QueryInspectionArgs, core.NexusArgDef<string>>
+  service: {
+    type: 'Service'
+    args: Record<QueryServiceArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: true
     resolve: (
       root: core.RootValue<"Query">,
-      args: { where: InspectionWhereUniqueInput }  ,
+      args: { where: ServiceWhereUniqueInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Inspection | null> | prisma.Inspection | null
+    ) => Promise<prisma.Service | null> | prisma.Service | null
   }
-  inspections: {
-    type: 'Inspection'
-    args: Record<QueryInspectionsArgs, core.NexusArgDef<string>>
+  services: {
+    type: 'Service'
+    args: Record<QueryServicesArgs, core.NexusArgDef<string>>
     description: string
     list: true
     nullable: false
     resolve: (
       root: core.RootValue<"Query">,
-      args: { where?: InspectionWhereInput | null, orderBy?: prisma.InspectionOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      args: { where?: ServiceWhereInput | null, orderBy?: prisma.ServiceOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Inspection[]> | prisma.Inspection[]
+    ) => Promise<prisma.Service[]> | prisma.Service[]
   }
-  inspectionsConnection: {
-    type: 'InspectionConnection'
-    args: Record<QueryInspectionsConnectionArgs, core.NexusArgDef<string>>
+  servicesConnection: {
+    type: 'ServiceConnection'
+    args: Record<QueryServicesConnectionArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: false
     resolve: (
       root: core.RootValue<"Query">,
-      args: { where?: InspectionWhereInput | null, orderBy?: prisma.InspectionOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      args: { where?: ServiceWhereInput | null, orderBy?: prisma.ServiceOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.InspectionConnection> | prisma.InspectionConnection
+    ) => Promise<prisma.ServiceConnection> | prisma.ServiceConnection
   }
   collection: {
     type: 'Collection'
@@ -335,7 +335,7 @@ type UserObject =
   | { name: 'name', args?: [] | false, alias?: string  } 
   | { name: 'resetToken', args?: [] | false, alias?: string  } 
   | { name: 'resetTokenExpiry', args?: [] | false, alias?: string  } 
-  | { name: 'inspections', args?: UserInspectionsArgs[] | false, alias?: string  } 
+  | { name: 'services', args?: UserServicesArgs[] | false, alias?: string  } 
   | { name: 'permissions', args?: [] | false, alias?: string  } 
   | { name: 'createdAt', args?: [] | false, alias?: string  } 
   | { name: 'updatedAt', args?: [] | false, alias?: string  } 
@@ -349,13 +349,13 @@ type UserFields =
   | 'name'
   | 'resetToken'
   | 'resetTokenExpiry'
-  | 'inspections'
+  | 'services'
   | 'permissions'
   | 'createdAt'
   | 'updatedAt'
 
 
-type UserInspectionsArgs =
+type UserServicesArgs =
   | 'where'
   | 'orderBy'
   | 'skip'
@@ -375,7 +375,7 @@ export interface UserFieldDetails {
     resolve: undefined
   }
   cc: {
-    type: 'Int'
+    type: 'String'
     args: {}
     description: string
     list: undefined
@@ -430,18 +430,18 @@ export interface UserFieldDetails {
     nullable: true
     resolve: undefined
   }
-  inspections: {
-    type: 'Inspection'
-    args: Record<UserInspectionsArgs, core.NexusArgDef<string>>
+  services: {
+    type: 'Service'
+    args: Record<UserServicesArgs, core.NexusArgDef<string>>
     description: string
     list: true
     nullable: false
     resolve: (
       root: core.RootValue<"User">,
-      args: { where?: InspectionWhereInput | null, orderBy?: prisma.InspectionOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      args: { where?: ServiceWhereInput | null, orderBy?: prisma.ServiceOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Inspection[]> | prisma.Inspection[]
+    ) => Promise<prisma.Service[]> | prisma.Service[]
   }
   permissions: {
     type: 'Permission'
@@ -475,10 +475,10 @@ export interface UserFieldDetails {
 }
   
 
-// Types for Inspection
+// Types for Service
 
-type InspectionObject =
-  | InspectionFields
+type ServiceObject =
+  | ServiceFields
   | { name: 'id', args?: [] | false, alias?: string  } 
   | { name: 'source', args?: [] | false, alias?: string  } 
   | { name: 'record', args?: [] | false, alias?: string  } 
@@ -487,7 +487,7 @@ type InspectionObject =
   | { name: 'createdAt', args?: [] | false, alias?: string  } 
   | { name: 'updatedAt', args?: [] | false, alias?: string  } 
 
-type InspectionFields =
+type ServiceFields =
   | 'id'
   | 'source'
   | 'record'
@@ -500,7 +500,7 @@ type InspectionFields =
 
   
 
-export interface InspectionFieldDetails {
+export interface ServiceFieldDetails {
   id: {
     type: 'ID'
     args: {}
@@ -516,7 +516,7 @@ export interface InspectionFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Inspection">,
+      root: core.RootValue<"Service">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
@@ -545,7 +545,7 @@ export interface InspectionFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Inspection">,
+      root: core.RootValue<"Service">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
@@ -835,15 +835,15 @@ export interface AggregateUserFieldDetails {
 }
   
 
-// Types for InspectionConnection
+// Types for ServiceConnection
 
-type InspectionConnectionObject =
-  | InspectionConnectionFields
+type ServiceConnectionObject =
+  | ServiceConnectionFields
   | { name: 'pageInfo', args?: [] | false, alias?: string  } 
   | { name: 'edges', args?: [] | false, alias?: string  } 
   | { name: 'aggregate', args?: [] | false, alias?: string  } 
 
-type InspectionConnectionFields =
+type ServiceConnectionFields =
   | 'pageInfo'
   | 'edges'
   | 'aggregate'
@@ -852,7 +852,7 @@ type InspectionConnectionFields =
 
   
 
-export interface InspectionConnectionFieldDetails {
+export interface ServiceConnectionFieldDetails {
   pageInfo: {
     type: 'PageInfo'
     args: {}
@@ -860,49 +860,49 @@ export interface InspectionConnectionFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"InspectionConnection">,
+      root: core.RootValue<"ServiceConnection">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.PageInfo> | prisma.PageInfo
   }
   edges: {
-    type: 'InspectionEdge'
+    type: 'ServiceEdge'
     args: {}
     description: string
     list: true
     nullable: false
     resolve: (
-      root: core.RootValue<"InspectionConnection">,
+      root: core.RootValue<"ServiceConnection">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.InspectionEdge[]> | prisma.InspectionEdge[]
+    ) => Promise<prisma.ServiceEdge[]> | prisma.ServiceEdge[]
   }
   aggregate: {
-    type: 'AggregateInspection'
+    type: 'AggregateService'
     args: {}
     description: string
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"InspectionConnection">,
+      root: core.RootValue<"ServiceConnection">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.AggregateInspection> | prisma.AggregateInspection
+    ) => Promise<prisma.AggregateService> | prisma.AggregateService
   }
 }
   
 
-// Types for InspectionEdge
+// Types for ServiceEdge
 
-type InspectionEdgeObject =
-  | InspectionEdgeFields
+type ServiceEdgeObject =
+  | ServiceEdgeFields
   | { name: 'node', args?: [] | false, alias?: string  } 
   | { name: 'cursor', args?: [] | false, alias?: string  } 
 
-type InspectionEdgeFields =
+type ServiceEdgeFields =
   | 'node'
   | 'cursor'
 
@@ -910,19 +910,19 @@ type InspectionEdgeFields =
 
   
 
-export interface InspectionEdgeFieldDetails {
+export interface ServiceEdgeFieldDetails {
   node: {
-    type: 'Inspection'
+    type: 'Service'
     args: {}
     description: string
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"InspectionEdge">,
+      root: core.RootValue<"ServiceEdge">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Inspection> | prisma.Inspection
+    ) => Promise<prisma.Service> | prisma.Service
   }
   cursor: {
     type: 'String'
@@ -935,20 +935,20 @@ export interface InspectionEdgeFieldDetails {
 }
   
 
-// Types for AggregateInspection
+// Types for AggregateService
 
-type AggregateInspectionObject =
-  | AggregateInspectionFields
+type AggregateServiceObject =
+  | AggregateServiceFields
   | { name: 'count', args?: [] | false, alias?: string  } 
 
-type AggregateInspectionFields =
+type AggregateServiceFields =
   | 'count'
 
 
 
   
 
-export interface AggregateInspectionFieldDetails {
+export interface AggregateServiceFieldDetails {
   count: {
     type: 'Int'
     args: {}
@@ -1095,12 +1095,12 @@ type MutationObject =
   | { name: 'upsertUser', args?: MutationUpsertUserArgs[] | false, alias?: string  } 
   | { name: 'deleteUser', args?: MutationDeleteUserArgs[] | false, alias?: string  } 
   | { name: 'deleteManyUsers', args?: MutationDeleteManyUsersArgs[] | false, alias?: string  } 
-  | { name: 'createInspection', args?: MutationCreateInspectionArgs[] | false, alias?: string  } 
-  | { name: 'updateInspection', args?: MutationUpdateInspectionArgs[] | false, alias?: string  } 
-  | { name: 'updateManyInspections', args?: MutationUpdateManyInspectionsArgs[] | false, alias?: string  } 
-  | { name: 'upsertInspection', args?: MutationUpsertInspectionArgs[] | false, alias?: string  } 
-  | { name: 'deleteInspection', args?: MutationDeleteInspectionArgs[] | false, alias?: string  } 
-  | { name: 'deleteManyInspections', args?: MutationDeleteManyInspectionsArgs[] | false, alias?: string  } 
+  | { name: 'createService', args?: MutationCreateServiceArgs[] | false, alias?: string  } 
+  | { name: 'updateService', args?: MutationUpdateServiceArgs[] | false, alias?: string  } 
+  | { name: 'updateManyServices', args?: MutationUpdateManyServicesArgs[] | false, alias?: string  } 
+  | { name: 'upsertService', args?: MutationUpsertServiceArgs[] | false, alias?: string  } 
+  | { name: 'deleteService', args?: MutationDeleteServiceArgs[] | false, alias?: string  } 
+  | { name: 'deleteManyServices', args?: MutationDeleteManyServicesArgs[] | false, alias?: string  } 
   | { name: 'createCollection', args?: MutationCreateCollectionArgs[] | false, alias?: string  } 
   | { name: 'updateCollection', args?: MutationUpdateCollectionArgs[] | false, alias?: string  } 
   | { name: 'updateManyCollections', args?: MutationUpdateManyCollectionsArgs[] | false, alias?: string  } 
@@ -1115,12 +1115,12 @@ type MutationFields =
   | 'upsertUser'
   | 'deleteUser'
   | 'deleteManyUsers'
-  | 'createInspection'
-  | 'updateInspection'
-  | 'updateManyInspections'
-  | 'upsertInspection'
-  | 'deleteInspection'
-  | 'deleteManyInspections'
+  | 'createService'
+  | 'updateService'
+  | 'updateManyServices'
+  | 'upsertService'
+  | 'deleteService'
+  | 'deleteManyServices'
   | 'createCollection'
   | 'updateCollection'
   | 'updateManyCollections'
@@ -1145,21 +1145,21 @@ type MutationDeleteUserArgs =
   | 'where'
 type MutationDeleteManyUsersArgs =
   | 'where'
-type MutationCreateInspectionArgs =
+type MutationCreateServiceArgs =
   | 'data'
-type MutationUpdateInspectionArgs =
-  | 'data'
-  | 'where'
-type MutationUpdateManyInspectionsArgs =
+type MutationUpdateServiceArgs =
   | 'data'
   | 'where'
-type MutationUpsertInspectionArgs =
+type MutationUpdateManyServicesArgs =
+  | 'data'
+  | 'where'
+type MutationUpsertServiceArgs =
   | 'where'
   | 'create'
   | 'update'
-type MutationDeleteInspectionArgs =
+type MutationDeleteServiceArgs =
   | 'where'
-type MutationDeleteManyInspectionsArgs =
+type MutationDeleteManyServicesArgs =
   | 'where'
 type MutationCreateCollectionArgs =
   | 'data'
@@ -1258,80 +1258,80 @@ export interface MutationFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
   }
-  createInspection: {
-    type: 'Inspection'
-    args: Record<MutationCreateInspectionArgs, core.NexusArgDef<string>>
+  createService: {
+    type: 'Service'
+    args: Record<MutationCreateServiceArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { data: InspectionCreateInput }  ,
+      args: { data: ServiceCreateInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Inspection> | prisma.Inspection
+    ) => Promise<prisma.Service> | prisma.Service
   }
-  updateInspection: {
-    type: 'Inspection'
-    args: Record<MutationUpdateInspectionArgs, core.NexusArgDef<string>>
+  updateService: {
+    type: 'Service'
+    args: Record<MutationUpdateServiceArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: true
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { data: InspectionUpdateInput, where: InspectionWhereUniqueInput }  ,
+      args: { data: ServiceUpdateInput, where: ServiceWhereUniqueInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Inspection | null> | prisma.Inspection | null
+    ) => Promise<prisma.Service | null> | prisma.Service | null
   }
-  updateManyInspections: {
+  updateManyServices: {
     type: 'BatchPayload'
-    args: Record<MutationUpdateManyInspectionsArgs, core.NexusArgDef<string>>
+    args: Record<MutationUpdateManyServicesArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { data: InspectionUpdateManyMutationInput, where?: InspectionWhereInput | null }  ,
+      args: { data: ServiceUpdateManyMutationInput, where?: ServiceWhereInput | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
   }
-  upsertInspection: {
-    type: 'Inspection'
-    args: Record<MutationUpsertInspectionArgs, core.NexusArgDef<string>>
+  upsertService: {
+    type: 'Service'
+    args: Record<MutationUpsertServiceArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { where: InspectionWhereUniqueInput, create: InspectionCreateInput, update: InspectionUpdateInput }  ,
+      args: { where: ServiceWhereUniqueInput, create: ServiceCreateInput, update: ServiceUpdateInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Inspection> | prisma.Inspection
+    ) => Promise<prisma.Service> | prisma.Service
   }
-  deleteInspection: {
-    type: 'Inspection'
-    args: Record<MutationDeleteInspectionArgs, core.NexusArgDef<string>>
+  deleteService: {
+    type: 'Service'
+    args: Record<MutationDeleteServiceArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: true
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { where: InspectionWhereUniqueInput }  ,
+      args: { where: ServiceWhereUniqueInput }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Inspection | null> | prisma.Inspection | null
+    ) => Promise<prisma.Service | null> | prisma.Service | null
   }
-  deleteManyInspections: {
+  deleteManyServices: {
     type: 'BatchPayload'
-    args: Record<MutationDeleteManyInspectionsArgs, core.NexusArgDef<string>>
+    args: Record<MutationDeleteManyServicesArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: false
     resolve: (
       root: core.RootValue<"Mutation">,
-      args: { where?: InspectionWhereInput | null }  ,
+      args: { where?: ServiceWhereInput | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
@@ -1447,18 +1447,18 @@ export interface BatchPayloadFieldDetails {
 type SubscriptionObject =
   | SubscriptionFields
   | { name: 'user', args?: SubscriptionUserArgs[] | false, alias?: string  } 
-  | { name: 'inspection', args?: SubscriptionInspectionArgs[] | false, alias?: string  } 
+  | { name: 'service', args?: SubscriptionServiceArgs[] | false, alias?: string  } 
   | { name: 'collection', args?: SubscriptionCollectionArgs[] | false, alias?: string  } 
 
 type SubscriptionFields =
   | 'user'
-  | 'inspection'
+  | 'service'
   | 'collection'
 
 
 type SubscriptionUserArgs =
   | 'where'
-type SubscriptionInspectionArgs =
+type SubscriptionServiceArgs =
   | 'where'
 type SubscriptionCollectionArgs =
   | 'where'
@@ -1478,18 +1478,18 @@ export interface SubscriptionFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.UserSubscriptionPayload | null> | prisma.UserSubscriptionPayload | null
   }
-  inspection: {
-    type: 'InspectionSubscriptionPayload'
-    args: Record<SubscriptionInspectionArgs, core.NexusArgDef<string>>
+  service: {
+    type: 'ServiceSubscriptionPayload'
+    args: Record<SubscriptionServiceArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: true
     resolve: (
       root: core.RootValue<"Subscription">,
-      args: { where?: InspectionSubscriptionWhereInput | null }  ,
+      args: { where?: ServiceSubscriptionWhereInput | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.InspectionSubscriptionPayload | null> | prisma.InspectionSubscriptionPayload | null
+    ) => Promise<prisma.ServiceSubscriptionPayload | null> | prisma.ServiceSubscriptionPayload | null
   }
   collection: {
     type: 'CollectionSubscriptionPayload'
@@ -1620,7 +1620,7 @@ export interface UserPreviousValuesFieldDetails {
     resolve: undefined
   }
   cc: {
-    type: 'Int'
+    type: 'String'
     args: {}
     description: string
     list: undefined
@@ -1707,16 +1707,16 @@ export interface UserPreviousValuesFieldDetails {
 }
   
 
-// Types for InspectionSubscriptionPayload
+// Types for ServiceSubscriptionPayload
 
-type InspectionSubscriptionPayloadObject =
-  | InspectionSubscriptionPayloadFields
+type ServiceSubscriptionPayloadObject =
+  | ServiceSubscriptionPayloadFields
   | { name: 'mutation', args?: [] | false, alias?: string  } 
   | { name: 'node', args?: [] | false, alias?: string  } 
   | { name: 'updatedFields', args?: [] | false, alias?: string  } 
   | { name: 'previousValues', args?: [] | false, alias?: string  } 
 
-type InspectionSubscriptionPayloadFields =
+type ServiceSubscriptionPayloadFields =
   | 'mutation'
   | 'node'
   | 'updatedFields'
@@ -1726,7 +1726,7 @@ type InspectionSubscriptionPayloadFields =
 
   
 
-export interface InspectionSubscriptionPayloadFieldDetails {
+export interface ServiceSubscriptionPayloadFieldDetails {
   mutation: {
     type: 'MutationType'
     args: {}
@@ -1734,24 +1734,24 @@ export interface InspectionSubscriptionPayloadFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"InspectionSubscriptionPayload">,
+      root: core.RootValue<"ServiceSubscriptionPayload">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.MutationType> | prisma.MutationType
   }
   node: {
-    type: 'Inspection'
+    type: 'Service'
     args: {}
     description: string
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"InspectionSubscriptionPayload">,
+      root: core.RootValue<"ServiceSubscriptionPayload">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Inspection | null> | prisma.Inspection | null
+    ) => Promise<prisma.Service | null> | prisma.Service | null
   }
   updatedFields: {
     type: 'String'
@@ -1762,32 +1762,32 @@ export interface InspectionSubscriptionPayloadFieldDetails {
     resolve: undefined
   }
   previousValues: {
-    type: 'InspectionPreviousValues'
+    type: 'ServicePreviousValues'
     args: {}
     description: string
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"InspectionSubscriptionPayload">,
+      root: core.RootValue<"ServiceSubscriptionPayload">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.InspectionPreviousValues | null> | prisma.InspectionPreviousValues | null
+    ) => Promise<prisma.ServicePreviousValues | null> | prisma.ServicePreviousValues | null
   }
 }
   
 
-// Types for InspectionPreviousValues
+// Types for ServicePreviousValues
 
-type InspectionPreviousValuesObject =
-  | InspectionPreviousValuesFields
+type ServicePreviousValuesObject =
+  | ServicePreviousValuesFields
   | { name: 'id', args?: [] | false, alias?: string  } 
   | { name: 'record', args?: [] | false, alias?: string  } 
   | { name: 'licensePlate', args?: [] | false, alias?: string  } 
   | { name: 'createdAt', args?: [] | false, alias?: string  } 
   | { name: 'updatedAt', args?: [] | false, alias?: string  } 
 
-type InspectionPreviousValuesFields =
+type ServicePreviousValuesFields =
   | 'id'
   | 'record'
   | 'licensePlate'
@@ -1798,7 +1798,7 @@ type InspectionPreviousValuesFields =
 
   
 
-export interface InspectionPreviousValuesFieldDetails {
+export interface ServicePreviousValuesFieldDetails {
   id: {
     type: 'ID'
     args: {}
@@ -1985,7 +1985,7 @@ export interface CollectionPreviousValuesFieldDetails {
 
 export interface UserWhereUniqueInput {
   id?: string | null
-  cc?: number | null
+  cc?: string | null
   email?: string | null
   nickname?: string | null
 }
@@ -1996,7 +1996,7 @@ export type UserWhereUniqueInputInputObject =
   | { name: 'email', alias?: string  } 
   | { name: 'nickname', alias?: string  } 
   
-export interface InspectionWhereInput {
+export interface ServiceWhereInput {
   id?: string | null
   id_not?: string | null
   id_in?: string[]
@@ -2057,12 +2057,12 @@ export interface InspectionWhereInput {
   updatedAt_lte?: string | null
   updatedAt_gt?: string | null
   updatedAt_gte?: string | null
-  AND?: InspectionWhereInput[]
-  OR?: InspectionWhereInput[]
-  NOT?: InspectionWhereInput[]
+  AND?: ServiceWhereInput[]
+  OR?: ServiceWhereInput[]
+  NOT?: ServiceWhereInput[]
 }
-export type InspectionWhereInputInputObject =
-  | Extract<keyof InspectionWhereInput, string>
+export type ServiceWhereInputInputObject =
+  | Extract<keyof ServiceWhereInput, string>
   | { name: 'id', alias?: string  } 
   | { name: 'id_not', alias?: string  } 
   | { name: 'id_in', alias?: string  } 
@@ -2251,14 +2251,20 @@ export interface UserWhereInput {
   id_not_starts_with?: string | null
   id_ends_with?: string | null
   id_not_ends_with?: string | null
-  cc?: number | null
-  cc_not?: number | null
-  cc_in?: number[]
-  cc_not_in?: number[]
-  cc_lt?: number | null
-  cc_lte?: number | null
-  cc_gt?: number | null
-  cc_gte?: number | null
+  cc?: string | null
+  cc_not?: string | null
+  cc_in?: string[]
+  cc_not_in?: string[]
+  cc_lt?: string | null
+  cc_lte?: string | null
+  cc_gt?: string | null
+  cc_gte?: string | null
+  cc_contains?: string | null
+  cc_not_contains?: string | null
+  cc_starts_with?: string | null
+  cc_not_starts_with?: string | null
+  cc_ends_with?: string | null
+  cc_not_ends_with?: string | null
   email?: string | null
   email_not?: string | null
   email_in?: string[]
@@ -2337,9 +2343,9 @@ export interface UserWhereInput {
   resetTokenExpiry_lte?: number | null
   resetTokenExpiry_gt?: number | null
   resetTokenExpiry_gte?: number | null
-  inspections_every?: InspectionWhereInput | null
-  inspections_some?: InspectionWhereInput | null
-  inspections_none?: InspectionWhereInput | null
+  services_every?: ServiceWhereInput | null
+  services_some?: ServiceWhereInput | null
+  services_none?: ServiceWhereInput | null
   createdAt?: string | null
   createdAt_not?: string | null
   createdAt_in?: string[]
@@ -2384,6 +2390,12 @@ export type UserWhereInputInputObject =
   | { name: 'cc_lte', alias?: string  } 
   | { name: 'cc_gt', alias?: string  } 
   | { name: 'cc_gte', alias?: string  } 
+  | { name: 'cc_contains', alias?: string  } 
+  | { name: 'cc_not_contains', alias?: string  } 
+  | { name: 'cc_starts_with', alias?: string  } 
+  | { name: 'cc_not_starts_with', alias?: string  } 
+  | { name: 'cc_ends_with', alias?: string  } 
+  | { name: 'cc_not_ends_with', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'email_not', alias?: string  } 
   | { name: 'email_in', alias?: string  } 
@@ -2462,9 +2474,9 @@ export type UserWhereInputInputObject =
   | { name: 'resetTokenExpiry_lte', alias?: string  } 
   | { name: 'resetTokenExpiry_gt', alias?: string  } 
   | { name: 'resetTokenExpiry_gte', alias?: string  } 
-  | { name: 'inspections_every', alias?: string  } 
-  | { name: 'inspections_some', alias?: string  } 
-  | { name: 'inspections_none', alias?: string  } 
+  | { name: 'services_every', alias?: string  } 
+  | { name: 'services_some', alias?: string  } 
+  | { name: 'services_none', alias?: string  } 
   | { name: 'createdAt', alias?: string  } 
   | { name: 'createdAt_not', alias?: string  } 
   | { name: 'createdAt_in', alias?: string  } 
@@ -2485,12 +2497,14 @@ export type UserWhereInputInputObject =
   | { name: 'OR', alias?: string  } 
   | { name: 'NOT', alias?: string  } 
   
-export interface InspectionWhereUniqueInput {
+export interface ServiceWhereUniqueInput {
   id?: string | null
+  record?: string | null
 }
-export type InspectionWhereUniqueInputInputObject =
-  | Extract<keyof InspectionWhereUniqueInput, string>
+export type ServiceWhereUniqueInputInputObject =
+  | Extract<keyof ServiceWhereUniqueInput, string>
   | { name: 'id', alias?: string  } 
+  | { name: 'record', alias?: string  } 
   
 export interface CollectionWhereUniqueInput {
   id?: string | null
@@ -2502,14 +2516,14 @@ export type CollectionWhereUniqueInputInputObject =
   | { name: 'name', alias?: string  } 
   
 export interface UserCreateInput {
-  cc?: number
+  cc?: string
   email?: string
   nickname?: string
   password?: string
   name?: string | null
   resetToken?: string | null
   resetTokenExpiry?: number | null
-  inspections?: InspectionCreateManyWithoutUserInput | null
+  services?: ServiceCreateManyWithoutUserInput | null
   permissions?: UserCreatepermissionsInput | null
 }
 export type UserCreateInputInputObject =
@@ -2521,25 +2535,25 @@ export type UserCreateInputInputObject =
   | { name: 'name', alias?: string  } 
   | { name: 'resetToken', alias?: string  } 
   | { name: 'resetTokenExpiry', alias?: string  } 
-  | { name: 'inspections', alias?: string  } 
+  | { name: 'services', alias?: string  } 
   | { name: 'permissions', alias?: string  } 
   
-export interface InspectionCreateManyWithoutUserInput {
-  create?: InspectionCreateWithoutUserInput[]
-  connect?: InspectionWhereUniqueInput[]
+export interface ServiceCreateManyWithoutUserInput {
+  create?: ServiceCreateWithoutUserInput[]
+  connect?: ServiceWhereUniqueInput[]
 }
-export type InspectionCreateManyWithoutUserInputInputObject =
-  | Extract<keyof InspectionCreateManyWithoutUserInput, string>
+export type ServiceCreateManyWithoutUserInputInputObject =
+  | Extract<keyof ServiceCreateManyWithoutUserInput, string>
   | { name: 'create', alias?: string  } 
   | { name: 'connect', alias?: string  } 
   
-export interface InspectionCreateWithoutUserInput {
+export interface ServiceCreateWithoutUserInput {
   source?: CollectionCreateOneInput
   record?: string
   licensePlate?: string
 }
-export type InspectionCreateWithoutUserInputInputObject =
-  | Extract<keyof InspectionCreateWithoutUserInput, string>
+export type ServiceCreateWithoutUserInputInputObject =
+  | Extract<keyof ServiceCreateWithoutUserInput, string>
   | { name: 'source', alias?: string  } 
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
@@ -2581,14 +2595,14 @@ export type UserCreatepermissionsInputInputObject =
   | { name: 'set', alias?: string  } 
   
 export interface UserUpdateInput {
-  cc?: number | null
+  cc?: string | null
   email?: string | null
   nickname?: string | null
   password?: string | null
   name?: string | null
   resetToken?: string | null
   resetTokenExpiry?: number | null
-  inspections?: InspectionUpdateManyWithoutUserInput | null
+  services?: ServiceUpdateManyWithoutUserInput | null
   permissions?: UserUpdatepermissionsInput | null
 }
 export type UserUpdateInputInputObject =
@@ -2600,22 +2614,22 @@ export type UserUpdateInputInputObject =
   | { name: 'name', alias?: string  } 
   | { name: 'resetToken', alias?: string  } 
   | { name: 'resetTokenExpiry', alias?: string  } 
-  | { name: 'inspections', alias?: string  } 
+  | { name: 'services', alias?: string  } 
   | { name: 'permissions', alias?: string  } 
   
-export interface InspectionUpdateManyWithoutUserInput {
-  create?: InspectionCreateWithoutUserInput[]
-  delete?: InspectionWhereUniqueInput[]
-  connect?: InspectionWhereUniqueInput[]
-  set?: InspectionWhereUniqueInput[]
-  disconnect?: InspectionWhereUniqueInput[]
-  update?: InspectionUpdateWithWhereUniqueWithoutUserInput[]
-  upsert?: InspectionUpsertWithWhereUniqueWithoutUserInput[]
-  deleteMany?: InspectionScalarWhereInput[]
-  updateMany?: InspectionUpdateManyWithWhereNestedInput[]
+export interface ServiceUpdateManyWithoutUserInput {
+  create?: ServiceCreateWithoutUserInput[]
+  delete?: ServiceWhereUniqueInput[]
+  connect?: ServiceWhereUniqueInput[]
+  set?: ServiceWhereUniqueInput[]
+  disconnect?: ServiceWhereUniqueInput[]
+  update?: ServiceUpdateWithWhereUniqueWithoutUserInput[]
+  upsert?: ServiceUpsertWithWhereUniqueWithoutUserInput[]
+  deleteMany?: ServiceScalarWhereInput[]
+  updateMany?: ServiceUpdateManyWithWhereNestedInput[]
 }
-export type InspectionUpdateManyWithoutUserInputInputObject =
-  | Extract<keyof InspectionUpdateManyWithoutUserInput, string>
+export type ServiceUpdateManyWithoutUserInputInputObject =
+  | Extract<keyof ServiceUpdateManyWithoutUserInput, string>
   | { name: 'create', alias?: string  } 
   | { name: 'delete', alias?: string  } 
   | { name: 'connect', alias?: string  } 
@@ -2626,22 +2640,22 @@ export type InspectionUpdateManyWithoutUserInputInputObject =
   | { name: 'deleteMany', alias?: string  } 
   | { name: 'updateMany', alias?: string  } 
   
-export interface InspectionUpdateWithWhereUniqueWithoutUserInput {
-  where?: InspectionWhereUniqueInput
-  data?: InspectionUpdateWithoutUserDataInput
+export interface ServiceUpdateWithWhereUniqueWithoutUserInput {
+  where?: ServiceWhereUniqueInput
+  data?: ServiceUpdateWithoutUserDataInput
 }
-export type InspectionUpdateWithWhereUniqueWithoutUserInputInputObject =
-  | Extract<keyof InspectionUpdateWithWhereUniqueWithoutUserInput, string>
+export type ServiceUpdateWithWhereUniqueWithoutUserInputInputObject =
+  | Extract<keyof ServiceUpdateWithWhereUniqueWithoutUserInput, string>
   | { name: 'where', alias?: string  } 
   | { name: 'data', alias?: string  } 
   
-export interface InspectionUpdateWithoutUserDataInput {
+export interface ServiceUpdateWithoutUserDataInput {
   source?: CollectionUpdateOneRequiredInput | null
   record?: string | null
   licensePlate?: string | null
 }
-export type InspectionUpdateWithoutUserDataInputInputObject =
-  | Extract<keyof InspectionUpdateWithoutUserDataInput, string>
+export type ServiceUpdateWithoutUserDataInputInputObject =
+  | Extract<keyof ServiceUpdateWithoutUserDataInput, string>
   | { name: 'source', alias?: string  } 
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
@@ -2684,14 +2698,14 @@ export type UserUpdateOneRequiredInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface UserUpdateDataInput {
-  cc?: number | null
+  cc?: string | null
   email?: string | null
   nickname?: string | null
   password?: string | null
   name?: string | null
   resetToken?: string | null
   resetTokenExpiry?: number | null
-  inspections?: InspectionUpdateManyWithoutUserInput | null
+  services?: ServiceUpdateManyWithoutUserInput | null
   permissions?: UserUpdatepermissionsInput | null
 }
 export type UserUpdateDataInputInputObject =
@@ -2703,7 +2717,7 @@ export type UserUpdateDataInputInputObject =
   | { name: 'name', alias?: string  } 
   | { name: 'resetToken', alias?: string  } 
   | { name: 'resetTokenExpiry', alias?: string  } 
-  | { name: 'inspections', alias?: string  } 
+  | { name: 'services', alias?: string  } 
   | { name: 'permissions', alias?: string  } 
   
 export interface UserUpdatepermissionsInput {
@@ -2731,18 +2745,18 @@ export type CollectionUpsertNestedInputInputObject =
   | { name: 'update', alias?: string  } 
   | { name: 'create', alias?: string  } 
   
-export interface InspectionUpsertWithWhereUniqueWithoutUserInput {
-  where?: InspectionWhereUniqueInput
-  update?: InspectionUpdateWithoutUserDataInput
-  create?: InspectionCreateWithoutUserInput
+export interface ServiceUpsertWithWhereUniqueWithoutUserInput {
+  where?: ServiceWhereUniqueInput
+  update?: ServiceUpdateWithoutUserDataInput
+  create?: ServiceCreateWithoutUserInput
 }
-export type InspectionUpsertWithWhereUniqueWithoutUserInputInputObject =
-  | Extract<keyof InspectionUpsertWithWhereUniqueWithoutUserInput, string>
+export type ServiceUpsertWithWhereUniqueWithoutUserInputInputObject =
+  | Extract<keyof ServiceUpsertWithWhereUniqueWithoutUserInput, string>
   | { name: 'where', alias?: string  } 
   | { name: 'update', alias?: string  } 
   | { name: 'create', alias?: string  } 
   
-export interface InspectionScalarWhereInput {
+export interface ServiceScalarWhereInput {
   id?: string | null
   id_not?: string | null
   id_in?: string[]
@@ -2801,12 +2815,12 @@ export interface InspectionScalarWhereInput {
   updatedAt_lte?: string | null
   updatedAt_gt?: string | null
   updatedAt_gte?: string | null
-  AND?: InspectionScalarWhereInput[]
-  OR?: InspectionScalarWhereInput[]
-  NOT?: InspectionScalarWhereInput[]
+  AND?: ServiceScalarWhereInput[]
+  OR?: ServiceScalarWhereInput[]
+  NOT?: ServiceScalarWhereInput[]
 }
-export type InspectionScalarWhereInputInputObject =
-  | Extract<keyof InspectionScalarWhereInput, string>
+export type ServiceScalarWhereInputInputObject =
+  | Extract<keyof ServiceScalarWhereInput, string>
   | { name: 'id', alias?: string  } 
   | { name: 'id_not', alias?: string  } 
   | { name: 'id_in', alias?: string  } 
@@ -2869,26 +2883,26 @@ export type InspectionScalarWhereInputInputObject =
   | { name: 'OR', alias?: string  } 
   | { name: 'NOT', alias?: string  } 
   
-export interface InspectionUpdateManyWithWhereNestedInput {
-  where?: InspectionScalarWhereInput
-  data?: InspectionUpdateManyDataInput
+export interface ServiceUpdateManyWithWhereNestedInput {
+  where?: ServiceScalarWhereInput
+  data?: ServiceUpdateManyDataInput
 }
-export type InspectionUpdateManyWithWhereNestedInputInputObject =
-  | Extract<keyof InspectionUpdateManyWithWhereNestedInput, string>
+export type ServiceUpdateManyWithWhereNestedInputInputObject =
+  | Extract<keyof ServiceUpdateManyWithWhereNestedInput, string>
   | { name: 'where', alias?: string  } 
   | { name: 'data', alias?: string  } 
   
-export interface InspectionUpdateManyDataInput {
+export interface ServiceUpdateManyDataInput {
   record?: string | null
   licensePlate?: string | null
 }
-export type InspectionUpdateManyDataInputInputObject =
-  | Extract<keyof InspectionUpdateManyDataInput, string>
+export type ServiceUpdateManyDataInputInputObject =
+  | Extract<keyof ServiceUpdateManyDataInput, string>
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
   
 export interface UserUpdateManyMutationInput {
-  cc?: number | null
+  cc?: string | null
   email?: string | null
   nickname?: string | null
   password?: string | null
@@ -2908,30 +2922,30 @@ export type UserUpdateManyMutationInputInputObject =
   | { name: 'resetTokenExpiry', alias?: string  } 
   | { name: 'permissions', alias?: string  } 
   
-export interface InspectionCreateInput {
+export interface ServiceCreateInput {
   source?: CollectionCreateOneInput
   record?: string
   licensePlate?: string
-  user?: UserCreateOneWithoutInspectionsInput
+  user?: UserCreateOneWithoutServicesInput
 }
-export type InspectionCreateInputInputObject =
-  | Extract<keyof InspectionCreateInput, string>
+export type ServiceCreateInputInputObject =
+  | Extract<keyof ServiceCreateInput, string>
   | { name: 'source', alias?: string  } 
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
   | { name: 'user', alias?: string  } 
   
-export interface UserCreateOneWithoutInspectionsInput {
-  create?: UserCreateWithoutInspectionsInput | null
+export interface UserCreateOneWithoutServicesInput {
+  create?: UserCreateWithoutServicesInput | null
   connect?: UserWhereUniqueInput | null
 }
-export type UserCreateOneWithoutInspectionsInputInputObject =
-  | Extract<keyof UserCreateOneWithoutInspectionsInput, string>
+export type UserCreateOneWithoutServicesInputInputObject =
+  | Extract<keyof UserCreateOneWithoutServicesInput, string>
   | { name: 'create', alias?: string  } 
   | { name: 'connect', alias?: string  } 
   
-export interface UserCreateWithoutInspectionsInput {
-  cc?: number
+export interface UserCreateWithoutServicesInput {
+  cc?: string
   email?: string
   nickname?: string
   password?: string
@@ -2940,8 +2954,8 @@ export interface UserCreateWithoutInspectionsInput {
   resetTokenExpiry?: number | null
   permissions?: UserCreatepermissionsInput | null
 }
-export type UserCreateWithoutInspectionsInputInputObject =
-  | Extract<keyof UserCreateWithoutInspectionsInput, string>
+export type UserCreateWithoutServicesInputInputObject =
+  | Extract<keyof UserCreateWithoutServicesInput, string>
   | { name: 'cc', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'nickname', alias?: string  } 
@@ -2951,34 +2965,34 @@ export type UserCreateWithoutInspectionsInputInputObject =
   | { name: 'resetTokenExpiry', alias?: string  } 
   | { name: 'permissions', alias?: string  } 
   
-export interface InspectionUpdateInput {
+export interface ServiceUpdateInput {
   source?: CollectionUpdateOneRequiredInput | null
   record?: string | null
   licensePlate?: string | null
-  user?: UserUpdateOneRequiredWithoutInspectionsInput | null
+  user?: UserUpdateOneRequiredWithoutServicesInput | null
 }
-export type InspectionUpdateInputInputObject =
-  | Extract<keyof InspectionUpdateInput, string>
+export type ServiceUpdateInputInputObject =
+  | Extract<keyof ServiceUpdateInput, string>
   | { name: 'source', alias?: string  } 
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
   | { name: 'user', alias?: string  } 
   
-export interface UserUpdateOneRequiredWithoutInspectionsInput {
-  create?: UserCreateWithoutInspectionsInput | null
-  update?: UserUpdateWithoutInspectionsDataInput | null
-  upsert?: UserUpsertWithoutInspectionsInput | null
+export interface UserUpdateOneRequiredWithoutServicesInput {
+  create?: UserCreateWithoutServicesInput | null
+  update?: UserUpdateWithoutServicesDataInput | null
+  upsert?: UserUpsertWithoutServicesInput | null
   connect?: UserWhereUniqueInput | null
 }
-export type UserUpdateOneRequiredWithoutInspectionsInputInputObject =
-  | Extract<keyof UserUpdateOneRequiredWithoutInspectionsInput, string>
+export type UserUpdateOneRequiredWithoutServicesInputInputObject =
+  | Extract<keyof UserUpdateOneRequiredWithoutServicesInput, string>
   | { name: 'create', alias?: string  } 
   | { name: 'update', alias?: string  } 
   | { name: 'upsert', alias?: string  } 
   | { name: 'connect', alias?: string  } 
   
-export interface UserUpdateWithoutInspectionsDataInput {
-  cc?: number | null
+export interface UserUpdateWithoutServicesDataInput {
+  cc?: string | null
   email?: string | null
   nickname?: string | null
   password?: string | null
@@ -2987,8 +3001,8 @@ export interface UserUpdateWithoutInspectionsDataInput {
   resetTokenExpiry?: number | null
   permissions?: UserUpdatepermissionsInput | null
 }
-export type UserUpdateWithoutInspectionsDataInputInputObject =
-  | Extract<keyof UserUpdateWithoutInspectionsDataInput, string>
+export type UserUpdateWithoutServicesDataInputInputObject =
+  | Extract<keyof UserUpdateWithoutServicesDataInput, string>
   | { name: 'cc', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'nickname', alias?: string  } 
@@ -2998,21 +3012,21 @@ export type UserUpdateWithoutInspectionsDataInputInputObject =
   | { name: 'resetTokenExpiry', alias?: string  } 
   | { name: 'permissions', alias?: string  } 
   
-export interface UserUpsertWithoutInspectionsInput {
-  update?: UserUpdateWithoutInspectionsDataInput
-  create?: UserCreateWithoutInspectionsInput
+export interface UserUpsertWithoutServicesInput {
+  update?: UserUpdateWithoutServicesDataInput
+  create?: UserCreateWithoutServicesInput
 }
-export type UserUpsertWithoutInspectionsInputInputObject =
-  | Extract<keyof UserUpsertWithoutInspectionsInput, string>
+export type UserUpsertWithoutServicesInputInputObject =
+  | Extract<keyof UserUpsertWithoutServicesInput, string>
   | { name: 'update', alias?: string  } 
   | { name: 'create', alias?: string  } 
   
-export interface InspectionUpdateManyMutationInput {
+export interface ServiceUpdateManyMutationInput {
   record?: string | null
   licensePlate?: string | null
 }
-export type InspectionUpdateManyMutationInputInputObject =
-  | Extract<keyof InspectionUpdateManyMutationInput, string>
+export type ServiceUpdateManyMutationInputInputObject =
+  | Extract<keyof ServiceUpdateManyMutationInput, string>
   | { name: 'record', alias?: string  } 
   | { name: 'licensePlate', alias?: string  } 
   
@@ -3057,18 +3071,18 @@ export type UserSubscriptionWhereInputInputObject =
   | { name: 'OR', alias?: string  } 
   | { name: 'NOT', alias?: string  } 
   
-export interface InspectionSubscriptionWhereInput {
+export interface ServiceSubscriptionWhereInput {
   mutation_in?: prisma.MutationType[]
   updatedFields_contains?: string | null
   updatedFields_contains_every?: string[]
   updatedFields_contains_some?: string[]
-  node?: InspectionWhereInput | null
-  AND?: InspectionSubscriptionWhereInput[]
-  OR?: InspectionSubscriptionWhereInput[]
-  NOT?: InspectionSubscriptionWhereInput[]
+  node?: ServiceWhereInput | null
+  AND?: ServiceSubscriptionWhereInput[]
+  OR?: ServiceSubscriptionWhereInput[]
+  NOT?: ServiceSubscriptionWhereInput[]
 }
-export type InspectionSubscriptionWhereInputInputObject =
-  | Extract<keyof InspectionSubscriptionWhereInput, string>
+export type ServiceSubscriptionWhereInputInputObject =
+  | Extract<keyof ServiceSubscriptionWhereInput, string>
   | { name: 'mutation_in', alias?: string  } 
   | { name: 'updatedFields_contains', alias?: string  } 
   | { name: 'updatedFields_contains_every', alias?: string  } 
@@ -3103,7 +3117,7 @@ export type CollectionSubscriptionWhereInputInputObject =
 export type CollectionTypeValues =
   | 'SOURCE'
   
-export type InspectionOrderByInputValues =
+export type ServiceOrderByInputValues =
   | 'id_ASC'
   | 'id_DESC'
   | 'record_ASC'

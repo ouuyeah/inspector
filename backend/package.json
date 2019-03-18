@@ -3,7 +3,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "NODE_ENV=development nodemon --exec ts-node src/index.ts",
-    "prisma-deploy": "prisma deploy --env-file .env"
+    "prisma-deploy": "prisma deploy --env-file .env",
+    "prisma-generate": "prisma generate --env-file .env"
   },
   "prettier": {
     "semi": false,

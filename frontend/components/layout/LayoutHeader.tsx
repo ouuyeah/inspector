@@ -52,12 +52,12 @@ class LayoutHeader extends React.Component {
           <nav className="navigation__nav">
             <ul className="navigation__list">
               <li className="navigation__item">
-                <Link href="/start-inspection">
+                <Link href="/services/start">
                   <a className="navigation__link">Crear Servicio</a>
                 </Link>
               </li>
               <li className="navigation__item">
-                <Link href="/historial">
+                <Link href="/services/view">
                   <a className="navigation__link">Ver servicios</a>
                 </Link>
               </li>

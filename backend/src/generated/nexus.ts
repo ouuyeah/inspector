@@ -93,23 +93,23 @@ export interface NexusGenInputs {
     id?: string | null; // ID
     name?: string | null; // String
   }
-  InspectionCreateInput: { // input type
+  ServiceCreateInput: { // input type
     licensePlate: string; // String!
     record: string; // String!
     source: NexusGenInputs['CollectionCreateOneInput']; // CollectionCreateOneInput!
-    user: NexusGenInputs['UserCreateOneWithoutInspectionsInput']; // UserCreateOneWithoutInspectionsInput!
+    user: NexusGenInputs['UserCreateOneWithoutServicesInput']; // UserCreateOneWithoutServicesInput!
   }
-  InspectionCreateManyWithoutUserInput: { // input type
-    connect?: NexusGenInputs['InspectionWhereUniqueInput'][] | null; // [InspectionWhereUniqueInput!]
-    create?: NexusGenInputs['InspectionCreateWithoutUserInput'][] | null; // [InspectionCreateWithoutUserInput!]
+  ServiceCreateManyWithoutUserInput: { // input type
+    connect?: NexusGenInputs['ServiceWhereUniqueInput'][] | null; // [ServiceWhereUniqueInput!]
+    create?: NexusGenInputs['ServiceCreateWithoutUserInput'][] | null; // [ServiceCreateWithoutUserInput!]
   }
-  InspectionCreateWithoutUserInput: { // input type
+  ServiceCreateWithoutUserInput: { // input type
     licensePlate: string; // String!
     record: string; // String!
     source: NexusGenInputs['CollectionCreateOneInput']; // CollectionCreateOneInput!
   }
-  InspectionScalarWhereInput: { // input type
-    AND?: NexusGenInputs['InspectionScalarWhereInput'][] | null; // [InspectionScalarWhereInput!]
+  ServiceScalarWhereInput: { // input type
+    AND?: NexusGenInputs['ServiceScalarWhereInput'][] | null; // [ServiceScalarWhereInput!]
     createdAt?: any | null; // DateTime
     createdAt_gt?: any | null; // DateTime
     createdAt_gte?: any | null; // DateTime
@@ -146,8 +146,8 @@ export interface NexusGenInputs {
     licensePlate_not_in?: string[] | null; // [String!]
     licensePlate_not_starts_with?: string | null; // String
     licensePlate_starts_with?: string | null; // String
-    NOT?: NexusGenInputs['InspectionScalarWhereInput'][] | null; // [InspectionScalarWhereInput!]
-    OR?: NexusGenInputs['InspectionScalarWhereInput'][] | null; // [InspectionScalarWhereInput!]
+    NOT?: NexusGenInputs['ServiceScalarWhereInput'][] | null; // [ServiceScalarWhereInput!]
+    OR?: NexusGenInputs['ServiceScalarWhereInput'][] | null; // [ServiceScalarWhereInput!]
     record?: string | null; // String
     record_contains?: string | null; // String
     record_ends_with?: string | null; // String
@@ -171,47 +171,47 @@ export interface NexusGenInputs {
     updatedAt_not?: any | null; // DateTime
     updatedAt_not_in?: any[] | null; // [DateTime!]
   }
-  InspectionUpdateInput: { // input type
+  ServiceUpdateInput: { // input type
     licensePlate?: string | null; // String
     record?: string | null; // String
     source?: NexusGenInputs['CollectionUpdateOneRequiredInput'] | null; // CollectionUpdateOneRequiredInput
-    user?: NexusGenInputs['UserUpdateOneRequiredWithoutInspectionsInput'] | null; // UserUpdateOneRequiredWithoutInspectionsInput
+    user?: NexusGenInputs['UserUpdateOneRequiredWithoutServicesInput'] | null; // UserUpdateOneRequiredWithoutServicesInput
   }
-  InspectionUpdateManyDataInput: { // input type
+  ServiceUpdateManyDataInput: { // input type
     licensePlate?: string | null; // String
     record?: string | null; // String
   }
-  InspectionUpdateManyWithWhereNestedInput: { // input type
-    data: NexusGenInputs['InspectionUpdateManyDataInput']; // InspectionUpdateManyDataInput!
-    where: NexusGenInputs['InspectionScalarWhereInput']; // InspectionScalarWhereInput!
+  ServiceUpdateManyWithWhereNestedInput: { // input type
+    data: NexusGenInputs['ServiceUpdateManyDataInput']; // ServiceUpdateManyDataInput!
+    where: NexusGenInputs['ServiceScalarWhereInput']; // ServiceScalarWhereInput!
   }
-  InspectionUpdateManyWithoutUserInput: { // input type
-    connect?: NexusGenInputs['InspectionWhereUniqueInput'][] | null; // [InspectionWhereUniqueInput!]
-    create?: NexusGenInputs['InspectionCreateWithoutUserInput'][] | null; // [InspectionCreateWithoutUserInput!]
-    delete?: NexusGenInputs['InspectionWhereUniqueInput'][] | null; // [InspectionWhereUniqueInput!]
-    deleteMany?: NexusGenInputs['InspectionScalarWhereInput'][] | null; // [InspectionScalarWhereInput!]
-    disconnect?: NexusGenInputs['InspectionWhereUniqueInput'][] | null; // [InspectionWhereUniqueInput!]
-    set?: NexusGenInputs['InspectionWhereUniqueInput'][] | null; // [InspectionWhereUniqueInput!]
-    update?: NexusGenInputs['InspectionUpdateWithWhereUniqueWithoutUserInput'][] | null; // [InspectionUpdateWithWhereUniqueWithoutUserInput!]
-    updateMany?: NexusGenInputs['InspectionUpdateManyWithWhereNestedInput'][] | null; // [InspectionUpdateManyWithWhereNestedInput!]
-    upsert?: NexusGenInputs['InspectionUpsertWithWhereUniqueWithoutUserInput'][] | null; // [InspectionUpsertWithWhereUniqueWithoutUserInput!]
+  ServiceUpdateManyWithoutUserInput: { // input type
+    connect?: NexusGenInputs['ServiceWhereUniqueInput'][] | null; // [ServiceWhereUniqueInput!]
+    create?: NexusGenInputs['ServiceCreateWithoutUserInput'][] | null; // [ServiceCreateWithoutUserInput!]
+    delete?: NexusGenInputs['ServiceWhereUniqueInput'][] | null; // [ServiceWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['ServiceScalarWhereInput'][] | null; // [ServiceScalarWhereInput!]
+    disconnect?: NexusGenInputs['ServiceWhereUniqueInput'][] | null; // [ServiceWhereUniqueInput!]
+    set?: NexusGenInputs['ServiceWhereUniqueInput'][] | null; // [ServiceWhereUniqueInput!]
+    update?: NexusGenInputs['ServiceUpdateWithWhereUniqueWithoutUserInput'][] | null; // [ServiceUpdateWithWhereUniqueWithoutUserInput!]
+    updateMany?: NexusGenInputs['ServiceUpdateManyWithWhereNestedInput'][] | null; // [ServiceUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['ServiceUpsertWithWhereUniqueWithoutUserInput'][] | null; // [ServiceUpsertWithWhereUniqueWithoutUserInput!]
   }
-  InspectionUpdateWithWhereUniqueWithoutUserInput: { // input type
-    data: NexusGenInputs['InspectionUpdateWithoutUserDataInput']; // InspectionUpdateWithoutUserDataInput!
-    where: NexusGenInputs['InspectionWhereUniqueInput']; // InspectionWhereUniqueInput!
+  ServiceUpdateWithWhereUniqueWithoutUserInput: { // input type
+    data: NexusGenInputs['ServiceUpdateWithoutUserDataInput']; // ServiceUpdateWithoutUserDataInput!
+    where: NexusGenInputs['ServiceWhereUniqueInput']; // ServiceWhereUniqueInput!
   }
-  InspectionUpdateWithoutUserDataInput: { // input type
+  ServiceUpdateWithoutUserDataInput: { // input type
     licensePlate?: string | null; // String
     record?: string | null; // String
     source?: NexusGenInputs['CollectionUpdateOneRequiredInput'] | null; // CollectionUpdateOneRequiredInput
   }
-  InspectionUpsertWithWhereUniqueWithoutUserInput: { // input type
-    create: NexusGenInputs['InspectionCreateWithoutUserInput']; // InspectionCreateWithoutUserInput!
-    update: NexusGenInputs['InspectionUpdateWithoutUserDataInput']; // InspectionUpdateWithoutUserDataInput!
-    where: NexusGenInputs['InspectionWhereUniqueInput']; // InspectionWhereUniqueInput!
+  ServiceUpsertWithWhereUniqueWithoutUserInput: { // input type
+    create: NexusGenInputs['ServiceCreateWithoutUserInput']; // ServiceCreateWithoutUserInput!
+    update: NexusGenInputs['ServiceUpdateWithoutUserDataInput']; // ServiceUpdateWithoutUserDataInput!
+    where: NexusGenInputs['ServiceWhereUniqueInput']; // ServiceWhereUniqueInput!
   }
-  InspectionWhereInput: { // input type
-    AND?: NexusGenInputs['InspectionWhereInput'][] | null; // [InspectionWhereInput!]
+  ServiceWhereInput: { // input type
+    AND?: NexusGenInputs['ServiceWhereInput'][] | null; // [ServiceWhereInput!]
     createdAt?: any | null; // DateTime
     createdAt_gt?: any | null; // DateTime
     createdAt_gte?: any | null; // DateTime
@@ -248,8 +248,8 @@ export interface NexusGenInputs {
     licensePlate_not_in?: string[] | null; // [String!]
     licensePlate_not_starts_with?: string | null; // String
     licensePlate_starts_with?: string | null; // String
-    NOT?: NexusGenInputs['InspectionWhereInput'][] | null; // [InspectionWhereInput!]
-    OR?: NexusGenInputs['InspectionWhereInput'][] | null; // [InspectionWhereInput!]
+    NOT?: NexusGenInputs['ServiceWhereInput'][] | null; // [ServiceWhereInput!]
+    OR?: NexusGenInputs['ServiceWhereInput'][] | null; // [ServiceWhereInput!]
     record?: string | null; // String
     record_contains?: string | null; // String
     record_ends_with?: string | null; // String
@@ -275,30 +275,31 @@ export interface NexusGenInputs {
     updatedAt_not_in?: any[] | null; // [DateTime!]
     user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
   }
-  InspectionWhereUniqueInput: { // input type
+  ServiceWhereUniqueInput: { // input type
     id?: string | null; // ID
+    record?: string | null; // String
   }
   UserCreateInput: { // input type
-    cc: number; // Int!
+    cc: string; // String!
     email: string; // String!
-    inspections?: NexusGenInputs['InspectionCreateManyWithoutUserInput'] | null; // InspectionCreateManyWithoutUserInput
     name?: string | null; // String
     nickname: string; // String!
     password: string; // String!
     permissions?: NexusGenInputs['UserCreatepermissionsInput'] | null; // UserCreatepermissionsInput
     resetToken?: string | null; // String
     resetTokenExpiry?: number | null; // Float
+    services?: NexusGenInputs['ServiceCreateManyWithoutUserInput'] | null; // ServiceCreateManyWithoutUserInput
   }
   UserCreateOneInput: { // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
     create?: NexusGenInputs['UserCreateInput'] | null; // UserCreateInput
   }
-  UserCreateOneWithoutInspectionsInput: { // input type
+  UserCreateOneWithoutServicesInput: { // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
-    create?: NexusGenInputs['UserCreateWithoutInspectionsInput'] | null; // UserCreateWithoutInspectionsInput
+    create?: NexusGenInputs['UserCreateWithoutServicesInput'] | null; // UserCreateWithoutServicesInput
   }
-  UserCreateWithoutInspectionsInput: { // input type
-    cc: number; // Int!
+  UserCreateWithoutServicesInput: { // input type
+    cc: string; // String!
     email: string; // String!
     name?: string | null; // String
     nickname: string; // String!
@@ -311,15 +312,15 @@ export interface NexusGenInputs {
     set?: NexusGenEnums['Permission'][] | null; // [Permission!]
   }
   UserUpdateDataInput: { // input type
-    cc?: number | null; // Int
+    cc?: string | null; // String
     email?: string | null; // String
-    inspections?: NexusGenInputs['InspectionUpdateManyWithoutUserInput'] | null; // InspectionUpdateManyWithoutUserInput
     name?: string | null; // String
     nickname?: string | null; // String
     password?: string | null; // String
     permissions?: NexusGenInputs['UserUpdatepermissionsInput'] | null; // UserUpdatepermissionsInput
     resetToken?: string | null; // String
     resetTokenExpiry?: number | null; // Float
+    services?: NexusGenInputs['ServiceUpdateManyWithoutUserInput'] | null; // ServiceUpdateManyWithoutUserInput
   }
   UserUpdateOneRequiredInput: { // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
@@ -327,14 +328,14 @@ export interface NexusGenInputs {
     update?: NexusGenInputs['UserUpdateDataInput'] | null; // UserUpdateDataInput
     upsert?: NexusGenInputs['UserUpsertNestedInput'] | null; // UserUpsertNestedInput
   }
-  UserUpdateOneRequiredWithoutInspectionsInput: { // input type
+  UserUpdateOneRequiredWithoutServicesInput: { // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
-    create?: NexusGenInputs['UserCreateWithoutInspectionsInput'] | null; // UserCreateWithoutInspectionsInput
-    update?: NexusGenInputs['UserUpdateWithoutInspectionsDataInput'] | null; // UserUpdateWithoutInspectionsDataInput
-    upsert?: NexusGenInputs['UserUpsertWithoutInspectionsInput'] | null; // UserUpsertWithoutInspectionsInput
+    create?: NexusGenInputs['UserCreateWithoutServicesInput'] | null; // UserCreateWithoutServicesInput
+    update?: NexusGenInputs['UserUpdateWithoutServicesDataInput'] | null; // UserUpdateWithoutServicesDataInput
+    upsert?: NexusGenInputs['UserUpsertWithoutServicesInput'] | null; // UserUpsertWithoutServicesInput
   }
-  UserUpdateWithoutInspectionsDataInput: { // input type
-    cc?: number | null; // Int
+  UserUpdateWithoutServicesDataInput: { // input type
+    cc?: string | null; // String
     email?: string | null; // String
     name?: string | null; // String
     nickname?: string | null; // String
@@ -350,20 +351,26 @@ export interface NexusGenInputs {
     create: NexusGenInputs['UserCreateInput']; // UserCreateInput!
     update: NexusGenInputs['UserUpdateDataInput']; // UserUpdateDataInput!
   }
-  UserUpsertWithoutInspectionsInput: { // input type
-    create: NexusGenInputs['UserCreateWithoutInspectionsInput']; // UserCreateWithoutInspectionsInput!
-    update: NexusGenInputs['UserUpdateWithoutInspectionsDataInput']; // UserUpdateWithoutInspectionsDataInput!
+  UserUpsertWithoutServicesInput: { // input type
+    create: NexusGenInputs['UserCreateWithoutServicesInput']; // UserCreateWithoutServicesInput!
+    update: NexusGenInputs['UserUpdateWithoutServicesDataInput']; // UserUpdateWithoutServicesDataInput!
   }
   UserWhereInput: { // input type
     AND?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
-    cc?: number | null; // Int
-    cc_gt?: number | null; // Int
-    cc_gte?: number | null; // Int
-    cc_in?: number[] | null; // [Int!]
-    cc_lt?: number | null; // Int
-    cc_lte?: number | null; // Int
-    cc_not?: number | null; // Int
-    cc_not_in?: number[] | null; // [Int!]
+    cc?: string | null; // String
+    cc_contains?: string | null; // String
+    cc_ends_with?: string | null; // String
+    cc_gt?: string | null; // String
+    cc_gte?: string | null; // String
+    cc_in?: string[] | null; // [String!]
+    cc_lt?: string | null; // String
+    cc_lte?: string | null; // String
+    cc_not?: string | null; // String
+    cc_not_contains?: string | null; // String
+    cc_not_ends_with?: string | null; // String
+    cc_not_in?: string[] | null; // [String!]
+    cc_not_starts_with?: string | null; // String
+    cc_starts_with?: string | null; // String
     createdAt?: any | null; // DateTime
     createdAt_gt?: any | null; // DateTime
     createdAt_gte?: any | null; // DateTime
@@ -400,9 +407,6 @@ export interface NexusGenInputs {
     id_not_in?: string[] | null; // [ID!]
     id_not_starts_with?: string | null; // ID
     id_starts_with?: string | null; // ID
-    inspections_every?: NexusGenInputs['InspectionWhereInput'] | null; // InspectionWhereInput
-    inspections_none?: NexusGenInputs['InspectionWhereInput'] | null; // InspectionWhereInput
-    inspections_some?: NexusGenInputs['InspectionWhereInput'] | null; // InspectionWhereInput
     name?: string | null; // String
     name_contains?: string | null; // String
     name_ends_with?: string | null; // String
@@ -469,6 +473,9 @@ export interface NexusGenInputs {
     resetTokenExpiry_lte?: number | null; // Float
     resetTokenExpiry_not?: number | null; // Float
     resetTokenExpiry_not_in?: number[] | null; // [Float!]
+    services_every?: NexusGenInputs['ServiceWhereInput'] | null; // ServiceWhereInput
+    services_none?: NexusGenInputs['ServiceWhereInput'] | null; // ServiceWhereInput
+    services_some?: NexusGenInputs['ServiceWhereInput'] | null; // ServiceWhereInput
     updatedAt?: any | null; // DateTime
     updatedAt_gt?: any | null; // DateTime
     updatedAt_gte?: any | null; // DateTime
@@ -479,7 +486,7 @@ export interface NexusGenInputs {
     updatedAt_not_in?: any[] | null; // [DateTime!]
   }
   UserWhereUniqueInput: { // input type
-    cc?: number | null; // Int
+    cc?: string | null; // String
     email?: string | null; // String
     id?: string | null; // ID
     nickname?: string | null; // String
@@ -489,8 +496,8 @@ export interface NexusGenInputs {
 export interface NexusGenEnums {
   CollectionOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "type_ASC" | "type_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
   CollectionType: "SOURCE"
-  InspectionOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "licensePlate_ASC" | "licensePlate_DESC" | "record_ASC" | "record_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
   Permission: "ADMIN" | "AGENT" | "DRIVER"
+  ServiceOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "licensePlate_ASC" | "licensePlate_DESC" | "record_ASC" | "record_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
 }
 
 export interface NexusGenRootTypes {
@@ -505,17 +512,17 @@ export interface NexusGenRootTypes {
     name: string; // String!
     updatedAt: any; // DateTime!
   }
-  Inspection: { // root type
+  Mutation: {};
+  Query: {};
+  Service: { // root type
     createdAt: any; // DateTime!
     id: string; // ID!
     licensePlate: string; // String!
     record: string; // String!
     updatedAt: any; // DateTime!
   }
-  Mutation: {};
-  Query: {};
   User: { // root type
-    cc: number; // Int!
+    cc: string; // String!
     email: string; // String!
     id: string; // ID!
     name?: string | null; // String
@@ -537,37 +544,37 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   CollectionUpsertNestedInput: NexusGenInputs['CollectionUpsertNestedInput'];
   CollectionWhereInput: NexusGenInputs['CollectionWhereInput'];
   CollectionWhereUniqueInput: NexusGenInputs['CollectionWhereUniqueInput'];
-  InspectionCreateInput: NexusGenInputs['InspectionCreateInput'];
-  InspectionCreateManyWithoutUserInput: NexusGenInputs['InspectionCreateManyWithoutUserInput'];
-  InspectionCreateWithoutUserInput: NexusGenInputs['InspectionCreateWithoutUserInput'];
-  InspectionScalarWhereInput: NexusGenInputs['InspectionScalarWhereInput'];
-  InspectionUpdateInput: NexusGenInputs['InspectionUpdateInput'];
-  InspectionUpdateManyDataInput: NexusGenInputs['InspectionUpdateManyDataInput'];
-  InspectionUpdateManyWithWhereNestedInput: NexusGenInputs['InspectionUpdateManyWithWhereNestedInput'];
-  InspectionUpdateManyWithoutUserInput: NexusGenInputs['InspectionUpdateManyWithoutUserInput'];
-  InspectionUpdateWithWhereUniqueWithoutUserInput: NexusGenInputs['InspectionUpdateWithWhereUniqueWithoutUserInput'];
-  InspectionUpdateWithoutUserDataInput: NexusGenInputs['InspectionUpdateWithoutUserDataInput'];
-  InspectionUpsertWithWhereUniqueWithoutUserInput: NexusGenInputs['InspectionUpsertWithWhereUniqueWithoutUserInput'];
-  InspectionWhereInput: NexusGenInputs['InspectionWhereInput'];
-  InspectionWhereUniqueInput: NexusGenInputs['InspectionWhereUniqueInput'];
+  ServiceCreateInput: NexusGenInputs['ServiceCreateInput'];
+  ServiceCreateManyWithoutUserInput: NexusGenInputs['ServiceCreateManyWithoutUserInput'];
+  ServiceCreateWithoutUserInput: NexusGenInputs['ServiceCreateWithoutUserInput'];
+  ServiceScalarWhereInput: NexusGenInputs['ServiceScalarWhereInput'];
+  ServiceUpdateInput: NexusGenInputs['ServiceUpdateInput'];
+  ServiceUpdateManyDataInput: NexusGenInputs['ServiceUpdateManyDataInput'];
+  ServiceUpdateManyWithWhereNestedInput: NexusGenInputs['ServiceUpdateManyWithWhereNestedInput'];
+  ServiceUpdateManyWithoutUserInput: NexusGenInputs['ServiceUpdateManyWithoutUserInput'];
+  ServiceUpdateWithWhereUniqueWithoutUserInput: NexusGenInputs['ServiceUpdateWithWhereUniqueWithoutUserInput'];
+  ServiceUpdateWithoutUserDataInput: NexusGenInputs['ServiceUpdateWithoutUserDataInput'];
+  ServiceUpsertWithWhereUniqueWithoutUserInput: NexusGenInputs['ServiceUpsertWithWhereUniqueWithoutUserInput'];
+  ServiceWhereInput: NexusGenInputs['ServiceWhereInput'];
+  ServiceWhereUniqueInput: NexusGenInputs['ServiceWhereUniqueInput'];
   UserCreateInput: NexusGenInputs['UserCreateInput'];
   UserCreateOneInput: NexusGenInputs['UserCreateOneInput'];
-  UserCreateOneWithoutInspectionsInput: NexusGenInputs['UserCreateOneWithoutInspectionsInput'];
-  UserCreateWithoutInspectionsInput: NexusGenInputs['UserCreateWithoutInspectionsInput'];
+  UserCreateOneWithoutServicesInput: NexusGenInputs['UserCreateOneWithoutServicesInput'];
+  UserCreateWithoutServicesInput: NexusGenInputs['UserCreateWithoutServicesInput'];
   UserCreatepermissionsInput: NexusGenInputs['UserCreatepermissionsInput'];
   UserUpdateDataInput: NexusGenInputs['UserUpdateDataInput'];
   UserUpdateOneRequiredInput: NexusGenInputs['UserUpdateOneRequiredInput'];
-  UserUpdateOneRequiredWithoutInspectionsInput: NexusGenInputs['UserUpdateOneRequiredWithoutInspectionsInput'];
-  UserUpdateWithoutInspectionsDataInput: NexusGenInputs['UserUpdateWithoutInspectionsDataInput'];
+  UserUpdateOneRequiredWithoutServicesInput: NexusGenInputs['UserUpdateOneRequiredWithoutServicesInput'];
+  UserUpdateWithoutServicesDataInput: NexusGenInputs['UserUpdateWithoutServicesDataInput'];
   UserUpdatepermissionsInput: NexusGenInputs['UserUpdatepermissionsInput'];
   UserUpsertNestedInput: NexusGenInputs['UserUpsertNestedInput'];
-  UserUpsertWithoutInspectionsInput: NexusGenInputs['UserUpsertWithoutInspectionsInput'];
+  UserUpsertWithoutServicesInput: NexusGenInputs['UserUpsertWithoutServicesInput'];
   UserWhereInput: NexusGenInputs['UserWhereInput'];
   UserWhereUniqueInput: NexusGenInputs['UserWhereUniqueInput'];
   CollectionOrderByInput: NexusGenEnums['CollectionOrderByInput'];
   CollectionType: NexusGenEnums['CollectionType'];
-  InspectionOrderByInput: NexusGenEnums['InspectionOrderByInput'];
   Permission: NexusGenEnums['Permission'];
+  ServiceOrderByInput: NexusGenEnums['ServiceOrderByInput'];
 }
 
 export interface NexusGenFieldTypes {
@@ -584,7 +591,21 @@ export interface NexusGenFieldTypes {
     updatedAt: any; // DateTime!
     user: NexusGenRootTypes['User']; // User!
   }
-  Inspection: { // field return type
+  Mutation: { // field return type
+    createService: NexusGenRootTypes['Service'] | null; // Service
+    login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
+    signout: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
+    signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
+    upsertCollection: NexusGenRootTypes['Collection'] | null; // Collection
+    upsertService: NexusGenRootTypes['Service']; // Service!
+  }
+  Query: { // field return type
+    collections: NexusGenRootTypes['Collection'][]; // [Collection!]!
+    me: NexusGenRootTypes['User'] | null; // User
+    service: NexusGenRootTypes['Service'] | null; // Service
+    services: NexusGenRootTypes['Service'][]; // [Service!]!
+  }
+  Service: { // field return type
     createdAt: any; // DateTime!
     id: string; // ID!
     licensePlate: string; // String!
@@ -593,34 +614,20 @@ export interface NexusGenFieldTypes {
     updatedAt: any; // DateTime!
     user: NexusGenRootTypes['User']; // User!
   }
-  Mutation: { // field return type
-    createInspection: NexusGenRootTypes['Inspection'] | null; // Inspection
-    login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
-    signout: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
-    signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
-    upsertCollection: NexusGenRootTypes['Collection'] | null; // Collection
-    upsertInspection: NexusGenRootTypes['Inspection']; // Inspection!
-  }
-  Query: { // field return type
-    collections: NexusGenRootTypes['Collection'][]; // [Collection!]!
-    inspection: NexusGenRootTypes['Inspection'] | null; // Inspection
-    inspections: NexusGenRootTypes['Inspection'][]; // [Inspection!]!
-    me: NexusGenRootTypes['User'] | null; // User
-  }
   User: { // field return type
-    cc: number; // Int!
+    cc: string; // String!
     email: string; // String!
     id: string; // ID!
-    inspections: NexusGenRootTypes['Inspection'][] | null; // [Inspection!]
     name: string | null; // String
     nickname: string; // String!
     permissions: NexusGenEnums['Permission'][]; // [Permission!]!
+    services: NexusGenRootTypes['Service'][] | null; // [Service!]
   }
 }
 
 export interface NexusGenArgTypes {
   Mutation: {
-    createInspection: { // args
+    createService: { // args
       licensePlate?: string | null; // String
       record?: string | null; // String
       source?: string | null; // String
@@ -630,7 +637,7 @@ export interface NexusGenArgTypes {
       password?: string | null; // String
     }
     signup: { // args
-      cc?: number | null; // Int
+      cc?: string | null; // String
       email?: string | null; // String
       name?: string | null; // String
       nickname?: string | null; // String
@@ -641,10 +648,10 @@ export interface NexusGenArgTypes {
       name?: string | null; // String
       type?: NexusGenEnums['CollectionType'] | null; // CollectionType
     }
-    upsertInspection: { // args
-      create: NexusGenInputs['InspectionCreateInput']; // InspectionCreateInput!
-      update: NexusGenInputs['InspectionUpdateInput']; // InspectionUpdateInput!
-      where: NexusGenInputs['InspectionWhereUniqueInput']; // InspectionWhereUniqueInput!
+    upsertService: { // args
+      create: NexusGenInputs['ServiceCreateInput']; // ServiceCreateInput!
+      update: NexusGenInputs['ServiceUpdateInput']; // ServiceUpdateInput!
+      where: NexusGenInputs['ServiceWhereUniqueInput']; // ServiceWhereUniqueInput!
     }
   }
   Query: {
@@ -657,17 +664,17 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
       where?: NexusGenInputs['CollectionWhereInput'] | null; // CollectionWhereInput
     }
-    inspection: { // args
+    service: { // args
       id?: string | null; // ID
     }
-    inspections: { // args
+    services: { // args
       after?: string | null; // String
       before?: string | null; // String
       first?: number | null; // Int
       last?: number | null; // Int
-      orderBy?: NexusGenEnums['InspectionOrderByInput'] | null; // InspectionOrderByInput
+      orderBy?: NexusGenEnums['ServiceOrderByInput'] | null; // ServiceOrderByInput
       skip?: number | null; // Int
-      where?: NexusGenInputs['InspectionWhereInput'] | null; // InspectionWhereInput
+      where?: NexusGenInputs['ServiceWhereInput'] | null; // ServiceWhereInput
     }
   }
 }
@@ -677,11 +684,11 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AuthPayload" | "Collection" | "Inspection" | "Mutation" | "Query" | "User";
+export type NexusGenObjectNames = "AuthPayload" | "Collection" | "Mutation" | "Query" | "Service" | "User";
 
-export type NexusGenInputNames = "CollectionCreateInput" | "CollectionCreateOneInput" | "CollectionUpdateDataInput" | "CollectionUpdateOneRequiredInput" | "CollectionUpsertNestedInput" | "CollectionWhereInput" | "CollectionWhereUniqueInput" | "InspectionCreateInput" | "InspectionCreateManyWithoutUserInput" | "InspectionCreateWithoutUserInput" | "InspectionScalarWhereInput" | "InspectionUpdateInput" | "InspectionUpdateManyDataInput" | "InspectionUpdateManyWithWhereNestedInput" | "InspectionUpdateManyWithoutUserInput" | "InspectionUpdateWithWhereUniqueWithoutUserInput" | "InspectionUpdateWithoutUserDataInput" | "InspectionUpsertWithWhereUniqueWithoutUserInput" | "InspectionWhereInput" | "InspectionWhereUniqueInput" | "UserCreateInput" | "UserCreateOneInput" | "UserCreateOneWithoutInspectionsInput" | "UserCreateWithoutInspectionsInput" | "UserCreatepermissionsInput" | "UserUpdateDataInput" | "UserUpdateOneRequiredInput" | "UserUpdateOneRequiredWithoutInspectionsInput" | "UserUpdateWithoutInspectionsDataInput" | "UserUpdatepermissionsInput" | "UserUpsertNestedInput" | "UserUpsertWithoutInspectionsInput" | "UserWhereInput" | "UserWhereUniqueInput";
+export type NexusGenInputNames = "CollectionCreateInput" | "CollectionCreateOneInput" | "CollectionUpdateDataInput" | "CollectionUpdateOneRequiredInput" | "CollectionUpsertNestedInput" | "CollectionWhereInput" | "CollectionWhereUniqueInput" | "ServiceCreateInput" | "ServiceCreateManyWithoutUserInput" | "ServiceCreateWithoutUserInput" | "ServiceScalarWhereInput" | "ServiceUpdateInput" | "ServiceUpdateManyDataInput" | "ServiceUpdateManyWithWhereNestedInput" | "ServiceUpdateManyWithoutUserInput" | "ServiceUpdateWithWhereUniqueWithoutUserInput" | "ServiceUpdateWithoutUserDataInput" | "ServiceUpsertWithWhereUniqueWithoutUserInput" | "ServiceWhereInput" | "ServiceWhereUniqueInput" | "UserCreateInput" | "UserCreateOneInput" | "UserCreateOneWithoutServicesInput" | "UserCreateWithoutServicesInput" | "UserCreatepermissionsInput" | "UserUpdateDataInput" | "UserUpdateOneRequiredInput" | "UserUpdateOneRequiredWithoutServicesInput" | "UserUpdateWithoutServicesDataInput" | "UserUpdatepermissionsInput" | "UserUpsertNestedInput" | "UserUpsertWithoutServicesInput" | "UserWhereInput" | "UserWhereUniqueInput";
 
-export type NexusGenEnumNames = "CollectionOrderByInput" | "CollectionType" | "InspectionOrderByInput" | "Permission";
+export type NexusGenEnumNames = "CollectionOrderByInput" | "CollectionType" | "Permission" | "ServiceOrderByInput";
 
 export type NexusGenInterfaceNames = never;
 

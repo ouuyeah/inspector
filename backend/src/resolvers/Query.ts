@@ -11,23 +11,22 @@ export const Query = prismaObjectType({
         const userId = getUserId(ctx)
 
         if (!userId) {
-          console.log('entro aqui')
           return null
         }
         return ctx.prisma.user({ id: userId })
       },
     })
-    t.field('inspection', {
-      type: 'Inspection',
+    t.field('service', {
+      type: 'Service',
       nullable: true,
       args: { id: idArg() },
       resolve: (parent, { id }, ctx) => {
-        return ctx.prisma.inspection({ id })
+        return ctx.prisma.service({ id })
       },
     })
 
     t.prismaFields(['collections'])
-    t.prismaFields(['inspections'])
+    t.prismaFields(['services'])
     /*
     t.list.field('feed', {
       type: 'Post',

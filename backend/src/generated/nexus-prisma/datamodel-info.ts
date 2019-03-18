@@ -8,7 +8,7 @@ export default {
     Permission: [],
     CollectionType: [],
     User: ['id', 'cc', 'email', 'nickname'],
-    Inspection: ['id'],
+    Service: ['id', 'record'],
     Collection: ['id', 'name']
   },
   embeddedTypes: [],
@@ -236,7 +236,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "inspection",
+            "name": "service",
             "description": null,
             "args": [
               {
@@ -247,7 +247,7 @@ export default {
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "InspectionWhereUniqueInput",
+                    "name": "ServiceWhereUniqueInput",
                     "ofType": null
                   }
                 },
@@ -256,14 +256,14 @@ export default {
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "Inspection",
+              "name": "Service",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "inspections",
+            "name": "services",
             "description": null,
             "args": [
               {
@@ -271,7 +271,7 @@ export default {
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionWhereInput",
+                  "name": "ServiceWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -281,7 +281,7 @@ export default {
                 "description": null,
                 "type": {
                   "kind": "ENUM",
-                  "name": "InspectionOrderByInput",
+                  "name": "ServiceOrderByInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -345,7 +345,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "Inspection",
+                  "name": "Service",
                   "ofType": null
                 }
               }
@@ -354,7 +354,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "inspectionsConnection",
+            "name": "servicesConnection",
             "description": null,
             "args": [
               {
@@ -362,7 +362,7 @@ export default {
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionWhereInput",
+                  "name": "ServiceWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -372,7 +372,7 @@ export default {
                 "description": null,
                 "type": {
                   "kind": "ENUM",
-                  "name": "InspectionOrderByInput",
+                  "name": "ServiceOrderByInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -433,7 +433,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "InspectionConnection",
+                "name": "ServiceConnection",
                 "ofType": null
               }
             },
@@ -699,7 +699,7 @@ export default {
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -733,16 +733,6 @@ export default {
         "kind": "SCALAR",
         "name": "ID",
         "description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID.",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Int",
-        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. ",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -789,7 +779,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -881,7 +871,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "inspections",
+            "name": "services",
             "description": null,
             "args": [
               {
@@ -889,7 +879,7 @@ export default {
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionWhereInput",
+                  "name": "ServiceWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -899,7 +889,7 @@ export default {
                 "description": null,
                 "type": {
                   "kind": "ENUM",
-                  "name": "InspectionOrderByInput",
+                  "name": "ServiceOrderByInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -963,7 +953,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "Inspection",
+                  "name": "Service",
                   "ofType": null
                 }
               }
@@ -1045,7 +1035,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "InspectionWhereInput",
+        "name": "ServiceWhereInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -1740,7 +1730,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionWhereInput",
+                  "name": "ServiceWhereInput",
                   "ofType": null
                 }
               }
@@ -1758,7 +1748,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionWhereInput",
+                  "name": "ServiceWhereInput",
                   "ofType": null
                 }
               }
@@ -1776,7 +1766,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionWhereInput",
+                  "name": "ServiceWhereInput",
                   "ofType": null
                 }
               }
@@ -2607,7 +2597,7 @@ export default {
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -2617,7 +2607,7 @@ export default {
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -2633,7 +2623,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 }
               }
@@ -2651,7 +2641,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 }
               }
@@ -2663,7 +2653,7 @@ export default {
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -2673,7 +2663,7 @@ export default {
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -2683,7 +2673,7 @@ export default {
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -2693,7 +2683,67 @@ export default {
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "cc_contains",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "cc_not_contains",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "cc_starts_with",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "cc_not_starts_with",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "cc_ends_with",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "cc_not_ends_with",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -3575,31 +3625,31 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "inspections_every",
+            "name": "services_every",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "InspectionWhereInput",
+              "name": "ServiceWhereInput",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "inspections_some",
+            "name": "services_some",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "InspectionWhereInput",
+              "name": "ServiceWhereInput",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "inspections_none",
+            "name": "services_none",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "InspectionWhereInput",
+              "name": "ServiceWhereInput",
               "ofType": null
             },
             "defaultValue": null
@@ -3867,7 +3917,7 @@ export default {
       },
       {
         "kind": "ENUM",
-        "name": "InspectionOrderByInput",
+        "name": "ServiceOrderByInput",
         "description": null,
         "fields": null,
         "inputFields": null,
@@ -3937,8 +3987,18 @@ export default {
         "possibleTypes": null
       },
       {
+        "kind": "SCALAR",
+        "name": "Int",
+        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. ",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
-        "name": "Inspection",
+        "name": "Service",
         "description": null,
         "fields": [
           {
@@ -4538,7 +4598,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "InspectionWhereUniqueInput",
+        "name": "ServiceWhereUniqueInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -4551,6 +4611,16 @@ export default {
               "ofType": null
             },
             "defaultValue": null
+          },
+          {
+            "name": "record",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -4559,7 +4629,7 @@ export default {
       },
       {
         "kind": "OBJECT",
-        "name": "InspectionConnection",
+        "name": "ServiceConnection",
         "description": null,
         "fields": [
           {
@@ -4590,7 +4660,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "InspectionEdge",
+                  "name": "ServiceEdge",
                   "ofType": null
                 }
               }
@@ -4607,7 +4677,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "AggregateInspection",
+                "name": "AggregateService",
                 "ofType": null
               }
             },
@@ -4622,7 +4692,7 @@ export default {
       },
       {
         "kind": "OBJECT",
-        "name": "InspectionEdge",
+        "name": "ServiceEdge",
         "description": null,
         "fields": [
           {
@@ -4634,7 +4704,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Inspection",
+                "name": "Service",
                 "ofType": null
               }
             },
@@ -4665,7 +4735,7 @@ export default {
       },
       {
         "kind": "OBJECT",
-        "name": "AggregateInspection",
+        "name": "AggregateService",
         "description": null,
         "fields": [
           {
@@ -5184,7 +5254,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "createInspection",
+            "name": "createService",
             "description": null,
             "args": [
               {
@@ -5195,7 +5265,7 @@ export default {
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "InspectionCreateInput",
+                    "name": "ServiceCreateInput",
                     "ofType": null
                   }
                 },
@@ -5207,7 +5277,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Inspection",
+                "name": "Service",
                 "ofType": null
               }
             },
@@ -5215,7 +5285,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "updateInspection",
+            "name": "updateService",
             "description": null,
             "args": [
               {
@@ -5226,7 +5296,7 @@ export default {
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "InspectionUpdateInput",
+                    "name": "ServiceUpdateInput",
                     "ofType": null
                   }
                 },
@@ -5240,7 +5310,7 @@ export default {
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "InspectionWhereUniqueInput",
+                    "name": "ServiceWhereUniqueInput",
                     "ofType": null
                   }
                 },
@@ -5249,14 +5319,14 @@ export default {
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "Inspection",
+              "name": "Service",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "updateManyInspections",
+            "name": "updateManyServices",
             "description": null,
             "args": [
               {
@@ -5267,7 +5337,7 @@ export default {
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "InspectionUpdateManyMutationInput",
+                    "name": "ServiceUpdateManyMutationInput",
                     "ofType": null
                   }
                 },
@@ -5278,7 +5348,7 @@ export default {
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionWhereInput",
+                  "name": "ServiceWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5297,7 +5367,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "upsertInspection",
+            "name": "upsertService",
             "description": null,
             "args": [
               {
@@ -5308,7 +5378,7 @@ export default {
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "InspectionWhereUniqueInput",
+                    "name": "ServiceWhereUniqueInput",
                     "ofType": null
                   }
                 },
@@ -5322,7 +5392,7 @@ export default {
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "InspectionCreateInput",
+                    "name": "ServiceCreateInput",
                     "ofType": null
                   }
                 },
@@ -5336,7 +5406,7 @@ export default {
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "InspectionUpdateInput",
+                    "name": "ServiceUpdateInput",
                     "ofType": null
                   }
                 },
@@ -5348,7 +5418,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Inspection",
+                "name": "Service",
                 "ofType": null
               }
             },
@@ -5356,7 +5426,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "deleteInspection",
+            "name": "deleteService",
             "description": null,
             "args": [
               {
@@ -5367,7 +5437,7 @@ export default {
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "InspectionWhereUniqueInput",
+                    "name": "ServiceWhereUniqueInput",
                     "ofType": null
                   }
                 },
@@ -5376,14 +5446,14 @@ export default {
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "Inspection",
+              "name": "Service",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "deleteManyInspections",
+            "name": "deleteManyServices",
             "description": null,
             "args": [
               {
@@ -5391,7 +5461,7 @@ export default {
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionWhereInput",
+                  "name": "ServiceWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5655,7 +5725,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -5734,11 +5804,11 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "inspections",
+            "name": "services",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "InspectionCreateManyWithoutUserInput",
+              "name": "ServiceCreateManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null
@@ -5760,7 +5830,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "InspectionCreateManyWithoutUserInput",
+        "name": "ServiceCreateManyWithoutUserInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -5775,7 +5845,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionCreateWithoutUserInput",
+                  "name": "ServiceCreateWithoutUserInput",
                   "ofType": null
                 }
               }
@@ -5793,7 +5863,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionWhereUniqueInput",
+                  "name": "ServiceWhereUniqueInput",
                   "ofType": null
                 }
               }
@@ -5807,7 +5877,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "InspectionCreateWithoutUserInput",
+        "name": "ServiceCreateWithoutUserInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -6013,7 +6083,7 @@ export default {
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -6079,11 +6149,11 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "inspections",
+            "name": "services",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "InspectionUpdateManyWithoutUserInput",
+              "name": "ServiceUpdateManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null
@@ -6105,7 +6175,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "InspectionUpdateManyWithoutUserInput",
+        "name": "ServiceUpdateManyWithoutUserInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -6120,7 +6190,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionCreateWithoutUserInput",
+                  "name": "ServiceCreateWithoutUserInput",
                   "ofType": null
                 }
               }
@@ -6138,7 +6208,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionWhereUniqueInput",
+                  "name": "ServiceWhereUniqueInput",
                   "ofType": null
                 }
               }
@@ -6156,7 +6226,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionWhereUniqueInput",
+                  "name": "ServiceWhereUniqueInput",
                   "ofType": null
                 }
               }
@@ -6174,7 +6244,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionWhereUniqueInput",
+                  "name": "ServiceWhereUniqueInput",
                   "ofType": null
                 }
               }
@@ -6192,7 +6262,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionWhereUniqueInput",
+                  "name": "ServiceWhereUniqueInput",
                   "ofType": null
                 }
               }
@@ -6210,7 +6280,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionUpdateWithWhereUniqueWithoutUserInput",
+                  "name": "ServiceUpdateWithWhereUniqueWithoutUserInput",
                   "ofType": null
                 }
               }
@@ -6228,7 +6298,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionUpsertWithWhereUniqueWithoutUserInput",
+                  "name": "ServiceUpsertWithWhereUniqueWithoutUserInput",
                   "ofType": null
                 }
               }
@@ -6246,7 +6316,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionScalarWhereInput",
+                  "name": "ServiceScalarWhereInput",
                   "ofType": null
                 }
               }
@@ -6264,7 +6334,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionUpdateManyWithWhereNestedInput",
+                  "name": "ServiceUpdateManyWithWhereNestedInput",
                   "ofType": null
                 }
               }
@@ -6278,7 +6348,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "InspectionUpdateWithWhereUniqueWithoutUserInput",
+        "name": "ServiceUpdateWithWhereUniqueWithoutUserInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -6290,7 +6360,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "InspectionWhereUniqueInput",
+                "name": "ServiceWhereUniqueInput",
                 "ofType": null
               }
             },
@@ -6304,7 +6374,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "InspectionUpdateWithoutUserDataInput",
+                "name": "ServiceUpdateWithoutUserDataInput",
                 "ofType": null
               }
             },
@@ -6317,7 +6387,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "InspectionUpdateWithoutUserDataInput",
+        "name": "ServiceUpdateWithoutUserDataInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -6510,7 +6580,7 @@ export default {
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -6576,11 +6646,11 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "inspections",
+            "name": "services",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "InspectionUpdateManyWithoutUserInput",
+              "name": "ServiceUpdateManyWithoutUserInput",
               "ofType": null
             },
             "defaultValue": null
@@ -6709,7 +6779,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "InspectionUpsertWithWhereUniqueWithoutUserInput",
+        "name": "ServiceUpsertWithWhereUniqueWithoutUserInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -6721,7 +6791,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "InspectionWhereUniqueInput",
+                "name": "ServiceWhereUniqueInput",
                 "ofType": null
               }
             },
@@ -6735,7 +6805,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "InspectionUpdateWithoutUserDataInput",
+                "name": "ServiceUpdateWithoutUserDataInput",
                 "ofType": null
               }
             },
@@ -6749,7 +6819,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "InspectionCreateWithoutUserInput",
+                "name": "ServiceCreateWithoutUserInput",
                 "ofType": null
               }
             },
@@ -6762,7 +6832,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "InspectionScalarWhereInput",
+        "name": "ServiceScalarWhereInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -7437,7 +7507,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionScalarWhereInput",
+                  "name": "ServiceScalarWhereInput",
                   "ofType": null
                 }
               }
@@ -7455,7 +7525,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionScalarWhereInput",
+                  "name": "ServiceScalarWhereInput",
                   "ofType": null
                 }
               }
@@ -7473,7 +7543,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionScalarWhereInput",
+                  "name": "ServiceScalarWhereInput",
                   "ofType": null
                 }
               }
@@ -7487,7 +7557,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "InspectionUpdateManyWithWhereNestedInput",
+        "name": "ServiceUpdateManyWithWhereNestedInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -7499,7 +7569,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "InspectionScalarWhereInput",
+                "name": "ServiceScalarWhereInput",
                 "ofType": null
               }
             },
@@ -7513,7 +7583,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "InspectionUpdateManyDataInput",
+                "name": "ServiceUpdateManyDataInput",
                 "ofType": null
               }
             },
@@ -7526,7 +7596,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "InspectionUpdateManyDataInput",
+        "name": "ServiceUpdateManyDataInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -7566,7 +7636,7 @@ export default {
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -7685,7 +7755,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "InspectionCreateInput",
+        "name": "ServiceCreateInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -7739,7 +7809,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "UserCreateOneWithoutInspectionsInput",
+                "name": "UserCreateOneWithoutServicesInput",
                 "ofType": null
               }
             },
@@ -7752,7 +7822,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "UserCreateOneWithoutInspectionsInput",
+        "name": "UserCreateOneWithoutServicesInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -7761,7 +7831,7 @@ export default {
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "UserCreateWithoutInspectionsInput",
+              "name": "UserCreateWithoutServicesInput",
               "ofType": null
             },
             "defaultValue": null
@@ -7783,7 +7853,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "UserCreateWithoutInspectionsInput",
+        "name": "UserCreateWithoutServicesInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -7795,7 +7865,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -7890,7 +7960,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "InspectionUpdateInput",
+        "name": "ServiceUpdateInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -7929,7 +7999,7 @@ export default {
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "UserUpdateOneRequiredWithoutInspectionsInput",
+              "name": "UserUpdateOneRequiredWithoutServicesInput",
               "ofType": null
             },
             "defaultValue": null
@@ -7941,7 +8011,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "UserUpdateOneRequiredWithoutInspectionsInput",
+        "name": "UserUpdateOneRequiredWithoutServicesInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -7950,7 +8020,7 @@ export default {
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "UserCreateWithoutInspectionsInput",
+              "name": "UserCreateWithoutServicesInput",
               "ofType": null
             },
             "defaultValue": null
@@ -7960,7 +8030,7 @@ export default {
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "UserUpdateWithoutInspectionsDataInput",
+              "name": "UserUpdateWithoutServicesDataInput",
               "ofType": null
             },
             "defaultValue": null
@@ -7970,7 +8040,7 @@ export default {
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "UserUpsertWithoutInspectionsInput",
+              "name": "UserUpsertWithoutServicesInput",
               "ofType": null
             },
             "defaultValue": null
@@ -7992,7 +8062,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "UserUpdateWithoutInspectionsDataInput",
+        "name": "UserUpdateWithoutServicesDataInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -8001,7 +8071,7 @@ export default {
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -8083,7 +8153,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "UserUpsertWithoutInspectionsInput",
+        "name": "UserUpsertWithoutServicesInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -8095,7 +8165,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "UserUpdateWithoutInspectionsDataInput",
+                "name": "UserUpdateWithoutServicesDataInput",
                 "ofType": null
               }
             },
@@ -8109,7 +8179,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "UserCreateWithoutInspectionsInput",
+                "name": "UserCreateWithoutServicesInput",
                 "ofType": null
               }
             },
@@ -8122,7 +8192,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "InspectionUpdateManyMutationInput",
+        "name": "ServiceUpdateManyMutationInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -8252,7 +8322,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "inspection",
+            "name": "service",
             "description": null,
             "args": [
               {
@@ -8260,7 +8330,7 @@ export default {
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionSubscriptionWhereInput",
+                  "name": "ServiceSubscriptionWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -8268,7 +8338,7 @@ export default {
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "InspectionSubscriptionPayload",
+              "name": "ServiceSubscriptionPayload",
               "ofType": null
             },
             "isDeprecated": false,
@@ -8572,7 +8642,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -8727,7 +8797,7 @@ export default {
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "InspectionSubscriptionWhereInput",
+        "name": "ServiceSubscriptionWhereInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -8800,7 +8870,7 @@ export default {
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "InspectionWhereInput",
+              "name": "ServiceWhereInput",
               "ofType": null
             },
             "defaultValue": null
@@ -8816,7 +8886,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionSubscriptionWhereInput",
+                  "name": "ServiceSubscriptionWhereInput",
                   "ofType": null
                 }
               }
@@ -8834,7 +8904,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionSubscriptionWhereInput",
+                  "name": "ServiceSubscriptionWhereInput",
                   "ofType": null
                 }
               }
@@ -8852,7 +8922,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "InspectionSubscriptionWhereInput",
+                  "name": "ServiceSubscriptionWhereInput",
                   "ofType": null
                 }
               }
@@ -8866,7 +8936,7 @@ export default {
       },
       {
         "kind": "OBJECT",
-        "name": "InspectionSubscriptionPayload",
+        "name": "ServiceSubscriptionPayload",
         "description": null,
         "fields": [
           {
@@ -8891,7 +8961,7 @@ export default {
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "Inspection",
+              "name": "Service",
               "ofType": null
             },
             "isDeprecated": false,
@@ -8923,7 +8993,7 @@ export default {
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "InspectionPreviousValues",
+              "name": "ServicePreviousValues",
               "ofType": null
             },
             "isDeprecated": false,
@@ -8937,7 +9007,7 @@ export default {
       },
       {
         "kind": "OBJECT",
-        "name": "InspectionPreviousValues",
+        "name": "ServicePreviousValues",
         "description": null,
         "fields": [
           {

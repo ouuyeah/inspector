@@ -3,7 +3,7 @@ import useForm from '../hooks/useForm';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import FormStyles from './styles/FormStartInspection';
+import FormStyles from './styles/FormStartService';
 import InputText from '../styles/InputText';
 import InputSelect from '../styles/InputSelect';
 import ButtonPrimary from '../styles/ButtonPrimary';
@@ -11,13 +11,13 @@ import TextCSS from './styles/TextCC';
 import User from '../User';
 import Loading from '../Loading';
 
-const START_INSPECTION = gql`
-  mutation START_INSPECTION(
+const START_SERVICE = gql`
+  mutation START_SERVICE(
     $source: String!
     $record: String!
     $licensePlate: String!
   ) {
-    createInspection(
+    createService(
       source: $source
       record: $record
       licensePlate: $licensePlate
@@ -37,10 +37,10 @@ const ALL_COLLECTIONS_QUERY = gql`
   }
 `;
 
-const StartInspection: React.FunctionComponent = () => {
+const StartService: React.FunctionComponent = () => {
   const { values, handleChange, handleSubmit, resetValues } = useForm(null);
 
-  const inspection = {};
+  const service = {};
   const result = {};
 
   return (
@@ -50,17 +50,17 @@ const StartInspection: React.FunctionComponent = () => {
         if (loading) return <Loading />;
         return (
           <Mutation
-            mutation={START_INSPECTION}
+            mutation={START_SERVICE}
             variables={values}
             onCompleted={() => {
               resetValues();
             }}
           >
-            {(createInspection, { error, loading }) => {
+            {(createService, { error, loading }) => {
               return (
                 <FormStyles
                   onSubmit={e => {
-                    handleSubmit(e, createInspection);
+                    handleSubmit(e, createService);
                   }}
                 >
                   <div>
@@ -133,4 +133,4 @@ const StartInspection: React.FunctionComponent = () => {
   );
 };
 
-export default StartInspection;
+export default StartService;

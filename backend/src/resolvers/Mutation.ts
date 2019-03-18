@@ -1,4 +1,4 @@
-import { stringArg, idArg, intArg, arg } from 'nexus'
+import { stringArg, idArg, arg } from 'nexus'
 import { prismaObjectType } from 'nexus-prisma'
 import { hash, compare } from 'bcrypt'
 import { getUserId } from '../utils'
@@ -12,7 +12,7 @@ export const Mutation = prismaObjectType({
       type: 'AuthPayload',
       args: {
         name: stringArg({ nullable: true }),
-        cc: intArg(),
+        cc: stringArg(),
         email: stringArg(),
         nickname: stringArg(),
         password: stringArg(),
@@ -85,8 +85,8 @@ export const Mutation = prismaObjectType({
       },
     })
 
-    t.field('createInspection', {
-      type: 'Inspection',
+    t.field('createService', {
+      type: 'Service',
       args: {
         source: stringArg(),
         licensePlate: stringArg(),
@@ -95,7 +95,7 @@ export const Mutation = prismaObjectType({
       resolve: (parent, { source, record, licensePlate }, ctx) => {
         const userId = getUserId(ctx)
         const license = licensePlate.toLocaleUpperCase()
-        return ctx.prisma.createInspection({
+        return ctx.prisma.createService({
           record,
           licensePlate: license,
           user: { connect: { id: userId } },
@@ -131,7 +131,7 @@ export const Mutation = prismaObjectType({
       },
     })
 
-    t.prismaFields(['upsertInspection'])
+    t.prismaFields(['upsertService'])
 
     /*
 

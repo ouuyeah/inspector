@@ -16,7 +16,7 @@ export default function validate(values) {
 
   if (!values.password) {
     errors.password = 'La contraseña es requerida';
-  } else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/.test(values.password)) {
+  } else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,16}$/.test(values.password)) {
     errors.password =
       'La contraseña debe tener entre 4 y 10 letras, mínimo un número y una letra mayúscula';
   }

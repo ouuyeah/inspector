@@ -23,7 +23,7 @@ export const permissions = shield({
     collections: rules.isAuthenticatedUser,
   },
   Mutation: {
-    createInspection: rules.isAuthenticatedUser,
+    createService: rules.isAuthenticatedUser,
     upsertCollection: rules.isAuthenticatedUser,
     //createDraft: rules.isAuthenticatedUser,
     //deletePost: rules.isPostOwner,

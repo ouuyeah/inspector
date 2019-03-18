@@ -125,7 +125,29 @@ input CollectionWhereUniqueInput {
 
 scalar DateTime
 
-type Inspection {
+type Mutation {
+  createService(licensePlate: String, record: String, source: String): Service
+  login(email: String, password: String): AuthPayload
+  signout: AuthPayload
+  signup(cc: String, email: String, name: String, nickname: String, password: String): AuthPayload
+  upsertCollection(id: ID, name: String, type: CollectionType): Collection
+  upsertService(create: ServiceCreateInput!, update: ServiceUpdateInput!, where: ServiceWhereUniqueInput!): Service!
+}
+
+enum Permission {
+  ADMIN
+  AGENT
+  DRIVER
+}
+
+type Query {
+  collections(after: String, before: String, first: Int, last: Int, orderBy: CollectionOrderByInput, skip: Int, where: CollectionWhereInput): [Collection!]!
+  me: User
+  service(id: ID): Service
+  services(after: String, before: String, first: Int, last: Int, orderBy: ServiceOrderByInput, skip: Int, where: ServiceWhereInput): [Service!]!
+}
+
+type Service {
   createdAt: DateTime!
   id: ID!
   licensePlate: String!
@@ -135,25 +157,25 @@ type Inspection {
   user: User!
 }
 
-input InspectionCreateInput {
+input ServiceCreateInput {
   licensePlate: String!
   record: String!
   source: CollectionCreateOneInput!
-  user: UserCreateOneWithoutInspectionsInput!
+  user: UserCreateOneWithoutServicesInput!
 }
 
-input InspectionCreateManyWithoutUserInput {
-  connect: [InspectionWhereUniqueInput!]
-  create: [InspectionCreateWithoutUserInput!]
+input ServiceCreateManyWithoutUserInput {
+  connect: [ServiceWhereUniqueInput!]
+  create: [ServiceCreateWithoutUserInput!]
 }
 
-input InspectionCreateWithoutUserInput {
+input ServiceCreateWithoutUserInput {
   licensePlate: String!
   record: String!
   source: CollectionCreateOneInput!
 }
 
-enum InspectionOrderByInput {
+enum ServiceOrderByInput {
   createdAt_ASC
   createdAt_DESC
   id_ASC
@@ -166,8 +188,8 @@ enum InspectionOrderByInput {
   updatedAt_DESC
 }
 
-input InspectionScalarWhereInput {
-  AND: [InspectionScalarWhereInput!]
+input ServiceScalarWhereInput {
+  AND: [ServiceScalarWhereInput!]
   createdAt: DateTime
   createdAt_gt: DateTime
   createdAt_gte: DateTime
@@ -204,8 +226,8 @@ input InspectionScalarWhereInput {
   licensePlate_not_in: [String!]
   licensePlate_not_starts_with: String
   licensePlate_starts_with: String
-  NOT: [InspectionScalarWhereInput!]
-  OR: [InspectionScalarWhereInput!]
+  NOT: [ServiceScalarWhereInput!]
+  OR: [ServiceScalarWhereInput!]
   record: String
   record_contains: String
   record_ends_with: String
@@ -230,54 +252,54 @@ input InspectionScalarWhereInput {
   updatedAt_not_in: [DateTime!]
 }
 
-input InspectionUpdateInput {
+input ServiceUpdateInput {
   licensePlate: String
   record: String
   source: CollectionUpdateOneRequiredInput
-  user: UserUpdateOneRequiredWithoutInspectionsInput
+  user: UserUpdateOneRequiredWithoutServicesInput
 }
 
-input InspectionUpdateManyDataInput {
+input ServiceUpdateManyDataInput {
   licensePlate: String
   record: String
 }
 
-input InspectionUpdateManyWithoutUserInput {
-  connect: [InspectionWhereUniqueInput!]
-  create: [InspectionCreateWithoutUserInput!]
-  delete: [InspectionWhereUniqueInput!]
-  deleteMany: [InspectionScalarWhereInput!]
-  disconnect: [InspectionWhereUniqueInput!]
-  set: [InspectionWhereUniqueInput!]
-  update: [InspectionUpdateWithWhereUniqueWithoutUserInput!]
-  updateMany: [InspectionUpdateManyWithWhereNestedInput!]
-  upsert: [InspectionUpsertWithWhereUniqueWithoutUserInput!]
+input ServiceUpdateManyWithoutUserInput {
+  connect: [ServiceWhereUniqueInput!]
+  create: [ServiceCreateWithoutUserInput!]
+  delete: [ServiceWhereUniqueInput!]
+  deleteMany: [ServiceScalarWhereInput!]
+  disconnect: [ServiceWhereUniqueInput!]
+  set: [ServiceWhereUniqueInput!]
+  update: [ServiceUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [ServiceUpdateManyWithWhereNestedInput!]
+  upsert: [ServiceUpsertWithWhereUniqueWithoutUserInput!]
 }
 
-input InspectionUpdateManyWithWhereNestedInput {
-  data: InspectionUpdateManyDataInput!
-  where: InspectionScalarWhereInput!
+input ServiceUpdateManyWithWhereNestedInput {
+  data: ServiceUpdateManyDataInput!
+  where: ServiceScalarWhereInput!
 }
 
-input InspectionUpdateWithoutUserDataInput {
+input ServiceUpdateWithoutUserDataInput {
   licensePlate: String
   record: String
   source: CollectionUpdateOneRequiredInput
 }
 
-input InspectionUpdateWithWhereUniqueWithoutUserInput {
-  data: InspectionUpdateWithoutUserDataInput!
-  where: InspectionWhereUniqueInput!
+input ServiceUpdateWithWhereUniqueWithoutUserInput {
+  data: ServiceUpdateWithoutUserDataInput!
+  where: ServiceWhereUniqueInput!
 }
 
-input InspectionUpsertWithWhereUniqueWithoutUserInput {
-  create: InspectionCreateWithoutUserInput!
-  update: InspectionUpdateWithoutUserDataInput!
-  where: InspectionWhereUniqueInput!
+input ServiceUpsertWithWhereUniqueWithoutUserInput {
+  create: ServiceCreateWithoutUserInput!
+  update: ServiceUpdateWithoutUserDataInput!
+  where: ServiceWhereUniqueInput!
 }
 
-input InspectionWhereInput {
-  AND: [InspectionWhereInput!]
+input ServiceWhereInput {
+  AND: [ServiceWhereInput!]
   createdAt: DateTime
   createdAt_gt: DateTime
   createdAt_gte: DateTime
@@ -314,8 +336,8 @@ input InspectionWhereInput {
   licensePlate_not_in: [String!]
   licensePlate_not_starts_with: String
   licensePlate_starts_with: String
-  NOT: [InspectionWhereInput!]
-  OR: [InspectionWhereInput!]
+  NOT: [ServiceWhereInput!]
+  OR: [ServiceWhereInput!]
   record: String
   record_contains: String
   record_ends_with: String
@@ -342,52 +364,31 @@ input InspectionWhereInput {
   user: UserWhereInput
 }
 
-input InspectionWhereUniqueInput {
+input ServiceWhereUniqueInput {
   id: ID
-}
-
-type Mutation {
-  createInspection(licensePlate: String, record: String, source: String): Inspection
-  login(email: String, password: String): AuthPayload
-  signout: AuthPayload
-  signup(cc: Int, email: String, name: String, nickname: String, password: String): AuthPayload
-  upsertCollection(id: ID, name: String, type: CollectionType): Collection
-  upsertInspection(create: InspectionCreateInput!, update: InspectionUpdateInput!, where: InspectionWhereUniqueInput!): Inspection!
-}
-
-enum Permission {
-  ADMIN
-  AGENT
-  DRIVER
-}
-
-type Query {
-  collections(after: String, before: String, first: Int, last: Int, orderBy: CollectionOrderByInput, skip: Int, where: CollectionWhereInput): [Collection!]!
-  inspection(id: ID): Inspection
-  inspections(after: String, before: String, first: Int, last: Int, orderBy: InspectionOrderByInput, skip: Int, where: InspectionWhereInput): [Inspection!]!
-  me: User
+  record: String
 }
 
 type User {
-  cc: Int!
+  cc: String!
   email: String!
   id: ID!
-  inspections: [Inspection!]
   name: String
   nickname: String!
   permissions: [Permission!]!
+  services: [Service!]
 }
 
 input UserCreateInput {
-  cc: Int!
+  cc: String!
   email: String!
-  inspections: InspectionCreateManyWithoutUserInput
   name: String
   nickname: String!
   password: String!
   permissions: UserCreatepermissionsInput
   resetToken: String
   resetTokenExpiry: Float
+  services: ServiceCreateManyWithoutUserInput
 }
 
 input UserCreateOneInput {
@@ -395,17 +396,17 @@ input UserCreateOneInput {
   create: UserCreateInput
 }
 
-input UserCreateOneWithoutInspectionsInput {
+input UserCreateOneWithoutServicesInput {
   connect: UserWhereUniqueInput
-  create: UserCreateWithoutInspectionsInput
+  create: UserCreateWithoutServicesInput
 }
 
 input UserCreatepermissionsInput {
   set: [Permission!]
 }
 
-input UserCreateWithoutInspectionsInput {
-  cc: Int!
+input UserCreateWithoutServicesInput {
+  cc: String!
   email: String!
   name: String
   nickname: String!
@@ -416,15 +417,15 @@ input UserCreateWithoutInspectionsInput {
 }
 
 input UserUpdateDataInput {
-  cc: Int
+  cc: String
   email: String
-  inspections: InspectionUpdateManyWithoutUserInput
   name: String
   nickname: String
   password: String
   permissions: UserUpdatepermissionsInput
   resetToken: String
   resetTokenExpiry: Float
+  services: ServiceUpdateManyWithoutUserInput
 }
 
 input UserUpdateOneRequiredInput {
@@ -434,19 +435,19 @@ input UserUpdateOneRequiredInput {
   upsert: UserUpsertNestedInput
 }
 
-input UserUpdateOneRequiredWithoutInspectionsInput {
+input UserUpdateOneRequiredWithoutServicesInput {
   connect: UserWhereUniqueInput
-  create: UserCreateWithoutInspectionsInput
-  update: UserUpdateWithoutInspectionsDataInput
-  upsert: UserUpsertWithoutInspectionsInput
+  create: UserCreateWithoutServicesInput
+  update: UserUpdateWithoutServicesDataInput
+  upsert: UserUpsertWithoutServicesInput
 }
 
 input UserUpdatepermissionsInput {
   set: [Permission!]
 }
 
-input UserUpdateWithoutInspectionsDataInput {
-  cc: Int
+input UserUpdateWithoutServicesDataInput {
+  cc: String
   email: String
   name: String
   nickname: String
@@ -461,21 +462,27 @@ input UserUpsertNestedInput {
   update: UserUpdateDataInput!
 }
 
-input UserUpsertWithoutInspectionsInput {
-  create: UserCreateWithoutInspectionsInput!
-  update: UserUpdateWithoutInspectionsDataInput!
+input UserUpsertWithoutServicesInput {
+  create: UserCreateWithoutServicesInput!
+  update: UserUpdateWithoutServicesDataInput!
 }
 
 input UserWhereInput {
   AND: [UserWhereInput!]
-  cc: Int
-  cc_gt: Int
-  cc_gte: Int
-  cc_in: [Int!]
-  cc_lt: Int
-  cc_lte: Int
-  cc_not: Int
-  cc_not_in: [Int!]
+  cc: String
+  cc_contains: String
+  cc_ends_with: String
+  cc_gt: String
+  cc_gte: String
+  cc_in: [String!]
+  cc_lt: String
+  cc_lte: String
+  cc_not: String
+  cc_not_contains: String
+  cc_not_ends_with: String
+  cc_not_in: [String!]
+  cc_not_starts_with: String
+  cc_starts_with: String
   createdAt: DateTime
   createdAt_gt: DateTime
   createdAt_gte: DateTime
@@ -512,9 +519,6 @@ input UserWhereInput {
   id_not_in: [ID!]
   id_not_starts_with: ID
   id_starts_with: ID
-  inspections_every: InspectionWhereInput
-  inspections_none: InspectionWhereInput
-  inspections_some: InspectionWhereInput
   name: String
   name_contains: String
   name_ends_with: String
@@ -581,6 +585,9 @@ input UserWhereInput {
   resetTokenExpiry_lte: Float
   resetTokenExpiry_not: Float
   resetTokenExpiry_not_in: [Float!]
+  services_every: ServiceWhereInput
+  services_none: ServiceWhereInput
+  services_some: ServiceWhereInput
   updatedAt: DateTime
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
@@ -592,7 +599,7 @@ input UserWhereInput {
 }
 
 input UserWhereUniqueInput {
-  cc: Int
+  cc: String
   email: String
   id: ID
   nickname: String

@@ -10,23 +10,23 @@ enum CollectionType {
 
 type User {
   id: ID! @id
-  cc: Int! @unique
+  cc: String! @unique
   email: String! @unique
   nickname: String! @unique
   password: String!
   name: String
   resetToken: String
   resetTokenExpiry: Float
-  inspections: [Inspection!]! @relation(link: INLINE)
+  services: [Service!]! @relation(link: INLINE)
   permissions: [Permission]
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
 
-type Inspection {
+type Service {
   id: ID! @id
   source: Collection! @relation(link: INLINE)
-  record: String!
+  record: String! @unique
   licensePlate: String!
   user: User!
   createdAt: DateTime! @createdAt

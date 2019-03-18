@@ -38,7 +38,7 @@ const LoginPage: NextFunctionComponent = props => {
             mutation={SIGNIN_MUTATION}
             variables={values}
             refetchQueries={[{ query: CURRENT_USER_QUERY }]}
-            onCompleted={() => Router.push({ pathname: '/inspections/view' })}
+            onCompleted={() => Router.push({ pathname: '/services/view' })}
           >
             {(login, { error, loading }) => {
               const { me } = data || {};

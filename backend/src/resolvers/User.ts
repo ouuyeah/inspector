@@ -11,7 +11,7 @@ export const User = prismaObjectType({
       'cc',
       'permissions',
       {
-        name: 'inspections',
+        name: 'services',
         args: [],
       },
     ])
