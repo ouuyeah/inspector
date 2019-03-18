@@ -36,59 +36,63 @@ const Inspections: React.FunctionComponent = () => {
   };
   let count = 0;
   return (
-    <Query query={LIST_INSPECTIONS}>
-      {({ data, loading }) => {
-        const { inspections } = data || {};
+    <User>
+      {({ data: { me = {} } }) => (
+        <Query query={LIST_INSPECTIONS}>
+          {({ data, loading }) => {
+            const { inspections } = data || {};
 
-        if (!inspections) return <p>No puedes estar acá :(</p>;
-        if (loading) return <Loading />;
+            if (!inspections) return <p>No puedes estar acá :(</p>;
+            if (loading) return <Loading />;
 
-        return (
-          <CollectionsStyles>
-            <div className="titles">
-              <h3>Hola , tus inspecciones</h3>
-              <Link href="/inspections/start">
-                <a>Crear</a>
-              </Link>
-            </div>
-            <Collapse onChange={changeKey} activeKey={activeKey}>
-              {inspections.map(inspection => {
-                return (
-                  <Panel header="hello" key={count++}>
-                    <Swipeout
-                      right={[
-                        {
-                          text: 'Editar',
-                          onPress: () =>
-                            Router.push({
-                              pathname: '/inspections/start',
-                              query: { id: inspection.id },
-                            }),
-                          className: 'edit',
-                        },
-                      ]}
-                    >
-                      <div className="list">
-                        <div>
-                          <p>{inspection.source.name}</p>
-                          <span className="type">{inspection.record}</span>
-                          <span className="user">
-                            Por: {inspection.licensePlate}
-                          </span>
-                        </div>
-                        <div style={{ textAlign: 'right' }}>
-                          <div className="arrow-right" />
-                        </div>
-                      </div>
-                    </Swipeout>
-                  </Panel>
-                );
-              })}
-            </Collapse>
-          </CollectionsStyles>
-        );
-      }}
-    </Query>
+            return (
+              <CollectionsStyles>
+                <div className="titles">
+                  <h3>Hola {me.name}, tus inspecciones</h3>
+                  <Link href="/inspections/start">
+                    <a>Crear</a>
+                  </Link>
+                </div>
+                <Collapse onChange={changeKey} activeKey={activeKey}>
+                  {inspections.map(inspection => {
+                    return (
+                      <Panel header="hello" key={count++}>
+                        <Swipeout
+                          right={[
+                            {
+                              text: 'Editar',
+                              onPress: () =>
+                                Router.push({
+                                  pathname: '/inspections/start',
+                                  query: { id: inspection.id },
+                                }),
+                              className: 'edit',
+                            },
+                          ]}
+                        >
+                          <div className="list">
+                            <div>
+                              <p>{inspection.source.name}</p>
+                              <span className="type">{inspection.record}</span>
+                              <span className="user">
+                                Por: {inspection.licensePlate}
+                              </span>
+                            </div>
+                            <div style={{ textAlign: 'right' }}>
+                              <div className="arrow-right" />
+                            </div>
+                          </div>
+                        </Swipeout>
+                      </Panel>
+                    );
+                  })}
+                </Collapse>
+              </CollectionsStyles>
+            );
+          }}
+        </Query>
+      )}
+    </User>
   );
 };
 
