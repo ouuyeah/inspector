@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { useState } from 'react';
 
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import Swipeout from 'rc-swipeout';
+import Collapse from 'rc-collapse';
 import Link from 'next/link';
 import Router from 'next/router';
 import User from '../User';
@@ -25,27 +27,34 @@ const LIST_INSPECTIONS = gql`
 `;
 
 const Inspections: React.FunctionComponent = () => {
+  const Panel = Collapse.Panel;
+  const [activeKey, setActiveKey] = useState(['4']);
+
+  const changeKey = activeKey => {
+    console.log(activeKey);
+    setActiveKey(activeKey);
+  };
+  let count = 0;
   return (
-    <User>
-      {({ data: { me = {} } }) => (
-        <Query query={LIST_INSPECTIONS}>
-          {({ data, loading }) => {
-            const { inspections } = data || {};
+    <Query query={LIST_INSPECTIONS}>
+      {({ data, loading }) => {
+        const { inspections } = data || {};
 
-            if (!inspections) return <p>No puedes estar acá :(</p>;
-            if (loading) return <Loading />;
+        if (!inspections) return <p>No puedes estar acá :(</p>;
+        if (loading) return <Loading />;
 
-            return (
-              <CollectionsStyles>
-                <div className="titles">
-                  <h3>Hola {me.name}, tus inspecciones</h3>
-                  <Link href="/inspections/start">
-                    <a>Crear</a>
-                  </Link>
-                </div>
-
-                {inspections.map(inspection => (
-                  <div className="wrapper-list" key={inspection.id}>
+        return (
+          <CollectionsStyles>
+            <div className="titles">
+              <h3>Hola , tus inspecciones</h3>
+              <Link href="/inspections/start">
+                <a>Crear</a>
+              </Link>
+            </div>
+            <Collapse onChange={changeKey} activeKey={activeKey}>
+              {inspections.map(inspection => {
+                return (
+                  <Panel header="hello" key={count++}>
                     <Swipeout
                       right={[
                         {
@@ -72,14 +81,14 @@ const Inspections: React.FunctionComponent = () => {
                         </div>
                       </div>
                     </Swipeout>
-                  </div>
-                ))}
-              </CollectionsStyles>
-            );
-          }}
-        </Query>
-      )}
-    </User>
+                  </Panel>
+                );
+              })}
+            </Collapse>
+          </CollectionsStyles>
+        );
+      }}
+    </Query>
   );
 };
 
