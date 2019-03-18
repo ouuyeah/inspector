@@ -18,6 +18,9 @@ const FormStyles = styled.form`
     align-self: end;
     margin-bottom: 2vh;
   }
+  .license {
+    text-transform: uppercase;
+  }
 `;
 
 export default FormStyles;

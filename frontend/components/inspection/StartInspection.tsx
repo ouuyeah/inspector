@@ -102,6 +102,7 @@ const StartInspection: React.FunctionComponent = () => {
                     />
                     <InputText
                       type="text"
+                      className="license"
                       name="licensePlate"
                       placeholder="Placa del cliente"
                       value={values.licensePlate || ''}

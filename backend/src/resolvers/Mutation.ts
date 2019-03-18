@@ -94,9 +94,10 @@ export const Mutation = prismaObjectType({
       },
       resolve: (parent, { source, record, licensePlate }, ctx) => {
         const userId = getUserId(ctx)
+        const license = licensePlate.toLocaleUpperCase()
         return ctx.prisma.createInspection({
           record,
-          licensePlate,
+          licensePlate: license,
           user: { connect: { id: userId } },
           source: { connect: { id: source } },
         })
