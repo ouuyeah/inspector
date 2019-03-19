@@ -85,7 +85,7 @@ export const Mutation = prismaObjectType({
       },
     })
 
-    t.field('createService', {
+    t.field('createServiceStart', {
       type: 'Service',
       args: {
         source: stringArg(),
@@ -102,6 +102,29 @@ export const Mutation = prismaObjectType({
           licensePlate: license,
           user: { connect: { id: userId } },
           source: { connect: { id: source } },
+        })
+      },
+    })
+
+    t.field('updateServiceStart', {
+      type: 'Service',
+      args: {
+        id: idArg(),
+        source: stringArg(),
+        state: arg({ type: 'ServiceState' }),
+        licensePlate: stringArg(),
+        record: stringArg({ nullable: true }),
+      },
+      resolve: (parent, { source, record, licensePlate, id }, ctx) => {
+        const license = licensePlate.toLocaleUpperCase()
+        return ctx.prisma.updateService({
+          where: { id },
+          data: {
+            record,
+            state: 'PROCESS',
+            licensePlate: license,
+            source: { connect: { id: source } },
+          },
         })
       },
     })

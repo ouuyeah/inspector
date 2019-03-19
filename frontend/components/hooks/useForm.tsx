@@ -15,6 +15,10 @@ const useForm = validate => {
 
   const handleSubmit = (event, query) => {
     if (event) event.preventDefault();
+
+    const { name } = event.target.elements;
+    console.log(event.target.elements);
+
     if (validate) {
       setErrors(validate(values));
     } else {

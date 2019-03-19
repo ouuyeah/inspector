@@ -607,10 +607,11 @@ export interface NexusGenFieldTypes {
     user: NexusGenRootTypes['User']; // User!
   }
   Mutation: { // field return type
-    createService: NexusGenRootTypes['Service'] | null; // Service
+    createServiceStart: NexusGenRootTypes['Service'] | null; // Service
     login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     signout: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
+    updateServiceStart: NexusGenRootTypes['Service'] | null; // Service
     upsertCollection: NexusGenRootTypes['Collection'] | null; // Collection
     upsertService: NexusGenRootTypes['Service']; // Service!
   }
@@ -643,7 +644,7 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenArgTypes {
   Mutation: {
-    createService: { // args
+    createServiceStart: { // args
       licensePlate?: string | null; // String
       record?: string | null; // String
       source?: string | null; // String
@@ -659,6 +660,13 @@ export interface NexusGenArgTypes {
       name?: string | null; // String
       nickname?: string | null; // String
       password?: string | null; // String
+    }
+    updateServiceStart: { // args
+      id?: string | null; // ID
+      licensePlate?: string | null; // String
+      record?: string | null; // String
+      source?: string | null; // String
+      state?: NexusGenEnums['ServiceState'] | null; // ServiceState
     }
     upsertCollection: { // args
       id?: string | null; // ID

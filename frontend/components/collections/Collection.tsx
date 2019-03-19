@@ -29,7 +29,11 @@ const UPSERT_COLLECTION = gql`
   }
 `;
 
-const Collection: React.FunctionComponent = props => {
+interface Props {
+  id: object;
+}
+
+const Collection: React.FunctionComponent<Props> = props => {
   const { values, handleChange, handleSubmit, resetValues } = useForm(null);
   const withId = props.id;
   console.log({ ...values, id: withId });

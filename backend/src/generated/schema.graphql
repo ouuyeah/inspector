@@ -126,10 +126,11 @@ input CollectionWhereUniqueInput {
 scalar DateTime
 
 type Mutation {
-  createService(licensePlate: String, record: String, source: String, state: ServiceState): Service
+  createServiceStart(licensePlate: String, record: String, source: String, state: ServiceState): Service
   login(email: String, password: String): AuthPayload
   signout: AuthPayload
   signup(cc: String, email: String, name: String, nickname: String, password: String): AuthPayload
+  updateServiceStart(id: ID, licensePlate: String, record: String, source: String, state: ServiceState): Service
   upsertCollection(id: ID, name: String, type: CollectionType): Collection
   upsertService(create: ServiceCreateInput!, update: ServiceUpdateInput!, where: ServiceWhereUniqueInput!): Service!
 }
