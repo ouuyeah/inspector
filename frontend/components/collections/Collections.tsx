@@ -6,8 +6,8 @@ import Swipeout from 'rc-swipeout';
 import Link from 'next/link';
 import Router from 'next/router';
 
+import ButtonLink from '../styles/ButtonLink';
 import CollectionsStyles from './styles/CollectionsStyles';
-import GridTable from './styles/GridTable';
 
 import Loading from '../Loading';
 
@@ -46,7 +46,7 @@ const Collections: React.FunctionComponent = () => {
             <div className="titles">
               <h3>Colecciones</h3>
               <Link href="/collections/item">
-                <a>Crear</a>
+                <ButtonLink>Crear</ButtonLink>
               </Link>
             </div>
 

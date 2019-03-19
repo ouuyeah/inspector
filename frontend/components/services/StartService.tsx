@@ -11,6 +11,7 @@ import ButtonPrimary from '../styles/ButtonPrimary';
 import TextCSS from './styles/TextCC';
 import User from '../User';
 import Loading from '../Loading';
+import { LIST_SERVICES } from './ViewServices';
 
 const START_SERVICE = gql`
   mutation START_SERVICE(
@@ -56,6 +57,7 @@ const StartService: React.FunctionComponent = () => {
             onCompleted={() => {
               resetValues();
             }}
+            refetchQueries={[{ query: LIST_SERVICES }]}
           >
             {(createService, { error, loading }) => {
               if (loading) return <Loading />;
@@ -66,7 +68,7 @@ const StartService: React.FunctionComponent = () => {
                   }}
                 >
                   <div>
-                    <h3>Comenzar inspección</h3>
+                    <h3>Comenzar servicio</h3>
 
                     <Error error={error} />
 

@@ -9,14 +9,35 @@ import Link from 'next/link';
 import Router from 'next/router';
 import User from '../User';
 
-import CollectionsStyles from '../collections/styles/CollectionsStyles';
+import ViewStyles from './styles/ViewStyles';
+import ButtonLink from '../styles/ButtonLink';
 import Loading from '../Loading';
+
+const serviceStates = [
+  {
+    value: 'PROCESS',
+    name: 'En proceso',
+  },
+  {
+    value: 'CANCELED',
+    name: 'Cancelado',
+  },
+  {
+    value: 'FAILED',
+    name: 'Fallido',
+  },
+  {
+    value: 'FINALIZED',
+    name: 'Finalizado',
+  },
+];
 
 const LIST_SERVICES = gql`
   query LIST_SERVICES($id: ID) {
     services(where: { user: { id: $id } }) {
       id
       licensePlate
+      state
       source {
         name
       }
@@ -28,10 +49,9 @@ const LIST_SERVICES = gql`
 
 const Services: React.FunctionComponent = () => {
   const Panel = Collapse.Panel;
-  const [activeKey, setActiveKey] = useState(['4']);
+  const [activeKey, setActiveKey] = useState([]);
 
   const changeKey = activeKey => {
-    console.log(activeKey);
     setActiveKey(activeKey);
   };
   let count = 0;
@@ -41,22 +61,30 @@ const Services: React.FunctionComponent = () => {
         <Query query={LIST_SERVICES}>
           {({ data, loading }) => {
             const { services } = data || {};
+            const name = me.name.substr(0, me.name.indexOf(' '));
 
             if (!services) return <p>No puedes estar acá :(</p>;
             if (loading) return <Loading />;
 
             return (
-              <CollectionsStyles>
+              <ViewStyles>
                 <div className="titles">
-                  <h3>Hola {me.name}, tus inspecciones</h3>
+                  <h3>Hola {name}, tus servicios: </h3>
                   <Link href="/services/start">
-                    <a>Crear</a>
+                    <ButtonLink>Crear</ButtonLink>
                   </Link>
                 </div>
                 <Collapse onChange={changeKey} activeKey={activeKey}>
                   {services.map(service => {
                     return (
-                      <Panel header="hello" key={count++}>
+                      <Panel
+                        className={`info-${service.state}`}
+                        header={`Exp: ${service.record}`}
+                        extra={serviceStates.map(state => {
+                          if (state.value == service.state) return state.name;
+                        })}
+                        key={count++}
+                      >
                         <Swipeout
                           right={[
                             {
@@ -89,7 +117,7 @@ const Services: React.FunctionComponent = () => {
                     );
                   })}
                 </Collapse>
-              </CollectionsStyles>
+              </ViewStyles>
             );
           }}
         </Query>
