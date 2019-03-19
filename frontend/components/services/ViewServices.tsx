@@ -5,6 +5,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import Swipeout from 'rc-swipeout';
 import Collapse from 'rc-collapse';
+import format from '../../lib/formatDate';
 import Link from 'next/link';
 import Router from 'next/router';
 import User from '../User';
@@ -79,7 +80,9 @@ const Services: React.FunctionComponent = () => {
                     return (
                       <Panel
                         className={`info-${service.state}`}
-                        header={`Exp: ${service.record}`}
+                        header={`Ex: ${service.record} - ${
+                          service.licensePlate
+                        }`}
                         extra={serviceStates.map(state => {
                           if (state.value == service.state) return state.name;
                         })}
@@ -105,7 +108,10 @@ const Services: React.FunctionComponent = () => {
                               <p>{service.source.name}</p>
                               <span className="type">{service.record}</span>
                               <span className="user">
-                                Por: {service.licensePlate}
+                                {format(
+                                  service.createdAt,
+                                  'MMMM d, yyyy h:mm a',
+                                )}
                               </span>
                             </div>
                             <div style={{ textAlign: 'right' }}>

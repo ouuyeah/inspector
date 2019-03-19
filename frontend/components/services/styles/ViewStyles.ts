@@ -15,25 +15,29 @@ const ViewStyles = styled.div`
   /* STATE STYLES  */
   .info-FINALIZED {
     background-color: #e9ffed;
-    .rc-collapse-header {
+    .rc-collapse-header,
+    .list {
       border: 1px solid #22981c;
     }
   }
   .info-PROCESS {
     background-color: #f2ff91;
-    .rc-collapse-header {
+    .rc-collapse-header,
+    .list {
       border: 1px solid #c6da2e;
     }
   }
   .info-CANCELED {
     background-color: #cecece;
-    .rc-collapse-header {
+    .rc-collapse-header,
+    .list {
       border: 1px solid #797979;
     }
   }
   .info-FAILED {
     background-color: #ffc1c1;
-    .rc-collapse-header {
+    .rc-collapse-header,
+    .list {
       border: 1px solid #ff6020;
     }
   }
@@ -70,11 +74,11 @@ const ViewStyles = styled.div`
   .list {
     padding: 1.7rem 1.2rem;
     line-height: 1.8rem;
-    background: #ececec;
+    background: #f1f1f1;
     display: grid;
     grid-template-columns: 10fr 1fr;
     align-items: center;
-
+    color: #222;
     p {
       margin: 0;
     }
