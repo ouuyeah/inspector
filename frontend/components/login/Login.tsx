@@ -38,7 +38,9 @@ const LoginPage: NextFunctionComponent = props => {
             mutation={SIGNIN_MUTATION}
             variables={values}
             refetchQueries={[{ query: CURRENT_USER_QUERY }]}
-            onCompleted={() => Router.push({ pathname: '/services/view' })}
+            onCompleted={async () =>
+              await Router.push({ pathname: '/services/view' })
+            }
           >
             {(login, { error, loading }) => {
               const { me } = data || {};
@@ -51,8 +53,8 @@ const LoginPage: NextFunctionComponent = props => {
 
                   <form
                     method="post"
-                    onSubmit={e => {
-                      handleSubmit(e, login);
+                    onSubmit={async e => {
+                      await handleSubmit(e, login);
                     }}
                   >
                     <Error error={error} />

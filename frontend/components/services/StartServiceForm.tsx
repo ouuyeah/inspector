@@ -78,15 +78,19 @@ const StartServiceForm: React.FunctionComponent<Props> = props => {
 
   const serviceData = props.service;
   let initialState = {};
-  if (serviceData) {
+  if (serviceData && withId) {
     initialState = {
       source: serviceData.source.id,
       record: serviceData.record,
       licensePlate: serviceData.licensePlate,
     };
   }
-
-  const [formState, { text, select }] = useFormState(initialState);
+  if (!withId) {
+    initialState = {};
+    console.log('sin Id');
+  }
+  const vals = withId ? initialState : {};
+  const [formState, { text, select }] = useFormState(vals);
 
   return (
     <Mutation

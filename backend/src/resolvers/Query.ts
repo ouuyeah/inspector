@@ -20,8 +20,9 @@ export const Query = prismaObjectType({
       type: 'Service',
       nullable: true,
       args: { id: idArg() },
-      resolve: (parent, { id }, ctx) => {
-        return ctx.prisma.service({ id })
+      resolve: async (parent, { id }, ctx) => {
+        const service = await ctx.prisma.service({ id })
+        return service
       },
     })
 

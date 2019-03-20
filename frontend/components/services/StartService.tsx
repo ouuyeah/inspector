@@ -26,7 +26,7 @@ interface Props {
 
 const StartService: React.FunctionComponent<Props> = props => {
   const withId = props.id;
-
+  console.log(withId);
   return (
     <User>
       {({ data, loading }) => {
@@ -38,11 +38,10 @@ const StartService: React.FunctionComponent<Props> = props => {
             variables={{ id: withId }}
             skip={!withId}
           >
-            {({ data }) => {
+            {({ data, loading }) => {
               const { service } = data || {};
-              if (service) {
-                // Here I have the data to send to the initialState
-              }
+              console.log(service);
+              if (loading) return <Loading />;
 
               return (
                 <StartServiceForm
