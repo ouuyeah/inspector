@@ -60,11 +60,11 @@ const ALL_COLLECTIONS_QUERY = gql`
 `;
 
 interface Props {
-  serviceId: string;
   me: {
     cc: string;
   };
-  service: {
+  service?: {
+    id: string;
     source: {
       id: string;
     };
@@ -73,43 +73,35 @@ interface Props {
   };
 }
 
-const StartServiceForm: React.FunctionComponent<Props> = props => {
-  const withId = props.serviceId;
-
-  const serviceData = props.service;
-  let initialState = {};
-  if (serviceData && withId) {
-    initialState = {
-      source: serviceData.source.id,
-      record: serviceData.record,
-      licensePlate: serviceData.licensePlate,
-    };
-  }
-  if (!withId) {
-    initialState = {};
-    console.log('sin Id');
-  }
-  const vals = withId ? initialState : {};
-  const [formState, { text, select }] = useFormState(vals);
+const StartServiceForm: React.FunctionComponent<Props> = ({ me, service }) => {
+  const id = service && service.id;
+  const initialState = service
+    ? {
+        source: service.source.id,
+        record: service.record,
+        licensePlate: service.licensePlate,
+      }
+    : {};
+  console.log('INITIAL', initialState);
+  const [formState, { text, select }] = useFormState(initialState);
 
   return (
     <Mutation
-      mutation={withId ? UPDATE_SERVICE : CREATE_SERVICE}
-      variables={
-        withId ? { ...formState.values, id: withId } : formState.values
-      }
+      mutation={id ? UPDATE_SERVICE : CREATE_SERVICE}
+      variables={id ? { ...formState.values, id } : formState.values}
       onCompleted={data => {
         console.log('completado', data);
       }}
       refetchQueries={[
         {
-          query: withId ? GET_SERVICE_QUERY : LIST_SERVICES,
-          variables: withId ? { id: withId } : {},
+          query: id ? GET_SERVICE_QUERY : LIST_SERVICES,
+          variables: id ? { id } : {},
         },
       ]}
     >
       {(mutation, { error, loading }) => {
         if (loading) return <Loading />;
+
         return (
           <FormStyles
             onSubmit={e => {
@@ -123,8 +115,7 @@ const StartServiceForm: React.FunctionComponent<Props> = props => {
               <Error error={error} />
 
               <TextCSS>
-                <span>CC: </span> {props.me && props.me.cc}{' '}
-                {!props.me && 'Logueate por favor'}
+                <span>CC: </span> {me && me.cc} {!me && 'Logueate por favor'}
               </TextCSS>
               <Query query={ALL_COLLECTIONS_QUERY}>
                 {({ data, loading, error }) => {

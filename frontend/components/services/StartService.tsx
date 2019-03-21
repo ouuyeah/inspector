@@ -11,6 +11,7 @@ import Loading from '../Loading';
 const GET_SERVICE_QUERY = gql`
   query GET_SERVICE_QUERY($id: ID!) {
     service(id: $id) {
+      id
       source {
         id
       }
@@ -24,28 +25,22 @@ interface Props {
   id: string;
 }
 
-const StartService: React.FunctionComponent<Props> = props => {
-  const withId = props.id;
-  console.log(withId);
+const StartService: React.FunctionComponent<Props> = ({ id }) => {
   return (
     <User>
       {({ data, loading }) => {
         const { me } = data || {};
         if (loading) return <Loading />;
         return (
-          <Query
-            query={GET_SERVICE_QUERY}
-            variables={{ id: withId }}
-            skip={!withId}
-          >
+          <Query query={GET_SERVICE_QUERY} variables={{ id }} skip={!id}>
             {({ data, loading }) => {
               const { service } = data || {};
-              console.log(service);
+
               if (loading) return <Loading />;
 
               return (
                 <StartServiceForm
-                  serviceId={withId}
+                  key={service ? service.id : 1}
                   me={me}
                   service={service}
                 />

@@ -31,11 +31,11 @@ class LayoutHeader extends React.Component {
         {/*<span style={{ color: 'red', fontSize: '3rem', fontWeight: 'bold' }}>
           SexCito
         </span>*/}
-        <LogoutModal
+        {/* <LogoutModal
           showModal={showModal}
           handleModalClose={this.handleModalClose}
           handleModalYes={this.handleModalYes}
-        />
+        /> */}
         <NavigationStyles>
           <input
             type="checkbox"
