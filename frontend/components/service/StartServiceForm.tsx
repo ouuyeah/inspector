@@ -13,6 +13,7 @@ import TextCSS from './styles/TextCC';
 import { LIST_SERVICES } from './ViewServices';
 import { GET_SERVICE_QUERY } from './StartService';
 import Loading from '../Loading';
+import Router from 'next/router';
 
 const CREATE_SERVICE = gql`
   mutation CREATE_SERVICE(
@@ -106,7 +107,17 @@ const StartServiceForm: React.FunctionComponent<Props> = ({ me, service }) => {
           <FormStyles
             onSubmit={e => {
               e.preventDefault();
-              mutation();
+              const noChanges =
+                JSON.stringify(initialState) ===
+                JSON.stringify(formState.values);
+              console.log(noChanges);
+              if (noChanges) {
+                Router.push({
+                  pathname: '/services/first-description',
+                  query: { id },
+                });
+              }
+              //mutation();
             }}
           >
             <div>
@@ -150,7 +161,7 @@ const StartServiceForm: React.FunctionComponent<Props> = ({ me, service }) => {
             </div>
 
             <ButtonPrimary type="submit" className="btn" disabled={loading}>
-              Inspeccionar
+              {id ? 'Actualizar servicio' : 'Empezar servicio'}
             </ButtonPrimary>
           </FormStyles>
         );

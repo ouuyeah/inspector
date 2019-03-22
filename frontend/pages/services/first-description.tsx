@@ -5,7 +5,7 @@ import Auth from '../../components/Auth';
 
 const StartServicePage: React.FunctionComponent<Props> = ({ query }) => (
   <Auth>
-    <Layout title="Empezar servicio">
+    <Layout title="Primera descripción">
       <StartService id={query.id} />
     </Layout>
   </Auth>
