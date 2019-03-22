@@ -83,7 +83,7 @@ const StartServiceForm: React.FunctionComponent<Props> = ({ me, service }) => {
         licensePlate: service.licensePlate,
       }
     : {};
-  console.log('INITIAL', initialState);
+
   const [formState, { text, select }] = useFormState(initialState);
 
   return (
@@ -110,7 +110,6 @@ const StartServiceForm: React.FunctionComponent<Props> = ({ me, service }) => {
               const noChanges =
                 JSON.stringify(initialState) ===
                 JSON.stringify(formState.values);
-              console.log(noChanges);
               if (noChanges) {
                 Router.push({
                   pathname: '/services/first-description',

@@ -13,7 +13,7 @@ function create(initialState = {}) {
     fetchOptions: {
       credentials: 'include',
     },
-    headers: { 'My-Header': 'hello' },
+    credentials: 'include',
 
     fetch: process.browser ? fetch.bind() : unfetch, // eslint-disable-line
   });

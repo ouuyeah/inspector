@@ -18,7 +18,6 @@ const User = props => {
   const { loading, data } = useQuery(CURRENT_USER_QUERY);
 
   if (loading) return <div>Loading</div>;
-  console.log(data);
 
   return <div {...props}>{props.children}</div>;
 };
