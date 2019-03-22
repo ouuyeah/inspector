@@ -1,23 +1,23 @@
-import * as React from 'react';
+import React, { Fragment, useState } from 'react';
 import { NextFunctionComponent } from 'next';
+import { useMutation } from 'graphql-hooks';
 
-import { Mutation } from 'react-apollo';
-import gql from 'graphql-tag';
+import { useFormState } from 'react-use-form-state';
 
-import useForm from '../hooks/useForm';
-
+import Loading from '../Loading';
 import Error from '../ErrorMessage';
 import User from '../User';
 
 import LoginStyles from './styles/LoginStyles';
 import ButtonPrimary from '../styles/ButtonPrimary';
 import InputLogin from './styles/InputLogin';
+
 import { CURRENT_USER_QUERY } from '../User';
 import Router from 'next/router';
 
-const SIGNIN_MUTATION = gql`
-  mutation SIGNIN_MUTATION($emailOrNick: String!, $password: String!) {
-    login(email: $emailOrNick, password: $password) {
+const SIGNIN_MUTATION = `
+  mutation SIGNIN_MUTATION($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
       user {
         id
         email
@@ -28,61 +28,50 @@ const SIGNIN_MUTATION = gql`
 `;
 
 const LoginPage: NextFunctionComponent = props => {
-  const { values, handleChange, handleSubmit } = useForm(null);
+  const [formState, { text, password }] = useFormState({});
 
+  const [signIn, { graphQLErrors, loading }] = useMutation(SIGNIN_MUTATION, {
+    variables: { ...formState.values },
+  });
+
+  if (loading) return <Loading />;
   return (
-    <User skip={!props.hasLoginToken}>
-      {({ data }) => {
-        return (
-          <Mutation
-            mutation={SIGNIN_MUTATION}
-            variables={values}
-            refetchQueries={[{ query: CURRENT_USER_QUERY }]}
-            onCompleted={async () =>
-              await Router.push({ pathname: '/services/view' })
+    <User>
+      <LoginStyles>
+        <img src="/static/logo-sapco.png" alt="Logo Sapco" />
+        <h3>Salvando al mundo de accidentes de tránsito </h3>
+
+        <form
+          method="post"
+          onSubmit={async e => {
+            e.preventDefault();
+            try {
+              await signIn().then(({ error }) => {
+                if (!error) {
+                  Router.push({ pathname: '/services/view' });
+                }
+              });
+            } catch (e) {
+              console.error('error upvoting post', e);
             }
-          >
-            {(login, { error, loading }) => {
-              const { me } = data || {};
-
-              return (
-                <LoginStyles>
-                  <img src="/static/logo-sapco.png" alt="Logo Sapco" />
-
-                  <h3>Salvando al mundo de accidentes de tránsito </h3>
-
-                  <form
-                    method="post"
-                    onSubmit={async e => {
-                      await handleSubmit(e, login);
-                    }}
-                  >
-                    <Error error={error} />
-
-                    <InputLogin
-                      type="email"
-                      name="emailOrNick"
-                      placeholder="Correo electrónico"
-                      onChange={handleChange}
-                      value={values.emailOrNick || ''}
-                      required
-                    />
-                    <InputLogin
-                      type="password"
-                      name="password"
-                      placeholder="Contraseña"
-                      onChange={handleChange}
-                      value={values.password || ''}
-                      required
-                    />
-                    <ButtonPrimary login> Entrar </ButtonPrimary>
-                  </form>
-                </LoginStyles>
-              );
-            }}
-          </Mutation>
-        );
-      }}
+          }}
+        >
+          <Error error={graphQLErrors} />
+          <InputLogin
+            type="email"
+            placeholder="Correo electrónico"
+            {...text('email')}
+            required
+          />
+          <InputLogin
+            type="password"
+            placeholder="Contraseña"
+            {...password('password')}
+            required
+          />
+          <ButtonPrimary login> Entrar </ButtonPrimary>
+        </form>
+      </LoginStyles>
     </User>
   );
 };

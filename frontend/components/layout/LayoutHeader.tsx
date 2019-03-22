@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
-import Modal from 'react-modal';
+
 import LogoutModal from './LogoutModal';
 import HeaderStyles from './styles/HeaderStyles';
 import NavigationStyles from './styles/NavigationStyles';
@@ -77,7 +77,5 @@ class LayoutHeader extends React.Component {
     );
   }
 }
-
-Modal.setAppElement('body');
 
 export default LayoutHeader;

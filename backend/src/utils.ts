@@ -9,6 +9,7 @@ interface Token {
 
 export function getUserId(context: Context) {
   const { token } = context.request.cookies
+  console.log(token)
   if (token) {
     const verifiedToken = verify(token, process.env.APP_SECRET) as Token
     return verifiedToken && verifiedToken.userId

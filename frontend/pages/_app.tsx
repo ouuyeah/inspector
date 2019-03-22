@@ -2,6 +2,8 @@ import App, { Container } from 'next/app';
 import Page from '../components/Page';
 import { ApolloProvider } from 'react-apollo';
 import withData from '../lib/withData';
+import withGraphQLClient from '../lib/withGraphqlClient';
+import { ClientContext } from 'graphql-hooks';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -16,18 +18,18 @@ class MyApp extends App {
   }
 
   render() {
-    const { Component, apollo, pageProps } = this.props;
+    const { Component, graphQLClient, pageProps } = this.props;
 
     return (
       <Container>
-        <ApolloProvider client={apollo}>
+        <ClientContext.Provider value={graphQLClient}>
           <Page>
             <Component {...pageProps} />
           </Page>
-        </ApolloProvider>
+        </ClientContext.Provider>
       </Container>
     );
   }
 }
 
-export default withData(MyApp);
+export default withGraphQLClient(MyApp);

@@ -9,6 +9,7 @@ export const Query = prismaObjectType({
       type: 'User',
       resolve: (parent, args, ctx) => {
         const userId = getUserId(ctx)
+        console.log(userId)
 
         if (!userId) {
           return null
