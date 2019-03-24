@@ -1,4 +1,4 @@
-import { stringArg, idArg, arg } from 'nexus'
+import { stringArg, arg } from 'nexus'
 import { prismaObjectType } from 'nexus-prisma'
 import { hash, compare } from 'bcrypt'
 import { getUserId } from '../utils'

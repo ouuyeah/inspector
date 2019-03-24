@@ -17,50 +17,8 @@ type Collection {
   user: User!
 }
 
-input CollectionCreateInput {
-  name: String!
-  type: CollectionType!
-  user: UserCreateOneInput!
-}
-
-input CollectionCreateOneInput {
-  connect: CollectionWhereUniqueInput
-  create: CollectionCreateInput
-}
-
-enum CollectionOrderByInput {
-  createdAt_ASC
-  createdAt_DESC
-  id_ASC
-  id_DESC
-  name_ASC
-  name_DESC
-  type_ASC
-  type_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-}
-
 enum CollectionType {
   SOURCE
-}
-
-input CollectionUpdateDataInput {
-  name: String
-  type: CollectionType
-  user: UserUpdateOneRequiredInput
-}
-
-input CollectionUpdateOneRequiredInput {
-  connect: CollectionWhereUniqueInput
-  create: CollectionCreateInput
-  update: CollectionUpdateDataInput
-  upsert: CollectionUpsertNestedInput
-}
-
-input CollectionUpsertNestedInput {
-  create: CollectionCreateInput!
-  update: CollectionUpdateDataInput!
 }
 
 input CollectionWhereInput {
@@ -118,11 +76,6 @@ input CollectionWhereInput {
   user: UserWhereInput
 }
 
-input CollectionWhereUniqueInput {
-  id: ID
-  name: String
-}
-
 scalar DateTime
 
 type Mutation {
@@ -130,9 +83,6 @@ type Mutation {
   login(email: String, password: String): AuthPayload
   signout: AuthPayload
   signup(cc: String, email: String, name: String, nickname: String, password: String): AuthPayload
-  updateServiceStart(id: ID, licensePlate: String, record: String, source: String, state: ServiceState): Service
-  upsertCollection(id: ID, name: String, type: CollectionType): Collection
-  upsertService(create: ServiceCreateInput!, update: ServiceUpdateInput!, where: ServiceWhereUniqueInput!): Service!
 }
 
 enum Permission {
@@ -142,9 +92,7 @@ enum Permission {
 }
 
 type Query {
-  collections(after: String, before: String, first: Int, last: Int, orderBy: CollectionOrderByInput, skip: Int, where: CollectionWhereInput): [Collection!]!
   me: User
-  service(id: ID): Service
   services(after: String, before: String, first: Int, last: Int, orderBy: ServiceOrderByInput, skip: Int, where: ServiceWhereInput): [Service!]!
 }
 
@@ -157,26 +105,6 @@ type Service {
   state: ServiceState
   updatedAt: DateTime!
   user: User!
-}
-
-input ServiceCreateInput {
-  licensePlate: String!
-  record: String!
-  source: CollectionCreateOneInput!
-  state: ServiceState
-  user: UserCreateOneWithoutServicesInput!
-}
-
-input ServiceCreateManyWithoutUserInput {
-  connect: [ServiceWhereUniqueInput!]
-  create: [ServiceCreateWithoutUserInput!]
-}
-
-input ServiceCreateWithoutUserInput {
-  licensePlate: String!
-  record: String!
-  source: CollectionCreateOneInput!
-  state: ServiceState
 }
 
 enum ServiceOrderByInput {
@@ -194,128 +122,11 @@ enum ServiceOrderByInput {
   updatedAt_DESC
 }
 
-input ServiceScalarWhereInput {
-  AND: [ServiceScalarWhereInput!]
-  createdAt: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_not: DateTime
-  createdAt_not_in: [DateTime!]
-  id: ID
-  id_contains: ID
-  id_ends_with: ID
-  id_gt: ID
-  id_gte: ID
-  id_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_not: ID
-  id_not_contains: ID
-  id_not_ends_with: ID
-  id_not_in: [ID!]
-  id_not_starts_with: ID
-  id_starts_with: ID
-  licensePlate: String
-  licensePlate_contains: String
-  licensePlate_ends_with: String
-  licensePlate_gt: String
-  licensePlate_gte: String
-  licensePlate_in: [String!]
-  licensePlate_lt: String
-  licensePlate_lte: String
-  licensePlate_not: String
-  licensePlate_not_contains: String
-  licensePlate_not_ends_with: String
-  licensePlate_not_in: [String!]
-  licensePlate_not_starts_with: String
-  licensePlate_starts_with: String
-  NOT: [ServiceScalarWhereInput!]
-  OR: [ServiceScalarWhereInput!]
-  record: String
-  record_contains: String
-  record_ends_with: String
-  record_gt: String
-  record_gte: String
-  record_in: [String!]
-  record_lt: String
-  record_lte: String
-  record_not: String
-  record_not_contains: String
-  record_not_ends_with: String
-  record_not_in: [String!]
-  record_not_starts_with: String
-  record_starts_with: String
-  state: ServiceState
-  state_in: [ServiceState!]
-  state_not: ServiceState
-  state_not_in: [ServiceState!]
-  updatedAt: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_not: DateTime
-  updatedAt_not_in: [DateTime!]
-}
-
 enum ServiceState {
   CANCELED
   FAILED
   FINALIZED
   PROCESS
-}
-
-input ServiceUpdateInput {
-  licensePlate: String
-  record: String
-  source: CollectionUpdateOneRequiredInput
-  state: ServiceState
-  user: UserUpdateOneRequiredWithoutServicesInput
-}
-
-input ServiceUpdateManyDataInput {
-  licensePlate: String
-  record: String
-  state: ServiceState
-}
-
-input ServiceUpdateManyWithoutUserInput {
-  connect: [ServiceWhereUniqueInput!]
-  create: [ServiceCreateWithoutUserInput!]
-  delete: [ServiceWhereUniqueInput!]
-  deleteMany: [ServiceScalarWhereInput!]
-  disconnect: [ServiceWhereUniqueInput!]
-  set: [ServiceWhereUniqueInput!]
-  update: [ServiceUpdateWithWhereUniqueWithoutUserInput!]
-  updateMany: [ServiceUpdateManyWithWhereNestedInput!]
-  upsert: [ServiceUpsertWithWhereUniqueWithoutUserInput!]
-}
-
-input ServiceUpdateManyWithWhereNestedInput {
-  data: ServiceUpdateManyDataInput!
-  where: ServiceScalarWhereInput!
-}
-
-input ServiceUpdateWithoutUserDataInput {
-  licensePlate: String
-  record: String
-  source: CollectionUpdateOneRequiredInput
-  state: ServiceState
-}
-
-input ServiceUpdateWithWhereUniqueWithoutUserInput {
-  data: ServiceUpdateWithoutUserDataInput!
-  where: ServiceWhereUniqueInput!
-}
-
-input ServiceUpsertWithWhereUniqueWithoutUserInput {
-  create: ServiceCreateWithoutUserInput!
-  update: ServiceUpdateWithoutUserDataInput!
-  where: ServiceWhereUniqueInput!
 }
 
 input ServiceWhereInput {
@@ -388,11 +199,6 @@ input ServiceWhereInput {
   user: UserWhereInput
 }
 
-input ServiceWhereUniqueInput {
-  id: ID
-  record: String
-}
-
 type User {
   cc: String!
   email: String!
@@ -401,94 +207,6 @@ type User {
   nickname: String!
   permissions: [Permission!]!
   services: [Service!]
-}
-
-input UserCreateInput {
-  cc: String!
-  email: String!
-  name: String
-  nickname: String!
-  password: String!
-  permissions: UserCreatepermissionsInput
-  resetToken: String
-  resetTokenExpiry: Float
-  services: ServiceCreateManyWithoutUserInput
-}
-
-input UserCreateOneInput {
-  connect: UserWhereUniqueInput
-  create: UserCreateInput
-}
-
-input UserCreateOneWithoutServicesInput {
-  connect: UserWhereUniqueInput
-  create: UserCreateWithoutServicesInput
-}
-
-input UserCreatepermissionsInput {
-  set: [Permission!]
-}
-
-input UserCreateWithoutServicesInput {
-  cc: String!
-  email: String!
-  name: String
-  nickname: String!
-  password: String!
-  permissions: UserCreatepermissionsInput
-  resetToken: String
-  resetTokenExpiry: Float
-}
-
-input UserUpdateDataInput {
-  cc: String
-  email: String
-  name: String
-  nickname: String
-  password: String
-  permissions: UserUpdatepermissionsInput
-  resetToken: String
-  resetTokenExpiry: Float
-  services: ServiceUpdateManyWithoutUserInput
-}
-
-input UserUpdateOneRequiredInput {
-  connect: UserWhereUniqueInput
-  create: UserCreateInput
-  update: UserUpdateDataInput
-  upsert: UserUpsertNestedInput
-}
-
-input UserUpdateOneRequiredWithoutServicesInput {
-  connect: UserWhereUniqueInput
-  create: UserCreateWithoutServicesInput
-  update: UserUpdateWithoutServicesDataInput
-  upsert: UserUpsertWithoutServicesInput
-}
-
-input UserUpdatepermissionsInput {
-  set: [Permission!]
-}
-
-input UserUpdateWithoutServicesDataInput {
-  cc: String
-  email: String
-  name: String
-  nickname: String
-  password: String
-  permissions: UserUpdatepermissionsInput
-  resetToken: String
-  resetTokenExpiry: Float
-}
-
-input UserUpsertNestedInput {
-  create: UserCreateInput!
-  update: UserUpdateDataInput!
-}
-
-input UserUpsertWithoutServicesInput {
-  create: UserCreateWithoutServicesInput!
-  update: UserUpdateWithoutServicesDataInput!
 }
 
 input UserWhereInput {
@@ -620,11 +338,4 @@ input UserWhereInput {
   updatedAt_lte: DateTime
   updatedAt_not: DateTime
   updatedAt_not_in: [DateTime!]
-}
-
-input UserWhereUniqueInput {
-  cc: String
-  email: String
-  id: ID
-  nickname: String
 }
