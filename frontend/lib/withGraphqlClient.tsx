@@ -1,22 +1,49 @@
 import React from 'react';
 import initGraphQL from './initGraphql';
+import cookie from 'cookie';
 import Head from 'next/head';
 import { getInitialState } from 'graphql-hooks-ssr';
+import { isBrowser } from './isBrowser';
+
+function parseCookies(req?: any, options = {}) {
+  return cookie.parse(
+    req ? req.headers.cookie || '' : document.cookie,
+    options,
+  );
+}
 
 export default App => {
   return class GraphQLHooks extends React.Component {
     static displayName = 'GraphQLHooks(App)';
     static async getInitialProps(ctx) {
-      const { Component, router } = ctx;
+      const {
+        Component,
+        router,
+        ctx: { req, res },
+      } = ctx;
+
+      //console.log(req.headers, 'HEADERS');
+
+      // Run all GraphQL queries in the component tree
+      // and extract the resulting data
+      const graphQLClient = initGraphQL(
+        {},
+        {
+          getToken: () => parseCookies(req).token,
+        },
+      );
 
       let appProps = {};
       if (App.getInitialProps) {
         appProps = await App.getInitialProps(ctx);
       }
 
-      // Run all GraphQL queries in the component tree
-      // and extract the resulting data
-      const graphQLClient = initGraphQL();
+      if (res && res.finished) {
+        // When redirecting, the response is finished.
+        // No point in continuing to render
+        return {};
+      }
+
       let graphQLState = {};
       if (!process.browser) {
         try {
@@ -52,7 +79,11 @@ export default App => {
 
     constructor(props) {
       super(props);
-      this.graphQLClient = initGraphQL(props.graphQLState);
+      this.graphQLClient = initGraphQL(props.graphQLState, {
+        getToken: () => {
+          return parseCookies().token;
+        },
+      });
     }
 
     render() {

@@ -7,7 +7,7 @@ import Loading from './Loading';
 
 const Auth = props => {
   const { loading, data } = useQuery(CURRENT_USER_QUERY);
-  console.log(data);
+  console.log(data, 'Data');
   const { me } = data || {};
   if (loading) return <Loading />;
   if (!me) {

@@ -9,7 +9,6 @@ const LoginPage: React.FunctionComponent = props => (
 
 LoginPage.getInitialProps = ctx => {
   const token = Boolean(getToken(ctx));
-  console.log(token);
 
   if (token) {
     redirect({ to: '/services/start', res: ctx.res });
